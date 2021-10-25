@@ -8,12 +8,13 @@
 import UIKit
 
 extension UITextField {
-    func underLine(width: Double) {
+    func underLine() {
         let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0.0, y: 25.0, width: width, height: 1.0)
+        bottomLine.frame = CGRect(x: 0.0, y: 25.0, width: 300, height: 1.0)
         bottomLine.backgroundColor = UIColor.lightGray.cgColor
         self.layer.addSublayer(bottomLine)
     }
+    
 }
 
 extension UIViewController {

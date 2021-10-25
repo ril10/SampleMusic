@@ -130,7 +130,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         textField.keyboardType = UIKeyboardType.emailAddress
         textField.returnKeyType = UIReturnKeyType.done
         textField.clearButtonMode = UITextField.ViewMode.whileEditing
-        textField.underLine(width: 300)
+        textField.underLine()
         textField.translatesAutoresizingMaskIntoConstraints = false
        return textField
     }()
@@ -144,7 +144,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         textField.returnKeyType = UIReturnKeyType.done
         textField.clearButtonMode = UITextField.ViewMode.whileEditing
         textField.isSecureTextEntry = true
-        textField.underLine(width: 300)
+        textField.underLine()
+        
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -178,9 +179,14 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.red, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir Heavy", size: 15)
+        button.addTarget(self, action: #selector(registrationButtonAction(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    @objc func registrationButtonAction(sender: UIButton!) {
+        coordinator?.registrationViewController()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

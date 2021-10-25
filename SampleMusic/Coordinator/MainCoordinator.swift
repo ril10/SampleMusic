@@ -16,8 +16,15 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let mainScreenViewController = MainScreenViewController()
-        navigationController.pushViewController(mainScreenViewController, animated: true)
+        let vc = MainScreenViewController()
+        vc.coordinator = self
+        self.navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func registrationViewController() {
+        let vc = RegistrationViewController()
+        vc.coordinator = self
+        self.navigationController.pushViewController(vc, animated: true)
     }
     
     
