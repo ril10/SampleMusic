@@ -21,6 +21,8 @@
 		C381568627270783008E83AC /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381568527270783008E83AC /* RegistrationViewController.swift */; };
 		C38156882728147A008E83AC /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156872728147A008E83AC /* MainScreenViewModel.swift */; };
 		C381568A27281499008E83AC /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381568927281499008E83AC /* RegistrationViewModel.swift */; };
+		C381568D27281B3F008E83AC /* Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381568C27281B3F008E83AC /* Configure.swift */; };
+		C381568F272822C6008E83AC /* ListSamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381568E272822C6008E83AC /* ListSamplesViewController.swift */; };
 		CE465B295A968BB62465D06D /* Pods_SampleMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 079D9E4C0D753E218344DC3F /* Pods_SampleMusic.framework */; };
 		DC36B3A781F7794D7015F33E /* Pods_SampleMusicTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D95BEE1F265D80C11E3520 /* Pods_SampleMusicTests.framework */; };
 		FB0D40F7D07B982B002E6261 /* Pods_SampleMusic_SampleMusicUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3C9C685F53E93888934FCF /* Pods_SampleMusic_SampleMusicUITests.framework */; };
@@ -70,6 +72,8 @@
 		C381568527270783008E83AC /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		C38156872728147A008E83AC /* MainScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModel.swift; sourceTree = "<group>"; };
 		C381568927281499008E83AC /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		C381568C27281B3F008E83AC /* Configure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configure.swift; sourceTree = "<group>"; };
+		C381568E272822C6008E83AC /* ListSamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSamplesViewController.swift; sourceTree = "<group>"; };
 		C9D95BEE1F265D80C11E3520 /* Pods_SampleMusicTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleMusicTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E422F86AE22F9CF71F8803D2 /* Pods-SampleMusic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMusic.debug.xcconfig"; path = "Target Support Files/Pods-SampleMusic/Pods-SampleMusic.debug.xcconfig"; sourceTree = "<group>"; };
 		F7C1D32D370808EEFD3488BC /* Pods-SampleMusic-SampleMusicUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMusic-SampleMusicUITests.release.xcconfig"; path = "Target Support Files/Pods-SampleMusic-SampleMusicUITests/Pods-SampleMusic-SampleMusicUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 		C38156442726A0BF008E83AC /* SampleMusic */ = {
 			isa = PBXGroup;
 			children = (
+				C381568B27281B33008E83AC /* Dependencies */,
 				C38156822726F80F008E83AC /* Extension */,
 				C381567B2726A903008E83AC /* Coordinator */,
 				C381567A2726A894008E83AC /* ViewModel */,
@@ -194,6 +199,7 @@
 			children = (
 				C38156492726A0BF008E83AC /* MainScreenViewController.swift */,
 				C381568527270783008E83AC /* RegistrationViewController.swift */,
+				C381568E272822C6008E83AC /* ListSamplesViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -222,6 +228,14 @@
 				C38156832726F81B008E83AC /* Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		C381568B27281B33008E83AC /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				C381568C27281B3F008E83AC /* Configure.swift */,
+			);
+			path = Dependencies;
 			sourceTree = "<group>";
 		};
 		F761F145E50674D7EBB91DB2 /* Frameworks */ = {
@@ -476,6 +490,8 @@
 				C381568A27281499008E83AC /* RegistrationViewModel.swift in Sources */,
 				C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */,
 				C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */,
+				C381568F272822C6008E83AC /* ListSamplesViewController.swift in Sources */,
+				C381568D27281B3F008E83AC /* Configure.swift in Sources */,
 				C38156842726F81B008E83AC /* Extension.swift in Sources */,
 				C381568627270783008E83AC /* RegistrationViewController.swift in Sources */,
 				C38156882728147A008E83AC /* MainScreenViewModel.swift in Sources */,

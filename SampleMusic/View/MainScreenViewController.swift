@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import Dip
 
 class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     var coordinator: MainCoordinator?
+    
+    var viewModel = MainScreenViewModel()
+    
     //MARK: - StackView
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [topView,middleView,bottomView])
@@ -162,9 +166,14 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         button.layer.shadowOffset = CGSize(width: 0, height: 3)
         button.layer.shadowOpacity = 1
         button.layer.shadowRadius = 10
+        button.addTarget(self, action: #selector(signInAction(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    @objc func signInAction(sender: UIButton!) {
+        viewModel.userSignIn(email: loginTextField.text!, password: passwordTextField.text!)
+    }
     
     var forgetButton: UIButton = {
         let button = UIButton()
@@ -190,7 +199,18 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     @objc func registrationButtonAction(sender: UIButton!) {
         coordinator?.registrationViewController()
     }
-    
+    //MARK: - Alert
+    func errorWithLogin(e: Error) {
+        let alert = UIAlertController(title: "Error Sign In", message: e.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    //MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.loginTextField.endEditing(true)
+        self.passwordTextField.endEditing(true)
+        return false
+    }
     //MARK: - View
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -210,7 +230,14 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         loginTextField.delegate = self
         passwordTextField.delegate = self
-        
+        viewModel.reloadView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.view.setNeedsDisplay()
+            }
+        }
+        viewModel.error = { error in
+            self.errorWithLogin(e: error)
+        }
         self.hideKeyboardWhenTappedAround()
     }
     //MARK: - Constraints
@@ -250,8 +277,6 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         ])
         
     }
-    
-    
-    
+
 }
 

@@ -6,13 +6,17 @@
 //
 
 import UIKit
+import Dip
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    private let container = DependencyContainer.configure()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        func resolveType(type: Any.Type) -> Any? {
+            return try? container.resolve(type)
+        }
         return true
     }
 

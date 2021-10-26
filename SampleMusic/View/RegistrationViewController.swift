@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import Dip
 
 class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     var coordinator : MainCoordinator?
-    
+    var viewModel = RegistrationViewModel()
     //MARK: - StackView
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [topView,middleView,bottomView])
@@ -170,6 +171,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         button.layer.shadowOffset = CGSize(width: 0, height: 3)
         button.layer.shadowOpacity = 1
         button.layer.shadowRadius = 10
+        button.addTarget(self, action: #selector(continueButton(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -189,7 +191,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         button.setTitle("Sign In", for: .normal)
         button.setTitleColor(UIColor(named: "mainScreenRed"), for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir Heavy", size: 15)
-        button.addTarget(self, action: #selector(continueButton(sender:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(signInButton(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -211,7 +213,23 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func continueButton(sender: UIButton!) {
+        viewModel.registerUser(email: loginTextField.text!, password: passwordTextField.text!)
+    }
+    
+    @objc func signInButton(sender: UIButton!) {
         coordinator?.start()
+    }
+    //MARK: - Alert
+    func errorWithRegistration(e: Error) {
+        let alert = UIAlertController(title: "Error Sign Up", message: e.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    //MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.loginTextField.endEditing(true)
+        self.passwordTextField.endEditing(true)
+        return false
     }
     //MARK: - Constraints
     func viewCompare() {
@@ -271,6 +289,10 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         loginTextField.delegate = self
         passwordTextField.delegate = self
         self.hideKeyboardWhenTappedAround()
+        
+        viewModel.error = { error in
+            self.errorWithRegistration(e: error)
+        }
     }
     
 }
