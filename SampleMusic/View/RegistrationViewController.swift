@@ -32,10 +32,11 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }()
     
     lazy var stackViewMiddle: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [radioLabel,radioUser,radioSeller])
+        let stackView = UIStackView(arrangedSubviews: [radioUser,radioSeller])
         stackView.alignment = .leading
         stackView.distribution = .fill
-        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -44,7 +45,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         let stackView = UIStackView(arrangedSubviews: [accountLabel,signInButton])
         stackView.alignment = .center
         stackView.distribution = .fill
-        stackView.spacing = 10
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -161,9 +161,9 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - BottomView
     var registerButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 250, height: 150))
+        let button = UIButton()
         button.backgroundColor = UIColor(named: "mainScreenRed")
-        button.setTitle("Sign In", for: .normal)
+        button.setTitle("Continue", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
@@ -198,8 +198,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         if radioUser.currentImage == UIImage(systemName: "smallcircle.circle") {
             radioUser.setImage(UIImage(systemName: "smallcircle.fill.circle"), for: .normal)
             radioSeller.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
-        } else {
-            radioSeller.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
         }
         print("user select")
     }
@@ -207,8 +205,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     @objc func sellerSelected(sender: UIButton!) {
         if radioSeller.currentImage == UIImage(systemName: "smallcircle.circle") {
             radioSeller.setImage(UIImage(systemName: "smallcircle.fill.circle"), for: .normal)
-            radioUser.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
-        } else {
             radioUser.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
         }
         print("seller select")
@@ -224,11 +220,12 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         stackView.addSubview(stackViewMiddle)
         stackView.addSubview(stackViewBottom)
         bottomView.addSubview(registerButton)
+        middleView.addSubview(radioLabel)
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -20),
-            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -40),
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 40),
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -20)
         ])
         
@@ -241,7 +238,9 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         ])
         
         NSLayoutConstraint.activate([
-            stackViewMiddle.topAnchor.constraint(equalTo: middleView.topAnchor),
+            radioLabel.topAnchor.constraint(equalTo: middleView.topAnchor,constant: 20),
+            radioLabel.leadingAnchor.constraint(equalTo: middleView.leadingAnchor),
+            stackViewMiddle.topAnchor.constraint(equalTo: radioLabel.bottomAnchor,constant: 20),
             stackViewMiddle.leadingAnchor.constraint(equalTo: middleView.leadingAnchor),
         ])
         
@@ -249,15 +248,14 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
             stackViewBottom.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor,constant: 40),
             stackViewBottom.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor,constant: -40),
             stackViewBottom.topAnchor.constraint(equalTo: registerButton.bottomAnchor,constant: 40),
-            registerButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor,constant: 40),
-            registerButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor,constant: -40),
-            registerButton.topAnchor.constraint(equalTo: bottomView.topAnchor,constant: 40)
+            registerButton.topAnchor.constraint(equalTo: bottomView.topAnchor,constant: 40),
+            registerButton.widthAnchor.constraint(equalTo: bottomView.widthAnchor),
+            registerButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     //MARK: - ViewLoad
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configNavigator()
     }
     
     override func loadView() {
@@ -273,20 +271,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         loginTextField.delegate = self
         passwordTextField.delegate = self
         self.hideKeyboardWhenTappedAround()
-    }
-    
-    func configNavigator() {
-        let nav = self.navigationController?.navigationBar
-        
-        nav?.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.clear,
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18)
-        ]
-        
-        nav?.isTranslucent = true
-        nav?.backItem?.title = "Back"
-        nav?.tintColor = .darkGray
-
     }
     
 }

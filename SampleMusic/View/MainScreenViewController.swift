@@ -153,7 +153,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     //MARK: - BottomView
     
     var signButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 250, height: 150))
+        let button = UIButton()
         button.backgroundColor = UIColor(named: "mainScreenRed")
         button.setTitle("Sign In", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -222,10 +222,10 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         bottomView.addSubview(signButton)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -20),
-            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 20),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -20)
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 40),
+            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -40),
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 40),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -40),
         ])
         
         NSLayoutConstraint.activate([
@@ -234,7 +234,6 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         ])
         
         NSLayoutConstraint.activate([
-            stackViewMiddle.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 20),
             stackViewMiddle.topAnchor.constraint(equalTo: middleView.topAnchor),
             loginTextField.widthAnchor.constraint(equalTo: middleView.widthAnchor,constant: -20),
             passwordTextField.widthAnchor.constraint(equalTo: middleView.widthAnchor,constant: -20)
@@ -245,8 +244,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
             stackViewBottom.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor),
             stackViewBottom.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor,constant: -40),
             signButton.topAnchor.constraint(equalTo: bottomView.topAnchor,constant: 40),
-            signButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor,constant: 40),
-            signButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor,constant: -40),
+            signButton.widthAnchor.constraint(equalTo: stackViewBottom.widthAnchor),
+            signButton.heightAnchor.constraint(equalToConstant: 50),
             stackViewBottom.topAnchor.constraint(equalTo: signButton.bottomAnchor,constant: 10)
         ])
         
