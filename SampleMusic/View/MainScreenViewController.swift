@@ -8,7 +8,7 @@
 import UIKit
 
 class MainScreenViewController: UIViewController, UITextFieldDelegate {
-
+    
     var coordinator: MainCoordinator?
     //MARK: - StackView
     lazy var stackView: UIStackView = {
@@ -30,7 +30,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }()
     
     lazy var stackViewMiddle: UIStackView = {
-       let stackView = UIStackView(arrangedSubviews: [middleLabelSign,middleLabelWelcome,loginLabel,loginTextField,passwordLabel,passwordTextField])
+        let stackView = UIStackView(arrangedSubviews: [middleLabelSign,middleLabelWelcome,loginLabel,loginTextField,passwordLabel,passwordTextField])
         stackView.alignment = .leading
         stackView.distribution = .fill
         stackView.spacing = 10
@@ -40,7 +40,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }()
     
     lazy var stackViewBottom: UIStackView = {
-       let stackView = UIStackView(arrangedSubviews: [forgetButton,signUpButton])
+        let stackView = UIStackView(arrangedSubviews: [forgetButton,signUpButton])
         stackView.alignment = .bottom
         stackView.distribution = .fillProportionally
         stackView.spacing = 50
@@ -69,16 +69,16 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Components in View
     //MARK: - TopView
     var topLabel: UILabel = {
-       let label = UILabel()
-       label.text = "Music Sample"
+        let label = UILabel()
+        label.text = "Music Sample"
         label.font = UIFont(name: "Avenir Heavy", size: 20.0)
         label.tintColor = .gray
-       label.translatesAutoresizingMaskIntoConstraints = false
-       return label
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     var topImage: UIImageView = {
-       let image = UIImageView()
+        let image = UIImageView()
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
         image.image = UIImage(systemName: "cloud.fill",withConfiguration: largeConfig)
         image.tintColor = .lightGray
@@ -87,7 +87,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }()
     //MARK: - MiddleView
     var middleLabelSign: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Sign In"
         label.font = UIFont(name: "Avenir Heavy", size: 30)
         label.tintColor = .black
@@ -132,7 +132,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         textField.clearButtonMode = UITextField.ViewMode.whileEditing
         textField.underLine()
         textField.translatesAutoresizingMaskIntoConstraints = false
-       return textField
+        return textField
     }()
     
     var passwordTextField: UITextField = {
@@ -151,13 +151,16 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }()
     
     //MARK: - BottomView
-
+    
     var signButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 250, height: 150))
-        button.backgroundColor = .red
+        button.backgroundColor = UIColor(named: "mainScreenRed")
         button.setTitle("Sign In", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
+        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 3)
+        button.layer.shadowOpacity = 1
         button.layer.shadowRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -177,7 +180,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         let button = UIButton()
         button.backgroundColor = .clear
         button.setTitle("Sign Up", for: .normal)
-        button.setTitleColor(.red, for: .normal)
+        button.setTitleColor(UIColor(named: "mainScreenRed"), for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir Heavy", size: 15)
         button.addTarget(self, action: #selector(registrationButtonAction(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -190,7 +193,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func loadView() {
@@ -215,7 +218,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         stackView.addSubview(stackViewMiddle)
         stackView.addSubview(stackViewBottom)
         bottomView.addSubview(signButton)
-
+        
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 20),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -20),
@@ -242,12 +245,12 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
             signButton.topAnchor.constraint(equalTo: bottomView.topAnchor,constant: 40),
             signButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor,constant: 40),
             signButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor,constant: -40),
-            stackViewBottom.topAnchor.constraint(equalTo: signButton.bottomAnchor,constant: 20)
+            stackViewBottom.topAnchor.constraint(equalTo: signButton.bottomAnchor,constant: 10)
         ])
         
     }
     
     
-
+    
 }
 

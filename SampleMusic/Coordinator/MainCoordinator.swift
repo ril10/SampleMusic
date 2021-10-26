@@ -18,12 +18,14 @@ class MainCoordinator: Coordinator {
     func start() {
         let vc = MainScreenViewController()
         vc.coordinator = self
+        self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
     }
     
     func registrationViewController() {
         let vc = RegistrationViewController()
         vc.coordinator = self
+        self.navigationController.setNavigationBarHidden(false, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
     }
     
