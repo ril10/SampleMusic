@@ -191,6 +191,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         coordinator?.registrationViewController()
     }
     
+    //MARK: - View
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -204,14 +205,15 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         
         viewCompare()
     }
-    //MARK: - View
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loginTextField.delegate = self
+        passwordTextField.delegate = self
         
         self.hideKeyboardWhenTappedAround()
     }
-    
+    //MARK: - Constraints
     func viewCompare() {
         view.addSubview(stackView)
         stackView.addSubview(stackViewTop)

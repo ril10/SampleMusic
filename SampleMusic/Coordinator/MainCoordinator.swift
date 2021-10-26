@@ -25,7 +25,7 @@ class MainCoordinator: Coordinator {
     func registrationViewController() {
         let vc = RegistrationViewController()
         vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(false, animated: false)
+        self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
     }
     
