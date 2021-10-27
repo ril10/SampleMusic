@@ -22,6 +22,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     var coordinator : MainCoordinator?
     var viewModel : RegistrationViewModel!
+    var isRole = false
     //MARK: - StackView
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [topView,middleView,bottomView])
@@ -207,23 +208,29 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }()
     
     @objc func userSelected(sender: UIButton!) {
+        self.isRole = true
+        viewModel.roleChoose("user")
         if radioUser.currentImage == UIImage(systemName: "smallcircle.circle") {
             radioUser.setImage(UIImage(systemName: "smallcircle.fill.circle"), for: .normal)
             radioSeller.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
         }
-        print("user select")
     }
     
     @objc func sellerSelected(sender: UIButton!) {
+        self.isRole = true
+        viewModel.roleChoose("seller")
         if radioSeller.currentImage == UIImage(systemName: "smallcircle.circle") {
             radioSeller.setImage(UIImage(systemName: "smallcircle.fill.circle"), for: .normal)
             radioUser.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
         }
-        print("seller select")
     }
     
     @objc func continueButton(sender: UIButton!) {
-        viewModel.registerUser(email: loginTextField.text!, password: passwordTextField.text!)
+        if !isRole {
+            self.errorWithRole()
+        } else {
+            viewModel.registerUser(email: loginTextField.text!, password: passwordTextField.text!)
+        }
     }
     
     @objc func signInButton(sender: UIButton!) {
@@ -232,6 +239,12 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Alert
     func errorWithRegistration(e: Error) {
         let alert = UIAlertController(title: "Error Sign Up", message: e.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func errorWithRole() {
+        let alert = UIAlertController(title: "Error Sign Up", message: "Select your role", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -306,6 +319,18 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         }
         viewModel.error = { error in
             self.errorWithRegistration(e: error)
+        }
+        
+        viewModel.navSell = { nav in
+            if nav {
+                self.coordinator?.sellerDetailViewController()
+            }
+        }
+        
+        viewModel.navUser = { nav in
+            if nav {
+                self.coordinator?.listSamplesViewController()
+            }
         }
     }
     
