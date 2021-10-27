@@ -2,7 +2,7 @@
 //  ListSamplesViewController.swift
 //  SampleMusic
 //
-//  Created by administrator on 26.10.21.
+//  Created by Siarhei Luk on 26.10.21.
 //
 
 import UIKit

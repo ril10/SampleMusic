@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  SampleMusic
 //
-//  Created by administrator on 25.10.21.
+//  Created by Siarhei Luk on 25.10.21.
 //
 
 import UIKit
