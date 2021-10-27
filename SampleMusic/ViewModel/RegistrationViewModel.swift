@@ -15,8 +15,7 @@ class RegistrationViewModel {
     var reloadView : (() -> Void)?
     var error : ((Error) -> Void)?
     var roleSet : String!
-    var navUser : ((Bool) -> Void)?
-    var navSell : ((Bool) -> Void)?
+    var navToAdd : ((Bool) -> Void)?
     
     init(db: Firestore) {
         self.db = db
@@ -34,11 +33,7 @@ class RegistrationViewModel {
                         self.error?(e)
                     }
                 }
-                if self.roleSet == "seller" {
-                    self.navSell?(true)
-                } else {
-                    self.navUser?(true)
-                }
+                self.navToAdd?(true)
             }
         }
     }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C366BE532729726200B3E182 /* SellerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE522729726200B3E182 /* SellerDetailViewController.swift */; };
+		C366BE5527298E6900B3E182 /* AddingDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE5427298E6900B3E182 /* AddingDataViewController.swift */; };
+		C366BE5727298EBE00B3E182 /* AddingDataAboutUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE5627298EBE00B3E182 /* AddingDataAboutUserViewModel.swift */; };
 		C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156452726A0BF008E83AC /* AppDelegate.swift */; };
 		C38156482726A0BF008E83AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156472726A0BF008E83AC /* SceneDelegate.swift */; };
 		C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156492726A0BF008E83AC /* MainScreenViewController.swift */; };
@@ -54,6 +56,8 @@
 		60A490E9741567546D2FECC3 /* Pods-SampleMusic-SampleMusicUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMusic-SampleMusicUITests.debug.xcconfig"; path = "Target Support Files/Pods-SampleMusic-SampleMusicUITests/Pods-SampleMusic-SampleMusicUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AB940735E610B39B5A3B3EBE /* Pods-SampleMusicTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMusicTests.release.xcconfig"; path = "Target Support Files/Pods-SampleMusicTests/Pods-SampleMusicTests.release.xcconfig"; sourceTree = "<group>"; };
 		C366BE522729726200B3E182 /* SellerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerDetailViewController.swift; sourceTree = "<group>"; };
+		C366BE5427298E6900B3E182 /* AddingDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingDataViewController.swift; sourceTree = "<group>"; };
+		C366BE5627298EBE00B3E182 /* AddingDataAboutUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingDataAboutUserViewModel.swift; sourceTree = "<group>"; };
 		C38156422726A0BF008E83AC /* SampleMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C38156452726A0BF008E83AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C38156472726A0BF008E83AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 				C381568527270783008E83AC /* RegistrationViewController.swift */,
 				C381568E272822C6008E83AC /* ListSamplesViewController.swift */,
 				C366BE522729726200B3E182 /* SellerDetailViewController.swift */,
+				C366BE5427298E6900B3E182 /* AddingDataViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 			children = (
 				C38156872728147A008E83AC /* MainScreenViewModel.swift */,
 				C381568927281499008E83AC /* RegistrationViewModel.swift */,
+				C366BE5627298EBE00B3E182 /* AddingDataAboutUserViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -493,10 +499,12 @@
 				C381568A27281499008E83AC /* RegistrationViewModel.swift in Sources */,
 				C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */,
 				C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */,
+				C366BE5727298EBE00B3E182 /* AddingDataAboutUserViewModel.swift in Sources */,
 				C366BE532729726200B3E182 /* SellerDetailViewController.swift in Sources */,
 				C381568F272822C6008E83AC /* ListSamplesViewController.swift in Sources */,
 				C381568D27281B3F008E83AC /* Configure.swift in Sources */,
 				C38156842726F81B008E83AC /* Extension.swift in Sources */,
+				C366BE5527298E6900B3E182 /* AddingDataViewController.swift in Sources */,
 				C381568627270783008E83AC /* RegistrationViewController.swift in Sources */,
 				C38156882728147A008E83AC /* MainScreenViewModel.swift in Sources */,
 				C381567F2726A962008E83AC /* MainCoordinator.swift in Sources */,

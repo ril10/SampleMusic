@@ -321,15 +321,9 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
             self.errorWithRegistration(e: error)
         }
         
-        viewModel.navSell = { nav in
+        viewModel.navToAdd = { nav in
             if nav {
-                self.coordinator?.sellerDetailViewController()
-            }
-        }
-        
-        viewModel.navUser = { nav in
-            if nav {
-                self.coordinator?.listSamplesViewController()
+                self.coordinator?.addUserData()
             }
         }
     }

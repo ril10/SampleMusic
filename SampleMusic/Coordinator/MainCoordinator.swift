@@ -44,6 +44,13 @@ class MainCoordinator: Coordinator {
         self.navigationController.pushViewController(vc, animated: true)
     }
     
+    func addUserData() {
+        let vc = AddingDataViewController()
+        vc.coordinator = self
+        self.navigationController.setNavigationBarHidden(true, animated: false)
+        self.navigationController.pushViewController(vc, animated: true)
+    }
+    
     
     
 }

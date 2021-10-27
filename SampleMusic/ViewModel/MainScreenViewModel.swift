@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 import Dip
 
 class MainScreenViewModel {
@@ -15,12 +16,16 @@ class MainScreenViewModel {
     
     var error : ((Error) -> Void)?
     
+    var db = Firestore.firestore()
+    
     func userSignIn(email: String,password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-            guard let strongSelf = self else { return }
-            
             if let e = error {
                 self?.error?(e)
+            } else {
+                self!.db.collection("user").getDocuments { query, error in
+                    print(query)
+                }
             }
         }
     }
