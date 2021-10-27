@@ -10,9 +10,20 @@ import Dip
 
 class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
+    init(viewModel: MainScreenViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    var viewModel : MainScreenViewModel!
+    
     var coordinator: MainCoordinator?
     
-    var viewModel = MainScreenViewModel()
+    
     
     //MARK: - StackView
     lazy var stackView: UIStackView = {

@@ -12,6 +12,8 @@ target 'SampleMusic' do
 	pod 'RxCocoa'
 	pod 'RxRelay'
 	pod 'Firebase/Auth'
+	pod 'Firebase/Core'
+	pod 'Firebase/Firestore'
   target 'SampleMusicTests' do
     inherit! :search_paths
     # Pods for testing

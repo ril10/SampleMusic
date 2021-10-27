@@ -10,8 +10,18 @@ import Dip
 
 class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
+    init(viewModel: RegistrationViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var coordinator : MainCoordinator?
-    var viewModel = RegistrationViewModel()
+    var viewModel : RegistrationViewModel!
     //MARK: - StackView
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [topView,middleView,bottomView])
@@ -289,7 +299,11 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         loginTextField.delegate = self
         passwordTextField.delegate = self
         self.hideKeyboardWhenTappedAround()
-        
+        viewModel.reloadView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.view.setNeedsDisplay()
+            }
+        }
         viewModel.error = { error in
             self.errorWithRegistration(e: error)
         }

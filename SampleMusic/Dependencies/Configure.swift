@@ -12,12 +12,10 @@ extension DependencyContainer {
     static func configure() -> DependencyContainer {
         return DependencyContainer { container in
             unowned let container = container
-            container.register(tag: "MainScreen") { MainScreenViewModel() }
             
-            container.register(.unique) { MainScreenViewController() }
-                .resolvingProperties { container, service in
-                    service.viewModel = try container.resolve(tag: "MainScreen")
-                }
+            container.register(.unique) { MainScreenViewController(viewModel: MainScreenViewModel()) }
+            container.register(.unique) { RegistrationViewController(viewModel: RegistrationViewModel()) }
+            
             
             DependencyContainer.uiContainers = [container]
         }

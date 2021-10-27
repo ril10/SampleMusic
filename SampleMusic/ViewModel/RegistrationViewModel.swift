@@ -16,10 +16,14 @@ class RegistrationViewModel {
     
     func registerUser(email: String,password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+
+            authResult
             if let e = error {
                 self.error?(e)
             }
         }
+        
+        
     }
     
 

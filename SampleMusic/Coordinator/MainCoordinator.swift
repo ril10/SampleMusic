@@ -16,14 +16,14 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = MainScreenViewController()
+        let vc = MainScreenViewController(viewModel: MainScreenViewModel())
         vc.coordinator = self
         self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
     }
     
     func registrationViewController() {
-        let vc = RegistrationViewController()
+        let vc = RegistrationViewController(viewModel: RegistrationViewModel())
         vc.coordinator = self
         self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
