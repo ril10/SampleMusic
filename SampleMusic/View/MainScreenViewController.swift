@@ -85,8 +85,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     //MARK: - TopView
     var topLabel: UILabel = {
         let label = UILabel()
-        label.text = "Music Sample"
-        label.font = UIFont(name: "Avenir Heavy", size: 20.0)
+        label.text = Style.appName.rawValue
+        label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -95,7 +95,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     var topImage: UIImageView = {
         let image = UIImageView()
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
-        image.image = UIImage(systemName: "cloud.fill",withConfiguration: largeConfig)
+        image.image = UIImage(systemName: Style.logoApp.rawValue,withConfiguration: largeConfig)
         image.tintColor = .lightGray
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -103,8 +103,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     //MARK: - MiddleView
     var middleLabelSign: UILabel = {
         let label = UILabel()
-        label.text = "Sign In"
-        label.font = UIFont(name: "Avenir Heavy", size: 30)
+        label.text = Titles.signIn.rawValue
+        label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 30)
         label.tintColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -112,8 +112,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     var middleLabelWelcome: UILabel = {
         let label = UILabel()
-        label.text = "Welcome there"
-        label.font = UIFont(name: "Avenir Light", size: 15)
+        label.text = Titles.welcome.rawValue
+        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15)
         label.tintColor = .lightGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -121,8 +121,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     var loginLabel: UILabel = {
         let label = UILabel()
-        label.text = "Email"
-        label.font = UIFont(name: "Avenir Light", size: 15)
+        label.text = Titles.email.rawValue
+        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15)
         label.textColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -130,8 +130,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     var passwordLabel: UILabel = {
         let label = UILabel()
-        label.text = "Password"
-        label.font = UIFont(name: "Avenir Light", size: 15)
+        label.text = Titles.password.rawValue
+        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15)
         label.textColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -139,7 +139,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     var loginTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Enter your login"
+        textField.placeholder = TextFieldLabel.enterLog.rawValue
         textField.borderStyle = UITextField.BorderStyle.none
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.emailAddress
@@ -152,7 +152,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Password"
+        textField.placeholder = TextFieldLabel.enterPassword.rawValue
         textField.borderStyle = UITextField.BorderStyle.none
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.default
@@ -169,8 +169,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     var signButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(named: "mainScreenRed")
-        button.setTitle("Sign In", for: .normal)
+        button.backgroundColor = UIColor(named: Style.colorButton.rawValue)
+        button.setTitle(Titles.signIn.rawValue, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
@@ -189,9 +189,9 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     var forgetButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
-        button.setTitle("Forgot Password?", for: .normal)
+        button.setTitle(Titles.forgetPassword.rawValue, for: .normal)
         button.setTitleColor(.lightGray, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir Light", size: 15)
+        button.titleLabel?.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -199,9 +199,9 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     var signUpButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
-        button.setTitle("Sign Up", for: .normal)
-        button.setTitleColor(UIColor(named: "mainScreenRed"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir Heavy", size: 15)
+        button.setTitle(Titles.signUp.rawValue, for: .normal)
+        button.setTitleColor(UIColor(named: Style.colorButton.rawValue), for: .normal)
+        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
         button.addTarget(self, action: #selector(registrationButtonAction(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -212,8 +212,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }
     //MARK: - Alert
     func errorWithLogin(e: Error) {
-        let alert = UIAlertController(title: "Error Sign In", message: e.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        let alert = UIAlertController(title: AlertTitle.errorSignIn.rawValue, message: e.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Titles.ok.rawValue, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     //MARK: - UITextFieldDelegate

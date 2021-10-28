@@ -84,8 +84,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     //MARK: - TopView
     var topLabel: UILabel = {
         let label = UILabel()
-        label.text = "Sign Up"
-        label.font = UIFont(name: "Avenir Heavy", size: 40.0)
+        label.text = Titles.signUp.rawValue
+        label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 40.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -93,8 +93,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     var loginLabel: UILabel = {
         let label = UILabel()
-        label.text = "Email"
-        label.font = UIFont(name: "Avenir Light", size: 15)
+        label.text = Titles.email.rawValue
+        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15)
         label.textColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -102,8 +102,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     var passwordLabel: UILabel = {
         let label = UILabel()
-        label.text = "Password"
-        label.font = UIFont(name: "Avenir Light", size: 15)
+        label.text = Titles.password.rawValue
+        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15)
         label.textColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -111,7 +111,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     var loginTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Enter your login"
+        textField.placeholder = TextFieldLabel.enterLog.rawValue
         textField.borderStyle = UITextField.BorderStyle.none
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.emailAddress
@@ -124,7 +124,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Password"
+        textField.placeholder = TextFieldLabel.enterPassword.rawValue
         textField.borderStyle = UITextField.BorderStyle.none
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.default
@@ -140,8 +140,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     //MARK: - MiddleView
     var radioLabel: UILabel = {
         let label = UILabel()
-        label.text = "Choose your role*"
-        label.font = UIFont(name: "Avenir Light", size: 15.0)
+        label.text = Role.chooseRole.rawValue
+        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -149,11 +149,11 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     var radioUser: UIButton = {
         let button = UIButton()
-        button.setTitle("User", for: .normal)
+        button.setTitle(Role.user.rawValue, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.tintColor = UIColor.black
-        button.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir Heavy", size: 15)
+        button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
         button.addTarget(self, action: #selector(userSelected(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -161,11 +161,11 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     var radioSeller: UIButton = {
         let button = UIButton()
-        button.setTitle("Seller", for: .normal)
+        button.setTitle(Role.seller.rawValue, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir Heavy", size: 15)
+        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
         button.tintColor = UIColor.black
-        button.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
+        button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
         button.addTarget(self, action: #selector(sellerSelected(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -174,8 +174,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     //MARK: - BottomView
     var registerButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(named: "mainScreenRed")
-        button.setTitle("Continue", for: .normal)
+        button.backgroundColor = UIColor(named: Style.colorButton.rawValue)
+        button.setTitle(Titles.contin.rawValue, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
@@ -189,8 +189,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     var accountLabel: UILabel = {
         let label = UILabel()
-        label.text = "Have an Account?"
-        label.font = UIFont(name: "Avenir Light", size: 15)
+        label.text = Titles.haveAcc.rawValue
+        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .lightGray
         return label
@@ -199,9 +199,9 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     var signInButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
-        button.setTitle("Sign In", for: .normal)
-        button.setTitleColor(UIColor(named: "mainScreenRed"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir Heavy", size: 15)
+        button.setTitle(Titles.signIn.rawValue, for: .normal)
+        button.setTitleColor(UIColor(named: Style.colorButton.rawValue), for: .normal)
+        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
         button.addTarget(self, action: #selector(signInButton(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -209,19 +209,19 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     @objc func userSelected(sender: UIButton!) {
         viewModel.isRole = true
-        viewModel.roleChoose("user")
-        if radioUser.currentImage == UIImage(systemName: "smallcircle.circle") {
-            radioUser.setImage(UIImage(systemName: "smallcircle.fill.circle"), for: .normal)
-            radioSeller.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
+        viewModel.roleChoose(Role.user.rawValue.lowercased())
+        if radioUser.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
+            radioUser.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+            radioSeller.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
         }
     }
     
     @objc func sellerSelected(sender: UIButton!) {
         viewModel.isRole = true
-        viewModel.roleChoose("seller")
-        if radioSeller.currentImage == UIImage(systemName: "smallcircle.circle") {
-            radioSeller.setImage(UIImage(systemName: "smallcircle.fill.circle"), for: .normal)
-            radioUser.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
+        viewModel.roleChoose(Role.seller.rawValue.lowercased())
+        if radioSeller.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
+            radioSeller.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+            radioUser.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
         }
     }
     
@@ -238,14 +238,14 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }
     //MARK: - Alert
     func errorWithRegistration(e: Error) {
-        let alert = UIAlertController(title: "Error Sign Up", message: e.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        let alert = UIAlertController(title: AlertTitle.errorSignUp.rawValue, message: e.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Titles.ok.rawValue, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     func errorWithRole() {
-        let alert = UIAlertController(title: "Error Sign Up", message: "Select your role", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        let alert = UIAlertController(title: AlertTitle.errorSignUp.rawValue, message: AlertTitle.selectRole.rawValue, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Titles.ok.rawValue, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     //MARK: - UITextFieldDelegate

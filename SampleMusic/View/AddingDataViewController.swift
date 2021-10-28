@@ -82,7 +82,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     var buttonAddImage: UIButton = {
         let button = UIButton()
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold, scale: .large)
-        button.setImage(UIImage(systemName: "plus.square",withConfiguration: largeConfig), for: .normal)
+        button.setImage(UIImage(systemName: Style.plusSquare.rawValue,withConfiguration: largeConfig), for: .normal)
         button.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
@@ -97,11 +97,11 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     var imageView: UIImageView = {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 50,weight: .bold, scale: .large)
-        image.image = UIImage(systemName: "photo",withConfiguration: largeConfig)
+        image.image = UIImage(systemName: Style.photo.rawValue,withConfiguration: largeConfig)
         image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
         image.layer.borderWidth = 3.0
         image.layer.masksToBounds = false
-        image.layer.borderColor = UIColor(named: "mainScreenRed")?.cgColor
+        image.layer.borderColor = UIColor(named: Style.colorButton.rawValue)?.cgColor
         image.layer.cornerRadius = image.frame.size.height / 2
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -130,7 +130,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     //MARK: - MiddleView
     var firstNameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Enter your First Name"
+        textField.placeholder = TextFieldLabel.enterFirstName.rawValue
         textField.borderStyle = UITextField.BorderStyle.none
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.default
@@ -143,7 +143,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     
     var lastNameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Enter your Last Name"
+        textField.placeholder = TextFieldLabel.enterLastName.rawValue
         textField.borderStyle = UITextField.BorderStyle.none
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.default
@@ -156,7 +156,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     
     var descriptionTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Type about your self"
+        textField.placeholder = TextFieldLabel.aboutSelf.rawValue
         textField.borderStyle = UITextField.BorderStyle.none
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.default
@@ -169,8 +169,8 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     
     var radioLabel: UILabel = {
         let label = UILabel()
-        label.text = "Choose your gender*"
-        label.font = UIFont(name: "Avenir Light", size: 15.0)
+        label.text = Gender.chooseGender.rawValue
+        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -178,11 +178,11 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     
     var radioMale: UIButton = {
         let button = UIButton()
-        button.setTitle("Male", for: .normal)
+        button.setTitle(Gender.male.rawValue, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.tintColor = UIColor.black
-        button.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir Heavy", size: 15)
+        button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
         button.addTarget(self, action: #selector(maleSelect(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -190,11 +190,11 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     
     var radioFemale: UIButton = {
         let button = UIButton()
-        button.setTitle("Female", for: .normal)
+        button.setTitle(Gender.female.rawValue, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir Heavy", size: 15)
+        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
         button.tintColor = UIColor.black
-        button.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
+        button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
         button.addTarget(self, action: #selector(femaleSelect(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -202,47 +202,47 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     
     var radioUndefined: UIButton = {
         let button = UIButton()
-        button.setTitle("Undefined", for: .normal)
+        button.setTitle(Gender.undf.rawValue, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir Heavy", size: 15)
+        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
         button.tintColor = UIColor.black
-        button.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
+        button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
         button.addTarget(self, action: #selector(undefSelect(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     @objc func maleSelect(sender: UIButton!) {
-        viewModel.genderSet(gender: "Male")
-        if radioMale.currentImage == UIImage(systemName: "smallcircle.circle") {
-            radioMale.setImage(UIImage(systemName: "smallcircle.fill.circle"), for: .normal)
-            radioFemale.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
-            radioUndefined.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
+        viewModel.genderSet(gender: Gender.male.rawValue)
+        if radioMale.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
+            radioMale.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+            radioFemale.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            radioUndefined.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
         }
     }
     
     @objc func femaleSelect(sender: UIButton!) {
-        viewModel.genderSet(gender: "Female")
-        if radioFemale.currentImage == UIImage(systemName: "smallcircle.circle") {
-            radioFemale.setImage(UIImage(systemName: "smallcircle.fill.circle"), for: .normal)
-            radioMale.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
-            radioUndefined.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
+        viewModel.genderSet(gender: Gender.female.rawValue)
+        if radioFemale.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
+            radioFemale.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+            radioMale.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            radioUndefined.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
         }
     }
     
     @objc func undefSelect(sender: UIButton!) {
-        viewModel.genderSet(gender: "Undefined")
-        if radioUndefined.currentImage == UIImage(systemName: "smallcircle.circle") {
-            radioUndefined.setImage(UIImage(systemName: "smallcircle.fill.circle"), for: .normal)
-            radioMale.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
-            radioFemale.setImage(UIImage(systemName: "smallcircle.circle"), for: .normal)
+        viewModel.genderSet(gender: Gender.undf.rawValue)
+        if radioUndefined.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
+            radioUndefined.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+            radioMale.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            radioFemale.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
         }
     }
     //MARK: - BottomView
     var buttonAddInformation: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(named: "mainScreenRed")
-        button.setTitle("Add", for: .normal)
+        button.backgroundColor = UIColor(named: Style.colorButton.rawValue)
+        button.setTitle(Titles.add.rawValue, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
@@ -255,8 +255,18 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     }()
     
     @objc func addToFirebase(sender: UIButton!) {
-        viewModel.currentUser(firstName: firstNameTextField.text!, LastName: lastNameTextField.text!, description: descriptionTextField.text!)
-        viewModel.uploadImage(image: (imageView.image?.pngData()!)!)
+        if firstNameTextField.text!.isEmpty || lastNameTextField.text!.isEmpty || descriptionTextField.text!.isEmpty || imageView.image == nil || viewModel.gender == nil {
+            errorWithFields()
+        } else {
+            viewModel.currentUser(firstName: firstNameTextField.text!, LastName: lastNameTextField.text!, description: descriptionTextField.text!)
+            viewModel.uploadImage(image: (imageView.image?.pngData()!)!)
+        }
+    }
+    //MARK: - Alert
+    func errorWithFields() {
+        let alert = UIAlertController(title: AlertTitle.errorAddingData.rawValue, message: TextFieldLabel.allFields.rawValue, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Titles.ok.rawValue, style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     //MARK: - View
     override func loadView() {
@@ -264,6 +274,12 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         
         view = UIView()
         view.backgroundColor = .white
+        viewCompare()
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
         descriptionTextField.delegate = self
@@ -271,11 +287,6 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         viewModel.reloadView = { [weak self] in
             self?.view.setNeedsDisplay()
         }
-        viewCompare()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
     }
     
@@ -308,8 +319,6 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
             stackViewTop.trailingAnchor.constraint(equalTo: topView.trailingAnchor),
             buttonAddImage.bottomAnchor.constraint(equalTo: topView.bottomAnchor),
             imageView.topAnchor.constraint(equalTo: topView.topAnchor),
-//            imageView.leadingAnchor.constraint(equalTo: topView.leadingAnchor,constant: stackViewTop.frame.size.width / 2),
-//            imageView.trailingAnchor.constraint(equalTo: topView.trailingAnchor,constant: stackViewTop.frame.size.width / 2),
             imageView.bottomAnchor.constraint(equalTo: buttonAddImage.topAnchor),
             imageView.widthAnchor.constraint(equalToConstant: imageView.frame.size.width),
             

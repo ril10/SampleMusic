@@ -10,6 +10,7 @@
 		C366BE532729726200B3E182 /* SellerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE522729726200B3E182 /* SellerDetailViewController.swift */; };
 		C366BE5527298E6900B3E182 /* AddingDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE5427298E6900B3E182 /* AddingDataViewController.swift */; };
 		C366BE5727298EBE00B3E182 /* AddingDataAboutUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE5627298EBE00B3E182 /* AddingDataAboutUserViewModel.swift */; };
+		C366BE59272AEB5B00B3E182 /* EnumStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE58272AEB5B00B3E182 /* EnumStyle.swift */; };
 		C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156452726A0BF008E83AC /* AppDelegate.swift */; };
 		C38156482726A0BF008E83AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156472726A0BF008E83AC /* SceneDelegate.swift */; };
 		C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156492726A0BF008E83AC /* MainScreenViewController.swift */; };
@@ -58,6 +59,7 @@
 		C366BE522729726200B3E182 /* SellerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerDetailViewController.swift; sourceTree = "<group>"; };
 		C366BE5427298E6900B3E182 /* AddingDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingDataViewController.swift; sourceTree = "<group>"; };
 		C366BE5627298EBE00B3E182 /* AddingDataAboutUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingDataAboutUserViewModel.swift; sourceTree = "<group>"; };
+		C366BE58272AEB5B00B3E182 /* EnumStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumStyle.swift; sourceTree = "<group>"; };
 		C38156422726A0BF008E83AC /* SampleMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C38156452726A0BF008E83AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C38156472726A0BF008E83AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				C38156472726A0BF008E83AC /* SceneDelegate.swift */,
 				C38156502726A0C0008E83AC /* LaunchScreen.storyboard */,
 				C38156752726A5D9008E83AC /* GoogleService-Info.plist */,
+				C366BE58272AEB5B00B3E182 /* EnumStyle.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				C366BE532729726200B3E182 /* SellerDetailViewController.swift in Sources */,
 				C381568F272822C6008E83AC /* ListSamplesViewController.swift in Sources */,
 				C381568D27281B3F008E83AC /* Configure.swift in Sources */,
+				C366BE59272AEB5B00B3E182 /* EnumStyle.swift in Sources */,
 				C38156842726F81B008E83AC /* Extension.swift in Sources */,
 				C366BE5527298E6900B3E182 /* AddingDataViewController.swift in Sources */,
 				C381568627270783008E83AC /* RegistrationViewController.swift in Sources */,

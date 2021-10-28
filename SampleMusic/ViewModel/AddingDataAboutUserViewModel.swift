@@ -13,12 +13,14 @@ import Dip
 
 class AddingDataAboutUserViewModel {
     
-    init(db: Firestore) {
+    init(db: Firestore,st: Storage) {
         self.db = db
+        self.st = st
     }
     
     var roleSet : String!
     var db : Firestore!
+    var st : Storage!
     var gender : String!
     var reloadView : (() -> Void)?
     var docId : String!
@@ -26,14 +28,14 @@ class AddingDataAboutUserViewModel {
     func currentUser(firstName: String,LastName: String,description: String) {
         Auth.auth().addStateDidChangeListener { auth, user in
             auth.currentUser?.createProfileChangeRequest().commitChanges(completion: { error in
-                if let e = error {
+                if error != nil {
                     
                 } else {
                     self.db.collection(self.roleSet).document(self.docId!).updateData([
                         "firstName":firstName,
                         "lastName":LastName,
                         "description":description,
-                        "gender":self.gender
+                        "gender":self.gender as Any
                     ])
                 }
             })
@@ -41,34 +43,33 @@ class AddingDataAboutUserViewModel {
     }
     
     func uploadImage(image: Data) {
-        let storageRef = Storage.storage().reference()
-        let uploadTask = storageRef.child("userAvatars/\(self.docId!).png").putData(image, metadata: nil) { _, error in
+        let uploadTask = st.reference().child("userAvatars/\(self.docId!).png").putData(image, metadata: nil) { _, error in
             guard error == nil else {
                 print("Failed to upload")
                 return
             }
             
-            let downloadUrl = storageRef.child("userAvatars/\(self.docId!).png")
+            self.st.reference().child("userAvatars/\(self.docId!).png")
                 .downloadURL { url, error in
                     if let error = error {
                         print(error)
                     } else {
                         self.db.collection(self.roleSet).document(self.docId!).updateData([
-                            "imageUrl":url?.absoluteString
+                            "imageUrl":url?.absoluteString as Any
                         ])
                     }
                     
                 }
         }
         
-
+        
         
         uploadTask.observe(.success) { snapshot in
             print(snapshot.progress!.completedUnitCount)
         }
         
         uploadTask.observe(.failure) { snapshot in
-            if let error = snapshot.error as? NSError {
+            if let error = snapshot.error as NSError? {
                 switch (StorageErrorCode(rawValue: error.code)!) {
                 case .objectNotFound:
                     print("File not exist")

@@ -8,6 +8,7 @@
 import Foundation
 import Dip
 import FirebaseFirestore
+import FirebaseStorage
 
 extension DependencyContainer {
     static func configure() -> DependencyContainer {
@@ -17,7 +18,7 @@ extension DependencyContainer {
             
             container.register(.unique) { MainScreenViewController(viewModel: MainScreenViewModel()) }
             container.register(.unique) { RegistrationViewController(viewModel: RegistrationViewModel(db: Firestore.firestore())) }
-            container.register(.unique) { AddingDataAboutUserViewModel(db: Firestore.firestore()) }
+            container.register(.unique) { AddingDataAboutUserViewModel(db: Firestore.firestore(), st: Storage.storage()) }
 
             
             DependencyContainer.uiContainers = [container]

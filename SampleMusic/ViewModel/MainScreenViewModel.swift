@@ -24,7 +24,7 @@ class MainScreenViewModel {
                 self?.error?(e)
             } else {
                 self!.db.collection("user").getDocuments { query, error in
-                    print(query)
+                    print(query as Any)
                 }
             }
         }

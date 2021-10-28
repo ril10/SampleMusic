@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseStorage
 
 class MainCoordinator: Coordinator {
     var navigationController: UINavigationController
@@ -45,7 +46,7 @@ class MainCoordinator: Coordinator {
     }
     
     func addUserData(role: String,docId: String) {
-        let vc = AddingDataViewController(viewModel: AddingDataAboutUserViewModel(db: Firestore.firestore()))
+        let vc = AddingDataViewController(viewModel: AddingDataAboutUserViewModel(db: Firestore.firestore(), st: Storage.storage()))
         vc.viewModel.roleSet = role
         vc.viewModel.docId = docId
         vc.coordinator = self
