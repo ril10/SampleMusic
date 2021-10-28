@@ -39,7 +39,7 @@ enum Titles : String, CaseIterable {
     case signUp = "Sign Up"
     case forgetPassword = "Forget Password?"
     case ok = "Ok"
-    case welcome = "Welome there"
+    case welcome = "Welome!"
     case contin = "Continue"
     case haveAcc = "Have an Account?"
     case add = "Add"

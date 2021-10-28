@@ -24,6 +24,8 @@ class AddingDataAboutUserViewModel {
     var gender : String!
     var reloadView : (() -> Void)?
     var docId : String!
+    var navSeller : ((Bool) -> Void)?
+    var navUser : ((Bool) -> Void)?
     
     func currentUser(firstName: String,LastName: String,description: String) {
         Auth.auth().addStateDidChangeListener { auth, user in
@@ -61,11 +63,14 @@ class AddingDataAboutUserViewModel {
                     
                 }
         }
-        
-        
-        
+
         uploadTask.observe(.success) { snapshot in
             print(snapshot.progress!.completedUnitCount)
+            if self.roleSet == "seller" {
+                self.navSeller?(true)
+            } else {
+                self.navUser?(true)
+            }
         }
         
         uploadTask.observe(.failure) { snapshot in

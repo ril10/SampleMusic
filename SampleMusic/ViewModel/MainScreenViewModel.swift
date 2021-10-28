@@ -16,17 +16,21 @@ class MainScreenViewModel {
     
     var error : ((Error) -> Void)?
     
-    var db = Firestore.firestore()
-    
     func userSignIn(email: String,password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             if let e = error {
                 self?.error?(e)
             } else {
-                self!.db.collection("user").getDocuments { query, error in
-                    print(query as Any)
-                }
+                print("Succes")
+                self?.currentUser()
             }
+        }
+        
+    }
+    
+    func currentUser() {
+        Auth.auth().addStateDidChangeListener { auth, user in
+            print(user?.providerID)
         }
     }
     

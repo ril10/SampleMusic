@@ -24,6 +24,10 @@ class MainCoordinator: Coordinator {
         self.navigationController.pushViewController(vc, animated: true)
     }
     
+    func dismiss() {
+        self.navigationController.dismiss(animated: true, completion: nil)
+    }
+    
     func registrationViewController() {
         let vc = RegistrationViewController(viewModel: RegistrationViewModel(db: Firestore.firestore()))
         vc.coordinator = self
@@ -34,14 +38,14 @@ class MainCoordinator: Coordinator {
     func sellerDetailViewController() {
         let vc = SellerDetailViewController()
         vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(false, animated: false)
+        self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
     }
     
     func listSamplesViewController() {
         let vc = ListSamplesViewController()
         vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(false, animated: false)
+        self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
     }
     
@@ -50,7 +54,7 @@ class MainCoordinator: Coordinator {
         vc.viewModel.roleSet = role
         vc.viewModel.docId = docId
         vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(false, animated: false)
+        self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
     }
     

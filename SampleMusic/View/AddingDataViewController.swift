@@ -287,6 +287,16 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         viewModel.reloadView = { [weak self] in
             self?.view.setNeedsDisplay()
         }
+        viewModel.navUser = { nav in
+            if nav {
+                self.coordinator?.listSamplesViewController()
+            }
+        }
+        viewModel.navSeller = { nav in
+            if nav {
+                self.coordinator?.sellerDetailViewController()
+            }
+        }
         self.hideKeyboardWhenTappedAround()
     }
     
