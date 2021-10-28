@@ -17,6 +17,7 @@ extension DependencyContainer {
             
             container.register(.unique) { MainScreenViewController(viewModel: MainScreenViewModel()) }
             container.register(.unique) { RegistrationViewController(viewModel: RegistrationViewModel(db: Firestore.firestore())) }
+            container.register(.unique) { AddingDataAboutUserViewModel(db: Firestore.firestore()) }
 
             
             DependencyContainer.uiContainers = [container]

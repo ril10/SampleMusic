@@ -22,7 +22,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     var coordinator : MainCoordinator?
     var viewModel : RegistrationViewModel!
-    var isRole = false
+
     //MARK: - StackView
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [topView,middleView,bottomView])
@@ -208,7 +208,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }()
     
     @objc func userSelected(sender: UIButton!) {
-        self.isRole = true
+        viewModel.isRole = true
         viewModel.roleChoose("user")
         if radioUser.currentImage == UIImage(systemName: "smallcircle.circle") {
             radioUser.setImage(UIImage(systemName: "smallcircle.fill.circle"), for: .normal)
@@ -217,7 +217,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func sellerSelected(sender: UIButton!) {
-        self.isRole = true
+        viewModel.isRole = true
         viewModel.roleChoose("seller")
         if radioSeller.currentImage == UIImage(systemName: "smallcircle.circle") {
             radioSeller.setImage(UIImage(systemName: "smallcircle.fill.circle"), for: .normal)
@@ -226,7 +226,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func continueButton(sender: UIButton!) {
-        if !isRole {
+        if !viewModel.isRole {
             self.errorWithRole()
         } else {
             viewModel.registerUser(email: loginTextField.text!, password: passwordTextField.text!)
@@ -323,7 +323,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         
         viewModel.navToAdd = { nav in
             if nav {
-                self.coordinator?.addUserData()
+                self.coordinator?.addUserData(role: self.viewModel.roleSet)
             }
         }
     }

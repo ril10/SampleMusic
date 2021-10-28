@@ -16,6 +16,7 @@ class RegistrationViewModel {
     var error : ((Error) -> Void)?
     var roleSet : String!
     var navToAdd : ((Bool) -> Void)?
+    var isRole : Bool!
     
     init(db: Firestore) {
         self.db = db

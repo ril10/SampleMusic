@@ -44,10 +44,11 @@ class MainCoordinator: Coordinator {
         self.navigationController.pushViewController(vc, animated: true)
     }
     
-    func addUserData() {
-        let vc = AddingDataViewController()
+    func addUserData(role: String) {
+        let vc = AddingDataViewController(viewModel: AddingDataAboutUserViewModel(db: Firestore.firestore()))
+        vc.viewModel.roleSet = role
         vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(true, animated: false)
+        self.navigationController.setNavigationBarHidden(false, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
     }
     
