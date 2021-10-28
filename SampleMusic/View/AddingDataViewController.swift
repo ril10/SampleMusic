@@ -256,6 +256,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     
     @objc func addToFirebase(sender: UIButton!) {
         viewModel.currentUser(firstName: firstNameTextField.text!, LastName: lastNameTextField.text!, description: descriptionTextField.text!)
+        viewModel.uploadImage(image: (imageView.image?.pngData()!)!)
     }
     //MARK: - View
     override func loadView() {

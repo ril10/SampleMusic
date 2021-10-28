@@ -15,6 +15,8 @@ class RegistrationViewModel {
     var reloadView : (() -> Void)?
     var error : ((Error) -> Void)?
     var roleSet : String!
+    var userUid : String!
+    var docId : String!
     var navToAdd : ((Bool) -> Void)?
     var isRole : Bool!
     
@@ -29,11 +31,14 @@ class RegistrationViewModel {
             if let e = error {
                 self.error?(e)
             } else {
-                self.db.collection(self.roleSet).addDocument(data: ["email":email,"uid":authResult?.user.uid]) { error in
+                let data = self.db.collection(self.roleSet).addDocument(data: ["email":email,"uid":authResult?.user.uid]) { error in
                     if let e = error {
                         self.error?(e)
+                    } else {
+                        
                     }
                 }
+                self.docId = data.documentID
                 self.navToAdd?(true)
             }
         }

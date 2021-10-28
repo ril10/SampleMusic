@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseAuth
-import Firebase
+import FirebaseStorage
 import Dip
 
 class AddingDataAboutUserViewModel {
@@ -18,11 +18,10 @@ class AddingDataAboutUserViewModel {
     }
     
     var roleSet : String!
-    
     var db : Firestore!
     var gender : String!
-    
     var reloadView : (() -> Void)?
+    var docId : String!
     
     func currentUser(firstName: String,LastName: String,description: String) {
         Auth.auth().addStateDidChangeListener { auth, user in
@@ -30,7 +29,7 @@ class AddingDataAboutUserViewModel {
                 if let e = error {
                     
                 } else {
-                    self.db.collection(self.roleSet).document(user!.uid).setData([
+                    self.db.collection(self.roleSet).document(self.docId!).updateData([
                         "firstName":firstName,
                         "lastName":LastName,
                         "description":description,
@@ -41,8 +40,47 @@ class AddingDataAboutUserViewModel {
         }
     }
     
-    func uploadImage() {
+    func uploadImage(image: Data) {
+        let storageRef = Storage.storage().reference()
+        let uploadTask = storageRef.child("userAvatars/\(self.docId!).png").putData(image, metadata: nil) { _, error in
+            guard error == nil else {
+                print("Failed to upload")
+                return
+            }
+            
+            let downloadUrl = storageRef.child("userAvatars/\(self.docId!).png")
+                .downloadURL { url, error in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        self.db.collection(self.roleSet).document(self.docId!).updateData([
+                            "imageUrl":url?.absoluteString
+                        ])
+                    }
+                    
+                }
+        }
         
+
+        
+        uploadTask.observe(.success) { snapshot in
+            print(snapshot.progress!.completedUnitCount)
+        }
+        
+        uploadTask.observe(.failure) { snapshot in
+            if let error = snapshot.error as? NSError {
+                switch (StorageErrorCode(rawValue: error.code)!) {
+                case .objectNotFound:
+                    print("File not exist")
+                    break
+                case .unauthorized:
+                    print("Not authorized")
+                    break
+                default:
+                    break
+                }
+            }
+        }
     }
     
     func genderSet(gender: String) {

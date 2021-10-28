@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "AddingDataAboutUserViewModel.uploadImage(image:):AddingDataAboutUserViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "userUid">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

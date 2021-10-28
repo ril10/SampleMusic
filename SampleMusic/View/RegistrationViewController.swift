@@ -323,7 +323,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         
         viewModel.navToAdd = { nav in
             if nav {
-                self.coordinator?.addUserData(role: self.viewModel.roleSet)
+                self.coordinator?.addUserData(role: self.viewModel.roleSet,docId: self.viewModel.docId)
             }
         }
     }
