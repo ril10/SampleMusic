@@ -36,7 +36,7 @@ class MainScreenViewModel {
         Auth.auth().addStateDidChangeListener { auth, user in
             self.db.collection(Role.user.rawValue.lowercased()).document(user!.uid).addSnapshotListener { doc, error in
                 if let e = error {
-                    print(e)
+                    self.error?(e)
                 } else {
                     if doc?.data() != nil {
                         self.navUser?(true)
@@ -45,7 +45,7 @@ class MainScreenViewModel {
             }
             self.db.collection(Role.seller.rawValue.lowercased()).document(user!.uid).addSnapshotListener { doc, error in
                 if let e = error {
-                    print(e)
+                    self.error?(e)
                 } else {
                     if doc?.data() != nil {
                         self.navSeller?(true)

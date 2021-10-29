@@ -320,6 +320,9 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         NSLayoutConstraint.activate([
             stackViewMiddle.leadingAnchor.constraint(equalTo: middleView.leadingAnchor),
             stackViewMiddle.topAnchor.constraint(equalTo: middleView.topAnchor),
+            firstNameTextField.widthAnchor.constraint(equalTo: middleView.widthAnchor,constant: -20),
+            lastNameTextField.widthAnchor.constraint(equalTo: middleView.widthAnchor,constant: -20),
+            descriptionTextField.widthAnchor.constraint(equalTo: middleView.widthAnchor,constant: -20)
         ])
         
         NSLayoutConstraint.activate([

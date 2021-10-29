@@ -38,7 +38,7 @@ class MainCoordinator: Coordinator {
     func sellerDetailViewController() {
         let vc = SellerDetailViewController()
         vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(true, animated: false)
+        self.navigationController.setNavigationBarHidden(false, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
     }
     

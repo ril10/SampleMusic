@@ -62,4 +62,13 @@ enum AlertTitle : String, CaseIterable {
     case errorAddingData = "Error Adding data"
 }
 
+enum TitleDetail : String, CaseIterable {
+    case firstName = "First Name"
+    case lastName = "Last Name"
+    case gender = "Gender"
+    case description = "Description"
+    case email = "Email"
+    case samples = "Samples"
+}
+
 
