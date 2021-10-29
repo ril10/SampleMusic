@@ -30,7 +30,7 @@ class MainScreenViewModel {
     
     func currentUser() {
         Auth.auth().addStateDidChangeListener { auth, user in
-            print(user?.providerID)
+            print(user?.uid)
         }
     }
     

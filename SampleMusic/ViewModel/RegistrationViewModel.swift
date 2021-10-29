@@ -30,14 +30,14 @@ class RegistrationViewModel {
             if let e = error {
                 self.error?(e)
             } else {
-                let data = self.db.collection(self.roleSet).addDocument(data: ["email":email,"uid":authResult?.user.uid as Any]) { error in
+                self.db.collection(self.roleSet).document((authResult?.user.uid)!).setData(["email":email,"uid":authResult?.user.uid as Any]) { error in
                     if let e = error {
                         self.error?(e)
                     } else {
                         
                     }
                 }
-                self.docId = data.documentID
+                self.docId = authResult?.user.uid
                 self.navToAdd?(true)
             }
         }
