@@ -13,15 +13,19 @@ import Dip
 class MainScreenViewModel {
     
     var reloadView : (() -> Void)?
-    
+    var db : Firestore!
     var error : ((Error) -> Void)?
+    var navUser : ((Bool) -> Void)?
+    var navSeller : ((Bool) -> Void)?
+    init(db: Firestore) {
+        self.db = db
+    }
     
     func userSignIn(email: String,password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             if let e = error {
                 self?.error?(e)
             } else {
-                print("Succes")
                 self?.currentUser()
             }
         }
@@ -30,7 +34,24 @@ class MainScreenViewModel {
     
     func currentUser() {
         Auth.auth().addStateDidChangeListener { auth, user in
-            print(user?.uid)
+            self.db.collection(Role.user.rawValue.lowercased()).document(user!.uid).addSnapshotListener { doc, error in
+                if let e = error {
+                    print(e)
+                } else {
+                    if doc?.data() != nil {
+                        self.navUser?(true)
+                    }
+                }
+            }
+            self.db.collection(Role.seller.rawValue.lowercased()).document(user!.uid).addSnapshotListener { doc, error in
+                if let e = error {
+                    print(e)
+                } else {
+                    if doc?.data() != nil {
+                        self.navSeller?(true)
+                    }
+                }
+            }
         }
     }
     

@@ -249,6 +249,16 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         viewModel.error = { error in
             self.errorWithLogin(e: error)
         }
+        viewModel.navUser = { nav in
+            if nav {
+                self.coordinator?.listSamplesViewController()
+            }
+        }
+        viewModel.navSeller = { nav in
+            if nav {
+                self.coordinator?.sellerDetailViewController()
+            }
+        }
         self.hideKeyboardWhenTappedAround()
     }
     //MARK: - Constraints

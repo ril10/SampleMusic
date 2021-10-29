@@ -18,7 +18,7 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = MainScreenViewController(viewModel: MainScreenViewModel())
+        let vc = MainScreenViewController(viewModel: MainScreenViewModel(db: Firestore.firestore()))
         vc.coordinator = self
         self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
