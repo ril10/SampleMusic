@@ -184,7 +184,15 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     @objc func signInAction(sender: UIButton!) {
         viewModel.userSignIn(email: loginTextField.text!, password: passwordTextField.text!)
-        loadAlertView()
+        viewModel.loading = { [self] load in
+            if load {
+                loadAlertView()
+            } else {
+                viewModel.error = { [self] error in
+                    errorWithLogin(e: error)
+                }
+            }
+        }
     }
     
     var forgetButton: UIButton = {
@@ -224,13 +232,6 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
         loadingIndicator.style = UIActivityIndicatorView.Style.medium
         loadingIndicator.startAnimating();
-        viewModel.loading = { load in
-            if load {
-                loadingIndicator.stopAnimating()
-                loadingIndicator.hidesWhenStopped = true
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
         alert.view.addSubview(loadingIndicator)
         NSLayoutConstraint.activate([
             loadingIndicator.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor),
@@ -267,17 +268,18 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
                 self?.view.setNeedsDisplay()
             }
         }
-        viewModel.error = { error in
-            self.errorWithLogin(e: error)
-        }
         viewModel.navUser = { nav in
             if nav {
-                self.coordinator?.listSamplesViewController()
+                self.dismiss(animated: true) {
+                    self.coordinator?.listSamplesViewController()
+                }
             }
         }
         viewModel.navSeller = { nav in
             if nav {
-                self.coordinator?.sellerDetailViewController()
+                self.dismiss(animated: true) {
+                    self.coordinator?.sellerDetailViewController()
+                }
             }
         }
         self.hideKeyboardWhenTappedAround()

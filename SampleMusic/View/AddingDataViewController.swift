@@ -258,9 +258,9 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         if firstNameTextField.text!.isEmpty || lastNameTextField.text!.isEmpty || descriptionTextField.text!.isEmpty || imageView.image == nil || viewModel.gender == nil {
             errorWithFields()
         } else {
+            loadAlertView()
             viewModel.currentUser(firstName: firstNameTextField.text!, LastName: lastNameTextField.text!, description: descriptionTextField.text!)
             viewModel.uploadImage(image: (imageView.image?.pngData()!)!)
-            loadAlertView()
         }
     }
     //MARK: - Alert

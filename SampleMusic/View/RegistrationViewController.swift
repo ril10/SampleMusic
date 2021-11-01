@@ -226,10 +226,21 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func continueButton(sender: UIButton!) {
-        if !viewModel.isRole {
+        viewModel.registerUser(email: loginTextField.text!, password: passwordTextField.text!)
+        if !(viewModel.isRole ?? false) {
             self.errorWithRole()
         } else {
             viewModel.registerUser(email: loginTextField.text!, password: passwordTextField.text!)
+        }
+        
+       viewModel.loading = { [self] load in
+            if load {
+                loadAlertView()
+            } else {
+                viewModel.error = { [self] error in
+                    errorWithRegistration(e: error)
+                }
+            }
         }
     }
     
@@ -255,13 +266,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
         loadingIndicator.style = UIActivityIndicatorView.Style.medium
         loadingIndicator.startAnimating();
-        viewModel.loading = { load in
-            if load {
-                loadingIndicator.stopAnimating()
-                loadingIndicator.hidesWhenStopped = true
-                self.dismiss(animated: true, completion: nil)
-            }
-        }
         alert.view.addSubview(loadingIndicator)
         NSLayoutConstraint.activate([
             loadingIndicator.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor),
@@ -336,14 +340,12 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
             DispatchQueue.main.async {
                 self?.view.setNeedsDisplay()
             }
-        }
-        viewModel.error = { error in
-            self.errorWithRegistration(e: error)
-        }
-        
+        }        
         viewModel.navToAdd = { nav in
             if nav {
-                self.coordinator?.addUserData(role: self.viewModel.roleSet,docId: self.viewModel.docId)
+                self.dismiss(animated: true) {
+                    self.coordinator?.addUserData(role: self.viewModel.roleSet,docId: self.viewModel.docId)
+                }
             }
         }
     }

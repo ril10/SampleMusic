@@ -25,8 +25,10 @@ class MainScreenViewModel {
     func userSignIn(email: String,password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             if let e = error {
+                self!.loading?(false)
                 self?.error?(e)
             } else {
+                self!.loading?(true)
                 self?.currentUser()
             }
         }
@@ -40,7 +42,6 @@ class MainScreenViewModel {
                     self.error?(e)
                 } else {
                     if doc?.data() != nil {
-                        self.loading?(true)
                         self.navUser?(true)
                     }
                 }
@@ -50,7 +51,6 @@ class MainScreenViewModel {
                     self.error?(e)
                 } else {
                     if doc?.data() != nil {
-                        self.loading?(true)
                         self.navSeller?(true)
                     }
                 }
