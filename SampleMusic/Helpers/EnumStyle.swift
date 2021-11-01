@@ -13,7 +13,7 @@ enum Style : String, CaseIterable {
     case colorButton = "mainScreenRed"
     case logoApp = "cloud.fill"
     case radioOn = "smallcircle.fill.circle"
-    case radioOff = "smallcircle.circle"
+    case radioOff = "circle.fill"
     case appName = "Music Sample"
     case plusSquare = "plus.square"
     case photo = "photo"

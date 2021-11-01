@@ -20,7 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         FirebaseApp.configure()
         let navController = UINavigationController()
-        let coordinator = MainCoordinator(navigationController: navController)
+        let tabBarController = UITabBarController()
+        let coordinator = MainCoordinator(navigationController: navController, tabBarController: tabBarController)
         coordinator.start()
 //        coordinator.sellerDetailViewController()
         let window = UIWindow(windowScene: windowScene)

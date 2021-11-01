@@ -141,7 +141,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     var radioLabel: UILabel = {
         let label = UILabel()
         label.text = Role.chooseRole.rawValue
-        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15.0)
+        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -153,7 +153,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         button.setTitleColor(UIColor.black, for: .normal)
         button.tintColor = UIColor.black
         button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
-        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
+        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20)
         button.addTarget(self, action: #selector(userSelected(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -163,7 +163,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         let button = UIButton()
         button.setTitle(Role.seller.rawValue, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
+        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20)
         button.tintColor = UIColor.black
         button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
         button.addTarget(self, action: #selector(sellerSelected(sender:)), for: .touchUpInside)
@@ -247,6 +247,26 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         let alert = UIAlertController(title: AlertTitle.errorSignUp.rawValue, message: AlertTitle.selectRole.rawValue, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: Titles.ok.rawValue, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func loadAlertView() {
+        let alert = UIAlertController(title: "Loading", message: "Please wait...", preferredStyle: .alert)
+        alert.view.tintColor = UIColor.black
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+        viewModel.loading = { load in
+            if load {
+                loadingIndicator.stopAnimating()
+                loadingIndicator.hidesWhenStopped = true
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        alert.view.addSubview(loadingIndicator)
+        NSLayoutConstraint.activate([
+            loadingIndicator.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor),
+        ])
+        self.present(alert, animated: true)
     }
     //MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

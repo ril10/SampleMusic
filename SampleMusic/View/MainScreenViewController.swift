@@ -184,6 +184,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     @objc func signInAction(sender: UIButton!) {
         viewModel.userSignIn(email: loginTextField.text!, password: passwordTextField.text!)
+        loadAlertView()
     }
     
     var forgetButton: UIButton = {
@@ -215,6 +216,26 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         let alert = UIAlertController(title: AlertTitle.errorSignIn.rawValue, message: e.localizedDescription, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: Titles.ok.rawValue, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func loadAlertView() {
+        let alert = UIAlertController(title: "Loading", message: "Please wait...", preferredStyle: .alert)
+        alert.view.tintColor = UIColor.black
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+        viewModel.loading = { load in
+            if load {
+                loadingIndicator.stopAnimating()
+                loadingIndicator.hidesWhenStopped = true
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        alert.view.addSubview(loadingIndicator)
+        NSLayoutConstraint.activate([
+            loadingIndicator.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor),
+        ])
+        self.present(alert, animated: true)
     }
     //MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

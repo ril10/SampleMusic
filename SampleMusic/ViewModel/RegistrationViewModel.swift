@@ -18,6 +18,7 @@ class RegistrationViewModel {
     var docId : String!
     var navToAdd : ((Bool) -> Void)?
     var isRole : Bool!
+    var loading : ((Bool) -> Void)?
     
     init(db: Firestore) {
         self.db = db
@@ -29,6 +30,7 @@ class RegistrationViewModel {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let e = error {
                 self.error?(e)
+                self.loading?(false)
             } else {
                 self.db.collection(self.roleSet).document((authResult?.user.uid)!).setData(["email":email,"uid":authResult?.user.uid as Any]) { error in
                     if let e = error {
@@ -38,6 +40,7 @@ class RegistrationViewModel {
                     }
                 }
                 self.docId = authResult?.user.uid
+                self.loading?(true)
                 self.navToAdd?(true)
             }
         }

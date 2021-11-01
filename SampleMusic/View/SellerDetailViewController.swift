@@ -7,8 +7,8 @@
 
 import UIKit
 
-class SellerDetailViewController: UIViewController,UITableViewDelegate {
-    
+class SellerDetailViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+
     var coordinator : MainCoordinator?
     
     //MARK: - MainView
@@ -23,11 +23,6 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate {
         return scroll
     }()
     
-//    var tabBar: = {
-//        let bottomBar = UITabBarController()
-//
-//        return bottomBar
-//    }()
     //MARK: - StackView
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [topView,middleView,bottomView])
@@ -65,9 +60,9 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate {
     }()
     //MARK: - TopView
     var imageView: UIImageView = {
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 50,weight: .bold, scale: .large)
-        image.image = UIImage(systemName: Style.photo.rawValue,withConfiguration: largeConfig)
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+        image.image = UIImage(systemName: Style.photo.rawValue)
+        image.contentMode = .scaleAspectFit
         image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
         image.layer.borderWidth = 3.0
         image.layer.masksToBounds = false
@@ -130,45 +125,69 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate {
     
     var sampleTable: UITableView = {
         let tableView = UITableView()
-        
+        tableView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
         return tableView
     }()
     //MARK: - Contstraints
     func viewCompare() {
-        //        view.addSubview(scrollView)
-        view.addSubview(stackView)
-        stackView.addSubview(imageView)
-        stackView.addSubview(middleStackView)
-        stackView.addSubview(samplesLabel)
-//        view.addSubview(tabBar)
-        //        scrollView.addSubview(stackView)
-        
+//        view.addSubview(stackView)
+//        stackView.addSubview(scrollView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(stackView)
+        scrollView.addSubview(imageView)
+        scrollView.addSubview(middleStackView)
+        scrollView.addSubview(samplesLabel)
+        bottomView.addSubview(sampleTable)
+
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: topView.topAnchor,constant: 15),
-            imageView.leadingAnchor.constraint(equalTo: topView.leadingAnchor,constant: 30),
-            imageView.trailingAnchor.constraint(equalTo: topView.trailingAnchor,constant: -30),
-            imageView.bottomAnchor.constraint(equalTo: topView.bottomAnchor,constant: -15)
+            stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+//            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+//            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+//            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+//            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            imageView.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: imageView.frame.size.width),
+            imageView.heightAnchor.constraint(equalToConstant: imageView.frame.size.height * 2)
         ])
         
         NSLayoutConstraint.activate([
             middleStackView.topAnchor.constraint(equalTo: middleView.topAnchor),
-            middleStackView.leadingAnchor.constraint(equalTo: middleView.leadingAnchor),
-            middleStackView.trailingAnchor.constraint(equalTo: middleView.trailingAnchor),
+            middleStackView.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 15),
+            middleStackView.trailingAnchor.constraint(equalTo: middleView.trailingAnchor,constant: -15),
             middleStackView.bottomAnchor.constraint(equalTo: middleView.bottomAnchor),
         ])
         
         NSLayoutConstraint.activate([
-            samplesLabel.topAnchor.constraint(equalTo: bottomView.topAnchor),
-            samplesLabel.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor)
+//            sampleTable.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
+//            sampleTable.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor)
         ])
     }
+    //MARK: - TableView
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath) as! CustomTableViewCell
+        cell.labelSample.text = "1"
+        return cell
+    }
+    
     //MARK: - View
     override func loadView() {
         super.loadView()
@@ -180,12 +199,10 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerTableViewCell()
-    }
-    
-    private func registerTableViewCell() {
-        let textFieldCell = UINib(nibName: "CustomCell", bundle: nil)
-        self.sampleTable.register(textFieldCell, forCellReuseIdentifier: "CustomCell")
+        sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
+        sampleTable.dataSource = self
+        sampleTable.delegate = self
+        title = "Seller Detail"
     }
     
     func configureNavBar() {
@@ -197,7 +214,6 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate {
         ]
         
         nav?.isTranslucent = true
-        nav?.topItem?.title = "Seller Detail"
         nav?.barTintColor = .white
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()

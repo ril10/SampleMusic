@@ -11,10 +11,11 @@ import FirebaseStorage
 
 class MainCoordinator: Coordinator {
     var navigationController: UINavigationController
+    var tabBarController: UITabBarController
     
-    
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController,tabBarController: UITabBarController) {
         self.navigationController = navigationController
+        self.tabBarController = tabBarController
     }
     
     func start() {
@@ -36,10 +37,15 @@ class MainCoordinator: Coordinator {
     }
     
     func sellerDetailViewController() {
-        let vc = SellerDetailViewController()
-        vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(false, animated: false)
-        self.navigationController.pushViewController(vc, animated: true)
+        let vc1 = UINavigationController(rootViewController: SellerDetailViewController())
+        let vc2 = UINavigationController(rootViewController: ListSamplesViewController())
+        self.tabBarController.setViewControllers([vc1,vc2], animated: false)
+        guard let items = self.tabBarController.tabBar.items else { return }
+        let images = ["house","star"]
+        for x in 0..<items.count {
+            items[x].image = UIImage(systemName: images[x])
+        }
+        self.navigationController.pushViewController(self.tabBarController, animated: true)
     }
     
     func listSamplesViewController() {

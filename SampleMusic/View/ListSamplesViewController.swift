@@ -22,7 +22,7 @@ class ListSamplesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("List Samples")
+        title = "Samples"
         
     }
 }

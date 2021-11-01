@@ -260,6 +260,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         } else {
             viewModel.currentUser(firstName: firstNameTextField.text!, LastName: lastNameTextField.text!, description: descriptionTextField.text!)
             viewModel.uploadImage(image: (imageView.image?.pngData()!)!)
+            loadAlertView()
         }
     }
     //MARK: - Alert
@@ -267,6 +268,25 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         let alert = UIAlertController(title: AlertTitle.errorAddingData.rawValue, message: TextFieldLabel.allFields.rawValue, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: Titles.ok.rawValue, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    func loadAlertView() {
+        let alert = UIAlertController(title: "Loading", message: "Please wait...", preferredStyle: .alert)
+        alert.view.tintColor = UIColor.black
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
+        loadingIndicator.style = UIActivityIndicatorView.Style.large
+        loadingIndicator.startAnimating();
+        viewModel.loading = { load in
+            if load {
+                loadingIndicator.stopAnimating()
+                loadingIndicator.hidesWhenStopped = true
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        alert.view.addSubview(loadingIndicator)
+        NSLayoutConstraint.activate([
+            loadingIndicator.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor),
+        ])
+        self.present(alert, animated: true)
     }
     //MARK: - View
     override func loadView() {

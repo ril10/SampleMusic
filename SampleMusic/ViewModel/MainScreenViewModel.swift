@@ -17,6 +17,7 @@ class MainScreenViewModel {
     var error : ((Error) -> Void)?
     var navUser : ((Bool) -> Void)?
     var navSeller : ((Bool) -> Void)?
+    var loading : ((Bool) -> Void)?
     init(db: Firestore) {
         self.db = db
     }
@@ -39,6 +40,7 @@ class MainScreenViewModel {
                     self.error?(e)
                 } else {
                     if doc?.data() != nil {
+                        self.loading?(true)
                         self.navUser?(true)
                     }
                 }
@@ -48,6 +50,7 @@ class MainScreenViewModel {
                     self.error?(e)
                 } else {
                     if doc?.data() != nil {
+                        self.loading?(true)
                         self.navSeller?(true)
                     }
                 }
