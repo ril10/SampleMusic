@@ -15,10 +15,11 @@ extension DependencyContainer {
         return DependencyContainer { container in
             unowned let container = container
             
+            container.register(.unique) { MainScreenViewController(viewModel: MainScreenViewModel(db: Firestore.firestore()), drawView: MainScreenDraw()) }
+
+            container.register(.unique) { RegistrationViewController(viewModel: RegistrationViewModel(db: Firestore.firestore()), drawView: RegistrationViewDraw()) }
             
-            container.register(.unique) { MainScreenViewController(viewModel: MainScreenViewModel(db: Firestore.firestore())) }
-            container.register(.unique) { RegistrationViewController(viewModel: RegistrationViewModel(db: Firestore.firestore())) }
-            container.register(.unique) { AddingDataAboutUserViewModel(db: Firestore.firestore(), st: Storage.storage()) }
+            container.register(.unique) { AddingDataViewController(viewModel: AddingDataAboutUserViewModel(db: Firestore.firestore(), st: Storage.storage()), drawView: AddingDataDraw()) }
 
             
             DependencyContainer.uiContainers = [container]

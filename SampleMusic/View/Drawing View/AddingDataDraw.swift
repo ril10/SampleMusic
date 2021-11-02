@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Dip
 
 class AddingDataDraw : UIView {
     
@@ -103,40 +104,22 @@ class AddingDataDraw : UIView {
     //MARK: - MiddleView
     var firstNameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = TextFieldLabel.enterFirstName.rawValue
-        textField.borderStyle = UITextField.BorderStyle.none
-        textField.autocorrectionType = UITextAutocorrectionType.no
-        textField.keyboardType = UIKeyboardType.default
-        textField.returnKeyType = UIReturnKeyType.done
-        textField.clearButtonMode = UITextField.ViewMode.whileEditing
+        textField.defaultTextField(placeholder: TextFieldLabel.enterFirstName.rawValue)
         textField.underLine()
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     var lastNameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = TextFieldLabel.enterLastName.rawValue
-        textField.borderStyle = UITextField.BorderStyle.none
-        textField.autocorrectionType = UITextAutocorrectionType.no
-        textField.keyboardType = UIKeyboardType.default
-        textField.returnKeyType = UIReturnKeyType.done
-        textField.clearButtonMode = UITextField.ViewMode.whileEditing
+        textField.defaultTextField(placeholder: TextFieldLabel.enterLastName.rawValue)
         textField.underLine()
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     var descriptionTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = TextFieldLabel.aboutSelf.rawValue
-        textField.borderStyle = UITextField.BorderStyle.none
-        textField.autocorrectionType = UITextAutocorrectionType.no
-        textField.keyboardType = UIKeyboardType.default
-        textField.returnKeyType = UIReturnKeyType.done
-        textField.clearButtonMode = UITextField.ViewMode.whileEditing
+        textField.defaultTextField(placeholder: TextFieldLabel.aboutSelf.rawValue)
         textField.underLine()
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -151,61 +134,26 @@ class AddingDataDraw : UIView {
     
     var radioMale: UIButton = {
         let button = UIButton()
-        button.setTitle(Gender.male.rawValue, for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.tintColor = UIColor.white
-        button.imageView?.layer.borderWidth = 1
-        button.imageView?.layer.borderColor = UIColor.black.cgColor
-        button.imageView?.layer.cornerRadius = 10
-        button.imageView?.clipsToBounds = true
-        button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
-        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.radioButton(title: Gender.male.rawValue)
         return button
     }()
     
     var radioFemale: UIButton = {
         let button = UIButton()
-        button.setTitle(Gender.female.rawValue, for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20)
-        button.tintColor = UIColor.white
-        button.imageView?.layer.borderWidth = 1
-        button.imageView?.layer.borderColor = UIColor.black.cgColor
-        button.imageView?.layer.cornerRadius = 10
-        button.imageView?.clipsToBounds = true
-        button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.radioButton(title: Gender.female.rawValue)
         return button
     }()
     
     var radioUndefined: UIButton = {
         let button = UIButton()
-        button.setTitle(Gender.undf.rawValue, for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20)
-        button.tintColor = UIColor.white
-        button.imageView?.layer.borderWidth = 1
-        button.imageView?.layer.borderColor = UIColor.black.cgColor
-        button.imageView?.layer.cornerRadius = 10
-        button.imageView?.clipsToBounds = true
-        button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.radioButton(title: Gender.undf.rawValue)
         return button
     }()
  
     //MARK: - BottomView
     var buttonAddInformation: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(named: Style.colorButton.rawValue)
-        button.setTitle(Titles.add.rawValue, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        button.layer.shadowOffset = CGSize(width: 0, height: 3)
-        button.layer.shadowOpacity = 1
-        button.layer.shadowRadius = 10
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.coraleButton(title: Titles.add.rawValue)
         return button
     }()
     

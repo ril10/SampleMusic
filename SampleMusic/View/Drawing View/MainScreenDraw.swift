@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Dip
 
 class MainScreenDraw : UIView {
     
@@ -107,61 +108,33 @@ class MainScreenDraw : UIView {
     
     var loginLabel: UILabel = {
         let label = UILabel()
-        label.text = Titles.email.rawValue
-        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15)
-        label.textColor = .red
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.redLabel(title: Titles.email.rawValue)
         return label
     }()
     
     var passwordLabel: UILabel = {
         let label = UILabel()
-        label.text = Titles.password.rawValue
-        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15)
-        label.textColor = .red
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.redLabel(title: Titles.password.rawValue)
         return label
     }()
     
     var loginTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = TextFieldLabel.enterLog.rawValue
-        textField.borderStyle = UITextField.BorderStyle.none
-        textField.autocorrectionType = UITextAutocorrectionType.no
-        textField.keyboardType = UIKeyboardType.emailAddress
-        textField.returnKeyType = UIReturnKeyType.done
-        textField.clearButtonMode = UITextField.ViewMode.whileEditing
         textField.underLine()
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.loginTextField()
         return textField
     }()
     
     var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = TextFieldLabel.enterPassword.rawValue
-        textField.borderStyle = UITextField.BorderStyle.none
-        textField.autocorrectionType = UITextAutocorrectionType.no
-        textField.keyboardType = UIKeyboardType.default
-        textField.returnKeyType = UIReturnKeyType.done
-        textField.clearButtonMode = UITextField.ViewMode.whileEditing
-        textField.isSecureTextEntry = true
         textField.underLine()
-        
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.passwordTextField()
         return textField
     }()
     
     var signButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(named: Style.colorButton.rawValue)
-        button.setTitle(Titles.signIn.rawValue, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        button.layer.shadowOffset = CGSize(width: 0, height: 3)
-        button.layer.shadowOpacity = 1
-        button.layer.shadowRadius = 10
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.coraleButton(title: Titles.signIn.rawValue)
         return button
     }()
     
@@ -177,11 +150,7 @@ class MainScreenDraw : UIView {
     
     var signUpButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .clear
-        button.setTitle(Titles.signUp.rawValue, for: .normal)
-        button.setTitleColor(UIColor(named: Style.colorButton.rawValue), for: .normal)
-        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.coralLighButton(title: Titles.signUp.rawValue)
         return button
     }()
     

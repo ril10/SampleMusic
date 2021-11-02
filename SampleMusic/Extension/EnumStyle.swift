@@ -60,6 +60,8 @@ enum AlertTitle : String, CaseIterable {
     case errorSignUp = "Error Sign Up"
     case selectRole = "Select your role"
     case errorAddingData = "Error Adding data"
+    case loading = "Loading"
+    case wait = "Please wait..."
 }
 
 enum TitleDetail : String, CaseIterable {

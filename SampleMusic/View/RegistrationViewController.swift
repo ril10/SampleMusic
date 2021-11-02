@@ -10,8 +10,9 @@ import Dip
 
 class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
-    init(viewModel: RegistrationViewModel) {
+    init(viewModel: RegistrationViewModel,drawView: RegistrationViewDraw) {
         self.viewModel = viewModel
+        self.drawView = drawView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -22,7 +23,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     var coordinator : MainCoordinator?
     var viewModel : RegistrationViewModel!
-    private var drawView = RegistrationViewDraw()
+    var drawView : RegistrationViewDraw!
 
 //MARK: - ButtonAction
     @objc func userSelected(sender: UIButton!) {
@@ -83,7 +84,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }
     
     func loadAlertView() {
-        let alert = UIAlertController(title: "Loading", message: "Please wait...", preferredStyle: .alert)
+        let alert = UIAlertController(title: AlertTitle.loading.rawValue, message: AlertTitle.wait.rawValue, preferredStyle: .alert)
         alert.view.tintColor = UIColor.black
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
         loadingIndicator.style = UIActivityIndicatorView.Style.medium

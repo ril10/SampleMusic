@@ -10,8 +10,9 @@ import UIKit
 
 class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    init(viewModel: AddingDataAboutUserViewModel) {
+    init(viewModel: AddingDataAboutUserViewModel,drawView: AddingDataDraw) {
         self.viewModel = viewModel
+        self.drawView = drawView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -21,7 +22,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     
     var coordinator : MainCoordinator?
     var viewModel : AddingDataAboutUserViewModel!
-    private var drawView = AddingDataDraw()
+    var drawView : AddingDataDraw!
 
 
     //MARK: - PickerAction
@@ -91,7 +92,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         self.present(alert, animated: true, completion: nil)
     }
     func loadAlertView() {
-        let alert = UIAlertController(title: "Loading", message: "Please wait...", preferredStyle: .alert)
+        let alert = UIAlertController(title: AlertTitle.loading.rawValue, message: AlertTitle.wait.rawValue, preferredStyle: .alert)
         alert.view.tintColor = UIColor.black
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
         loadingIndicator.style = UIActivityIndicatorView.Style.large

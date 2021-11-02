@@ -223,7 +223,6 @@
 				C38156472726A0BF008E83AC /* SceneDelegate.swift */,
 				C38156502726A0C0008E83AC /* LaunchScreen.storyboard */,
 				C38156752726A5D9008E83AC /* GoogleService-Info.plist */,
-				C366BE58272AEB5B00B3E182 /* EnumStyle.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -275,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				C38156832726F81B008E83AC /* Extension.swift */,
+				C366BE58272AEB5B00B3E182 /* EnumStyle.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";

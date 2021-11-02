@@ -10,8 +10,9 @@ import Dip
 
 class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
-    init(viewModel: MainScreenViewModel) {
+    init(viewModel: MainScreenViewModel,drawView: MainScreenDraw) {
         self.viewModel = viewModel
+        self.drawView = drawView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -20,7 +21,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }
     
     var viewModel : MainScreenViewModel!
-    var drawView = MainScreenDraw()
+    var drawView : MainScreenDraw!
     var coordinator: MainCoordinator?
     
     //MARK: - ButtonAction
@@ -48,7 +49,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }
     
     func loadAlertView() {
-        let alert = UIAlertController(title: "Loading", message: "Please wait...", preferredStyle: .alert)
+        let alert = UIAlertController(title: AlertTitle.loading.rawValue, message: AlertTitle.wait.rawValue, preferredStyle: .alert)
         alert.view.tintColor = UIColor.black
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
         loadingIndicator.style = UIActivityIndicatorView.Style.medium

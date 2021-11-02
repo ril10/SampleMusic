@@ -19,7 +19,7 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = MainScreenViewController(viewModel: MainScreenViewModel(db: Firestore.firestore()))
+        let vc = MainScreenViewController(viewModel: MainScreenViewModel(db: Firestore.firestore()), drawView: MainScreenDraw())
         vc.coordinator = self
         self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
@@ -30,7 +30,7 @@ class MainCoordinator: Coordinator {
     }
     
     func registrationViewController() {
-        let vc = RegistrationViewController(viewModel: RegistrationViewModel(db: Firestore.firestore()))
+        let vc = RegistrationViewController(viewModel: RegistrationViewModel(db: Firestore.firestore()), drawView: RegistrationViewDraw())
         vc.coordinator = self
         self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
@@ -56,7 +56,7 @@ class MainCoordinator: Coordinator {
     }
     
     func addUserData(role: String,docId: String) {
-        let vc = AddingDataViewController(viewModel: AddingDataAboutUserViewModel(db: Firestore.firestore(), st: Storage.storage()))
+        let vc = AddingDataViewController(viewModel: AddingDataAboutUserViewModel(db: Firestore.firestore(), st: Storage.storage()), drawView: AddingDataDraw())
         vc.viewModel.roleSet = role
         vc.viewModel.docId = docId
         vc.coordinator = self

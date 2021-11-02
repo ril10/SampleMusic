@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Dip
 
 class RegistrationViewDraw : UIView {
     
@@ -97,29 +98,15 @@ class RegistrationViewDraw : UIView {
     
     var loginTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = TextFieldLabel.enterLog.rawValue
-        textField.borderStyle = UITextField.BorderStyle.none
-        textField.autocorrectionType = UITextAutocorrectionType.no
-        textField.keyboardType = UIKeyboardType.emailAddress
-        textField.returnKeyType = UIReturnKeyType.done
-        textField.clearButtonMode = UITextField.ViewMode.whileEditing
+        textField.loginTextField()
         textField.underLine()
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = TextFieldLabel.enterPassword.rawValue
-        textField.borderStyle = UITextField.BorderStyle.none
-        textField.autocorrectionType = UITextAutocorrectionType.no
-        textField.keyboardType = UIKeyboardType.default
-        textField.returnKeyType = UIReturnKeyType.done
-        textField.clearButtonMode = UITextField.ViewMode.whileEditing
-        textField.isSecureTextEntry = true
+        textField.passwordTextField()
         textField.underLine()
-        
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -135,49 +122,20 @@ class RegistrationViewDraw : UIView {
     
     var radioUser: UIButton = {
         let button = UIButton()
-        button.setTitle(Role.user.rawValue, for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
-        button.tintColor = UIColor.white
-        button.imageView?.layer.borderWidth = 1
-        button.imageView?.layer.borderColor = UIColor.black.cgColor
-        button.imageView?.layer.cornerRadius = 10
-        button.imageView?.clipsToBounds = true
-        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20)
-//        button.addTarget(self, action: #selector(userSelected(sender:)), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.radioButton(title: Role.user.rawValue)
         return button
     }()
     
     var radioSeller: UIButton = {
         let button = UIButton()
-        button.setTitle(Role.seller.rawValue, for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20)
-        button.tintColor = UIColor.white
-        button.imageView?.layer.borderWidth = 1
-        button.imageView?.layer.borderColor = UIColor.black.cgColor
-        button.imageView?.layer.cornerRadius = 10
-        button.imageView?.clipsToBounds = true
-        button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
-//        button.addTarget(self, action: #selector(sellerSelected(sender:)), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.radioButton(title: Role.seller.rawValue)
         return button
     }()
     
     //MARK: - BottomView
     var registerButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(named: Style.colorButton.rawValue)
-        button.setTitle(Titles.contin.rawValue, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        button.layer.shadowOffset = CGSize(width: 0, height: 3)
-        button.layer.shadowOpacity = 1
-        button.layer.shadowRadius = 10
-//        button.addTarget(self, action: #selector(continueButton(sender:)), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.coraleButton(title: Titles.contin.rawValue)
         return button
     }()
     
@@ -192,12 +150,7 @@ class RegistrationViewDraw : UIView {
     
     var signInButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .clear
-        button.setTitle(Titles.signIn.rawValue, for: .normal)
-        button.setTitleColor(UIColor(named: Style.colorButton.rawValue), for: .normal)
-        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
-//        button.addTarget(self, action: #selector(signInButton(sender:)), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.coralLighButton(title: Titles.signIn.rawValue)
         return button
     }()
     
