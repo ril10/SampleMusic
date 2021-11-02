@@ -65,12 +65,12 @@ enum AlertTitle : String, CaseIterable {
 }
 
 enum TitleDetail : String, CaseIterable {
-    case firstName = "First Name"
-    case lastName = "Last Name"
-    case gender = "Gender"
-    case description = "Description"
-    case email = "Email"
-    case samples = "Samples"
+    case firstName = "First Name:"
+    case lastName = "Last Name:"
+    case gender = "Gender:"
+    case description = "Description:"
+    case email = "Email:"
+    case samples = "List of Samples"
 }
 
 

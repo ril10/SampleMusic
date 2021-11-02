@@ -153,7 +153,6 @@ class MainScreenDraw : UIView {
         button.coralLighButton(title: Titles.signUp.rawValue)
         return button
     }()
-    
     //MARK: - Constraints
     func viewCompare(view: UIView) {
         view.addSubview(stackView)
