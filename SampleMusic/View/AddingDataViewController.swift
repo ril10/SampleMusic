@@ -170,7 +170,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     var radioLabel: UILabel = {
         let label = UILabel()
         label.text = Gender.chooseGender.rawValue
-        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15.0)
+        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -180,9 +180,13 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         let button = UIButton()
         button.setTitle(Gender.male.rawValue, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.tintColor = UIColor.black
+        button.tintColor = UIColor.white
+        button.imageView?.layer.borderWidth = 1
+        button.imageView?.layer.borderColor = UIColor.black.cgColor
+        button.imageView?.layer.cornerRadius = 10
+        button.imageView?.clipsToBounds = true
         button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
-        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
+        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20)
         button.addTarget(self, action: #selector(maleSelect(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -192,8 +196,12 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         let button = UIButton()
         button.setTitle(Gender.female.rawValue, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
-        button.tintColor = UIColor.black
+        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20)
+        button.tintColor = UIColor.white
+        button.imageView?.layer.borderWidth = 1
+        button.imageView?.layer.borderColor = UIColor.black.cgColor
+        button.imageView?.layer.cornerRadius = 10
+        button.imageView?.clipsToBounds = true
         button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
         button.addTarget(self, action: #selector(femaleSelect(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -204,8 +212,12 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         let button = UIButton()
         button.setTitle(Gender.undf.rawValue, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
-        button.tintColor = UIColor.black
+        button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20)
+        button.tintColor = UIColor.white
+        button.imageView?.layer.borderWidth = 1
+        button.imageView?.layer.borderColor = UIColor.black.cgColor
+        button.imageView?.layer.cornerRadius = 10
+        button.imageView?.clipsToBounds = true
         button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
         button.addTarget(self, action: #selector(undefSelect(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -216,8 +228,11 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         viewModel.genderSet(gender: Gender.male.rawValue)
         if radioMale.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
             radioMale.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+            radioMale.tintColor = UIColor.black
             radioFemale.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            radioFemale.tintColor = UIColor.white
             radioUndefined.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            radioUndefined.tintColor = UIColor.white
         }
     }
     
@@ -225,8 +240,11 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         viewModel.genderSet(gender: Gender.female.rawValue)
         if radioFemale.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
             radioFemale.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+            radioFemale.tintColor = UIColor.black
             radioMale.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            radioMale.tintColor = UIColor.white
             radioUndefined.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            radioUndefined.tintColor = UIColor.white
         }
     }
     
@@ -234,8 +252,11 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         viewModel.genderSet(gender: Gender.undf.rawValue)
         if radioUndefined.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
             radioUndefined.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+            radioUndefined.tintColor = UIColor.black
             radioMale.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            radioMale.tintColor = UIColor.white
             radioFemale.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            radioFemale.tintColor = UIColor.white
         }
     }
     //MARK: - BottomView

@@ -151,8 +151,12 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         let button = UIButton()
         button.setTitle(Role.user.rawValue, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
-        button.tintColor = UIColor.black
         button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+        button.tintColor = UIColor.white
+        button.imageView?.layer.borderWidth = 1
+        button.imageView?.layer.borderColor = UIColor.black.cgColor
+        button.imageView?.layer.cornerRadius = 10
+        button.imageView?.clipsToBounds = true
         button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20)
         button.addTarget(self, action: #selector(userSelected(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -164,7 +168,11 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         button.setTitle(Role.seller.rawValue, for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20)
-        button.tintColor = UIColor.black
+        button.tintColor = UIColor.white
+        button.imageView?.layer.borderWidth = 1
+        button.imageView?.layer.borderColor = UIColor.black.cgColor
+        button.imageView?.layer.cornerRadius = 10
+        button.imageView?.clipsToBounds = true
         button.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
         button.addTarget(self, action: #selector(sellerSelected(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -212,7 +220,9 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         viewModel.roleChoose(Role.user.rawValue.lowercased())
         if radioUser.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
             radioUser.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+            radioUser.tintColor = UIColor.black
             radioSeller.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            radioSeller.tintColor = UIColor.white
         }
     }
     
@@ -221,7 +231,9 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         viewModel.roleChoose(Role.seller.rawValue.lowercased())
         if radioSeller.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
             radioSeller.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+            radioSeller.tintColor = UIColor.black
             radioUser.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            radioUser.tintColor = UIColor.white
         }
     }
     
