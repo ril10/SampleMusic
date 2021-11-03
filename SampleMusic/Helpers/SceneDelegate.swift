@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UITabBarController()
         let coordinator = MainCoordinator(navigationController: navController, tabBarController: tabBarController)
 //        coordinator.start()
-        coordinator.sellerDetailViewController()
+        coordinator.listSamplesViewController()
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = navController
         window.makeKeyAndVisible()

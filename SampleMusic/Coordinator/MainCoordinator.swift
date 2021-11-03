@@ -38,7 +38,7 @@ class MainCoordinator: Coordinator {
     
     func sellerDetailViewController() {
         let vc1 = UINavigationController(rootViewController: SellerDetailViewController(viewModel: SellerDetailViewModel(), drawView: SellerDetailDraw()))
-        let vc2 = UINavigationController(rootViewController: ListSamplesViewController())
+        let vc2 = UINavigationController(rootViewController: ListSamplesViewController(drawView: ListSamplesDraw()))
         self.tabBarController.setViewControllers([vc1,vc2], animated: false)
         guard let items = self.tabBarController.tabBar.items else { return }
         let images = ["house","star"]
@@ -50,9 +50,9 @@ class MainCoordinator: Coordinator {
     }
     
     func listSamplesViewController() {
-        let vc = ListSamplesViewController()
+        let vc = ListSamplesViewController(drawView: ListSamplesDraw())
         vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(true, animated: false)
+        self.navigationController.setNavigationBarHidden(false, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
     }
     

@@ -8,21 +8,68 @@
 import UIKit
 
 
-class ListSamplesViewController: UIViewController {
+class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
+    init(drawView: ListSamplesDraw) {
+        self.drawView = drawView
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     var coordinator : MainCoordinator?
+    var drawView : ListSamplesDraw!
     
+    
+    //MARK: - TableView
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath) as! CustomTableViewCell
+        cell.labelSample.text = "Some say"
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    //MARK: - View
     override func loadView() {
         super.loadView()
-        
+        configureNavBar()
         view = UIView()
         view.backgroundColor = .white
-        
+        drawView.viewCompare(view: view)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Samples"
         
+        drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
+        drawView.sampleTable.dataSource = self
+        drawView.sampleTable.delegate = self
     }
+    
+    //MARK: - Config NavBar
+    
+    func configureNavBar() {
+        let nav = self.navigationController?.navigationBar
+        
+        nav?.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(named: Style.colorButton.rawValue) as Any,
+            NSAttributedString.Key.font: UIFont(name: Style.fontTitleHeavy.rawValue, size: 18) as Any
+        ]
+        
+        nav?.isTranslucent = true
+        nav?.barTintColor = .white
+    
+        self.navigationItem.setHidesBackButton(true, animated: true)
+        
+    }
+    
 }
