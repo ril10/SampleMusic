@@ -37,7 +37,7 @@ class MainCoordinator: Coordinator {
     }
     
     func sellerDetailViewController() {
-        let vc1 = UINavigationController(rootViewController: SellerDetailViewController())
+        let vc1 = UINavigationController(rootViewController: SellerDetailViewController(viewModel: SellerDetailViewModel(), drawView: SellerDetailDraw()))
         let vc2 = UINavigationController(rootViewController: ListSamplesViewController())
         self.tabBarController.setViewControllers([vc1,vc2], animated: false)
         guard let items = self.tabBarController.tabBar.items else { return }
@@ -45,6 +45,7 @@ class MainCoordinator: Coordinator {
         for x in 0..<items.count {
             items[x].image = UIImage(systemName: images[x])
         }
+        self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(self.tabBarController, animated: true)
     }
     

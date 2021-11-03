@@ -71,7 +71,7 @@ class AddingDataDraw : UIView {
     var buttonAddImage: UIButton = {
         let button = UIButton()
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold, scale: .large)
-        button.setImage(UIImage(systemName: Style.plusSquare.rawValue,withConfiguration: largeConfig), for: .normal)
+        button.setImage(UIImage(systemName: Icons.plusSquare.rawValue,withConfiguration: largeConfig), for: .normal)
         button.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
@@ -85,7 +85,7 @@ class AddingDataDraw : UIView {
     var imageView: UIImageView = {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 50))
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 50,weight: .bold, scale: .large)
-        image.image = UIImage(systemName: Style.photo.rawValue,withConfiguration: largeConfig)
+        image.image = UIImage(systemName: Icons.photo.rawValue,withConfiguration: largeConfig)
         image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
         image.layer.borderWidth = 3.0
         image.layer.masksToBounds = false

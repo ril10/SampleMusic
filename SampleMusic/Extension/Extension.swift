@@ -67,7 +67,7 @@ extension UIButton {
     func radioButton(title: String) {
         self.setTitle(title, for: .normal)
         self.setTitleColor(UIColor.black, for: .normal)
-        self.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+        self.setImage(UIImage(systemName: Icons.radioOff.rawValue), for: .normal)
         self.tintColor = UIColor.white
         self.imageView?.layer.borderWidth = 1
         self.imageView?.layer.borderColor = UIColor.black.cgColor

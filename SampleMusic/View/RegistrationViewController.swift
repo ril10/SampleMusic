@@ -29,10 +29,10 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     @objc func userSelected(sender: UIButton!) {
         viewModel.isRole = true
         viewModel.roleChoose(Role.user.rawValue.lowercased())
-        if drawView.radioUser.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
-            drawView.radioUser.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+        if drawView.radioUser.currentImage == UIImage(systemName: Icons.radioOff.rawValue) {
+            drawView.radioUser.setImage(UIImage(systemName: Icons.radioOn.rawValue), for: .normal)
             drawView.radioUser.tintColor = UIColor.black
-            drawView.radioSeller.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            drawView.radioSeller.setImage(UIImage(systemName: Icons.radioOff.rawValue), for: .normal)
             drawView.radioSeller.tintColor = UIColor.white
         }
     }
@@ -40,10 +40,10 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     @objc func sellerSelected(sender: UIButton!) {
         viewModel.isRole = true
         viewModel.roleChoose(Role.seller.rawValue.lowercased())
-        if drawView.radioSeller.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
-            drawView.radioSeller.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+        if drawView.radioSeller.currentImage == UIImage(systemName: Icons.radioOff.rawValue) {
+            drawView.radioSeller.setImage(UIImage(systemName: Icons.radioOn.rawValue), for: .normal)
             drawView.radioSeller.tintColor = UIColor.black
-            drawView.radioUser.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            drawView.radioUser.setImage(UIImage(systemName: Icons.radioOff.rawValue), for: .normal)
             drawView.radioUser.tintColor = UIColor.white
         }
     }

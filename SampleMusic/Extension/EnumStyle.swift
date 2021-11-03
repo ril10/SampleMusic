@@ -11,12 +11,7 @@ enum Style : String, CaseIterable {
     case fontTitleLight = "Avenir Light"
     case fontTitleHeavy = "Avenir Heavy"
     case colorButton = "mainScreenRed"
-    case logoApp = "cloud.fill"
-    case radioOn = "smallcircle.fill.circle"
-    case radioOff = "circle.fill"
     case appName = "Music Sample"
-    case plusSquare = "plus.square"
-    case photo = "photo"
 }
 
 enum Gender : String, CaseIterable {
@@ -73,4 +68,14 @@ enum TitleDetail : String, CaseIterable {
     case samples = "List of Samples"
 }
 
+enum Icons : String, CaseIterable {
+    case photo = "photo"
+    case logoApp = "cloud.fill"
+    case radioOn = "smallcircle.fill.circle"
+    case radioOff = "circle.fill"
+    case plusSquare = "plus.square"
+    case play = "play"
+    case mic = "mic.badge.plus"
+    case add = "plus"
+}
 

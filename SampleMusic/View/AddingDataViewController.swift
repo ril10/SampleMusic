@@ -42,36 +42,36 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     }
     @objc func maleSelect(sender: UIButton!) {
         viewModel.genderSet(gender: Gender.male.rawValue)
-        if drawView.radioMale.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
-            drawView.radioMale.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+        if drawView.radioMale.currentImage == UIImage(systemName: Icons.radioOff.rawValue) {
+            drawView.radioMale.setImage(UIImage(systemName: Icons.radioOn.rawValue), for: .normal)
             drawView.radioMale.tintColor = UIColor.black
-            drawView.radioFemale.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            drawView.radioFemale.setImage(UIImage(systemName: Icons.radioOff.rawValue), for: .normal)
             drawView.radioFemale.tintColor = UIColor.white
-            drawView.radioUndefined.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            drawView.radioUndefined.setImage(UIImage(systemName: Icons.radioOff.rawValue), for: .normal)
             drawView.radioUndefined.tintColor = UIColor.white
         }
     }
     
     @objc func femaleSelect(sender: UIButton!) {
         viewModel.genderSet(gender: Gender.female.rawValue)
-        if drawView.radioFemale.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
-            drawView.radioFemale.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+        if drawView.radioFemale.currentImage == UIImage(systemName: Icons.radioOff.rawValue) {
+            drawView.radioFemale.setImage(UIImage(systemName: Icons.radioOn.rawValue), for: .normal)
             drawView.radioFemale.tintColor = UIColor.black
-            drawView.radioMale.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            drawView.radioMale.setImage(UIImage(systemName: Icons.radioOff.rawValue), for: .normal)
             drawView.radioMale.tintColor = UIColor.white
-            drawView.radioUndefined.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            drawView.radioUndefined.setImage(UIImage(systemName: Icons.radioOff.rawValue), for: .normal)
             drawView.radioUndefined.tintColor = UIColor.white
         }
     }
     
     @objc func undefSelect(sender: UIButton!) {
         viewModel.genderSet(gender: Gender.undf.rawValue)
-        if drawView.radioUndefined.currentImage == UIImage(systemName: Style.radioOff.rawValue) {
-            drawView.radioUndefined.setImage(UIImage(systemName: Style.radioOn.rawValue), for: .normal)
+        if drawView.radioUndefined.currentImage == UIImage(systemName: Icons.radioOff.rawValue) {
+            drawView.radioUndefined.setImage(UIImage(systemName: Icons.radioOn.rawValue), for: .normal)
             drawView.radioUndefined.tintColor = UIColor.black
-            drawView.radioMale.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            drawView.radioMale.setImage(UIImage(systemName: Icons.radioOff.rawValue), for: .normal)
             drawView.radioMale.tintColor = UIColor.white
-            drawView.radioFemale.setImage(UIImage(systemName: Style.radioOff.rawValue), for: .normal)
+            drawView.radioFemale.setImage(UIImage(systemName: Icons.radioOff.rawValue), for: .normal)
             drawView.radioFemale.tintColor = UIColor.white
         }
     }

@@ -20,6 +20,8 @@ extension DependencyContainer {
             container.register(.unique) { RegistrationViewController(viewModel: RegistrationViewModel(db: Firestore.firestore()), drawView: RegistrationViewDraw()) }
             
             container.register(.unique) { AddingDataViewController(viewModel: AddingDataAboutUserViewModel(db: Firestore.firestore(), st: Storage.storage()), drawView: AddingDataDraw()) }
+            
+            container.register(.unique) { SellerDetailViewController(viewModel: SellerDetailViewModel(), drawView: SellerDetailDraw()) }
 
             
             DependencyContainer.uiContainers = [container]

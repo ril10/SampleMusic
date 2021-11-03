@@ -17,9 +17,29 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
     
+    lazy var stackViewLeft : UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [labelSample,imageUser])
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 5
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    lazy var stackViewRight : UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [buttonPlay,slider])
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.spacing = 5
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     var imageUser : UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: Style.photo.rawValue)
+        image.image = UIImage(systemName: Icons.photo.rawValue)
         image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
         image.layer.borderWidth = 1.0
         image.layer.masksToBounds = false
@@ -34,8 +54,8 @@ class CustomTableViewCell: UITableViewCell {
     var buttonPlay : UIButton = {
         let button = UIButton()
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
-        button.setImage(UIImage(systemName: "play",withConfiguration: largeConfig), for: .normal)
-        button.tintColor = UIColor.black
+        button.setImage(UIImage(systemName: Icons.play.rawValue,withConfiguration: largeConfig), for: .normal)
+        button.tintColor = UIColor(named: Style.colorButton.rawValue)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -49,25 +69,37 @@ class CustomTableViewCell: UITableViewCell {
         return label
     }()
     
+    var slider : UISlider = {
+        let slider = UISlider(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+        slider.value = 0.5
+        slider.tintColor = UIColor(named: Style.colorButton.rawValue)
+        slider.addTarget(self, action: #selector(didSliderSlider(slider:)), for: .valueChanged)
+        return slider
+    }()
+    
+    @objc func didSliderSlider(slider: UISlider!) {
+        let value = slider.value
+        
+        
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.addSubview(imageUser)
-        contentView.addSubview(labelSample)
-        contentView.addSubview(buttonPlay)
-        
+        contentView.addSubview(stackViewLeft)
+        contentView.addSubview(stackViewRight)
         
         NSLayoutConstraint.activate([
-            labelSample.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 20),
-            labelSample.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 10),
-            labelSample.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -10),
-            imageUser.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 40),
-            imageUser.leadingAnchor.constraint(equalTo: labelSample.trailingAnchor,constant: 15),
-            imageUser.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -40),
-            buttonPlay.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            buttonPlay.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-            
+            stackViewLeft.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 15),
+            stackViewLeft.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 15),
+            stackViewLeft.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -15),
+            stackViewLeft.trailingAnchor.constraint(equalTo: stackViewRight.leadingAnchor,constant: -10),
+            stackViewRight.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 15),
+            stackViewRight.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -15),
+            stackViewRight.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -15),
         ])
+
+        
     }
     
     required init?(coder: NSCoder) {

@@ -82,7 +82,7 @@ class MainScreenDraw : UIView {
     var topImage: UIImageView = {
         let image = UIImageView()
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
-        image.image = UIImage(systemName: Style.logoApp.rawValue,withConfiguration: largeConfig)
+        image.image = UIImage(systemName: Icons.logoApp.rawValue,withConfiguration: largeConfig)
         image.tintColor = .lightGray
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
