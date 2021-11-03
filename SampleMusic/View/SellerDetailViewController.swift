@@ -46,7 +46,11 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate, UITableV
     }
     
     //MARK: - View
-    
+        
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        coordinator?.didLogout()
+    }
     
     override func loadView() {
         super.loadView()
@@ -67,6 +71,11 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate, UITableV
                 self?.view.setNeedsDisplay()
             }
         }
+//        viewModel.isLogout = { [self] log in
+//            if log {
+//                coordinator?.didLogout()
+//            }
+//        }
     }
     
     func configureNavBar() {

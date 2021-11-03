@@ -14,7 +14,7 @@ class SellerCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     weak var parentCoordinator: MainCoordinator?
-    
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
@@ -26,7 +26,7 @@ class SellerCoordinator: Coordinator {
         self.navigationController.pushViewController(vc, animated: true)
     }
     
-//    func didLogout() {
-//        parentCoordinator?.childDidFinish(self)
-//    }
+    func didLogout() {
+        parentCoordinator?.childDidFinish(self)
+    }
 }

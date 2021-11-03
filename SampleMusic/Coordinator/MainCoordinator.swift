@@ -19,31 +19,43 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         self.navigationController = navigationController
     }
     
+//    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+//        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
+//            return
+//        }
+//        if navigationController.viewControllers.contains(fromViewController) {
+//            return
+//        }
+//        if let sellerDetail = fromViewController as? SellerDetailViewController {
+//            childDidFinish(sellerDetail.coordinator)
+//        }
+//    }
+    
     func start() {
         let vc = MainScreenViewController(viewModel: MainScreenViewModel(db: Firestore.firestore()))
         vc.coordinator = self
-        navigationController.delegate = self
-        self.navigationController.setNavigationBarHidden(true, animated: false)
-        self.navigationController.pushViewController(vc, animated: true)
+//        navigationController.delegate = self
+        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.pushViewController(vc, animated: true)
         
     }
     
     func dismiss() {
-        self.navigationController.dismiss(animated: true, completion: nil)
+        navigationController.dismiss(animated: true, completion: nil)
     }
     
     func registrationViewController() {
         let vc = RegistrationViewController(viewModel: RegistrationViewModel(db: Firestore.firestore()))
         vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(true, animated: false)
-        self.navigationController.pushViewController(vc, animated: true)
+        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.pushViewController(vc, animated: true)
     }
     
     func sellerDetailViewController() {
         let child = SellerCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()
-        child.parentCoordinator = self
 //        let vc = SellerDetailViewController(viewModel: SellerDetailViewModel(db: Firestore.firestore()))
 //        vc.coordinator = self
 ////        let vc1 = UINavigationController(rootViewController: SellerDetailViewController(viewModel: SellerDetailViewModel(db: Firestore.firestore())))
@@ -55,8 +67,8 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
 ////        for x in 0..<items.count {
 ////            items[x].image = UIImage(systemName: images[x])
 ////        }
-//        self.navigationController.setNavigationBarHidden(false, animated: false)
-//        self.navigationController.pushViewController(vc, animated: true)
+//        navigationController.setNavigationBarHidden(false, animated: false)
+//        navigationController.pushViewController(vc, animated: true)
     }
     
     func childDidFinish(_ child: Coordinator?) {
@@ -66,13 +78,14 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
                 break
             }
         }
+        start()
     }
     
     func listSamplesViewController() {
         let vc = ListSamplesViewController(viewModel: ListSampleViewModel())
         vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(true, animated: false)
-        self.navigationController.pushViewController(vc, animated: true)
+        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.pushViewController(vc, animated: true)
     }
     
     func addUserData(role: String,docId: String) {
@@ -80,20 +93,8 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         vc.viewModel.roleSet = role
         vc.viewModel.docId = docId
         vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(true, animated: false)
-        self.navigationController.pushViewController(vc, animated: true)
-    }
-    
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
-            return
-        }
-        if navigationController.viewControllers.contains(fromViewController) {
-            return
-        }
-        if let sellerDetail = fromViewController as? SellerDetailViewController {
-            childDidFinish(sellerDetail.coordinator)
-        }
+        navigationController.setNavigationBarHidden(true, animated: false)
+        navigationController.pushViewController(vc, animated: true)
     }
     
 }
