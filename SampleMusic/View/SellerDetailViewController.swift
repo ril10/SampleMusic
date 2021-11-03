@@ -9,9 +9,8 @@ import UIKit
 
 class SellerDetailViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
-    init(viewModel: SellerDetailViewModel,drawView: SellerDetailDraw) {
+    init(viewModel: SellerDetailViewModel) {
         self.viewModel = viewModel
-        self.drawView = drawView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -19,13 +18,17 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate, UITableV
         fatalError("init(coder:) has not been implemented")
     }
     
-    var coordinator : MainCoordinator?
-    var drawView : SellerDetailDraw!
+    var coordinator : SellerCoordinator?
+    var drawView = SellerDetailDraw()
     var viewModel : SellerDetailViewModel!
 
     //MARK: - ButtonAction
     @objc func editData(sender: UIButton!) {
-        
+        viewModel.userData()
+    }
+    
+    @objc func logoutAction(sender: UIButton!) {
+        viewModel.logout()
     }
     //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,6 +46,8 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate, UITableV
     }
     
     //MARK: - View
+    
+    
     override func loadView() {
         super.loadView()
         configureNavBar()
@@ -57,7 +62,11 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate, UITableV
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
         title = "Seller Detail"
-        
+        viewModel.reloadView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.view.setNeedsDisplay()
+            }
+        }
     }
     
     func configureNavBar() {
@@ -74,7 +83,8 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate, UITableV
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editData(sender:)))
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutAction(sender:)))
+        self.navigationItem.setHidesBackButton(false, animated: true)
         
     }
     

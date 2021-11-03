@@ -10,9 +10,8 @@ import UIKit
 
 class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    init(viewModel: AddingDataAboutUserViewModel,drawView: AddingDataDraw) {
+    init(viewModel: AddingDataAboutUserViewModel) {
         self.viewModel = viewModel
-        self.drawView = drawView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -22,7 +21,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     
     var coordinator : MainCoordinator?
     var viewModel : AddingDataAboutUserViewModel!
-    var drawView : AddingDataDraw!
+    var drawView = AddingDataDraw()
 
 
     //MARK: - PickerAction

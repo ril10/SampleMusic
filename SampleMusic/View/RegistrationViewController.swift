@@ -10,9 +10,8 @@ import Dip
 
 class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
-    init(viewModel: RegistrationViewModel,drawView: RegistrationViewDraw) {
+    init(viewModel: RegistrationViewModel) {
         self.viewModel = viewModel
-        self.drawView = drawView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -23,7 +22,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     var coordinator : MainCoordinator?
     var viewModel : RegistrationViewModel!
-    var drawView : RegistrationViewDraw!
+    var drawView = RegistrationViewDraw()
 
 //MARK: - ButtonAction
     @objc func userSelected(sender: UIButton!) {

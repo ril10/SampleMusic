@@ -6,10 +6,38 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseStorage
+import FirebaseAuth
+import Dip
 
 
 class SellerDetailViewModel {
     
-    var reloadView : (() -> Void)?
+    init(db: Firestore) {
+        self.db = db
+    }
     
+    var reloadView : (() -> Void)?
+    var db : Firestore!
+    var isLogout : ((Bool) -> Void)?
+    
+    
+    func userData() {
+        if Auth.auth().currentUser != nil {
+            print("sign")
+        } else {
+            print("not sign")
+        }
+    }
+    
+    func logout() {
+            do {
+                try Auth.auth().signOut()
+                isLogout?(true)
+                reloadView?()
+            } catch let signOutError as NSError {
+                print(signOutError.localizedDescription)
+            }
+    }
 }

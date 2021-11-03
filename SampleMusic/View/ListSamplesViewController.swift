@@ -10,8 +10,8 @@ import UIKit
 
 class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
-    init(drawView: ListSamplesDraw) {
-        self.drawView = drawView
+    init(viewModel: ListSampleViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -20,8 +20,8 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     
     var coordinator : MainCoordinator?
-    var drawView : ListSamplesDraw!
-    
+    var drawView = ListSamplesDraw()
+    var viewModel : ListSampleViewModel!
     
     //MARK: - TableView
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -67,6 +67,9 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         
         nav?.isTranslucent = true
         nav?.barTintColor = .white
+        nav?.setBackgroundImage(UIImage(), for: .default)
+        nav?.shadowImage = UIImage()
+        nav?.layoutIfNeeded()
     
         self.navigationItem.setHidesBackButton(true, animated: true)
         

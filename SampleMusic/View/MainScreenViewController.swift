@@ -10,9 +10,8 @@ import Dip
 
 class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
-    init(viewModel: MainScreenViewModel,drawView: MainScreenDraw) {
+    init(viewModel: MainScreenViewModel) {
         self.viewModel = viewModel
-        self.drawView = drawView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -21,7 +20,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }
     
     var viewModel : MainScreenViewModel!
-    var drawView : MainScreenDraw!
+    var drawView = MainScreenDraw()
     var coordinator: MainCoordinator?
     
     //MARK: - ButtonAction

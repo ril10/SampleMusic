@@ -28,16 +28,17 @@ class MainScreenViewModel {
                 self!.loading?(false)
                 self?.error?(e)
             } else {
+                
                 self!.loading?(true)
-                self?.currentUser()
+                self?.currentUser(uid: authResult!.user.uid)
             }
         }
         
     }
     
-    func currentUser() {
+    func currentUser(uid: String) {
         Auth.auth().addStateDidChangeListener { auth, user in
-            self.db.collection(Role.user.rawValue.lowercased()).document(user!.uid).addSnapshotListener { doc, error in
+            self.db.collection(Role.user.rawValue.lowercased()).document(user?.uid ?? uid).addSnapshotListener { doc, error in
                 if let e = error {
                     self.error?(e)
                 } else {
@@ -46,7 +47,7 @@ class MainScreenViewModel {
                     }
                 }
             }
-            self.db.collection(Role.seller.rawValue.lowercased()).document(user!.uid).addSnapshotListener { doc, error in
+            self.db.collection(Role.seller.rawValue.lowercased()).document(user?.uid ?? uid).addSnapshotListener { doc, error in
                 if let e = error {
                     self.error?(e)
                 } else {
