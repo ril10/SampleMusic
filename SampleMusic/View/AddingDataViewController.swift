@@ -134,12 +134,12 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         }
         viewModel.navUser = { nav in
             if nav {
-                self.coordinator?.listSamplesViewController()
+//                self.coordinator?.listSamplesViewController()
             }
         }
         viewModel.navSeller = { nav in
             if nav {
-                self.coordinator?.sellerDetailViewController()
+//                self.coordinator?.sellerDetailViewController()
             }
         }
         self.hideKeyboardWhenTappedAround()

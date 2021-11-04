@@ -22,6 +22,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     var viewModel : MainScreenViewModel!
     var drawView = MainScreenDraw()
     var coordinator: MainCoordinator?
+
     
     //MARK: - ButtonAction
     @objc func signInAction(sender: UIButton!) {
@@ -57,14 +58,15 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         viewModel.navSeller = { load in
             if load {
                 alert.dismiss(animated: true) {
-                    self.coordinator?.sellerDetailViewController()
+//                    self.coordinator?.sellerDetailViewController()
+                    self.coordinator?.mainTabController()
                 }
             }
         }
         viewModel.navUser = { load in
             if load {
                 alert.dismiss(animated: true) {
-                    self.coordinator?.listSamplesViewController()
+                    self.coordinator?.userList()
                 }
             }
         }
@@ -105,16 +107,6 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
                 self?.view.setNeedsDisplay()
             }
         }
-//        viewModel.navUser = { nav in
-//            if nav {
-//                self.coordinator?.listSamplesViewController()
-//            }
-//        }
-//        viewModel.navSeller = { nav in
-//            if nav {
-//                self.coordinator?.sellerDetailViewController()
-//            }
-//        }
         self.hideKeyboardWhenTappedAround()
     }
 

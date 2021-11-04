@@ -11,22 +11,27 @@ import FirebaseFirestore
 
 
 class SellerCoordinator: Coordinator {
+    weak var parentCoordinator: TabBarCoordinator?
+    
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
-    weak var parentCoordinator: MainCoordinator?
-
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
     func start() {
         let vc = SellerDetailViewController(viewModel: SellerDetailViewModel(db: Firestore.firestore()))
-        vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(false, animated: false)
+        vc.coordinator = parentCoordinator
         self.navigationController.pushViewController(vc, animated: true)
+        childDidFinish(self)
     }
     
     func didLogout() {
         parentCoordinator?.childDidFinish(self)
+    }
+    
+    deinit {
+        print("Seller Detail is dead")
     }
 }

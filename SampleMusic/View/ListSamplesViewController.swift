@@ -38,6 +38,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         return 10
     }
     //MARK: - View
+    
     override func loadView() {
         super.loadView()
         configureNavBar()
@@ -48,8 +49,6 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Samples"
-        
         drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
@@ -67,11 +66,12 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         
         nav?.isTranslucent = true
         nav?.barTintColor = .white
+        nav?.topItem?.title = "Samples"
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
     
-        self.navigationItem.setHidesBackButton(true, animated: true)
+        self.navigationItem.setHidesBackButton(false, animated: true)
         
     }
     

@@ -39,6 +39,14 @@ class SellerDetailDraw: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+    lazy var middleStackData: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [firstNameData,secondNameData,descriptionData,emailData,genderData])
+        stackView.alignment = .leading
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     lazy var samplesStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [samplesLabel,addButton,createSampleButton])
         stackView.alignment = .leading
@@ -120,6 +128,46 @@ class SellerDetailDraw: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    var firstNameData: UILabel = {
+        let label = UILabel()
+        label.text = TitleDetail.firstName.rawValue
+        label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
+        label.tintColor = .gray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    var secondNameData: UILabel = {
+        let label = UILabel()
+        label.text = TitleDetail.lastName.rawValue
+        label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
+        label.tintColor = .gray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    var descriptionData: UILabel = {
+        let label = UILabel()
+        label.text = TitleDetail.description.rawValue
+        label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
+        label.tintColor = .gray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    var emailData: UILabel = {
+        let label = UILabel()
+        label.text = TitleDetail.email.rawValue
+        label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
+        label.tintColor = .gray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    var genderData: UILabel = {
+        let label = UILabel()
+        label.text = TitleDetail.gender.rawValue
+        label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
+        label.tintColor = .gray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     //MARK: - BottomView
     var samplesLabel: UILabel = {
@@ -166,6 +214,7 @@ class SellerDetailDraw: UIView {
         scrollView.addSubview(stackView)
         topView.addSubview(imageView)
         middleView.addSubview(middleStackView)
+        middleView.addSubview(middleStackData)
         middleView.addSubview(samplesStack)
         bottomView.addSubview(sampleTable)
         
@@ -202,6 +251,7 @@ class SellerDetailDraw: UIView {
             middleStackView.topAnchor.constraint(equalTo: middleView.topAnchor),
             middleStackView.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 15),
             middleStackView.bottomAnchor.constraint(equalTo: samplesStack.topAnchor),
+            middleStackData.leadingAnchor.constraint(equalTo: middleStackView.trailingAnchor),
             samplesStack.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 15),
             samplesStack.trailingAnchor.constraint(equalTo: middleView.trailingAnchor),
             samplesStack.bottomAnchor.constraint(equalTo: middleView.bottomAnchor),

@@ -37,26 +37,26 @@ class MainScreenViewModel {
     }
     
     func currentUser(uid: String) {
-        Auth.auth().addStateDidChangeListener { auth, user in
-            self.db.collection(Role.user.rawValue.lowercased()).document(user?.uid ?? uid).addSnapshotListener { doc, error in
+        Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+            self?.db.collection(Role.user.rawValue.lowercased()).document(user?.uid ?? uid).addSnapshotListener { [weak self] doc, error in
                 if let e = error {
-                    self.error?(e)
+                    self?.error?(e)
                 } else {
                     if doc?.data() != nil {
-                        self.navUser?(true)
-                        self.loadComplete?(true)
-                        self.reloadView?()
+                        self?.navUser?(true)
+                        self?.loadComplete?(true)
+                        self?.reloadView?()
                     }
                 }
             }
-            self.db.collection(Role.seller.rawValue.lowercased()).document(user?.uid ?? uid).addSnapshotListener { doc, error in
+            self?.db.collection(Role.seller.rawValue.lowercased()).document(user?.uid ?? uid).addSnapshotListener { [weak self] doc, error in
                 if let e = error {
-                    self.error?(e)
+                    self?.error?(e)
                 } else {
                     if doc?.data() != nil {
-                        self.navSeller?(true)
-                        self.loadComplete?(true)
-                        self.reloadView?()
+                        self?.navSeller?(true)
+                        self?.loadComplete?(true)
+                        self?.reloadView?()
                     }
                 }
             }

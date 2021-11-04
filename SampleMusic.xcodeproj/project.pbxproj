@@ -14,6 +14,8 @@
 		C30150AF2732906600C85EF3 /* ListSamplesDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30150AE2732906600C85EF3 /* ListSamplesDraw.swift */; };
 		C30150B12732A59F00C85EF3 /* ListSampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30150B02732A59F00C85EF3 /* ListSampleViewModel.swift */; };
 		C30150B52732DC9D00C85EF3 /* SellerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30150B42732DC9D00C85EF3 /* SellerCoordinator.swift */; };
+		C30150B72733CD7800C85EF3 /* ListSamplesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30150B62733CD7800C85EF3 /* ListSamplesCoordinator.swift */; };
+		C30150BD2733E07300C85EF3 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30150BC2733E07300C85EF3 /* TabBarCoordinator.swift */; };
 		C33CCA7B272BE47A00C7969E /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA7A272BE47A00C7969E /* DetailModel.swift */; };
 		C33CCA7D272C246600C7969E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA7C272C246600C7969E /* CustomTableViewCell.swift */; };
 		C33CCA80272C253200C7969E /* SampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA7F272C253200C7969E /* SampleModel.swift */; };
@@ -74,6 +76,8 @@
 		C30150AE2732906600C85EF3 /* ListSamplesDraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSamplesDraw.swift; sourceTree = "<group>"; };
 		C30150B02732A59F00C85EF3 /* ListSampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSampleViewModel.swift; sourceTree = "<group>"; };
 		C30150B42732DC9D00C85EF3 /* SellerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerCoordinator.swift; sourceTree = "<group>"; };
+		C30150B62733CD7800C85EF3 /* ListSamplesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSamplesCoordinator.swift; sourceTree = "<group>"; };
+		C30150BC2733E07300C85EF3 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		C33CCA7A272BE47A00C7969E /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		C33CCA7C272C246600C7969E /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		C33CCA7F272C253200C7969E /* SampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleModel.swift; sourceTree = "<group>"; };
@@ -160,6 +164,16 @@
 				C30150AE2732906600C85EF3 /* ListSamplesDraw.swift */,
 			);
 			path = "Drawing View";
+			sourceTree = "<group>";
+		};
+		C30150BE2733E0C100C85EF3 /* TabBarCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				C30150BC2733E07300C85EF3 /* TabBarCoordinator.swift */,
+				C30150B42732DC9D00C85EF3 /* SellerCoordinator.swift */,
+				C30150B62733CD7800C85EF3 /* ListSamplesCoordinator.swift */,
+			);
+			path = TabBarCoordinator;
 			sourceTree = "<group>";
 		};
 		C33CCA7E272C246B00C7969E /* Cell */ = {
@@ -275,9 +289,9 @@
 		C381567B2726A903008E83AC /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				C30150BE2733E0C100C85EF3 /* TabBarCoordinator */,
 				C381567C2726A930008E83AC /* Coordinator.swift */,
 				C381567E2726A962008E83AC /* MainCoordinator.swift */,
-				C30150B42732DC9D00C85EF3 /* SellerCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -551,6 +565,7 @@
 				C381567D2726A930008E83AC /* Coordinator.swift in Sources */,
 				C30150AB27312E3B00C85EF3 /* AddingDataDraw.swift in Sources */,
 				C33CCA80272C253200C7969E /* SampleModel.swift in Sources */,
+				C30150BD2733E07300C85EF3 /* TabBarCoordinator.swift in Sources */,
 				C381568A27281499008E83AC /* RegistrationViewModel.swift in Sources */,
 				C33CCA82272C3BC800C7969E /* SellerDetailViewModel.swift in Sources */,
 				C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */,
@@ -564,6 +579,7 @@
 				C33CCA7D272C246600C7969E /* CustomTableViewCell.swift in Sources */,
 				C38156842726F81B008E83AC /* Extension.swift in Sources */,
 				C366BE5527298E6900B3E182 /* AddingDataViewController.swift in Sources */,
+				C30150B72733CD7800C85EF3 /* ListSamplesCoordinator.swift in Sources */,
 				C381568627270783008E83AC /* RegistrationViewController.swift in Sources */,
 				C38156882728147A008E83AC /* MainScreenViewModel.swift in Sources */,
 				C33CCA7B272BE47A00C7969E /* DetailModel.swift in Sources */,

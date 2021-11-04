@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SellerDetailViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     init(viewModel: SellerDetailViewModel) {
         self.viewModel = viewModel
@@ -18,13 +18,13 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate, UITableV
         fatalError("init(coder:) has not been implemented")
     }
     
-    var coordinator : SellerCoordinator?
+    var coordinator : TabBarCoordinator?
     var drawView = SellerDetailDraw()
     var viewModel : SellerDetailViewModel!
 
     //MARK: - ButtonAction
     @objc func editData(sender: UIButton!) {
-        viewModel.userData()
+        
     }
     
     @objc func logoutAction(sender: UIButton!) {
@@ -46,10 +46,10 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate, UITableV
     }
     
     //MARK: - View
-        
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        coordinator?.didLogout()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.logedUser()
     }
     
     override func loadView() {
@@ -65,17 +65,17 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate, UITableV
         drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
-        title = "Seller Detail"
         viewModel.reloadView = { [weak self] in
             DispatchQueue.main.async {
                 self?.view.setNeedsDisplay()
             }
         }
-//        viewModel.isLogout = { [self] log in
-//            if log {
-//                coordinator?.didLogout()
-//            }
-//        }
+        viewModel.isLogout = { [self] log in
+            if log {
+                coordinator?.parentCoordinator?.didLogout()
+                coordinator?.parentCoordinator?.start()
+            }
+        }
     }
     
     func configureNavBar() {
@@ -88,12 +88,13 @@ class SellerDetailViewController: UIViewController,UITableViewDelegate, UITableV
         
         nav?.isTranslucent = true
         nav?.barTintColor = .white
+        nav?.topItem!.title = "Seller Detail"
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editData(sender:)))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutAction(sender:)))
-        self.navigationItem.setHidesBackButton(false, animated: true)
+        self.navigationItem.setHidesBackButton(false, animated: false)
         
     }
     
