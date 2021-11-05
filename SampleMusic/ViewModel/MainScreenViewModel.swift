@@ -30,33 +30,35 @@ class MainScreenViewModel {
                 self?.error?(e)
             } else {
                 self!.loading?(true)
-                self?.currentUser(uid: authResult!.user.uid)
+                self?.currentUser()
             }
         }
         
     }
     
-    func currentUser(uid: String) {
+    func currentUser() {
         Auth.auth().addStateDidChangeListener { [weak self] auth, user in
-            self?.db.collection(Role.user.rawValue.lowercased()).document(user?.uid ?? uid).addSnapshotListener { [weak self] doc, error in
-                if let e = error {
-                    self?.error?(e)
-                } else {
-                    if doc?.data() != nil {
-                        self?.navUser?(true)
-                        self?.loadComplete?(true)
-                        self?.reloadView?()
+            if ((user) != nil) {
+                self?.db.collection(Role.user.rawValue.lowercased()).document(user!.uid).addSnapshotListener { [weak self] doc, error in
+                    if let e = error {
+                        self?.error?(e)
+                    } else {
+                        if doc?.data() != nil {
+                            self?.navUser?(true)
+                            self?.loadComplete?(true)
+                            self?.reloadView?()
+                        }
                     }
                 }
-            }
-            self?.db.collection(Role.seller.rawValue.lowercased()).document(user?.uid ?? uid).addSnapshotListener { [weak self] doc, error in
-                if let e = error {
-                    self?.error?(e)
-                } else {
-                    if doc?.data() != nil {
-                        self?.navSeller?(true)
-                        self?.loadComplete?(true)
-                        self?.reloadView?()
+                self?.db.collection(Role.seller.rawValue.lowercased()).document(user!.uid).addSnapshotListener { [weak self] doc, error in
+                    if let e = error {
+                        self?.error?(e)
+                    } else {
+                        if doc?.data() != nil {
+                            self?.navSeller?(true)
+                            self?.loadComplete?(true)
+                            self?.reloadView?()
+                        }
                     }
                 }
             }

@@ -24,22 +24,18 @@ class SellerDetailViewModel {
     var fieldData : ((String,String,String,String,String) -> Void)?
     
     
-    func userData(uid: String) {
-        Auth.auth().addStateDidChangeListener { auth, user in
-            self.db.collection(Role.seller.rawValue.lowercased()).document(user?.uid ?? uid).addSnapshotListener { [weak self] doc, error in
-                doc?.data().map {
-                    for ( key, value ) in $0 {
-                        print(key)
-                        print(value)
+    func userData() {
+        Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+            if ((user) != nil) {
+                self?.db.collection(Role.seller.rawValue.lowercased()).document(user!.uid).addSnapshotListener { [weak self] doc, error in
+                    doc?.data().map {
+                        for ( key, value ) in $0 {
+                            print(key)
+                            print(value)
+                        }
                     }
                 }
             }
-        }
-    }
-    
-    func logedUser() {
-        Auth.auth().addStateDidChangeListener { auth, user in
-            self.userData(uid: auth.currentUser!.uid)
         }
     }
     
