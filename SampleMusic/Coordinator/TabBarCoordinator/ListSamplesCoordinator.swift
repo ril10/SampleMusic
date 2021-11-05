@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class ListSamplesCoordinator : Coordinator {
     weak var parentCoordinator: MainCoordinator?
@@ -20,18 +21,15 @@ class ListSamplesCoordinator : Coordinator {
     }
     
     func start() {
-        let vc = ListSamplesViewController(viewModel: ListSampleViewModel())
+        let vc = ListSamplesViewController(viewModel: ListSampleViewModel(db: Firestore.firestore()))
         vc.coordinator = parentCoordinator
         self.navigationController.setNavigationBarHidden(false, animated: true)
         self.navigationController.pushViewController(vc, animated: true)
+        childDidFinish(self)
     }
     
     func didLogout() {
         parentCoordinator?.childDidFinish(self)
-    }
-    
-    deinit {
-        print("List sample is dead")
     }
     
 }

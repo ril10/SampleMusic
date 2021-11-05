@@ -23,7 +23,7 @@ extension DependencyContainer {
             
             container.register(.unique) { SellerDetailViewController(viewModel: SellerDetailViewModel(db: Firestore.firestore())) }
             
-            container.register(.unique) { ListSamplesViewController(viewModel: ListSampleViewModel()) }
+            container.register(.unique) { ListSamplesViewController(viewModel: ListSampleViewModel(db: Firestore.firestore())) }
 
             
             DependencyContainer.uiContainers = [container]

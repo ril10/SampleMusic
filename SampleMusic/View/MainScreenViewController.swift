@@ -55,19 +55,9 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         loadingIndicator.style = UIActivityIndicatorView.Style.medium
         loadingIndicator.startAnimating();
         alert.view.addSubview(loadingIndicator)
-        viewModel.navSeller = { load in
+        viewModel.dismisAlert = { load in
             if load {
-                alert.dismiss(animated: true) {
-//                    self.coordinator?.sellerDetailViewController()
-                    self.coordinator?.mainTabController()
-                }
-            }
-        }
-        viewModel.navUser = { load in
-            if load {
-                alert.dismiss(animated: true) {
-                    self.coordinator?.userList()
-                }
+                alert.dismiss(animated: true)
             }
         }
         NSLayoutConstraint.activate([
@@ -85,6 +75,11 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
     }
     
     override func loadView() {
@@ -108,6 +103,21 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
             }
         }
         self.hideKeyboardWhenTappedAround()
+        
+        viewModel.loadCompleteSeller = { load in
+            if load {
+                self.dismiss(animated: true) {
+                    self.coordinator?.mainTabController()
+                }
+            }
+        }
+        viewModel.loadCompleteUser = { load in
+            if load {
+                self.dismiss(animated: true) {
+                    self.coordinator?.userList()
+                }
+            }
+        }
     }
 
 }

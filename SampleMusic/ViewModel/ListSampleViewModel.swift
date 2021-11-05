@@ -6,10 +6,26 @@
 //
 
 import Foundation
-
+import FirebaseFirestore
+import FirebaseAuth
 
 class ListSampleViewModel {
     
+    init(db: Firestore) {
+        self.db = db
+    }
     
+    var reloadTableView : (() -> Void)?
+    var db : Firestore!
+    var isLogout : ((Bool) -> Void)?
+    
+    func logout() {
+            do {
+                try Auth.auth().signOut()
+                isLogout?(true)
+            } catch let signOutError as NSError {
+                print(signOutError.localizedDescription)
+            }
+    }
     
 }

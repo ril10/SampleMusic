@@ -30,8 +30,4 @@ class SellerCoordinator: Coordinator {
     func didLogout() {
         parentCoordinator?.childDidFinish(self)
     }
-    
-    deinit {
-        print("Seller Detail is dead")
-    }
 }

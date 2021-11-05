@@ -40,6 +40,7 @@ class TabBarCoordinator : Coordinator {
         sampleNav.tabBarItem = sampleItem
         
         vc.viewControllers = [sellerNav,sampleNav]
+        navigationController.definesPresentationContext = true
         navigationController.pushViewController(vc, animated: true)
         navigationController.setNavigationBarHidden(true, animated: true)
         

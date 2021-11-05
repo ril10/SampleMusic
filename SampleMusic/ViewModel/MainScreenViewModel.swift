@@ -15,10 +15,10 @@ class MainScreenViewModel {
     var reloadView : (() -> Void)?
     var db : Firestore!
     var error : ((Error) -> Void)?
-    var navUser : ((Bool) -> Void)?
-    var navSeller : ((Bool) -> Void)?
+    var dismisAlert : ((Bool) -> Void)?
     var loading : ((Bool) -> Void)?
-    var loadComplete : ((Bool) -> Void)?
+    var loadCompleteUser : ((Bool) -> Void)?
+    var loadCompleteSeller : ((Bool) -> Void)?
     init(db: Firestore) {
         self.db = db
     }
@@ -44,8 +44,8 @@ class MainScreenViewModel {
                         self?.error?(e)
                     } else {
                         if doc?.data() != nil {
-                            self?.navUser?(true)
-                            self?.loadComplete?(true)
+                            self?.dismisAlert?(true)
+                            self?.loadCompleteUser?(true)
                             self?.reloadView?()
                         }
                     }
@@ -55,8 +55,8 @@ class MainScreenViewModel {
                         self?.error?(e)
                     } else {
                         if doc?.data() != nil {
-                            self?.navSeller?(true)
-                            self?.loadComplete?(true)
+                            self?.dismisAlert?(true)
+                            self?.loadCompleteSeller?(true)
                             self?.reloadView?()
                         }
                     }

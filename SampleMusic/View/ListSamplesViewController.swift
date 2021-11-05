@@ -37,6 +37,11 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
+    
+    //MARK: - ActionButton
+    @objc func logoutAction(sender: UIButton!) {
+        viewModel.logout()
+    }
     //MARK: - View
     
     override func loadView() {
@@ -52,6 +57,16 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
+        viewModel.reloadTableView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.drawView.sampleTable.reloadData()
+            }
+        }
+        viewModel.isLogout = { [self] log in
+            if log {
+                coordinator?.start()
+            }
+        }
     }
     
     //MARK: - Config NavBar
@@ -70,8 +85,8 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
-    
-        self.navigationItem.setHidesBackButton(false, animated: true)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutAction(sender:)))
+        self.navigationItem.setHidesBackButton(true, animated: true)
         
     }
     
