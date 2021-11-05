@@ -21,11 +21,10 @@ class ListSamplesCoordinator : Coordinator {
     }
     
     func start() {
-        let vc = ListSamplesViewController(viewModel: ListSampleViewModel(db: Firestore.firestore()))
+        let vc = ListSamplesViewController()
         vc.coordinator = parentCoordinator
         self.navigationController.setNavigationBarHidden(false, animated: true)
         self.navigationController.pushViewController(vc, animated: true)
-        childDidFinish(self)
     }
     
     func didLogout() {

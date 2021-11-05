@@ -10,24 +10,15 @@ import Dip
 
 class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
-    init(viewModel: RegistrationViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
     
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    var coordinator : MainCoordinator?
-    var viewModel : RegistrationViewModel!
+    weak var coordinator : MainCoordinator?
+    var viewModel : RegistrationViewModel?
     var drawView = RegistrationViewDraw()
 
 //MARK: - ButtonAction
     @objc func userSelected(sender: UIButton!) {
-        viewModel.isRole = true
-        viewModel.roleChoose(Role.user.rawValue.lowercased())
+        viewModel?.isRole = true
+        viewModel?.roleChoose(Role.user.rawValue.lowercased())
         if drawView.radioUser.currentImage == UIImage(systemName: Icons.radioOff.rawValue) {
             drawView.radioUser.setImage(UIImage(systemName: Icons.radioOn.rawValue), for: .normal)
             drawView.radioUser.tintColor = UIColor.black
@@ -37,8 +28,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func sellerSelected(sender: UIButton!) {
-        viewModel.isRole = true
-        viewModel.roleChoose(Role.seller.rawValue.lowercased())
+        viewModel?.isRole = true
+        viewModel?.roleChoose(Role.seller.rawValue.lowercased())
         if drawView.radioSeller.currentImage == UIImage(systemName: Icons.radioOff.rawValue) {
             drawView.radioSeller.setImage(UIImage(systemName: Icons.radioOn.rawValue), for: .normal)
             drawView.radioSeller.tintColor = UIColor.black
@@ -48,18 +39,18 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func continueButton(sender: UIButton!) {
-        viewModel.registerUser(email: drawView.loginTextField.text!, password: drawView.passwordTextField.text!)
-        if !(viewModel.isRole ?? false) {
+        viewModel?.registerUser(email: drawView.loginTextField.text!, password: drawView.passwordTextField.text!)
+        if !(viewModel?.isRole ?? false) {
             self.errorWithRole()
         } else {
-            viewModel.registerUser(email: drawView.loginTextField.text!, password: drawView.passwordTextField.text!)
+            viewModel?.registerUser(email: drawView.loginTextField.text!, password: drawView.passwordTextField.text!)
         }
         
-       viewModel.loading = { [self] load in
+       viewModel?.loading = { [self] load in
             if load {
                 loadAlertView()
             } else {
-                viewModel.error = { [self] error in
+                viewModel?.error = { [self] error in
                     errorWithRegistration(e: error)
                 }
             }
@@ -120,18 +111,20 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         drawView.loginTextField.delegate = self
         drawView.passwordTextField.delegate = self
         self.hideKeyboardWhenTappedAround()
-        viewModel.reloadView = { [weak self] in
+        viewModel?.reloadView = { [weak self] in
             DispatchQueue.main.async {
                 self?.view.setNeedsDisplay()
             }
         }        
-        viewModel.navToAdd = { nav in
+        viewModel?.navToAdd = { nav in
             if nav {
                 self.dismiss(animated: true) {
-                    self.coordinator?.addUserData(role: self.viewModel.roleSet,docId: self.viewModel.docId)
+                    self.coordinator?.addUserData(role: (self.viewModel?.roleSet)!,docId: (self.viewModel?.docId)!)
                 }
             }
         }
     }
-    
+    deinit {
+        print("Registration Screen")
+    }
 }

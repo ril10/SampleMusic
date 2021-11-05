@@ -9,19 +9,10 @@ import UIKit
 
 
 class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-    
-    init(viewModel: ListSampleViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    var coordinator : MainCoordinator?
+        
+    weak var coordinator : MainCoordinator?
     var drawView = ListSamplesDraw()
-    var viewModel : ListSampleViewModel!
+    var viewModel : ListSampleViewModel?
     
     //MARK: - TableView
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -40,7 +31,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     //MARK: - ActionButton
     @objc func logoutAction(sender: UIButton!) {
-        viewModel.logout()
+        viewModel?.logout()
     }
     //MARK: - View
     
@@ -57,14 +48,15 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
-        viewModel.reloadTableView = { [weak self] in
+        viewModel?.reloadTableView = { [weak self] in
             DispatchQueue.main.async {
                 self?.drawView.sampleTable.reloadData()
             }
         }
-        viewModel.isLogout = { [self] log in
+        viewModel?.isLogout = { [weak self] log in
             if log {
-                coordinator?.start()
+                self?.coordinator?.didLogout()
+                self?.coordinator?.start()
             }
         }
     }
@@ -90,4 +82,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         
     }
     
+    deinit {
+        print("List Screen")
+    }
 }

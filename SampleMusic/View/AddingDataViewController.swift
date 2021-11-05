@@ -9,18 +9,9 @@ import UIKit
 
 
 class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    init(viewModel: AddingDataAboutUserViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    var coordinator : MainCoordinator?
-    var viewModel : AddingDataAboutUserViewModel!
+        
+    weak var coordinator : MainCoordinator?
+    var viewModel : AddingDataAboutUserViewModel?
     var drawView = AddingDataDraw()
 
 
@@ -40,7 +31,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         }
     }
     @objc func maleSelect(sender: UIButton!) {
-        viewModel.genderSet(gender: Gender.male.rawValue)
+        viewModel?.genderSet(gender: Gender.male.rawValue)
         if drawView.radioMale.currentImage == UIImage(systemName: Icons.radioOff.rawValue) {
             drawView.radioMale.setImage(UIImage(systemName: Icons.radioOn.rawValue), for: .normal)
             drawView.radioMale.tintColor = UIColor.black
@@ -52,7 +43,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     }
     
     @objc func femaleSelect(sender: UIButton!) {
-        viewModel.genderSet(gender: Gender.female.rawValue)
+        viewModel?.genderSet(gender: Gender.female.rawValue)
         if drawView.radioFemale.currentImage == UIImage(systemName: Icons.radioOff.rawValue) {
             drawView.radioFemale.setImage(UIImage(systemName: Icons.radioOn.rawValue), for: .normal)
             drawView.radioFemale.tintColor = UIColor.black
@@ -64,7 +55,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     }
     
     @objc func undefSelect(sender: UIButton!) {
-        viewModel.genderSet(gender: Gender.undf.rawValue)
+        viewModel?.genderSet(gender: Gender.undf.rawValue)
         if drawView.radioUndefined.currentImage == UIImage(systemName: Icons.radioOff.rawValue) {
             drawView.radioUndefined.setImage(UIImage(systemName: Icons.radioOn.rawValue), for: .normal)
             drawView.radioUndefined.tintColor = UIColor.black
@@ -76,12 +67,12 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     }
    
     @objc func addToFirebase(sender: UIButton!) {
-        if drawView.firstNameTextField.text!.isEmpty || drawView.lastNameTextField.text!.isEmpty || drawView.descriptionTextField.text!.isEmpty || drawView.imageView.image == nil || viewModel.gender == nil {
+        if drawView.firstNameTextField.text!.isEmpty || drawView.lastNameTextField.text!.isEmpty || drawView.descriptionTextField.text!.isEmpty || drawView.imageView.image == nil || viewModel?.gender == nil {
             errorWithFields()
         } else {
             loadAlertView()
-            viewModel.currentUser(firstName: drawView.firstNameTextField.text!, LastName: drawView.lastNameTextField.text!, description: drawView.descriptionTextField.text!)
-            viewModel.uploadImage(image: (drawView.imageView.image?.pngData()!)!)
+            viewModel?.currentUser(firstName: drawView.firstNameTextField.text!, LastName: drawView.lastNameTextField.text!, description: drawView.descriptionTextField.text!)
+            viewModel?.uploadImage(image: (drawView.imageView.image?.pngData()!)!)
         }
     }
     //MARK: - Alert
@@ -96,7 +87,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
         loadingIndicator.style = UIActivityIndicatorView.Style.large
         loadingIndicator.startAnimating();
-        viewModel.loading = { load in
+        viewModel?.loading = { load in
             if load {
                 loadingIndicator.stopAnimating()
                 loadingIndicator.hidesWhenStopped = true
@@ -129,17 +120,17 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         drawView.lastNameTextField.delegate = self
         drawView.descriptionTextField.delegate = self
         drawView.imagePicker.delegate = self
-        viewModel.reloadView = { [weak self] in
+        viewModel?.reloadView = { [weak self] in
             self?.view.setNeedsDisplay()
         }
-        viewModel.navUser = { nav in
+        viewModel?.navUser = { nav in
             if nav {
-//                self.coordinator?.listSamplesViewController()
+                self.coordinator?.userList()
             }
         }
-        viewModel.navSeller = { nav in
+        viewModel?.navSeller = { nav in
             if nav {
-//                self.coordinator?.sellerDetailViewController()
+                self.coordinator?.mainTabController()
             }
         }
         self.hideKeyboardWhenTappedAround()

@@ -11,12 +11,9 @@ import FirebaseAuth
 
 class ListSampleViewModel {
     
-    init(db: Firestore) {
-        self.db = db
-    }
     
     var reloadTableView : (() -> Void)?
-    var db : Firestore!
+    var db : Firestore?
     var isLogout : ((Bool) -> Void)?
     
     func logout() {

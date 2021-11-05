@@ -21,10 +21,9 @@ class SellerCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = SellerDetailViewController(viewModel: SellerDetailViewModel(db: Firestore.firestore()))
+        let vc = SellerDetailViewController()
         vc.coordinator = parentCoordinator
         self.navigationController.pushViewController(vc, animated: true)
-        childDidFinish(self)
     }
     
     func didLogout() {

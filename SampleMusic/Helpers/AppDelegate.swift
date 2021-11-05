@@ -6,17 +6,19 @@
 //
 
 import UIKit
-import Dip
+//import Dip
+import Firebase
+import FirebaseFirestore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private let container = DependencyContainer.configure()
+//    private let container = DependencyContainer.configure()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        func resolveType(type: Any.Type) -> Any? {
-            return try? container.resolve(type)
-        }
+//        func resolveType(type: Any.Type) -> Any? {
+//            return try? container.resolve(type)
+//        }
         return true
     }
 

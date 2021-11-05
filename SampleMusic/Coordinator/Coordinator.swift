@@ -14,7 +14,6 @@ protocol Coordinator: AnyObject {
 }
 
 extension Coordinator {
-    
     func childDidFinish(_ coordinator : Coordinator) {
         for (index, child) in childCoordinators.enumerated() {
             if child === coordinator {
@@ -23,5 +22,4 @@ extension Coordinator {
             }
         }
     }
-    
 }

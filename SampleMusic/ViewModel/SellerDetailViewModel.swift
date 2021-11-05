@@ -14,12 +14,9 @@ import Dip
 
 class SellerDetailViewModel {
     
-    init(db: Firestore) {
-        self.db = db
-    }
     
     var reloadView : (() -> Void)?
-    var db : Firestore!
+    var db : Firestore?
     var isLogout : ((Bool) -> Void)?
     var fieldData : ((String,String,String,String,String) -> Void)?
     
@@ -27,11 +24,10 @@ class SellerDetailViewModel {
     func userData() {
         Auth.auth().addStateDidChangeListener { [weak self] auth, user in
             if ((user) != nil) {
-                self?.db.collection(Role.seller.rawValue.lowercased()).document(user!.uid).addSnapshotListener { [weak self] doc, error in
+                self?.db?.collection(Role.seller.rawValue.lowercased()).document(user!.uid).addSnapshotListener { [weak self] doc, error in
                     doc?.data().map {
                         for ( key, value ) in $0 {
-                            print(key)
-                            print(value)
+
                         }
                     }
                 }

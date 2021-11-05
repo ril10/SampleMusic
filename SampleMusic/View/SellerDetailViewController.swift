@@ -8,19 +8,10 @@
 import UIKit
 
 class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    init(viewModel: SellerDetailViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    var coordinator : TabBarCoordinator?
+    weak var coordinator : TabBarCoordinator?
     var drawView = SellerDetailDraw()
-    var viewModel : SellerDetailViewModel!
+    var viewModel : SellerDetailViewModel?
 
     //MARK: - ButtonAction
     @objc func editData(sender: UIButton!) {
@@ -28,7 +19,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @objc func logoutAction(sender: UIButton!) {
-        viewModel.logout()
+        viewModel?.logout()
     }
     //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,9 +38,14 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     //MARK: - View
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        dismiss(animated: true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.userData()
+        viewModel?.userData()
     }
     
     override func loadView() {
@@ -65,15 +61,14 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
-        viewModel.reloadView = { [weak self] in
+        viewModel?.reloadView = { [weak self] in
             DispatchQueue.main.async {
                 self?.view.setNeedsDisplay()
             }
         }
-        viewModel.isLogout = { [self] log in
+        viewModel?.isLogout = { [weak self] log in
             if log {
-                coordinator?.parentCoordinator?.didLogout()
-                coordinator?.parentCoordinator?.start()
+                self?.coordinator?.parentCoordinator?.start()
             }
         }
     }
@@ -95,8 +90,8 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editData(sender:)))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutAction(sender:)))
         self.navigationItem.setHidesBackButton(false, animated: false)
-        
     }
-    
-    
+    deinit {
+        print("SellerDetailScreen")
+    }
 }

@@ -7,26 +7,54 @@
 
 import Foundation
 import Dip
+import Firebase
 import FirebaseFirestore
 import FirebaseStorage
+import RxCocoa
+
+protocol MainView {
+    var viewModel : MainScreenViewModel! { get set }
+}
 
 extension DependencyContainer {
     static func configure() -> DependencyContainer {
         return DependencyContainer { container in
             unowned let container = container
-            
-            container.register(.unique) { MainScreenViewController(viewModel: MainScreenViewModel(db: Firestore.firestore())) }
-
-            container.register(.unique) { RegistrationViewController(viewModel: RegistrationViewModel(db: Firestore.firestore())) }
-            
-            container.register(.unique) { AddingDataViewController(viewModel: AddingDataAboutUserViewModel(db: Firestore.firestore(), st: Storage.storage())) }
-            
-            container.register(.unique) { SellerDetailViewController(viewModel: SellerDetailViewModel(db: Firestore.firestore())) }
-            
-            container.register(.unique) { ListSamplesViewController(viewModel: ListSampleViewModel(db: Firestore.firestore())) }
-
-            
             DependencyContainer.uiContainers = [container]
+            
+            container.register(.unique) { Firestore.firestore() as Firestore}
+            container.register(.unique) { Storage.storage() }
+            
+            container.register(.unique) { MainScreenViewModel() as MainScreenViewModel}
+            .resolvingProperties { container, service in
+                service.db = try! container.resolve()
+            }
+            
+            container.register(.unique) { MainScreenViewController() }
+            .resolvingProperties { container, service in
+                service.viewModel = try! container.resolve()
+            }
+            
+            container.register(.unique) { RegistrationViewModel() }
+            .resolvingProperties { container, service in
+                service.db = try! container.resolve()
+            }
+            
+            container.register(.unique) { AddingDataAboutUserViewModel() }
+            .resolvingProperties { container, service in
+                service.db = try! container.resolve()
+                service.st = try! container.resolve()
+            }
+            
+            container.register(.unique) { SellerDetailViewModel() }
+            .resolvingProperties { container, service in
+                service.db = try! container.resolve()
+            }
+            
+            container.register(.unique) { ListSampleViewModel() }
+            .resolvingProperties { container, service in
+                service.db = try! container.resolve()
+            }
         }
     }
 }

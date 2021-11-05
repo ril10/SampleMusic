@@ -19,10 +19,10 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = MainScreenViewController(viewModel: MainScreenViewModel(db: Firestore.firestore()))
+        let vc = MainScreenViewController()
         vc.coordinator = self
-        navigationController.setNavigationBarHidden(true, animated: false)
-        navigationController.pushViewController(vc, animated: true)
+        self.navigationController.setNavigationBarHidden(true, animated: false)
+        self.navigationController.pushViewController(vc, animated: true)
     }
     
     func dismiss() {
@@ -30,10 +30,11 @@ class MainCoordinator: Coordinator {
     }
     
     func registrationViewController() {
-        let vc = RegistrationViewController(viewModel: RegistrationViewModel(db: Firestore.firestore()))
+        let vc = RegistrationViewController()
         vc.coordinator = self
-        navigationController.setNavigationBarHidden(true, animated: false)
-        navigationController.pushViewController(vc, animated: true)
+        self.navigationController.setNavigationBarHidden(true, animated: false)
+        self.navigationController.pushViewController(vc, animated: true)
+        didLogout()
     }
     
     func mainTabController() {
@@ -41,7 +42,7 @@ class MainCoordinator: Coordinator {
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()
-        
+        didLogout()
     }
     
     func userList() {
@@ -49,15 +50,16 @@ class MainCoordinator: Coordinator {
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()
+        didLogout()
     }
         
     func addUserData(role: String,docId: String) {
-        let vc = AddingDataViewController(viewModel: AddingDataAboutUserViewModel(db: Firestore.firestore(), st: Storage.storage()))
-        vc.viewModel.roleSet = role
-        vc.viewModel.docId = docId
+        let vc = AddingDataViewController()
+        vc.viewModel?.roleSet = role
+        vc.viewModel?.docId = docId
         vc.coordinator = self
-        navigationController.setNavigationBarHidden(true, animated: false)
-        navigationController.pushViewController(vc, animated: true)
+        self.navigationController.setNavigationBarHidden(true, animated: false)
+        self.navigationController.pushViewController(vc, animated: true)
     }
     
     func didLogout() {

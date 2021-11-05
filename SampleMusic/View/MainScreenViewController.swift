@@ -10,15 +10,6 @@ import Dip
 
 class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
-    init(viewModel: MainScreenViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     var viewModel : MainScreenViewModel!
     var drawView = MainScreenDraw()
     var coordinator: MainCoordinator?
@@ -39,7 +30,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func registrationButtonAction(sender: UIButton!) {
-        coordinator?.registrationViewController()
+        self.coordinator?.registrationViewController()
     }
     //MARK: - Alert
     func errorWithLogin(e: Error) {
@@ -79,7 +70,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-
+        
     }
     
     override func loadView() {
@@ -102,8 +93,6 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
                 self?.view.setNeedsDisplay()
             }
         }
-        self.hideKeyboardWhenTappedAround()
-        
         viewModel.loadCompleteSeller = { load in
             if load {
                 self.dismiss(animated: true) {
@@ -118,7 +107,10 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+        self.hideKeyboardWhenTappedAround()
     }
-
+    deinit {
+        print("MainScreen")
+    }
 }
 

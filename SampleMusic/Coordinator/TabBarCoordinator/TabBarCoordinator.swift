@@ -50,6 +50,5 @@ class TabBarCoordinator : Coordinator {
         sellCoordinator.start()
         sampleCoordinator.start()
         
-        childDidFinish(self)
     }
 }

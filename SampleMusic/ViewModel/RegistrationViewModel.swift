@@ -19,12 +19,8 @@ class RegistrationViewModel {
     var navToAdd : ((Bool) -> Void)?
     var isRole : Bool!
     var loading : ((Bool) -> Void)?
-    
-    init(db: Firestore) {
-        self.db = db
-    }
-    
-    var db : Firestore!
+        
+    var db : Firestore?
     
     func registerUser(email: String,password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
@@ -32,7 +28,7 @@ class RegistrationViewModel {
                 self.error?(e)
                 self.loading?(false)
             } else {
-                self.db.collection(self.roleSet).document((authResult?.user.uid)!).setData(["email":email,"uid":authResult?.user.uid as Any]) { error in
+                self.db?.collection(self.roleSet).document((authResult?.user.uid)!).setData(["email":email,"uid":authResult?.user.uid as Any]) { error in
                     if let e = error {
                         self.error?(e)
                     } else {

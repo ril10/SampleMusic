@@ -12,15 +12,11 @@ import FirebaseStorage
 import Dip
 
 class AddingDataAboutUserViewModel {
-    
-    init(db: Firestore,st: Storage) {
-        self.db = db
-        self.st = st
-    }
+
     
     var roleSet : String!
-    var db : Firestore!
-    var st : Storage!
+    var db : Firestore?
+    var st : Storage?
     var gender : String!
     var reloadView : (() -> Void)?
     var docId : String!
@@ -34,7 +30,7 @@ class AddingDataAboutUserViewModel {
                 if error != nil {
                     
                 } else {
-                    self.db.collection(self.roleSet).document(self.docId!).updateData([
+                    self.db?.collection(self.roleSet).document(self.docId!).updateData([
                         "firstName":firstName,
                         "lastName":LastName,
                         "description":description,
@@ -46,18 +42,18 @@ class AddingDataAboutUserViewModel {
     }
     
     func uploadImage(image: Data) {
-        let uploadTask = st.reference().child("userAvatars/\(self.docId!).png").putData(image, metadata: nil) { _, error in
+        let uploadTask = st?.reference().child("userAvatars/\(self.docId!).png").putData(image, metadata: nil) { _, error in
             guard error == nil else {
                 print("Failed to upload")
                 return
             }
             
-            self.st.reference().child("userAvatars/\(self.docId!).png")
+            self.st?.reference().child("userAvatars/\(self.docId!).png")
                 .downloadURL { url, error in
                     if let error = error {
                         print(error)
                     } else {
-                        self.db.collection(self.roleSet).document(self.docId!).updateData([
+                        self.db?.collection(self.roleSet).document(self.docId!).updateData([
                             "imageUrl":url?.absoluteString as Any
                         ])
                     }
@@ -65,7 +61,7 @@ class AddingDataAboutUserViewModel {
                 }
         }
 
-        uploadTask.observe(.success) { snapshot in
+        uploadTask?.observe(.success) { snapshot in
             print(snapshot.progress!.completedUnitCount)
             if self.roleSet == "seller" {
                 self.loading?(true)
@@ -76,7 +72,7 @@ class AddingDataAboutUserViewModel {
             }
         }
         
-        uploadTask.observe(.failure) { snapshot in
+        uploadTask?.observe(.failure) { snapshot in
             if let error = snapshot.error as NSError? {
                 switch (StorageErrorCode(rawValue: error.code)!) {
                 case .objectNotFound:
