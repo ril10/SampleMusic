@@ -12,8 +12,22 @@ import FirebaseFirestore
 import FirebaseStorage
 import RxCocoa
 
-protocol MainView {
-    var viewModel : MainScreenViewModel! { get set }
+protocol ViewControllerImp : AnyObject {
+    func userSignIn(email: String,password: String)
+    var loading : ((Bool) -> Void)? { get set }
+    var dismisAlert : ((Bool) -> Void)? { get set }
+    var reloadView : (() -> Void)? { get set }
+    var loadCompleteUser : ((Bool) -> Void)? { get set }
+    var loadCompleteSeller : ((Bool) -> Void)? { get set }
+    var error : ((Error) -> Void)? { get set }
+}
+
+protocol MainScreenImp : AnyObject {
+    var viewModel : ViewControllerImp! { get set }
+}
+
+protocol FirebaseImp {
+    var db : Firestore! { get set }
 }
 
 extension DependencyContainer {
@@ -25,16 +39,8 @@ extension DependencyContainer {
             container.register(.unique) { Firestore.firestore() as Firestore}
             container.register(.unique) { Storage.storage() }
             
-            container.register(.unique) { MainScreenViewModel() as MainScreenViewModel}
-            .resolvingProperties { container, service in
-                service.db = try! container.resolve()
-            }
-            
-            container.register(.unique) { MainScreenViewController() }
-            .resolvingProperties { container, service in
-                service.viewModel = try! container.resolve()
-            }
-            
+            container.register(tag: "MainScreen") { MainScreenViewModel() as ViewControllerImp }
+                        
             container.register(.unique) { RegistrationViewModel() }
             .resolvingProperties { container, service in
                 service.db = try! container.resolve()

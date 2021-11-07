@@ -11,8 +11,7 @@ import FirebaseFirestore
 import Dip
 import UIKit
 
-class MainScreenViewModel {
-        
+class MainScreenViewModel: ViewControllerImp,FirebaseImp {
     var db: Firestore!
     var reloadView : (() -> Void)?
     var error : ((Error) -> Void)?
@@ -20,6 +19,8 @@ class MainScreenViewModel {
     var loading : ((Bool) -> Void)?
     var loadCompleteUser : ((Bool) -> Void)?
     var loadCompleteSeller : ((Bool) -> Void)?
+    
+    init() {}
     
     func userSignIn(email: String,password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
