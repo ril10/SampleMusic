@@ -11,14 +11,14 @@ import Dip
 class RegistrationViewController: UIViewController, UITextFieldDelegate,ContainerImp {
     
     
-    weak var coordinator : MainCoordinator?
+    var coordinator : MainCoordinator?
     var viewModel : RegistrationControllerImp!
     var drawView = RegistrationViewDraw()
     var container : DependencyContainer!
     
     init() {
-        self.container = registrationScreenContainer
-        self.viewModel = try! container.resolve()
+        self.container = appContainer
+        self.viewModel = try! container.resolve() as RegistrationControllerImp
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -69,6 +69,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate,Containe
     }
     
     @objc func signInButton(sender: UIButton!) {
+        coordinator?.dismiss()
+        coordinator?.didLogout()
         coordinator?.start()
     }
     //MARK: - Alert
@@ -104,6 +106,13 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate,Containe
     }
 
     //MARK: - ViewLoad
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.dismiss(animated: true) { [ weak self ] in
+            self?.coordinator = nil
+            self?.coordinator?.didLogout()
+        }
+    }
     
     override func loadView() {
         super.loadView()

@@ -15,7 +15,10 @@ class ListSampleViewModel: ContainerImp, ListSamplesImp {
     var reloadTableView : (() -> Void)?
     var db : Firestore?
     var isLogout : ((Bool) -> Void)?
-    
+    init () {
+        self.container = appContainer
+        self.db = try! container.resolve() as Firestore
+    }
     func logout() {
             do {
                 try Auth.auth().signOut()

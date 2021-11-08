@@ -12,13 +12,13 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     var container: DependencyContainer!
     
         
-    weak var coordinator : MainCoordinator?
+    var coordinator : MainCoordinator?
     var drawView = ListSamplesDraw()
     var viewModel : ListSamplesImp!
     
     init() {
-        self.container = listSamplesContainer
-        self.viewModel = try! container.resolve()
+        self.container = appContainer
+        self.viewModel = try! container.resolve() as ListSamplesImp
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -46,6 +46,13 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         viewModel?.logout()
     }
     //MARK: - View
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.dismiss(animated: true) { [ weak self ] in
+
+        }
+    }
     
     override func loadView() {
         super.loadView()

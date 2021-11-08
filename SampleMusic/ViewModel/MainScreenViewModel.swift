@@ -22,8 +22,8 @@ class MainScreenViewModel: MainControllerImp,FirebaseImp,ContainerImp {
     var container : DependencyContainer!
     
     init() {
-        self.container = firestoreContainer
-        self.db = try! container.resolve()
+        self.container = appContainer
+        self.db = try! container.resolve() as Firestore
     }
     
     func userSignIn(email: String,password: String) {

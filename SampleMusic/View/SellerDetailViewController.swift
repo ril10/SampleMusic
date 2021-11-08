@@ -10,13 +10,13 @@ import Dip
 
 class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,ContainerImp {
     var container: DependencyContainer!
-    weak var coordinator : TabBarCoordinator?
+    var coordinator : TabBarCoordinator?
     var drawView = SellerDetailDraw()
     var viewModel : SellerImp!
     
     init() {
-        self.container = sellerDetailContainer
-        self.viewModel = try! container.resolve()
+        self.container = appContainer
+        self.viewModel = try! container.resolve() as SellerImp
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -48,12 +48,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     //MARK: - View
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        dismiss(animated: true)
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel?.userData()
@@ -79,6 +74,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
         viewModel?.isLogout = { [weak self] log in
             if log {
+                self?.coordinator?.parentCoordinator?.didLogout()
                 self?.coordinator?.parentCoordinator?.start()
             }
         }

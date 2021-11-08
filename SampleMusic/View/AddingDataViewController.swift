@@ -10,14 +10,14 @@ import Dip
 
 class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,ContainerImp {
         
-    weak var coordinator : MainCoordinator?
+    var coordinator : MainCoordinator?
     var viewModel : AddingDataImp?
     var drawView = AddingDataDraw()
     var container: DependencyContainer!
     
     init() {
-        self.container = addingDataContainer
-        self.viewModel = try! container.resolve()
+        self.container = appContainer
+        self.viewModel = try! container.resolve() as AddingDataImp
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -112,6 +112,14 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         self.present(alert, animated: true)
     }
     //MARK: - View
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.dismiss(animated: true) { [ weak self ] in
+            self?.coordinator = nil
+            self?.coordinator?.didLogout()
+        }
+    }
+    
     override func loadView() {
         super.loadView()
         
@@ -146,5 +154,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         }
         self.hideKeyboardWhenTappedAround()
     }
-    
+    deinit {
+        print("Adding Data deinit")
+    }
 }

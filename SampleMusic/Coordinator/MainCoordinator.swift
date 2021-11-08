@@ -10,7 +10,6 @@ import FirebaseFirestore
 import FirebaseStorage
 
 class MainCoordinator: Coordinator {
-    weak var parentCoordinator: MainCoordinator?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -23,6 +22,9 @@ class MainCoordinator: Coordinator {
         vc.coordinator = self
         self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
+        self.navigationController.dismiss(animated: true) {
+            self.childDidFinish(self)
+        }
     }
     
     func dismiss() {
@@ -34,7 +36,9 @@ class MainCoordinator: Coordinator {
         vc.coordinator = self
         self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(vc, animated: true)
-        didLogout()
+        if navigationController.isBeingDismissed {
+            childDidFinish(self)
+        }
     }
     
     func mainTabController() {
@@ -42,7 +46,6 @@ class MainCoordinator: Coordinator {
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()
-        didLogout()
     }
     
     func userList() {
@@ -50,7 +53,6 @@ class MainCoordinator: Coordinator {
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()
-        didLogout()
     }
         
     func addUserData(role: String,docId: String) {

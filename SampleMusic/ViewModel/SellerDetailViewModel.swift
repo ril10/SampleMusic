@@ -19,8 +19,8 @@ class SellerDetailViewModel: ContainerImp,SellerImp {
     var isLogout : ((Bool) -> Void)?
     var fieldData : ((String,String,String,String,String) -> Void)?
     init() {
-        self.container = firestoreContainer
-        self.db = try! container.resolve()
+        self.container = appContainer
+        self.db = try! container.resolve() as Firestore
     }
     
     

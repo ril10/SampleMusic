@@ -27,8 +27,4 @@ class ListSamplesCoordinator : Coordinator {
         self.navigationController.pushViewController(vc, animated: true)
     }
     
-    func didLogout() {
-        parentCoordinator?.childDidFinish(self)
-    }
-    
 }

@@ -12,8 +12,8 @@ import Dip
 class MainScreenViewController: UIViewController, UITextFieldDelegate,ContainerImp {
     
     init() {
-        self.container = mainScreenContainer
-        self.viewModel = try! container.resolve()
+        self.container = appContainer
+        self.viewModel = try! container.resolve() as MainControllerImp
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -40,6 +40,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate,ContainerI
     }
     
     @objc func registrationButtonAction(sender: UIButton!) {
+        self.coordinator?.didLogout()
         self.coordinator?.registrationViewController()
     }
     //MARK: - Alert
@@ -80,8 +81,10 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate,ContainerI
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        coordinator?.didLogout()
-        
+        self.dismiss(animated: true) { [ weak self ] in
+            self?.coordinator = nil
+            self?.coordinator?.didLogout()
+        }
     }
     
     override func loadView() {
@@ -104,17 +107,19 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate,ContainerI
                 self?.view.setNeedsDisplay()
             }
         }
-        viewModel.loadCompleteSeller = { load in
+        viewModel.loadCompleteSeller = { [weak self] load in
             if load {
-                self.dismiss(animated: true) {
-                    self.coordinator?.mainTabController()
+                self!.dismiss(animated: true) { [ weak self ] in
+                    self?.coordinator?.didLogout()
+                    self?.coordinator?.mainTabController()
                 }
             }
         }
-        viewModel.loadCompleteUser = { load in
+        viewModel.loadCompleteUser = { [weak self] load in
             if load {
-                self.dismiss(animated: true) {
-                    self.coordinator?.userList()
+                self!.dismiss(animated: true) { [ weak self ] in
+                    self?.coordinator?.didLogout()
+                    self?.coordinator?.userList()
                 }
             }
         }

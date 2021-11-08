@@ -23,8 +23,8 @@ class RegistrationViewModel: RegistrationControllerImp,ContainerImp {
     var db : Firestore?
     
     init() {
-        self.container = firestoreContainer
-        self.db = try! container.resolve()
+        self.container = appContainer
+        self.db = try! container.resolve() as Firestore
     }
     
     func registerUser(email: String,password: String) {

@@ -25,7 +25,7 @@ class AddingDataAboutUserViewModel: AddingDataImp, FirebaseImp, StorageImp, Cont
     var loading : ((Bool) -> Void)?
     
     init() {
-        self.container = storageContainer
+        self.container = appContainer
         self.db = try! container.resolve() as Firestore
         self.st = try! container.resolve() as Storage
     }
