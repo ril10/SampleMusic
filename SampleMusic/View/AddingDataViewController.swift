@@ -6,14 +6,25 @@
 //
 
 import UIKit
+import Dip
 
-
-class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,ContainerImp {
         
     weak var coordinator : MainCoordinator?
-    var viewModel : AddingDataAboutUserViewModel?
+    var viewModel : AddingDataImp?
     var drawView = AddingDataDraw()
-
+    var container: DependencyContainer!
+    
+    init() {
+        self.container = addingDataContainer
+        self.viewModel = try! container.resolve()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 
     //MARK: - PickerAction
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

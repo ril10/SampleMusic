@@ -11,18 +11,24 @@ import FirebaseAuth
 import FirebaseStorage
 import Dip
 
-class AddingDataAboutUserViewModel {
-
+class AddingDataAboutUserViewModel: AddingDataImp, FirebaseImp, StorageImp, ContainerImp {
     
+    var db: Firestore!
+    var st: Storage!
+    var container: DependencyContainer!
     var roleSet : String!
-    var db : Firestore?
-    var st : Storage?
     var gender : String!
     var reloadView : (() -> Void)?
     var docId : String!
     var navSeller : ((Bool) -> Void)?
     var navUser : ((Bool) -> Void)?
     var loading : ((Bool) -> Void)?
+    
+    init() {
+        self.container = storageContainer
+        self.db = try! container.resolve() as Firestore
+        self.st = try! container.resolve() as Storage
+    }
     
     func currentUser(firstName: String,LastName: String,description: String) {
         Auth.auth().addStateDidChangeListener { auth, user in

@@ -8,23 +8,23 @@
 import UIKit
 import Dip
 
-class MainScreenViewController: UIViewController, UITextFieldDelegate {
+
+class MainScreenViewController: UIViewController, UITextFieldDelegate,ContainerImp {
     
-    let container = DependencyContainer()
-    var viewModel : MainScreenViewModel
     init() {
-        container.register(tag: "MainScreen") { MainScreenViewModel() as MainScreenViewModel }
-        self.viewModel = try! container.resolve(tag: "MainScreen")
+        self.container = mainScreenContainer
+        self.viewModel = try! container.resolve()
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    var container: DependencyContainer!
+    var viewModel : MainControllerImp!
     var drawView = MainScreenDraw()
     var coordinator: MainCoordinator?
 
-    
     //MARK: - ButtonAction
     @objc func signInAction(sender: UIButton!) {
         viewModel.userSignIn(email: drawView.loginTextField.text!, password: drawView.passwordTextField.text!)
@@ -80,6 +80,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        coordinator?.didLogout()
         
     }
     

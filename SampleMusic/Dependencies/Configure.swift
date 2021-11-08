@@ -10,57 +10,70 @@ import Dip
 import Firebase
 import FirebaseFirestore
 import FirebaseStorage
-import RxCocoa
-
-protocol ViewControllerImp : AnyObject {
-    func userSignIn(email: String,password: String)
-    var loading : ((Bool) -> Void)? { get set }
-    var dismisAlert : ((Bool) -> Void)? { get set }
-    var reloadView : (() -> Void)? { get set }
-    var loadCompleteUser : ((Bool) -> Void)? { get set }
-    var loadCompleteSeller : ((Bool) -> Void)? { get set }
-    var error : ((Error) -> Void)? { get set }
-}
-
-protocol MainScreenImp : AnyObject {
-    var viewModel : ViewControllerImp! { get set }
-}
-
-protocol FirebaseImp {
-    var db : Firestore! { get set }
-}
 
 extension DependencyContainer {
     static func configure() -> DependencyContainer {
         return DependencyContainer { container in
             unowned let container = container
             DependencyContainer.uiContainers = [container]
-            
-            container.register(.unique) { Firestore.firestore() as Firestore}
-            container.register(.unique) { Storage.storage() }
-            
-            container.register(tag: "MainScreen") { MainScreenViewModel() as ViewControllerImp }
-                        
-            container.register(.unique) { RegistrationViewModel() }
-            .resolvingProperties { container, service in
-                service.db = try! container.resolve()
-            }
-            
-            container.register(.unique) { AddingDataAboutUserViewModel() }
-            .resolvingProperties { container, service in
-                service.db = try! container.resolve()
-                service.st = try! container.resolve()
-            }
-            
-            container.register(.unique) { SellerDetailViewModel() }
-            .resolvingProperties { container, service in
-                service.db = try! container.resolve()
-            }
-            
-            container.register(.unique) { ListSampleViewModel() }
-            .resolvingProperties { container, service in
-                service.db = try! container.resolve()
-            }
         }
     }
+    static func configureAll() {
+        _ = mainScreenContainer
+        _ = firestoreContainer
+        _ = registrationScreenContainer
+        _ = listSamplesContainer
+        _ = sellerDetailContainer
+        _ = addingDataContainer
+        _ = storageContainer
+    }
 }
+//MARK: - Firebase
+let storageContainer : DependencyContainer = {
+    let container = DependencyContainer()
+    container.register(.unique) { Storage.storage() as Storage }
+    container.register(.unique) { Firestore.firestore() as Firestore }
+    return container
+}()
+
+let firestoreContainer : DependencyContainer = {
+    let container = DependencyContainer()
+    container.register(.unique) { Firestore.firestore() as Firestore }
+    return container
+}()
+//MARK: - MainScreen
+let mainScreenContainer: DependencyContainer = {
+    let container = DependencyContainer()
+    container.register(.unique) { MainScreenViewModel() as MainControllerImp }
+    return container
+}()
+
+//MARK: - RegistrationScreen
+let registrationScreenContainer: DependencyContainer = {
+    let container = DependencyContainer()
+    container.register(.unique) { RegistrationViewModel() as RegistrationControllerImp }
+    return container
+}()
+
+//MARK: - ListSamples
+let listSamplesContainer: DependencyContainer = {
+    let container = DependencyContainer()
+    container.register(.unique) { ListSampleViewModel() as ListSamplesImp }
+    return container
+}()
+
+//MARK: - SellerDetail
+let sellerDetailContainer: DependencyContainer = {
+    let container = DependencyContainer()
+    container.register(.unique) { SellerDetailViewModel() as SellerImp }
+    return container
+}()
+
+//MARK: - AddingData
+let addingDataContainer: DependencyContainer = {
+    let container = DependencyContainer()
+    container.register(.unique) { AddingDataAboutUserViewModel() as AddingDataImp }
+    return container
+}()
+
+

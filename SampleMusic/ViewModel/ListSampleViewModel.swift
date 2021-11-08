@@ -8,10 +8,10 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseAuth
+import Dip
 
-class ListSampleViewModel {
-    
-    
+class ListSampleViewModel: ContainerImp, ListSamplesImp {
+    var container: DependencyContainer!
     var reloadTableView : (() -> Void)?
     var db : Firestore?
     var isLogout : ((Bool) -> Void)?

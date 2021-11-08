@@ -6,13 +6,24 @@
 //
 
 import UIKit
+import Dip
 
-class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,ContainerImp {
+    var container: DependencyContainer!
     weak var coordinator : TabBarCoordinator?
     var drawView = SellerDetailDraw()
-    var viewModel : SellerDetailViewModel?
-
+    var viewModel : SellerImp!
+    
+    init() {
+        self.container = sellerDetailContainer
+        self.viewModel = try! container.resolve()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: - ButtonAction
     @objc func editData(sender: UIButton!) {
         

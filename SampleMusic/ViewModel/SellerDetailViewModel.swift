@@ -12,13 +12,16 @@ import FirebaseAuth
 import Dip
 
 
-class SellerDetailViewModel {
-    
-    
+class SellerDetailViewModel: ContainerImp,SellerImp {
+    var container: DependencyContainer!
     var reloadView : (() -> Void)?
     var db : Firestore?
     var isLogout : ((Bool) -> Void)?
     var fieldData : ((String,String,String,String,String) -> Void)?
+    init() {
+        self.container = firestoreContainer
+        self.db = try! container.resolve()
+    }
     
     
     func userData() {

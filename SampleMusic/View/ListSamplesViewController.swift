@@ -6,13 +6,25 @@
 //
 
 import UIKit
+import Dip
 
-
-class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,ContainerImp {
+    var container: DependencyContainer!
+    
         
     weak var coordinator : MainCoordinator?
     var drawView = ListSamplesDraw()
-    var viewModel : ListSampleViewModel?
+    var viewModel : ListSamplesImp!
+    
+    init() {
+        self.container = listSamplesContainer
+        self.viewModel = try! container.resolve()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - TableView
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
