@@ -32,18 +32,50 @@ class SellerDetailDraw: UIView {
         return stackView
     }()
     lazy var middleStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [firstNameLabel,secondNameLabel,descriptionLabel,emailLabel,genderLabel])
+        let stackView = UIStackView(arrangedSubviews: [firstLine,secondLine,thirdLine,fourLine,fifthLine])
         stackView.alignment = .leading
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    lazy var middleStackData: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [firstNameData,secondNameData,descriptionData,emailData,genderData])
+    lazy var firstLine: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [firstNameLabel,firstNameData])
         stackView.alignment = .leading
-        stackView.distribution = .fillEqually
-        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    lazy var secondLine: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [secondNameLabel,secondNameData])
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    lazy var thirdLine: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [descriptionLabel,descriptionData])
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    lazy var fourLine: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [emailLabel,emailData])
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    lazy var fifthLine: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [genderLabel,genderData])
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -130,7 +162,7 @@ class SellerDetailDraw: UIView {
     }()
     var firstNameData: UILabel = {
         let label = UILabel()
-        label.text = TitleDetail.firstName.rawValue
+        label.text = ""
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -138,7 +170,7 @@ class SellerDetailDraw: UIView {
     }()
     var secondNameData: UILabel = {
         let label = UILabel()
-        label.text = TitleDetail.lastName.rawValue
+        label.text = ""
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -146,7 +178,7 @@ class SellerDetailDraw: UIView {
     }()
     var descriptionData: UILabel = {
         let label = UILabel()
-        label.text = TitleDetail.description.rawValue
+        label.text = ""
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -154,7 +186,7 @@ class SellerDetailDraw: UIView {
     }()
     var emailData: UILabel = {
         let label = UILabel()
-        label.text = TitleDetail.email.rawValue
+        label.text = ""
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -162,7 +194,7 @@ class SellerDetailDraw: UIView {
     }()
     var genderData: UILabel = {
         let label = UILabel()
-        label.text = TitleDetail.gender.rawValue
+        label.text = ""
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -214,7 +246,6 @@ class SellerDetailDraw: UIView {
         scrollView.addSubview(stackView)
         topView.addSubview(imageView)
         middleView.addSubview(middleStackView)
-        middleView.addSubview(middleStackData)
         middleView.addSubview(samplesStack)
         bottomView.addSubview(sampleTable)
         
@@ -251,7 +282,6 @@ class SellerDetailDraw: UIView {
             middleStackView.topAnchor.constraint(equalTo: middleView.topAnchor),
             middleStackView.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 15),
             middleStackView.bottomAnchor.constraint(equalTo: samplesStack.topAnchor),
-            middleStackData.leadingAnchor.constraint(equalTo: middleStackView.trailingAnchor),
             samplesStack.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 15),
             samplesStack.trailingAnchor.constraint(equalTo: middleView.trailingAnchor),
             samplesStack.bottomAnchor.constraint(equalTo: middleView.bottomAnchor),

@@ -5,13 +5,22 @@
 //  Created by Siarhei Luk on 29.10.21.
 //
 
-import UIKit
+import Foundation
 
-struct DetailModel {
-    var firstName : String
-    var lastName : String
-    var description : String
-    var email : String
-    var gender : String
-    var image : UIImage
+struct DetailModel: Codable {
+    let firstName : String
+    let lastName : String
+    let description : String
+    let email : String
+    let gender : String
+    let imageUrl : String
+    
+    enum CodingKeys: String, CodingKey {
+        case firstName
+        case lastName
+        case description
+        case email
+        case gender
+        case imageUrl
+    }
 }

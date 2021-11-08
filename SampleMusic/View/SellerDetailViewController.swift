@@ -78,6 +78,16 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
                 self?.coordinator?.parentCoordinator?.start()
             }
         }
+        viewModel.fieldData = { [weak self] firstName,lastName,desc,email,gender in
+            self?.drawView.firstNameData.text = firstName
+            self?.drawView.secondNameData.text = lastName
+            self?.drawView.descriptionData.text = desc
+            self?.drawView.emailData.text = email
+            self?.drawView.genderData.text = gender
+        }
+        viewModel.image = { [weak self] image in
+            self?.drawView.imageView.image = UIImage(data: image)
+        }
     }
     
     func configureNavBar() {

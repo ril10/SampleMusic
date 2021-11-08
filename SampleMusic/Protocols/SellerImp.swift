@@ -13,4 +13,6 @@ protocol SellerImp {
     var fieldData : ((String,String,String,String,String) -> Void)? { get set }
     func userData()
     func logout()
+    func downloadImage(from url: URL)
+    var image : ((Data) -> Void)? { get set }
 }

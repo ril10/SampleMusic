@@ -9,14 +9,20 @@ import Foundation
 import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
+import FirebaseFirestoreSwift
 import Dip
+import RxSwift
+import RxCocoa
 
 
 class SellerDetailViewModel: ContainerImp,SellerImp {
+
     var container: DependencyContainer!
+    var disposeBag : DisposeBag!
     var reloadView : (() -> Void)?
     var db : Firestore?
     var isLogout : ((Bool) -> Void)?
+    var image: ((Data) -> Void)?
     var fieldData : ((String,String,String,String,String) -> Void)?
     init() {
         self.container = appContainer
@@ -27,14 +33,42 @@ class SellerDetailViewModel: ContainerImp,SellerImp {
     func userData() {
         Auth.auth().addStateDidChangeListener { [weak self] auth, user in
             if ((user) != nil) {
-                self?.db?.collection(Role.seller.rawValue.lowercased()).document(user!.uid).addSnapshotListener { [weak self] doc, error in
-                    doc?.data().map {
-                        for ( key, value ) in $0 {
-
-                        }
+                self?.db?.collection(Role.seller.rawValue.lowercased()).document(user!.uid).getDocument(completion: { (document, error) in
+                    let result = Result {
+                        try document?.data(as: DetailModel.self)
                     }
-                }
+                        switch result {
+                        case .success(let data):
+                            if let data = data {
+                                self?.fieldData?(
+                                    data.firstName,
+                                    data.lastName,
+                                    data.description,
+                                    data.email,
+                                    data.gender
+                                )
+                                self?.downloadImage(from: URL(string: data.imageUrl)!)
+                            } else {
+                                print("Error")
+                            }
+                        case .failure(let error):
+                            print("Error decoding data:\(error)")
+                        }
+                })
             }
+        }
+    }
+    
+    func downloadImage(from url: URL) {
+        func downloadImage(from url: URL) {
+            URLSession.shared.rx
+                .response(request: URLRequest(url: url))
+                .subscribe(onNext: { (response, data) in
+                    DispatchQueue.main.async {
+                        self.image?(data)
+                        self.reloadView?()
+                    }
+                }).disposed(by: self.disposeBag)
         }
     }
     
