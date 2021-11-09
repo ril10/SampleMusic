@@ -9,7 +9,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseStorage
 
-class MainCoordinator: Coordinator {
+class MainCoordinator: Coordinator, MainCoordinatorImp {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -18,34 +18,30 @@ class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let vc = MainScreenViewController()
-        vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(true, animated: false)
-        self.navigationController.pushViewController(vc, animated: true)
-        self.navigationController.dismiss(animated: true) {
-            self.childDidFinish(self)
-        }
-    }
-    
-    func dismiss() {
-        navigationController.dismiss(animated: true, completion: nil)
-    }
-    
-    func registrationViewController() {
-        let vc = RegistrationViewController()
-        vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(true, animated: false)
-        self.navigationController.pushViewController(vc, animated: true)
-        if navigationController.isBeingDismissed {
-            childDidFinish(self)
-        }
-    }
-    
-    func mainTabController() {
-        let child = TabBarCoordinator(navigationController: navigationController)
+        let child = MainScreenCoordinator(navigationController: navigationController)
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()
+    }
+    
+    func finish() {
+        childCoordinators.map { childDidFinish($0) }
+        print(childCoordinators.count)
+        childCoordinators.removeAll()
+    }
+    
+    func registrationViewController() {
+        let child = RegistrationCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start()
+    }
+    
+    func mainTabController() {
+            let child = TabBarCoordinator(navigationController: navigationController)
+            child.parentCoordinator = self
+            childCoordinators.append(child)
+            child.start()
     }
     
     func userList() {
@@ -56,16 +52,17 @@ class MainCoordinator: Coordinator {
     }
         
     func addUserData(role: String,docId: String) {
-        let vc = AddingDataViewController()
-        vc.viewModel?.roleSet = role
-        vc.viewModel?.docId = docId
-        vc.coordinator = self
-        self.navigationController.setNavigationBarHidden(true, animated: false)
-        self.navigationController.pushViewController(vc, animated: true)
+        let child = AddUserDataCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        child.docId = docId
+        child.roleSet = role
+        childCoordinators.append(child)
+        child.start()
     }
-    
-    func didLogout() {
+        
+    func logout() {
+        start()
         childDidFinish(self)
     }
-
+    
 }

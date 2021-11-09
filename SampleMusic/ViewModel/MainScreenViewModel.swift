@@ -68,4 +68,14 @@ class MainScreenViewModel: MainControllerImp,FirebaseImp,ContainerImp {
         }
     }
     
+    func isUserSign() {
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if ((user) != nil) {
+                print("user Signed")
+            } else {
+                print("user not signed")
+            }
+        }
+    }
+    
 }

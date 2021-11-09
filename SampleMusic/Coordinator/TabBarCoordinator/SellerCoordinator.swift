@@ -22,7 +22,7 @@ class SellerCoordinator: Coordinator {
     
     func start() {
         let vc = SellerDetailViewController()
-        vc.coordinator = parentCoordinator
+        vc.coordinator = parentCoordinator?.parentCoordinator
         self.navigationController.pushViewController(vc, animated: true)
     }
 }

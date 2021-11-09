@@ -14,6 +14,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate,ContainerI
     init() {
         self.container = appContainer
         self.viewModel = try! container.resolve() as MainControllerImp
+        self.coordinator = try! container.resolve() as MainCoordinatorImp
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -23,7 +24,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate,ContainerI
     var container: DependencyContainer!
     var viewModel : MainControllerImp!
     var drawView = MainScreenDraw()
-    var coordinator: MainCoordinator?
+    var coordinator: MainCoordinatorImp?
 
     //MARK: - ButtonAction
     @objc func signInAction(sender: UIButton!) {
@@ -40,7 +41,6 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate,ContainerI
     }
     
     @objc func registrationButtonAction(sender: UIButton!) {
-        self.coordinator?.didLogout()
         self.coordinator?.registrationViewController()
     }
     //MARK: - Alert
@@ -79,13 +79,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate,ContainerI
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.dismiss(animated: true) { [ weak self ] in
-            self?.coordinator = nil
-            self?.coordinator?.didLogout()
-        }
-    }
+
     
     override func loadView() {
         super.loadView()
@@ -110,7 +104,6 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate,ContainerI
         viewModel.loadCompleteSeller = { [weak self] load in
             if load {
                 self!.dismiss(animated: true) { [ weak self ] in
-                    self?.coordinator?.didLogout()
                     self?.coordinator?.mainTabController()
                 }
             }
@@ -118,15 +111,13 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate,ContainerI
         viewModel.loadCompleteUser = { [weak self] load in
             if load {
                 self!.dismiss(animated: true) { [ weak self ] in
-                    self?.coordinator?.didLogout()
                     self?.coordinator?.userList()
                 }
             }
         }
+        
+        viewModel.isUserSign()
         self.hideKeyboardWhenTappedAround()
-    }
-    deinit {
-        print("MainScreen")
     }
 }
 

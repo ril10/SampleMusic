@@ -30,7 +30,7 @@ class AddingDataAboutUserViewModel: AddingDataImp, FirebaseImp, StorageImp, Cont
         self.st = try! container.resolve() as Storage
     }
     
-    func currentUser(firstName: String,LastName: String,description: String) {
+    func currentUser(firstName: String,lastName: String,description: String) {
         Auth.auth().addStateDidChangeListener { auth, user in
             auth.currentUser?.createProfileChangeRequest().commitChanges(completion: { error in
                 if error != nil {
@@ -38,7 +38,7 @@ class AddingDataAboutUserViewModel: AddingDataImp, FirebaseImp, StorageImp, Cont
                 } else {
                     self.db?.collection(self.roleSet).document(self.docId!).updateData([
                         "firstName":firstName,
-                        "lastName":LastName,
+                        "lastName":lastName,
                         "description":description,
                         "gender":self.gender as Any
                     ])
@@ -48,13 +48,13 @@ class AddingDataAboutUserViewModel: AddingDataImp, FirebaseImp, StorageImp, Cont
     }
     
     func uploadImage(image: Data) {
-        let uploadTask = st?.reference().child("userAvatars/\(self.docId!).png").putData(image, metadata: nil) { _, error in
+        let uploadTask = st?.reference().child("userAvatars/\(self.docId!).jpg").putData(image, metadata: nil) { _, error in
             guard error == nil else {
                 print("Failed to upload")
                 return
             }
             
-            self.st?.reference().child("userAvatars/\(self.docId!).png")
+            self.st?.reference().child("userAvatars/\(self.docId!).jpg")
                 .downloadURL { url, error in
                     if let error = error {
                         print(error)

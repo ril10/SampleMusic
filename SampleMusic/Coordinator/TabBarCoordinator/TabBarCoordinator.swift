@@ -20,35 +20,9 @@ class TabBarCoordinator : Coordinator {
     }
     
     func start() {
-        let vc = UITabBarController()
         
-        let sellerNav = UINavigationController()
-        let sellCoordinator = SellerCoordinator(navigationController: sellerNav)
-        sellCoordinator.parentCoordinator = self
-        let sellerItem = UITabBarItem()
-        sellerItem.title = "Seller Detail"
-        sellerItem.image = UIImage(systemName: "house")
-        sellerNav.tabBarItem = sellerItem
-        
-        
-        let sampleNav = UINavigationController()
-        let sampleCoordinator = ListSamplesCoordinator(navigationController: sampleNav)
-        sampleCoordinator.parentCoordinator = parentCoordinator
-        let sampleItem = UITabBarItem()
-        sampleItem.title = "Samples"
-        sampleItem.image = UIImage(systemName: "star.fill")
-        sampleNav.tabBarItem = sampleItem
-        
-        vc.viewControllers = [sellerNav,sampleNav]
-        navigationController.definesPresentationContext = true
-        navigationController.pushViewController(vc, animated: true)
-        navigationController.setNavigationBarHidden(true, animated: true)
-        
-        parentCoordinator?.childCoordinators.append(sellCoordinator)
-        parentCoordinator?.childCoordinators.append(sampleCoordinator)
-        
-        sellCoordinator.start()
-        sampleCoordinator.start()
-        
+        let vc = TabBarController()
+        vc.coordinator = parentCoordinator
+        self.navigationController.pushViewController(vc, animated: true)
     }
 }

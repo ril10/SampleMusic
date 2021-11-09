@@ -12,13 +12,14 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     var container: DependencyContainer!
     
         
-    var coordinator : MainCoordinator?
+    var coordinator : MainCoordinatorImp?
     var drawView = ListSamplesDraw()
     var viewModel : ListSamplesImp!
     
     init() {
         self.container = appContainer
         self.viewModel = try! container.resolve() as ListSamplesImp
+        self.coordinator = try! container.resolve() as MainCoordinatorImp
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -47,16 +48,9 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     //MARK: - View
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.dismiss(animated: true) { [ weak self ] in
-
-        }
-    }
-    
     override func loadView() {
         super.loadView()
-        configureNavBar()
+//        configureNavBar()
         view = UIView()
         view.backgroundColor = .white
         drawView.viewCompare(view: view)
@@ -74,8 +68,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         }
         viewModel?.isLogout = { [weak self] log in
             if log {
-                self?.coordinator?.didLogout()
-                self?.coordinator?.start()
+                self?.coordinator?.logout()
             }
         }
     }
@@ -99,9 +92,5 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutAction(sender:)))
         self.navigationItem.setHidesBackButton(true, animated: true)
         
-    }
-    
-    deinit {
-        print("List Screen")
     }
 }

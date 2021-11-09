@@ -10,13 +10,14 @@ import Dip
 
 class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,ContainerImp {
     var container: DependencyContainer!
-    var coordinator : TabBarCoordinator?
+    var coordinator : MainCoordinatorImp?
     var drawView = SellerDetailDraw()
     var viewModel : SellerImp!
     
     init() {
         self.container = appContainer
         self.viewModel = try! container.resolve() as SellerImp
+        self.coordinator = try! container.resolve() as MainCoordinatorImp
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -56,7 +57,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     override func loadView() {
         super.loadView()
-        configureNavBar()
+//        configureNavBar()
         view = UIView()
         view.backgroundColor = .white
         drawView.viewCompare(view: view)
@@ -74,8 +75,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
         viewModel?.isLogout = { [weak self] log in
             if log {
-                self?.coordinator?.parentCoordinator?.didLogout()
-                self?.coordinator?.parentCoordinator?.start()
+                self?.coordinator?.logout()
             }
         }
         viewModel.fieldData = { [weak self] firstName,lastName,desc,email,gender in
@@ -92,12 +92,12 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     func configureNavBar() {
         let nav = self.navigationController?.navigationBar
-        
+
         nav?.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor(named: Style.colorButton.rawValue) as Any,
             NSAttributedString.Key.font: UIFont(name: Style.fontTitleHeavy.rawValue, size: 18) as Any
         ]
-        
+
         nav?.isTranslucent = true
         nav?.barTintColor = .white
         nav?.topItem!.title = "Seller Detail"
@@ -107,8 +107,5 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editData(sender:)))
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutAction(sender:)))
         self.navigationItem.setHidesBackButton(false, animated: false)
-    }
-    deinit {
-        print("SellerDetailScreen")
     }
 }

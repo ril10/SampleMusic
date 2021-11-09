@@ -18,6 +18,13 @@
 		C30150B52732DC9D00C85EF3 /* SellerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30150B42732DC9D00C85EF3 /* SellerCoordinator.swift */; };
 		C30150B72733CD7800C85EF3 /* ListSamplesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30150B62733CD7800C85EF3 /* ListSamplesCoordinator.swift */; };
 		C30150BD2733E07300C85EF3 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30150BC2733E07300C85EF3 /* TabBarCoordinator.swift */; };
+		C3255868273A62BC00248FD8 /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3255867273A62BC00248FD8 /* RegistrationCoordinator.swift */; };
+		C325586A273A62D600248FD8 /* AddUserDataCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3255869273A62D600248FD8 /* AddUserDataCoordinator.swift */; };
+		C325586C273A70F000248FD8 /* MainScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325586B273A70F000248FD8 /* MainScreenCoordinator.swift */; };
+		C325586E273A9B7C00248FD8 /* MainCoordinatorImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325586D273A9B7C00248FD8 /* MainCoordinatorImp.swift */; };
+		C3255872273AA96500248FD8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3255871273AA96500248FD8 /* TabBarController.swift */; };
+		C3255874273AC46F00248FD8 /* TabBarControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3255873273AC46F00248FD8 /* TabBarControllerViewModel.swift */; };
+		C3255876273AC4EE00248FD8 /* TabBarImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3255875273AC4EE00248FD8 /* TabBarImp.swift */; };
 		C33CCA7B272BE47A00C7969E /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA7A272BE47A00C7969E /* DetailModel.swift */; };
 		C33CCA7D272C246600C7969E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA7C272C246600C7969E /* CustomTableViewCell.swift */; };
 		C33CCA80272C253200C7969E /* SampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA7F272C253200C7969E /* SampleModel.swift */; };
@@ -87,6 +94,13 @@
 		C30150B42732DC9D00C85EF3 /* SellerCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerCoordinator.swift; sourceTree = "<group>"; };
 		C30150B62733CD7800C85EF3 /* ListSamplesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSamplesCoordinator.swift; sourceTree = "<group>"; };
 		C30150BC2733E07300C85EF3 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		C3255867273A62BC00248FD8 /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
+		C3255869273A62D600248FD8 /* AddUserDataCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserDataCoordinator.swift; sourceTree = "<group>"; };
+		C325586B273A70F000248FD8 /* MainScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCoordinator.swift; sourceTree = "<group>"; };
+		C325586D273A9B7C00248FD8 /* MainCoordinatorImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorImp.swift; sourceTree = "<group>"; };
+		C3255871273AA96500248FD8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C3255873273AC46F00248FD8 /* TabBarControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarControllerViewModel.swift; sourceTree = "<group>"; };
+		C3255875273AC4EE00248FD8 /* TabBarImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarImp.swift; sourceTree = "<group>"; };
 		C33CCA7A272BE47A00C7969E /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		C33CCA7C272C246600C7969E /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		C33CCA7F272C253200C7969E /* SampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleModel.swift; sourceTree = "<group>"; };
@@ -221,6 +235,8 @@
 				C379FED2273943B4004ECCB9 /* SellerImp.swift */,
 				C379FED4273943CB004ECCB9 /* ListSamplesImp.swift */,
 				C379FED627394479004ECCB9 /* ContainerImp.swift */,
+				C325586D273A9B7C00248FD8 /* MainCoordinatorImp.swift */,
+				C3255875273AC4EE00248FD8 /* TabBarImp.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -312,6 +328,7 @@
 				C381568E272822C6008E83AC /* ListSamplesViewController.swift */,
 				C366BE522729726200B3E182 /* SellerDetailViewController.swift */,
 				C366BE5427298E6900B3E182 /* AddingDataViewController.swift */,
+				C3255871273AA96500248FD8 /* TabBarController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -324,6 +341,7 @@
 				C366BE5627298EBE00B3E182 /* AddingDataAboutUserViewModel.swift */,
 				C33CCA81272C3BC800C7969E /* SellerDetailViewModel.swift */,
 				C30150B02732A59F00C85EF3 /* ListSampleViewModel.swift */,
+				C3255873273AC46F00248FD8 /* TabBarControllerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -332,8 +350,11 @@
 			isa = PBXGroup;
 			children = (
 				C30150BE2733E0C100C85EF3 /* TabBarCoordinator */,
+				C3255867273A62BC00248FD8 /* RegistrationCoordinator.swift */,
 				C381567C2726A930008E83AC /* Coordinator.swift */,
 				C381567E2726A962008E83AC /* MainCoordinator.swift */,
+				C3255869273A62D600248FD8 /* AddUserDataCoordinator.swift */,
+				C325586B273A70F000248FD8 /* MainScreenCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -595,12 +616,14 @@
 			files = (
 				C30150A927312C4600C85EF3 /* RegistrationViewDraw.swift in Sources */,
 				C379FECB27394008004ECCB9 /* FirebaseImp.swift in Sources */,
+				C325586E273A9B7C00248FD8 /* MainCoordinatorImp.swift in Sources */,
 				C379FECD27394032004ECCB9 /* StorageImp.swift in Sources */,
 				C381567D2726A930008E83AC /* Coordinator.swift in Sources */,
 				C30150AB27312E3B00C85EF3 /* AddingDataDraw.swift in Sources */,
 				C379FED3273943B4004ECCB9 /* SellerImp.swift in Sources */,
 				C33CCA80272C253200C7969E /* SampleModel.swift in Sources */,
 				C30150BD2733E07300C85EF3 /* TabBarCoordinator.swift in Sources */,
+				C3255876273AC4EE00248FD8 /* TabBarImp.swift in Sources */,
 				C379FED127394390004ECCB9 /* AddingDataImp.swift in Sources */,
 				C381568A27281499008E83AC /* RegistrationViewModel.swift in Sources */,
 				C379FED727394479004ECCB9 /* ContainerImp.swift in Sources */,
@@ -608,6 +631,7 @@
 				C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */,
 				C30150B12732A59F00C85EF3 /* ListSampleViewModel.swift in Sources */,
 				C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */,
+				C325586A273A62D600248FD8 /* AddUserDataCoordinator.swift in Sources */,
 				C379FED5273943CB004ECCB9 /* ListSamplesImp.swift in Sources */,
 				C366BE5727298EBE00B3E182 /* AddingDataAboutUserViewModel.swift in Sources */,
 				C366BE532729726200B3E182 /* SellerDetailViewController.swift in Sources */,
@@ -616,6 +640,8 @@
 				C366BE59272AEB5B00B3E182 /* EnumStyle.swift in Sources */,
 				C33CCA7D272C246600C7969E /* CustomTableViewCell.swift in Sources */,
 				C38156842726F81B008E83AC /* Extension.swift in Sources */,
+				C3255872273AA96500248FD8 /* TabBarController.swift in Sources */,
+				C325586C273A70F000248FD8 /* MainScreenCoordinator.swift in Sources */,
 				C366BE5527298E6900B3E182 /* AddingDataViewController.swift in Sources */,
 				C30150B72733CD7800C85EF3 /* ListSamplesCoordinator.swift in Sources */,
 				C379FEC927393FC5004ECCB9 /* MainControllerImp.swift in Sources */,
@@ -623,9 +649,11 @@
 				C38156882728147A008E83AC /* MainScreenViewModel.swift in Sources */,
 				C33CCA7B272BE47A00C7969E /* DetailModel.swift in Sources */,
 				C30150AD27328E6300C85EF3 /* SellerDetailDraw.swift in Sources */,
+				C3255868273A62BC00248FD8 /* RegistrationCoordinator.swift in Sources */,
 				C381567F2726A962008E83AC /* MainCoordinator.swift in Sources */,
 				C30150A727303C2400C85EF3 /* MainScreenDraw.swift in Sources */,
 				C30150B52732DC9D00C85EF3 /* SellerCoordinator.swift in Sources */,
+				C3255874273AC46F00248FD8 /* TabBarControllerViewModel.swift in Sources */,
 				C38156482726A0BF008E83AC /* SceneDelegate.swift in Sources */,
 				C30150AF2732906600C85EF3 /* ListSamplesDraw.swift in Sources */,
 				C379FECF273940BB004ECCB9 /* RegistrationControllerImp.swift in Sources */,

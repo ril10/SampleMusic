@@ -10,7 +10,7 @@ import Dip
 
 class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,ContainerImp {
         
-    var coordinator : MainCoordinator?
+    var coordinator : MainCoordinatorImp?
     var viewModel : AddingDataImp?
     var drawView = AddingDataDraw()
     var container: DependencyContainer!
@@ -18,6 +18,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
     init() {
         self.container = appContainer
         self.viewModel = try! container.resolve() as AddingDataImp
+        self.coordinator = try! container.resolve() as MainCoordinatorImp
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -82,7 +83,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
             errorWithFields()
         } else {
             loadAlertView()
-            viewModel?.currentUser(firstName: drawView.firstNameTextField.text!, LastName: drawView.lastNameTextField.text!, description: drawView.descriptionTextField.text!)
+            viewModel?.currentUser(firstName: drawView.firstNameTextField.text!, lastName: drawView.lastNameTextField.text!, description: drawView.descriptionTextField.text!)
             viewModel?.uploadImage(image: (drawView.imageView.image?.pngData()!)!)
         }
     }
@@ -112,13 +113,6 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         self.present(alert, animated: true)
     }
     //MARK: - View
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.dismiss(animated: true) { [ weak self ] in
-            self?.coordinator = nil
-            self?.coordinator?.didLogout()
-        }
-    }
     
     override func loadView() {
         super.loadView()
@@ -155,6 +149,6 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         self.hideKeyboardWhenTappedAround()
     }
     deinit {
-        print("Adding Data deinit")
+        print("deinit Adding Data deinit")
     }
 }

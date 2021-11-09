@@ -15,7 +15,7 @@ protocol AddingDataImp {
     var navSeller : ((Bool) -> Void)? { get set }
     var navUser : ((Bool) -> Void)? { get set }
     var loading : ((Bool) -> Void)? { get set }
-    func currentUser(firstName: String,LastName: String,description: String)
+    func currentUser(firstName: String,lastName: String,description: String)
     func uploadImage(image: Data)
     func genderSet(gender: String)
 }

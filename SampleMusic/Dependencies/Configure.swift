@@ -10,6 +10,7 @@ import Dip
 import Firebase
 import FirebaseFirestore
 import FirebaseStorage
+import UIKit
 
 extension DependencyContainer {
     static func configure() -> DependencyContainer {
@@ -29,6 +30,10 @@ let appContainer : DependencyContainer = {
     container.register(.unique) { ListSampleViewModel() as ListSamplesImp }
     container.register(.unique) { SellerDetailViewModel() as SellerImp }
     container.register(.unique) { AddingDataAboutUserViewModel() as AddingDataImp }
+    container.register(.unique) { MainCoordinator(navigationController: UINavigationController()) as MainCoordinatorImp }
+    container.register(.unique) { SellerDetailViewController() }
+    container.register(.unique) { ListSamplesViewController() }
+    container.register(.unique) { TabBarControllerViewModel() as TabBarImp }
     return container
 }()
 

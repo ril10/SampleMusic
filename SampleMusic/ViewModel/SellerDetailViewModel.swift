@@ -9,7 +9,6 @@ import Foundation
 import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
-import FirebaseFirestoreSwift
 import Dip
 import RxSwift
 import RxCocoa
@@ -34,26 +33,28 @@ class SellerDetailViewModel: ContainerImp,SellerImp {
         Auth.auth().addStateDidChangeListener { [weak self] auth, user in
             if ((user) != nil) {
                 self?.db?.collection(Role.seller.rawValue.lowercased()).document(user!.uid).getDocument(completion: { (document, error) in
-                    let result = Result {
-                        try document?.data(as: DetailModel.self)
-                    }
-                        switch result {
-                        case .success(let data):
-                            if let data = data {
-                                self?.fieldData?(
-                                    data.firstName,
-                                    data.lastName,
-                                    data.description,
-                                    data.email,
-                                    data.gender
-                                )
-                                self?.downloadImage(from: URL(string: data.imageUrl)!)
-                            } else {
-                                print("Error")
-                            }
-                        case .failure(let error):
-                            print("Error decoding data:\(error)")
-                        }
+
+                    
+//                    let result = Result// {
+////                        try document?.data(as: DetailModel.self)
+//                    //}
+//                        switch result {
+//                        case .success(let data):
+//                            if let data = data {
+//                                self?.fieldData?(
+//                                    data.firstName,
+//                                    data.lastName,
+//                                    data.description,
+//                                    data.email,
+//                                    data.gender
+//                                )
+//                                self?.downloadImage(from: URL(string: data.imageUrl)!)
+//                            } else {
+//                                print("Error")
+//                            }
+//                        case .failure(let error):
+//                            print("Error decoding data:\(error)")
+//                        }
                 })
             }
         }

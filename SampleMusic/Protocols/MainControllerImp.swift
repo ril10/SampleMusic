@@ -16,4 +16,5 @@ protocol MainControllerImp {
     var loadCompleteUser : ((Bool) -> Void)? { set get }
     var loadCompleteSeller : ((Bool) -> Void)? { set get }
     var error : ((Error) -> Void)? { set get }
+    func isUserSign()
 }

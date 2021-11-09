@@ -6,16 +6,15 @@ target 'SampleMusic' do
   use_frameworks!
 
   # Pods for SampleMusic
-	pod 'Firebase/Analytics'
+	pod 'Firebase/Analytics' ,'8.8.0'
 	pod 'Dip'
 	pod 'RxSwift'
 	pod 'RxCocoa'
 	pod 'RxRelay'
-	pod 'Firebase/Auth'
-	pod 'Firebase/Core'
-	pod 'Firebase/Firestore'
-	pod 'Firebase/Storage'
-         pod 'FirebaseFirestoreSwift'
+	pod 'Firebase/Auth', '8.8.0'
+	pod 'Firebase/Core', '8.8.0'
+	pod 'Firebase/Firestore', '8.8.0'
+	pod 'Firebase/Storage', '8.8.0'
   target 'SampleMusicTests' do
     inherit! :search_paths
     # Pods for testing
