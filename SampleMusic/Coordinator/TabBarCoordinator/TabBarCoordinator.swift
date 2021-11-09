@@ -20,7 +20,6 @@ class TabBarCoordinator : Coordinator {
     }
     
     func start() {
-        
         let vc = TabBarController()
         vc.coordinator = parentCoordinator
         self.navigationController.pushViewController(vc, animated: true)

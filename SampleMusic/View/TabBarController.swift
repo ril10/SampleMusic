@@ -43,6 +43,7 @@ class TabBarController: UITabBarController {
         viewModel?.isLogout = { [weak self] log in
             if log {
                 self?.dismiss(animated: true, completion: {
+                    self?.coordinator?.tabBarFinish()
                     self?.coordinator?.finish()
                     self?.coordinator?.logout()
                 })

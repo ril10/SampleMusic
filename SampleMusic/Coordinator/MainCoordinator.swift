@@ -25,9 +25,7 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     }
     
     func finish() {
-        childCoordinators.map { childDidFinish($0) }
-        print(childCoordinators.count)
-        childCoordinators.removeAll()
+        print(childCoordinators)
     }
     
     func registrationViewController() {
@@ -63,6 +61,10 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     func logout() {
         start()
         childDidFinish(self)
+    }
+    
+    func tabBarFinish() {
+        navigationController.viewControllers = []
     }
     
 }

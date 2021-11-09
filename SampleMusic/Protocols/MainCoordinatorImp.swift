@@ -15,4 +15,5 @@ protocol MainCoordinatorImp {
     func addUserData(role: String,docId: String)
     func logout()
     func finish()
+    func tabBarFinish()
 }

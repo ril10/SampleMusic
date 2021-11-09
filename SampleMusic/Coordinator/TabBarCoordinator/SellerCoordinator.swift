@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 
 class SellerCoordinator: Coordinator {
-    weak var parentCoordinator: TabBarCoordinator?
+    weak var parentCoordinator: MainCoordinator?
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
@@ -22,7 +22,7 @@ class SellerCoordinator: Coordinator {
     
     func start() {
         let vc = SellerDetailViewController()
-        vc.coordinator = parentCoordinator?.parentCoordinator
+        vc.coordinator = parentCoordinator
         self.navigationController.pushViewController(vc, animated: true)
     }
 }
