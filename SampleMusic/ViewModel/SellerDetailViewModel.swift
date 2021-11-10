@@ -20,7 +20,6 @@ class SellerDetailViewModel: ContainerImp,SellerImp {
     var disposeBag : DisposeBag!
     var reloadView : (() -> Void)?
     var db : Firestore?
-    var isLogout : ((Bool) -> Void)?
     var image: ((Data) -> Void)?
     var fieldData : ((String,String,String,String,String) -> Void)?
     init() {
@@ -33,30 +32,18 @@ class SellerDetailViewModel: ContainerImp,SellerImp {
         Auth.auth().addStateDidChangeListener { [weak self] auth, user in
             if ((user) != nil) {
                 self?.db?.collection(Role.seller.rawValue.lowercased()).document(user!.uid).getDocument(completion: { (document, error) in
-
-                    
-//                    let result = Result// {
-////                        try document?.data(as: DetailModel.self)
-//                    //}
-//                        switch result {
-//                        case .success(let data):
-//                            if let data = data {
-//                                self?.fieldData?(
-//                                    data.firstName,
-//                                    data.lastName,
-//                                    data.description,
-//                                    data.email,
-//                                    data.gender
-//                                )
-//                                self?.downloadImage(from: URL(string: data.imageUrl)!)
-//                            } else {
-//                                print("Error")
-//                            }
-//                        case .failure(let error):
-//                            print("Error decoding data:\(error)")
-//                        }
+                    if let data = document?.data() {
+                        self!.fetchData(data)
+                    }
                 })
             }
+        }
+    }
+    
+    func fetchData(_ data: [String: Any]) {
+        let fetchData = data.map { data -> DetailModel in
+            
+            return DetailModel(firstName: "", lastName: "", description: "", email: "", gender: "", imageUrl: "")
         }
     }
     
@@ -71,14 +58,5 @@ class SellerDetailViewModel: ContainerImp,SellerImp {
                     }
                 }).disposed(by: self.disposeBag)
         }
-    }
-    
-    func logout() {
-            do {
-                try Auth.auth().signOut()
-                isLogout?(true)
-            } catch let signOutError as NSError {
-                print(signOutError.localizedDescription)
-            }
     }
 }

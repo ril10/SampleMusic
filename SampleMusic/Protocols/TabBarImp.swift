@@ -10,6 +10,5 @@ import Foundation
 
 protocol TabBarImp {
     var reloadView : (() -> Void)? { get set }
-    var isLogout : ((Bool) -> Void)? { get set }
     func logout()
 }

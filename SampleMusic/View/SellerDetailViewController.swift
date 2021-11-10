@@ -30,9 +30,6 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
-    @objc func logoutAction(sender: UIButton!) {
-        viewModel?.logout()
-    }
     //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
@@ -73,11 +70,6 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
                 self?.view.setNeedsDisplay()
             }
         }
-        viewModel?.isLogout = { [weak self] log in
-            if log {
-                self?.coordinator?.logout()
-            }
-        }
         viewModel.fieldData = { [weak self] firstName,lastName,desc,email,gender in
             self?.drawView.firstNameData.text = firstName
             self?.drawView.secondNameData.text = lastName
@@ -105,7 +97,6 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editData(sender:)))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutAction(sender:)))
         self.navigationItem.setHidesBackButton(false, animated: false)
     }
 }

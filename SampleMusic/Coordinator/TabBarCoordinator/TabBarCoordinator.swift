@@ -21,7 +21,13 @@ class TabBarCoordinator : Coordinator {
     
     func start() {
         let vc = TabBarController()
-        vc.coordinator = parentCoordinator
+        vc.coordinator = self
         self.navigationController.pushViewController(vc, animated: true)
+        childDidFinish(self)
+    }
+    
+    func logout() {
+//        navigationController.popViewController(animated: <#T##Bool#>)
+        parentCoordinator?.childDidFinish(self)
     }
 }

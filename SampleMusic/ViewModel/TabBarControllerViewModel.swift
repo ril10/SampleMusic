@@ -14,7 +14,7 @@ class TabBarControllerViewModel: ContainerImp, TabBarImp, FirebaseImp {
     var db: Firestore!
     var container: DependencyContainer!
     var reloadView : (() -> Void)?
-    var isLogout : ((Bool) -> Void)?
+    
     init () {
         self.container = appContainer
         self.db = try! container.resolve() as Firestore
@@ -22,7 +22,6 @@ class TabBarControllerViewModel: ContainerImp, TabBarImp, FirebaseImp {
     func logout() {
             do {
                 try Auth.auth().signOut()
-                isLogout?(true)
             } catch let signOutError as NSError {
                 print(signOutError.localizedDescription)
             }

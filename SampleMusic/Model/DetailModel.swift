@@ -15,6 +15,10 @@ struct DetailModel: Codable {
     let gender : String
     let imageUrl : String
     
+//    init(data: [String: Any]) {
+//        
+//    }
+    
     enum CodingKeys: String, CodingKey {
         case firstName
         case lastName

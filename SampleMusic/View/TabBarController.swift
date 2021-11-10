@@ -10,7 +10,7 @@ import Dip
 
 
 class TabBarController: UITabBarController {
-    var coordinator: MainCoordinatorImp?
+    var coordinator: TabBarCoordinator?
     var container: DependencyContainer!
     var sellerController : SellerDetailViewController!
     var listController : ListSamplesViewController!
@@ -18,7 +18,7 @@ class TabBarController: UITabBarController {
     
     init() {
         self.container = appContainer
-        self.coordinator = try! container.resolve() as MainCoordinatorImp
+//        self.coordinator = try! container.resolve() as MainCoordinatorImp
         self.sellerController = try! container.resolve() as SellerDetailViewController
         self.listController = try! container.resolve() as ListSamplesViewController
         self.viewModel = try! container.resolve() as TabBarImp
@@ -28,6 +28,7 @@ class TabBarController: UITabBarController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,18 +36,10 @@ class TabBarController: UITabBarController {
             createNavController(for: sellerController, title: "Seller Detail", image: UIImage(systemName: "house")!),
             createNavController(for: listController, title: "Samples", image: UIImage(systemName: "star.fill")!)
         ]
+        self.coordinator?.childCoordinators = []
         viewModel?.reloadView = { [weak self] in
             DispatchQueue.main.async {
                 self?.view.setNeedsDisplay()
-            }
-        }
-        viewModel?.isLogout = { [weak self] log in
-            if log {
-                self?.dismiss(animated: true, completion: {
-                    self?.coordinator?.tabBarFinish()
-                    self?.coordinator?.finish()
-                    self?.coordinator?.logout()
-                })
             }
         }
     }
@@ -73,6 +66,8 @@ class TabBarController: UITabBarController {
 
     @objc func logoutAction(sender: UIButton) {
         viewModel.logout()
+        coordinator?.logout()
+        coordinator?.parentCoordinator?.logout()
     }
     
     @objc func editData(sender: UIButton) {

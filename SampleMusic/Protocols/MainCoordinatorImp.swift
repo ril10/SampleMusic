@@ -14,6 +14,6 @@ protocol MainCoordinatorImp {
     func userList()
     func addUserData(role: String,docId: String)
     func logout()
-    func finish()
     func tabBarFinish()
+    var childCoordinators : [Coordinator] { get set }
 }

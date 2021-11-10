@@ -68,7 +68,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         }
         viewModel?.isLogout = { [weak self] log in
             if log {
-                self?.coordinator?.logout()
+//                self?.coordinator?.logout()
             }
         }
     }

@@ -16,22 +16,31 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+    var mainScreen : MainScreenProtocol?
     func start() {
-        let child = MainScreenCoordinator(navigationController: navigationController)
-        child.parentCoordinator = self
-        childCoordinators.append(child)
-        child.start()
+        let vc = RegistrationViewController()
+        vc.coordinator = self
+        //MainScreenViewController(viewModel: MainScreenViewModel() as! MainControllerImp)
+//        vc?.coordinator = self
+        mainScreen?.coordinator = self
+        self.childCoordinators = []
+//        self.navigationController.viewControllers = []
+        //self.childDidFinish(self)
+        self.navigationController.setNavigationBarHidden(true, animated: false)
+        self.navigationController.pushViewController(mainScreen?.view ?? vc, animated: true)
     }
     
-    func finish() {
-        print(childCoordinators)
+    func logout() {
+        self.navigationController.dismiss(animated: true) {
+            self.childCoordinators.removeAll()
+            self.start()
+        }
     }
     
     func registrationViewController() {
         let child = RegistrationCoordinator(navigationController: navigationController)
         child.parentCoordinator = self
-        childCoordinators.append(child)
+        self.childCoordinators.append(child)
         child.start()
     }
     
@@ -56,11 +65,6 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
         child.roleSet = role
         childCoordinators.append(child)
         child.start()
-    }
-        
-    func logout() {
-        start()
-        childDidFinish(self)
     }
     
     func tabBarFinish() {

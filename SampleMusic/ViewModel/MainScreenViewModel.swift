@@ -33,13 +33,14 @@ class MainScreenViewModel: MainControllerImp,FirebaseImp,ContainerImp {
                 self?.error?(e)
             } else {
                 self!.loading?(true)
-                self?.currentUser()
+                self?.sellerSign()
+                self?.userSign()
             }
         }
         
     }
     
-    func currentUser() {
+    func userSign() {
         Auth.auth().addStateDidChangeListener { [weak self] auth, user in
             if ((user) != nil) {
                 self?.db?.collection(Role.user.rawValue.lowercased()).document(user!.uid).addSnapshotListener { [weak self] doc, error in
@@ -49,10 +50,15 @@ class MainScreenViewModel: MainControllerImp,FirebaseImp,ContainerImp {
                         if doc?.data() != nil {
                             self?.dismisAlert?(true)
                             self?.loadCompleteUser?(true)
-                            self?.reloadView?()
                         }
                     }
                 }
+            }
+        }
+    }
+    func sellerSign() {
+        Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+            if ((user) != nil) {
                 self?.db?.collection(Role.seller.rawValue.lowercased()).document(user!.uid).addSnapshotListener { [weak self] doc, error in
                     if let e = error {
                         self?.error?(e)
@@ -60,7 +66,6 @@ class MainScreenViewModel: MainControllerImp,FirebaseImp,ContainerImp {
                         if doc?.data() != nil {
                             self?.dismisAlert?(true)
                             self?.loadCompleteSeller?(true)
-                            self?.reloadView?()
                         }
                     }
                 }
@@ -69,12 +74,10 @@ class MainScreenViewModel: MainControllerImp,FirebaseImp,ContainerImp {
     }
     
     func isUserSign() {
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if ((user) != nil) {
-                print("user Signed")
-            } else {
-                print("user not signed")
-            }
+        if Auth.auth().currentUser != nil {
+            print("User is signIn")
+        } else {
+            print("User isn't signIn")
         }
     }
     

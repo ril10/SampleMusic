@@ -16,13 +16,19 @@ extension DependencyContainer {
     static func configure() -> DependencyContainer {
         return DependencyContainer { container in
             unowned let container = container
-            DependencyContainer.uiContainers = [container]
+            print(appContainer)
+            appContainer.register(.unique) { MainScreenViewController(
+                viewModel: try! container.resolve() as MainControllerImp,
+                coordinator: try! container.resolve() as MainCoordinatorImp
+            ) as! MainScreenProtocol }
+            appContainer.register(.unique) { RegistrationViewController() }
+            
             _ = appContainer
         }
     }
 }
-let appContainer : DependencyContainer = {
-    let container = DependencyContainer()
+let appContainer = DependencyContainer { container in
+    unowned let container = container
     container.register(.unique) { Storage.storage() as Storage }
     container.register(.unique) { Firestore.firestore() as Firestore }
     container.register(.unique) { MainScreenViewModel() as MainControllerImp }
@@ -31,9 +37,8 @@ let appContainer : DependencyContainer = {
     container.register(.unique) { SellerDetailViewModel() as SellerImp }
     container.register(.unique) { AddingDataAboutUserViewModel() as AddingDataImp }
     container.register(.unique) { MainCoordinator(navigationController: UINavigationController()) as MainCoordinatorImp }
-    container.register(.unique) { SellerDetailViewController() }
     container.register(.unique) { ListSamplesViewController() }
     container.register(.unique) { TabBarControllerViewModel() as TabBarImp }
-    return container
-}()
 
+
+}

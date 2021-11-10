@@ -9,10 +9,8 @@ import Foundation
 
 protocol SellerImp {
     var reloadView : (() -> Void)? { get set }
-    var isLogout : ((Bool) -> Void)? { get set }
     var fieldData : ((String,String,String,String,String) -> Void)? { get set }
     func userData()
-    func logout()
     func downloadImage(from url: URL)
     var image : ((Data) -> Void)? { get set }
 }

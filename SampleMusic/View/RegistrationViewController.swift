@@ -136,7 +136,4 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate,Containe
             }
         }
     }
-    deinit {
-        print("deinit Registration Screen")
-    }
 }
