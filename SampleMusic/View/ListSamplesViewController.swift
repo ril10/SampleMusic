@@ -90,3 +90,4 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         
     }
 }
+extension ListSamplesViewController : ListSamplesScreenProtocol {}

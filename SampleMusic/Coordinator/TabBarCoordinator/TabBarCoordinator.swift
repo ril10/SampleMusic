@@ -9,8 +9,8 @@ import UIKit
 import Dip
 
 
-class TabBarCoordinator : Coordinator,TabBarScreenProtocol {
-    var view: TabBarController
+class TabBarCoordinator : Coordinator {
+    var view: TabBarScreenProtocol
     
     weak var parentCoordinator: MainCoordinator?
     
@@ -18,9 +18,9 @@ class TabBarCoordinator : Coordinator,TabBarScreenProtocol {
     
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController,view: TabBarScreenProtocol) {
         self.navigationController = navigationController
-        self.view = TabBarController(viewModel: try! appContainer.resolve(), sellerController: try! appContainer.resolve() , listController: try! appContainer.resolve())
+        self.view = view//TabBarController(viewModel: try! appContainer.resolve(), sellerController: try! appContainer.resolve() as SellerScreenProtocol , listController: try! appContainer.resolve() as ListSamplesScreenProtocol ) as TabBarScreenProtocol
     }
     
     func start() {

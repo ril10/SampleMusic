@@ -150,3 +150,4 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         print("deinit Adding Data deinit")
     }
 }
+extension AddingDataViewController : AddingDataScreenProtocol {}

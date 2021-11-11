@@ -16,9 +16,9 @@ class RegistrationCoordinator : Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController,view: RegistrationScreenProtocol) {
         self.navigationController = navigationController
-        self.view = try! appContainer.resolve() as RegistrationScreenProtocol
+        self.view = view
     }
     
     func start() {

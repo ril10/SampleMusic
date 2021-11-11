@@ -10,7 +10,7 @@ import Dip
 
 
 class AddUserDataCoordinator : Coordinator {
-    var view: AddingDataViewController
+    var view: AddingDataScreenProtocol
     
     
     weak var parentCoordinator : MainCoordinator?
@@ -20,13 +20,12 @@ class AddUserDataCoordinator : Coordinator {
     var docId : String!
     var roleSet : String!
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController,view: AddingDataScreenProtocol) {
         self.navigationController = navigationController
-        self.view = AddingDataViewController(viewModel: try! appContainer.resolve())
+        self.view = view
     }
     
     func start() {
-        
         view.viewModel?.docId = self.docId
         view.viewModel?.roleSet = self.roleSet
         view.coordinator = parentCoordinator
@@ -34,4 +33,7 @@ class AddUserDataCoordinator : Coordinator {
         self.navigationController.pushViewController(view, animated: true)
     }
 
+    func finish() {
+        self.parentCoordinator?.childDidFinish(self)
+    }
 }

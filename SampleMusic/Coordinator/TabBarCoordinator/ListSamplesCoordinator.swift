@@ -10,7 +10,7 @@ import FirebaseFirestore
 import Dip
 
 class ListSamplesCoordinator : Coordinator {
-    var view: ListSamplesViewController
+    var view: ListSamplesScreenProtocol
     
     weak var parentCoordinator: MainCoordinator?
     
@@ -19,9 +19,9 @@ class ListSamplesCoordinator : Coordinator {
     var navigationController: UINavigationController
 
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController,view: ListSamplesScreenProtocol) {
         self.navigationController = navigationController
-        self.view = ListSamplesViewController(viewModel: try! appContainer.resolve())
+        self.view = view
     }
     
     func start() {

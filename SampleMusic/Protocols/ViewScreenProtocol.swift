@@ -13,19 +13,11 @@ protocol MainScreenProtocol: MainScreenViewController { }
 
 protocol RegistrationScreenProtocol: RegistrationViewController { }
 
-protocol ListSamplesScreenProtocol {
-    var view : ListSamplesViewController { get set }
-}
+protocol ListSamplesScreenProtocol: ListSamplesViewController { }
 
-protocol SellerScreenProtocol {
-    var view : SellerDetailViewController { get set }
-}
+protocol SellerScreenProtocol: SellerDetailViewController { }
 
-protocol AddingDataScreenProtocol {
-    var view : AddingDataViewController { get set }
-}
+protocol AddingDataScreenProtocol: AddingDataViewController { }
 
-protocol TabBarScreenProtocol {
-    var view : TabBarController { get set }
-}
+protocol TabBarScreenProtocol: TabBarController { }
 

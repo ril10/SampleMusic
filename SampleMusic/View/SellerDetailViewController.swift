@@ -8,7 +8,7 @@
 import UIKit
 import Dip
 
-class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var coordinator : MainCoordinator?
     var drawView = SellerDetailDraw()
@@ -98,3 +98,4 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         self.navigationItem.setHidesBackButton(false, animated: false)
     }
 }
+extension SellerDetailViewController : SellerScreenProtocol {}

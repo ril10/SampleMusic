@@ -16,9 +16,9 @@ class MainScreenCoordinator : Coordinator {
     var navigationController: UINavigationController
 
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController,view: MainScreenProtocol) {
         self.navigationController = navigationController
-        self.view = MainScreenViewController(viewModel: try! appContainer.resolve()) as MainScreenProtocol
+        self.view = view
     }
 
     func start() {

@@ -11,17 +11,17 @@ import FirebaseFirestore
 import Dip
 
 
-class SellerCoordinator: Coordinator,SellerScreenProtocol {
-    var view: SellerDetailViewController
+class SellerCoordinator: Coordinator {
+    var view: SellerScreenProtocol
     
     weak var parentCoordinator: MainCoordinator?
     
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController,view: SellerScreenProtocol) {
         self.navigationController = navigationController
-        self.view = SellerDetailViewController(viewModel: try! appContainer.resolve())
+        self.view = view
     }
     
     

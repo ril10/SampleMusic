@@ -26,7 +26,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         FirebaseApp.configure()
         let navController = try! appContainer.resolve() as UINavigationController
 
-        let coordinator = MainCoordinator(navigationController: navController)
+        let coordinator = MainCoordinator(navigationController: navController,
+                                          mainView: try! appContainer.resolve(),
+                                          registrationView: try! appContainer.resolve(),
+                                          listView: try! appContainer.resolve(),
+                                          tabBar: try! appContainer.resolve(),
+                                          addingView: try! appContainer.resolve()
+        )
         coordinator.start()
         
         let window = UIWindow(windowScene: windowScene)

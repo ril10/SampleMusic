@@ -9,7 +9,7 @@ import UIKit
 import Dip
 
 
-class MainScreenViewController: UIViewController, UITextFieldDelegate, MainScreenProtocol {
+class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     init(viewModel: MainControllerImp) {
         self.viewModel = viewModel
@@ -102,15 +102,16 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate, MainScree
         
         viewModel.loadCompleteUser = { [weak self] load in
             if load {
-                self?.coordinator?.userList()
+                self?.dismiss(animated: true, completion: {
+                    self?.coordinator?.userList()
+                })
+        
             }
         }
         viewModel.loadCompleteSeller = { [weak self] load in
             if load {
                 self?.dismiss(animated: true, completion: {
-                    
                     self?.coordinator?.mainTabController()
-                
                 })
             }
         }
@@ -120,3 +121,4 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate, MainScree
     }
 }
 
+extension MainScreenViewController : MainScreenProtocol {}

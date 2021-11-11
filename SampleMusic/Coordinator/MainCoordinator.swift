@@ -13,12 +13,24 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController,mainView: MainScreenProtocol,registrationView: RegistrationScreenProtocol,listView: ListSamplesScreenProtocol,tabBar: TabBarScreenProtocol,
+         addingView: AddingDataScreenProtocol) {
         self.navigationController = navigationController
+        self.mainView = mainView
+        self.registrationView = registrationView
+        self.listView = listView
+        self.tabBar = tabBar
+        self.addingView = addingView
     }
     
+    var mainView : MainScreenProtocol
+    var registrationView : RegistrationScreenProtocol
+    var addingView : AddingDataScreenProtocol
+    var listView : ListSamplesScreenProtocol
+    var tabBar : TabBarScreenProtocol
+    
     func start() {
-        let child = MainScreenCoordinator(navigationController: navigationController)
+        let child = MainScreenCoordinator(navigationController: navigationController, view: mainView)
         child.parentCoordinator = self
         self.childCoordinators.append(child)
         child.start()
@@ -32,28 +44,28 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     }
     
     func registrationViewController() {
-        let child = RegistrationCoordinator(navigationController: navigationController)
+        let child = RegistrationCoordinator(navigationController: navigationController, view: registrationView)
         child.parentCoordinator = self
         self.childCoordinators.append(child)
         child.start()
     }
     
     func mainTabController() {
-        let child = TabBarCoordinator(navigationController: navigationController)
+        let child = TabBarCoordinator(navigationController: navigationController, view: tabBar)
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()
     }
     
     func userList() {
-        let child = ListSamplesCoordinator(navigationController: navigationController)
+        let child = ListSamplesCoordinator(navigationController: navigationController, view: listView)
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()
     }
     
     func addUserData(role: String,docId: String) {
-        let child = AddUserDataCoordinator(navigationController: navigationController)
+        let child = AddUserDataCoordinator(navigationController: navigationController, view: addingView)
         child.parentCoordinator = self
         child.docId = docId
         child.roleSet = role

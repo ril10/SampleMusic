@@ -8,7 +8,7 @@
 import UIKit
 import Dip
 
-class RegistrationViewController: UIViewController, UITextFieldDelegate,RegistrationScreenProtocol {
+class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     var coordinator : RegistrationCoordinator?
     var viewModel : RegistrationControllerImp!
@@ -137,3 +137,4 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate,Registra
         print("Registration Controller deinit")
     }
 }
+extension RegistrationViewController : RegistrationScreenProtocol {}

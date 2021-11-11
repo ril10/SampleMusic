@@ -35,8 +35,17 @@ let appContainer = DependencyContainer { container in
     
     container.register(.unique) { MainScreenViewController(viewModel: try! container.resolve() as MainControllerImp) as MainScreenProtocol }
     container.register(.unique) { RegistrationViewController(viewModel: try! container.resolve() as RegistrationControllerImp) as RegistrationScreenProtocol }
-    container.register(.unique) { ListSamplesViewController(viewModel: try! container.resolve() as ListSamplesImp) }
-    container.register(.unique) { SellerDetailViewController(viewModel: try! container.resolve() as SellerImp) }
-    container.register(.unique) { AddingDataViewController(viewModel: try! container.resolve() as AddingDataImp) }
-    container.register(.unique) { TabBarController(viewModel: try! container.resolve() as TabBarImp,sellerController: try! container.resolve(),listController: try! container.resolve() ) }
+    container.register(.unique) { ListSamplesViewController(viewModel: try! container.resolve() as ListSamplesImp) as ListSamplesScreenProtocol }
+    container.register(.unique) { SellerDetailViewController(viewModel: try! container.resolve() as SellerImp) as SellerScreenProtocol }
+    container.register(.unique) { AddingDataViewController(viewModel: try! container.resolve() as AddingDataImp) as AddingDataScreenProtocol }
+    container.register(.unique) { TabBarController(viewModel: try! container.resolve() as TabBarImp,sellerController: try! container.resolve() as SellerScreenProtocol,listController: try! container.resolve() as ListSamplesScreenProtocol)
+        as TabBarScreenProtocol }
+    
+    container.register(.unique) { MainScreenCoordinator(navigationController: try! container.resolve(), view: try! container.resolve()) }
+    container.register(.unique) { MainCoordinator(navigationController: try! container.resolve(), mainView: try! container.resolve(),registrationView: try! container.resolve(),listView: try! container.resolve(),tabBar: try! container.resolve(),addingView: try! container.resolve() ) }
+    container.register(.unique) { RegistrationCoordinator(navigationController: try! container.resolve(), view: try! container.resolve()) }
+    container.register(.unique) { AddUserDataCoordinator(navigationController: try! container.resolve(), view: try! container.resolve()) }
+    container.register(.unique) { ListSamplesCoordinator(navigationController: try! container.resolve(), view: try! container.resolve()) }
+    container.register(.unique) { TabBarCoordinator(navigationController: try! container.resolve(), view: try! container.resolve()) }
+    container.register(.unique) { SellerCoordinator(navigationController: try! container.resolve(), view: try! container.resolve()) }
 }
