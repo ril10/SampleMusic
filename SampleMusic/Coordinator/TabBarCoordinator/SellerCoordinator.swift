@@ -8,9 +8,12 @@
 import Foundation
 import UIKit
 import FirebaseFirestore
+import Dip
 
 
-class SellerCoordinator: Coordinator {
+class SellerCoordinator: Coordinator,SellerScreenProtocol {
+    var view: SellerDetailViewController
+    
     weak var parentCoordinator: MainCoordinator?
     
     var childCoordinators = [Coordinator]()
@@ -18,11 +21,16 @@ class SellerCoordinator: Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.view = SellerDetailViewController(viewModel: try! appContainer.resolve())
     }
     
+    
     func start() {
-        let vc = SellerDetailViewController()
-        vc.coordinator = parentCoordinator
-        self.navigationController.pushViewController(vc, animated: true)
+        view.coordinator = parentCoordinator
+        self.navigationController.pushViewController(view, animated: true)
+    }
+    
+    func finish() {
+        parentCoordinator?.childDidFinish(self)
     }
 }

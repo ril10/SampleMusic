@@ -9,23 +9,20 @@ import UIKit
 import Dip
 
 
-class MainScreenViewController: UIViewController, UITextFieldDelegate {
+class MainScreenViewController: UIViewController, UITextFieldDelegate, MainScreenProtocol {
     
-    init(viewModel: MainControllerImp,coordinator: MainCoordinatorImp) {
-//        self.container = appContainer
-        self.coordinator = coordinator
-        self.viewModel = viewModel//try! appContainer.resolve() as MainControllerImp
-//        self.coordinator = try! appContainer.resolve() as MainCoordinatorImp
+    init(viewModel: MainControllerImp) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-//
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-//    var container: DependencyContainer!
+
     var viewModel : MainControllerImp!
     var drawView = MainScreenDraw()
-    var coordinator: MainCoordinatorImp?
+    var coordinator: MainCoordinator?
 
     //MARK: - ButtonAction
     @objc func signInAction(sender: UIButton!) {
@@ -42,7 +39,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func registrationButtonAction(sender: UIButton!) {
-        self.coordinator?.registrationViewController()
+        coordinator?.registrationViewController()
     }
     //MARK: - Alert
     func errorWithLogin(e: Error) {
@@ -105,21 +102,14 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         
         viewModel.loadCompleteUser = { [weak self] load in
             if load {
-                self?.dismiss(animated: true, completion: {
-                    if (self?.coordinator?.childCoordinators.count)! > 0 {
-                        self?.coordinator?.childCoordinators = []
-                    } else {
-                        self?.coordinator?.childCoordinators = []
-                        self?.coordinator?.userList()
-                    }
-                })
+                self?.coordinator?.userList()
             }
         }
         viewModel.loadCompleteSeller = { [weak self] load in
             if load {
                 self?.dismiss(animated: true, completion: {
                     
-                        self?.coordinator?.mainTabController()
+                    self?.coordinator?.mainTabController()
                 
                 })
             }

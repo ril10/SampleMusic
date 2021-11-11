@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Dip
 
 
 class AddUserDataCoordinator : Coordinator {
+    var view: AddingDataViewController
+    
     
     weak var parentCoordinator : MainCoordinator?
     var childCoordinators = [Coordinator]()
@@ -19,15 +22,16 @@ class AddUserDataCoordinator : Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.view = AddingDataViewController(viewModel: try! appContainer.resolve())
     }
     
     func start() {
-        let vc = AddingDataViewController()
-        vc.viewModel?.docId = self.docId
-        vc.viewModel?.roleSet = self.roleSet
-        vc.coordinator = parentCoordinator
+        
+        view.viewModel?.docId = self.docId
+        view.viewModel?.roleSet = self.roleSet
+        view.coordinator = parentCoordinator
         self.navigationController.setNavigationBarHidden(true, animated: false)
-        self.navigationController.pushViewController(vc, animated: true)
+        self.navigationController.pushViewController(view, animated: true)
     }
 
 }

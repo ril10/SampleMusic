@@ -11,17 +11,14 @@ import Dip
 
 class TabBarController: UITabBarController {
     var coordinator: TabBarCoordinator?
-    var container: DependencyContainer!
     var sellerController : SellerDetailViewController!
     var listController : ListSamplesViewController!
     var viewModel : TabBarImp!
     
-    init() {
-        self.container = appContainer
-//        self.coordinator = try! container.resolve() as MainCoordinatorImp
-        self.sellerController = try! container.resolve() as SellerDetailViewController
-        self.listController = try! container.resolve() as ListSamplesViewController
-        self.viewModel = try! container.resolve() as TabBarImp
+    init(viewModel: TabBarImp,sellerController: SellerDetailViewController,listController: ListSamplesViewController) {
+        self.viewModel = viewModel
+        self.sellerController = sellerController
+        self.listController = listController
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -66,8 +63,9 @@ class TabBarController: UITabBarController {
 
     @objc func logoutAction(sender: UIButton) {
         viewModel.logout()
-        coordinator?.logout()
-        coordinator?.parentCoordinator?.logout()
+        coordinator?.finish()
+        coordinator?.parentCoordinator?.start()
+        
     }
     
     @objc func editData(sender: UIButton) {

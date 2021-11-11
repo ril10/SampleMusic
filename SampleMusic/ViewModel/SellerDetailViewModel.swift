@@ -14,17 +14,15 @@ import RxSwift
 import RxCocoa
 
 
-class SellerDetailViewModel: ContainerImp,SellerImp {
+class SellerDetailViewModel: SellerImp {
 
-    var container: DependencyContainer!
     var disposeBag : DisposeBag!
     var reloadView : (() -> Void)?
     var db : Firestore?
     var image: ((Data) -> Void)?
     var fieldData : ((String,String,String,String,String) -> Void)?
-    init() {
-        self.container = appContainer
-        self.db = try! container.resolve() as Firestore
+    init(db: Firestore) {
+        self.db = db
     }
     
     

@@ -8,17 +8,15 @@
 import UIKit
 import Dip
 
-class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,ContainerImp {
+class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         
-    var coordinator : MainCoordinatorImp?
+    var coordinator : MainCoordinator?
     var viewModel : AddingDataImp?
     var drawView = AddingDataDraw()
-    var container: DependencyContainer!
+
     
-    init() {
-        self.container = appContainer
-        self.viewModel = try! container.resolve() as AddingDataImp
-        self.coordinator = try! container.resolve() as MainCoordinatorImp
+    init(viewModel: AddingDataImp) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     

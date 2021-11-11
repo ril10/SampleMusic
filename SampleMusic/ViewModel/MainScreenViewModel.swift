@@ -11,7 +11,7 @@ import FirebaseFirestore
 import Dip
 import UIKit
 
-class MainScreenViewModel: MainControllerImp,FirebaseImp,ContainerImp {
+class MainScreenViewModel: MainControllerImp {
     var db: Firestore!
     var reloadView : (() -> Void)?
     var error : ((Error) -> Void)?
@@ -19,11 +19,9 @@ class MainScreenViewModel: MainControllerImp,FirebaseImp,ContainerImp {
     var loading : ((Bool) -> Void)?
     var loadCompleteUser : ((Bool) -> Void)?
     var loadCompleteSeller : ((Bool) -> Void)?
-    var container : DependencyContainer!
     
-    init() {
-        self.container = appContainer
-        self.db = try! container.resolve() as Firestore
+    init(db: Firestore) {
+        self.db = db
     }
     
     func userSignIn(email: String,password: String) {

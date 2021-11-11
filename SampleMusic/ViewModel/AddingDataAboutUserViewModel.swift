@@ -11,11 +11,10 @@ import FirebaseAuth
 import FirebaseStorage
 import Dip
 
-class AddingDataAboutUserViewModel: AddingDataImp, FirebaseImp, StorageImp, ContainerImp {
+class AddingDataAboutUserViewModel: AddingDataImp {
     
     var db: Firestore!
     var st: Storage!
-    var container: DependencyContainer!
     var roleSet : String!
     var gender : String!
     var reloadView : (() -> Void)?
@@ -24,10 +23,9 @@ class AddingDataAboutUserViewModel: AddingDataImp, FirebaseImp, StorageImp, Cont
     var navUser : ((Bool) -> Void)?
     var loading : ((Bool) -> Void)?
     
-    init() {
-        self.container = appContainer
-        self.db = try! container.resolve() as Firestore
-        self.st = try! container.resolve() as Storage
+    init(db: Firestore,st: Storage) {
+        self.db = db
+        self.st = st
     }
     
     func currentUser(firstName: String,lastName: String,description: String) {

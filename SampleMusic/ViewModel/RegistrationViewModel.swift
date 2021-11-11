@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import Dip
 
-class RegistrationViewModel: RegistrationControllerImp,ContainerImp {
+class RegistrationViewModel: RegistrationControllerImp {
     
     var reloadView : (() -> Void)?
     var error : ((Error) -> Void)?
@@ -19,12 +19,10 @@ class RegistrationViewModel: RegistrationControllerImp,ContainerImp {
     var navToAdd : ((Bool) -> Void)?
     var isRole : Bool!
     var loading : ((Bool) -> Void)?
-    var container : DependencyContainer!
     var db : Firestore?
     
-    init() {
-        self.container = appContainer
-        self.db = try! container.resolve() as Firestore
+    init(db: Firestore) {
+        self.db = db
     }
     
     func registerUser(email: String,password: String) {

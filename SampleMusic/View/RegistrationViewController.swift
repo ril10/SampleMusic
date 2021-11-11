@@ -8,18 +8,14 @@
 import UIKit
 import Dip
 
-class RegistrationViewController: UIViewController, UITextFieldDelegate,ContainerImp {
+class RegistrationViewController: UIViewController, UITextFieldDelegate,RegistrationScreenProtocol {
     
-    
-    var coordinator : MainCoordinatorImp?
+    var coordinator : RegistrationCoordinator?
     var viewModel : RegistrationControllerImp!
     var drawView = RegistrationViewDraw()
-    var container : DependencyContainer!
     
-    init() {
-        self.container = appContainer
-        self.viewModel = try! container.resolve() as RegistrationControllerImp
-        self.coordinator = try! container.resolve() as MainCoordinatorImp
+    init(viewModel: RegistrationControllerImp) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -70,7 +66,8 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate,Containe
     }
     
     @objc func signInButton(sender: UIButton!) {
-        coordinator?.logout()
+        coordinator?.finish()
+        coordinator?.parentCoordinator?.start()
     }
     //MARK: - Alert
     func errorWithRegistration(e: Error) {
@@ -131,9 +128,12 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate,Containe
         viewModel.navToAdd = { nav in
             if nav {
                 self.dismiss(animated: true) {
-                    self.coordinator?.addUserData(role: (self.viewModel?.roleSet)!,docId: (self.viewModel?.docId)!)
+                    self.coordinator?.parentCoordinator?.addUserData(role: (self.viewModel?.roleSet)!,docId: (self.viewModel?.docId)!)
                 }
             }
         }
+    }
+    deinit {
+        print("Registration Controller deinit")
     }
 }

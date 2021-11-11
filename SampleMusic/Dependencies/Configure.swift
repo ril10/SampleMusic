@@ -17,12 +17,6 @@ extension DependencyContainer {
         return DependencyContainer { container in
             unowned let container = container
             print(appContainer)
-            appContainer.register(.unique) { MainScreenViewController(
-                viewModel: try! container.resolve() as MainControllerImp,
-                coordinator: try! container.resolve() as MainCoordinatorImp
-            ) as! MainScreenProtocol }
-            appContainer.register(.unique) { RegistrationViewController() }
-            
             _ = appContainer
         }
     }
@@ -31,14 +25,18 @@ let appContainer = DependencyContainer { container in
     unowned let container = container
     container.register(.unique) { Storage.storage() as Storage }
     container.register(.unique) { Firestore.firestore() as Firestore }
-    container.register(.unique) { MainScreenViewModel() as MainControllerImp }
-    container.register(.unique) { RegistrationViewModel() as RegistrationControllerImp }
-    container.register(.unique) { ListSampleViewModel() as ListSamplesImp }
-    container.register(.unique) { SellerDetailViewModel() as SellerImp }
-    container.register(.unique) { AddingDataAboutUserViewModel() as AddingDataImp }
-    container.register(.unique) { MainCoordinator(navigationController: UINavigationController()) as MainCoordinatorImp }
-    container.register(.unique) { ListSamplesViewController() }
-    container.register(.unique) { TabBarControllerViewModel() as TabBarImp }
-
-
+    container.register(.unique) { MainScreenViewModel(db: try! container.resolve()) as MainControllerImp }
+    container.register(.unique) { RegistrationViewModel(db: try! container.resolve()) as RegistrationControllerImp }
+    container.register(.unique) { ListSampleViewModel(db: try! container.resolve()) as ListSamplesImp }
+    container.register(.unique) { SellerDetailViewModel(db: try! container.resolve()) as SellerImp }
+    container.register(.unique) { AddingDataAboutUserViewModel(db: try! container.resolve(), st: try! container.resolve()) as AddingDataImp }
+    container.register(.unique) { UINavigationController() as UINavigationController }
+    container.register(.unique) { TabBarControllerViewModel(db: try! container.resolve()) as TabBarImp }
+    
+    container.register(.unique) { MainScreenViewController(viewModel: try! container.resolve() as MainControllerImp) as MainScreenProtocol }
+    container.register(.unique) { RegistrationViewController(viewModel: try! container.resolve() as RegistrationControllerImp) as RegistrationScreenProtocol }
+    container.register(.unique) { ListSamplesViewController(viewModel: try! container.resolve() as ListSamplesImp) }
+    container.register(.unique) { SellerDetailViewController(viewModel: try! container.resolve() as SellerImp) }
+    container.register(.unique) { AddingDataViewController(viewModel: try! container.resolve() as AddingDataImp) }
+    container.register(.unique) { TabBarController(viewModel: try! container.resolve() as TabBarImp,sellerController: try! container.resolve(),listController: try! container.resolve() ) }
 }

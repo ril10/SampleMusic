@@ -8,16 +8,14 @@
 import UIKit
 import Dip
 
-class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,ContainerImp {
-    var container: DependencyContainer!
-    var coordinator : MainCoordinatorImp?
+class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+
+    var coordinator : MainCoordinator?
     var drawView = SellerDetailDraw()
     var viewModel : SellerImp!
     
-    init() {
-        self.container = appContainer
-        self.viewModel = try! container.resolve() as SellerImp
-        self.coordinator = try! container.resolve() as MainCoordinatorImp
+    init(viewModel: SellerImp) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     

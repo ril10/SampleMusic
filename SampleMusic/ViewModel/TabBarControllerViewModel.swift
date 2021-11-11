@@ -10,14 +10,12 @@ import FirebaseFirestore
 import FirebaseAuth
 import Dip
 
-class TabBarControllerViewModel: ContainerImp, TabBarImp, FirebaseImp {
+class TabBarControllerViewModel: TabBarImp {
     var db: Firestore!
-    var container: DependencyContainer!
     var reloadView : (() -> Void)?
     
-    init () {
-        self.container = appContainer
-        self.db = try! container.resolve() as Firestore
+    init (db: Firestore) {
+        self.db = db
     }
     func logout() {
             do {

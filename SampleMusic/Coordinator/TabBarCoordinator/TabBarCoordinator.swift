@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import Dip
 
 
-class TabBarCoordinator : Coordinator {
+class TabBarCoordinator : Coordinator,TabBarScreenProtocol {
+    var view: TabBarController
+    
     weak var parentCoordinator: MainCoordinator?
     
     var childCoordinators = [Coordinator]()
@@ -17,17 +20,20 @@ class TabBarCoordinator : Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.view = TabBarController(viewModel: try! appContainer.resolve(), sellerController: try! appContainer.resolve() , listController: try! appContainer.resolve())
     }
     
     func start() {
-        let vc = TabBarController()
-        vc.coordinator = self
-        self.navigationController.pushViewController(vc, animated: true)
-        childDidFinish(self)
+        view.coordinator = self
+        self.navigationController.pushViewController(view, animated: true)
     }
     
     func logout() {
 //        navigationController.popViewController(animated: <#T##Bool#>)
+        parentCoordinator?.childDidFinish(self)
+    }
+    
+    func finish() {
         parentCoordinator?.childDidFinish(self)
     }
 }

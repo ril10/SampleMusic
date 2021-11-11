@@ -16,18 +16,12 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    var mainScreen : MainScreenProtocol?
+    
     func start() {
-        let vc = RegistrationViewController()
-        vc.coordinator = self
-        //MainScreenViewController(viewModel: MainScreenViewModel() as! MainControllerImp)
-//        vc?.coordinator = self
-        mainScreen?.coordinator = self
-        self.childCoordinators = []
-//        self.navigationController.viewControllers = []
-        //self.childDidFinish(self)
-        self.navigationController.setNavigationBarHidden(true, animated: false)
-        self.navigationController.pushViewController(mainScreen?.view ?? vc, animated: true)
+        let child = MainScreenCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        self.childCoordinators.append(child)
+        child.start()
     }
     
     func logout() {
@@ -45,10 +39,10 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     }
     
     func mainTabController() {
-            let child = TabBarCoordinator(navigationController: navigationController)
-            child.parentCoordinator = self
-            childCoordinators.append(child)
-            child.start()
+        let child = TabBarCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start()
     }
     
     func userList() {
@@ -57,7 +51,7 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
         childCoordinators.append(child)
         child.start()
     }
-        
+    
     func addUserData(role: String,docId: String) {
         let child = AddUserDataCoordinator(navigationController: navigationController)
         child.parentCoordinator = self

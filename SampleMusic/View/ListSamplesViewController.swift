@@ -8,18 +8,14 @@
 import UIKit
 import Dip
 
-class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,ContainerImp {
-    var container: DependencyContainer!
-    
-        
-    var coordinator : MainCoordinatorImp?
+class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+
+    var coordinator : MainCoordinator?
     var drawView = ListSamplesDraw()
     var viewModel : ListSamplesImp!
     
-    init() {
-        self.container = appContainer
-        self.viewModel = try! container.resolve() as ListSamplesImp
-        self.coordinator = try! container.resolve() as MainCoordinatorImp
+    init(viewModel: ListSamplesImp) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     

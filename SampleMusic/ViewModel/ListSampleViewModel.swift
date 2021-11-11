@@ -10,14 +10,13 @@ import FirebaseFirestore
 import FirebaseAuth
 import Dip
 
-class ListSampleViewModel: ContainerImp, ListSamplesImp {
-    var container: DependencyContainer!
+class ListSampleViewModel: ListSamplesImp {
+
     var reloadTableView : (() -> Void)?
     var db : Firestore?
     var isLogout : ((Bool) -> Void)?
-    init () {
-        self.container = appContainer
-        self.db = try! container.resolve() as Firestore
+    init (db: Firestore) {
+        self.db = db
     }
     func logout() {
             do {
