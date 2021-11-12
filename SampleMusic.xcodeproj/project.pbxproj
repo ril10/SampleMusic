@@ -25,6 +25,8 @@
 		C3255876273AC4EE00248FD8 /* TabBarImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3255875273AC4EE00248FD8 /* TabBarImp.swift */; };
 		C3255878273C263200248FD8 /* ViewScreenProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3255877273C263200248FD8 /* ViewScreenProtocol.swift */; };
 		C325587E273D0C5800248FD8 /* MainScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325587D273D0C5800248FD8 /* MainScreenCoordinator.swift */; };
+		C3255880273EA1C900248FD8 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325587F273EA1C900248FD8 /* StartViewController.swift */; };
+		C3255882273EA21B00248FD8 /* StartViewDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3255881273EA21B00248FD8 /* StartViewDraw.swift */; };
 		C33CCA7B272BE47A00C7969E /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA7A272BE47A00C7969E /* DetailModel.swift */; };
 		C33CCA7D272C246600C7969E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA7C272C246600C7969E /* CustomTableViewCell.swift */; };
 		C33CCA80272C253200C7969E /* SampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA7F272C253200C7969E /* SampleModel.swift */; };
@@ -98,6 +100,8 @@
 		C3255875273AC4EE00248FD8 /* TabBarImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarImp.swift; sourceTree = "<group>"; };
 		C3255877273C263200248FD8 /* ViewScreenProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewScreenProtocol.swift; sourceTree = "<group>"; };
 		C325587D273D0C5800248FD8 /* MainScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCoordinator.swift; sourceTree = "<group>"; };
+		C325587F273EA1C900248FD8 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		C3255881273EA21B00248FD8 /* StartViewDraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewDraw.swift; sourceTree = "<group>"; };
 		C33CCA7A272BE47A00C7969E /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		C33CCA7C272C246600C7969E /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		C33CCA7F272C253200C7969E /* SampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleModel.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				C30150AA27312E3B00C85EF3 /* AddingDataDraw.swift */,
 				C30150AC27328E6300C85EF3 /* SellerDetailDraw.swift */,
 				C30150AE2732906600C85EF3 /* ListSamplesDraw.swift */,
+				C3255881273EA21B00248FD8 /* StartViewDraw.swift */,
 			);
 			path = "Drawing View";
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 				C366BE522729726200B3E182 /* SellerDetailViewController.swift */,
 				C366BE5427298E6900B3E182 /* AddingDataViewController.swift */,
 				C3255871273AA96500248FD8 /* TabBarController.swift */,
+				C325587F273EA1C900248FD8 /* StartViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -607,6 +613,7 @@
 			files = (
 				C30150A927312C4600C85EF3 /* RegistrationViewDraw.swift in Sources */,
 				C325586E273A9B7C00248FD8 /* MainCoordinatorImp.swift in Sources */,
+				C3255880273EA1C900248FD8 /* StartViewController.swift in Sources */,
 				C381567D2726A930008E83AC /* Coordinator.swift in Sources */,
 				C30150AB27312E3B00C85EF3 /* AddingDataDraw.swift in Sources */,
 				C379FED3273943B4004ECCB9 /* SellerImp.swift in Sources */,
@@ -633,6 +640,7 @@
 				C3255872273AA96500248FD8 /* TabBarController.swift in Sources */,
 				C366BE5527298E6900B3E182 /* AddingDataViewController.swift in Sources */,
 				C30150B72733CD7800C85EF3 /* ListSamplesCoordinator.swift in Sources */,
+				C3255882273EA21B00248FD8 /* StartViewDraw.swift in Sources */,
 				C379FEC927393FC5004ECCB9 /* MainControllerImp.swift in Sources */,
 				C381568627270783008E83AC /* RegistrationViewController.swift in Sources */,
 				C38156882728147A008E83AC /* MainScreenViewModel.swift in Sources */,

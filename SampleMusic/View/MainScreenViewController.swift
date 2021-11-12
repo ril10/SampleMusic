@@ -40,6 +40,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     @objc func registrationButtonAction(sender: UIButton!) {
         self.coordinator?.goToRegistrationPage()
+        self.textFieldShouldClear(drawView.loginTextField)
+        self.textFieldShouldClear(drawView.passwordTextField)
     }
     //MARK: - Alert
     func errorWithLogin(e: Error) {
@@ -71,14 +73,17 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         drawView.passwordTextField.endEditing(true)
         return false
     }
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        drawView.loginTextField.text?.removeAll()
+        drawView.passwordTextField.text?.removeAll()
+        return true
+    }
     //MARK: - View
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
-    
 
-    
     override func loadView() {
         super.loadView()
         
@@ -102,8 +107,12 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         
         viewModel.loadCompleteUser = { [weak self] load in
             if load {
-                self?.coordinator?.goToUser()
-        
+                self?.dismiss(animated: true, completion: {
+                    self?.coordinator?.finish()
+                    self?.coordinator?.goToUser()
+                    self?.textFieldShouldClear(self!.drawView.loginTextField)
+                    self?.textFieldShouldClear(self!.drawView.passwordTextField)
+                })
             }
         }
         viewModel.loadCompleteSeller = { [weak self] load in
@@ -111,6 +120,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
                 self?.dismiss(animated: true, completion: {
                     self?.coordinator?.finish()
                     self?.coordinator?.goToSeller()
+                    self?.textFieldShouldClear(self!.drawView.loginTextField)
+                    self?.textFieldShouldClear(self!.drawView.passwordTextField)
                 })
                 
             }

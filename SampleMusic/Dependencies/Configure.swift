@@ -16,30 +16,20 @@ extension DependencyContainer {
     static func configure() -> DependencyContainer {
         return DependencyContainer { container in
             unowned let container = container
-            _ = appContainer
-            _ = signContainer
-            _ = userContainer
         }
+    }
+    static func configureAll() {
+        _ = appContainer
+        _ = signContainer
+        _ = userContainer
     }
 }
 let appContainer = DependencyContainer { container in
     unowned let container = container
-    container.register(.unique) { Storage.storage() as Storage }
-    container.register(.unique) { Firestore.firestore() as Firestore }
-
+    container.register(.shared) { Storage.storage() as Storage }
+    container.register(.shared) { Firestore.firestore() as Firestore }
     container.register(.singleton) { UINavigationController() as UINavigationController }
-
-    container.register(.unique) {
-        MainCoordinator(
-            navigationController: try! container.resolve(),
-            mainView: try! container.resolve(),
-            registrationView: try! container.resolve(),
-            listView: try! container.resolve(),
-            tabBar: try! container.resolve(),
-            addingView: try! container.resolve() )
-    }
-    
-
+    container.register(.shared) { StartViewController() as StartViewProtocol }
 }
 
 let signContainer = DependencyContainer { container in
@@ -47,11 +37,11 @@ let signContainer = DependencyContainer { container in
     
     container.register(.unique) { AddUserDataCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     container.register(.unique) { RegistrationCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
-    container.register(.unique) { MainScreenCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
+    container.register(.shared) { MainScreenCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     
-    container.register(.unique) { MainScreenViewModel(db: try! appContainer.resolve()) as MainControllerImp }
-    container.register(.unique) { RegistrationViewModel(db: try! appContainer.resolve()) as RegistrationControllerImp }
-    container.register(.unique) { AddingDataAboutUserViewModel(db: try! appContainer.resolve(), st: try! appContainer.resolve()) as AddingDataImp }
+    container.register(.shared) { MainScreenViewModel(db: try! appContainer.resolve()) as MainControllerImp }
+    container.register(.shared) { RegistrationViewModel(db: try! appContainer.resolve()) as RegistrationControllerImp }
+    container.register(.shared) { AddingDataAboutUserViewModel(db: try! appContainer.resolve(), st: try! appContainer.resolve()) as AddingDataImp }
     
     container.register(.singleton) { MainScreenViewController(viewModel: try! container.resolve() as MainControllerImp) as MainScreenProtocol }
     container.register(.singleton) { RegistrationViewController(viewModel: try! container.resolve() as RegistrationControllerImp) as RegistrationScreenProtocol }
@@ -64,9 +54,9 @@ let userContainer = DependencyContainer { container in
     container.register(.unique) { ListSamplesCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     container.register(.unique) { TabBarCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     
-    container.register(.unique) { ListSampleViewModel(db: try! appContainer.resolve()) as ListSamplesImp }
-    container.register(.unique) { SellerDetailViewModel(db: try! appContainer.resolve()) as SellerImp }
-    container.register(.unique) { TabBarControllerViewModel(db: try! appContainer.resolve()) as TabBarImp }
+    container.register(.shared) { ListSampleViewModel(db: try! appContainer.resolve()) as ListSamplesImp }
+    container.register(.shared) { SellerDetailViewModel(db: try! appContainer.resolve()) as SellerImp }
+    container.register(.shared) { TabBarControllerViewModel(db: try! appContainer.resolve()) as TabBarImp }
     
     container.register(.singleton) { ListSamplesViewController(viewModel: try! container.resolve() as ListSamplesImp) as ListSamplesScreenProtocol }
     container.register(.singleton) { SellerDetailViewController(viewModel: try! container.resolve() as SellerImp) as SellerScreenProtocol }
@@ -77,4 +67,12 @@ let userContainer = DependencyContainer { container in
             listController: try! container.resolve() as ListSamplesScreenProtocol)
             as TabBarScreenProtocol
     }
+}
+
+func mainScreenViewController() -> MainScreenProtocol {
+    return try! signContainer.resolve()
+}
+
+func startViewController() -> StartViewProtocol {
+    return try! appContainer.resolve()
 }

@@ -22,7 +22,6 @@ class RegistrationCoordinator : Coordinator {
     }
     
     func start() {
-        
         view.coordinator = self
         self.navigationController.pushViewController(view, animated: true)
     }
@@ -30,7 +29,6 @@ class RegistrationCoordinator : Coordinator {
     func finish() {
         navigationController.popViewController(animated: true)
         parentCoordinator?.childDidFinish(self)
-        
     }
     
 }

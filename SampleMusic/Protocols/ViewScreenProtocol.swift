@@ -21,3 +21,5 @@ protocol AddingDataScreenProtocol: AddingDataViewController { }
 
 protocol TabBarScreenProtocol: TabBarController { }
 
+protocol StartViewProtocol: StartViewController {  }
+

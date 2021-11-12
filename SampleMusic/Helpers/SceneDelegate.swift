@@ -31,10 +31,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                           registrationView: try! signContainer.resolve(),
                                           listView: try! userContainer.resolve(),
                                           tabBar: try! userContainer.resolve(),
-                                          addingView: try! signContainer.resolve()
+                                          addingView: try! signContainer.resolve(),
+                                          startView: try! appContainer.resolve()
         )
         coordinator.start()
-        
+
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = navController
         window.makeKeyAndVisible()

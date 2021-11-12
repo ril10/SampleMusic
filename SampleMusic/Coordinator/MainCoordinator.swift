@@ -14,16 +14,23 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
-    init(navigationController: UINavigationController,mainView: MainScreenProtocol,registrationView: RegistrationScreenProtocol,listView: ListSamplesScreenProtocol,tabBar: TabBarScreenProtocol,
-         addingView: AddingDataScreenProtocol) {
+    init(navigationController: UINavigationController,
+         mainView: MainScreenProtocol,
+         registrationView: RegistrationScreenProtocol,
+         listView: ListSamplesScreenProtocol,
+         tabBar: TabBarScreenProtocol,
+         addingView: AddingDataScreenProtocol,
+         startView: StartViewProtocol) {
         self.navigationController = navigationController
         self.mainView = mainView
         self.registrationView = registrationView
         self.listView = listView
         self.tabBar = tabBar
         self.addingView = addingView
+        self.startView = startView
     }
     
+    var startView : StartViewProtocol
     var mainView : MainScreenProtocol
     var registrationView : RegistrationScreenProtocol
     var addingView : AddingDataScreenProtocol
@@ -31,17 +38,16 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     var tabBar : TabBarScreenProtocol
     
     func start() {
+        startView = try! appContainer.resolve() as StartViewProtocol
+        startView.coordinator = self
+        self.navigationController.pushViewController(startView, animated: true)
+    }
+    
+    func mainScreenView() {
         let child = try! signContainer.resolve() as MainScreenCoordinator
         child.parentCoordinator = self
         self.childCoordinators.append(child)
         child.start()
-    }
-    
-    func logout() {
-        self.navigationController.dismiss(animated: true) {
-            self.childCoordinators.removeAll()
-            self.start()
-        }
     }
     
     func registrationViewController() {

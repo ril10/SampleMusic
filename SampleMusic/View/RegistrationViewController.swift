@@ -67,7 +67,13 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     @objc func signInButton(sender: UIButton!) {
         coordinator?.finish()
-//        coordinator?.parentCoordinator?.start()
+        textFieldShouldClear(drawView.loginTextField)
+        textFieldShouldClear(drawView.passwordTextField)
+        drawView.radioUser.setImage(UIImage(systemName: Icons.radioOff.rawValue), for: .normal)
+        drawView.radioUser.tintColor = UIColor.white
+        drawView.radioSeller.tintColor = UIColor.white
+        drawView.radioSeller.setImage(UIImage(systemName: Icons.radioOff.rawValue), for: .normal)
+        
     }
     //MARK: - Alert
     func errorWithRegistration(e: Error) {
@@ -101,8 +107,18 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         return false
     }
 
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        drawView.loginTextField.text?.removeAll()
+        drawView.passwordTextField.text?.removeAll()
+        return true
+    }
     //MARK: - ViewLoad
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+        
     override func loadView() {
         super.loadView()
         
@@ -113,6 +129,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         drawView.radioSeller.addTarget(self, action: #selector(sellerSelected(sender:)), for: .touchUpInside)
         drawView.registerButton.addTarget(self, action: #selector(continueButton(sender:)), for: .touchUpInside)
         drawView.signInButton.addTarget(self, action: #selector(signInButton(sender:)), for: .touchUpInside)
+        
     }
     
     override func viewDidLoad() {

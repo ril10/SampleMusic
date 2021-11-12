@@ -9,10 +9,10 @@ import UIKit
 
 
 protocol MainCoordinatorImp {
+    func mainScreenView()
     func registrationViewController()
     func mainTabController()
     func userList()
     func addUserData(role: String,docId: String)
-    func logout()
     func tabBarFinish()
 }
