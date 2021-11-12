@@ -31,7 +31,7 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     var tabBar : TabBarScreenProtocol
     
     func start() {
-        let child = try! appContainer.resolve() as MainScreenCoordinator
+        let child = try! signContainer.resolve() as MainScreenCoordinator
         child.parentCoordinator = self
         self.childCoordinators.append(child)
         child.start()
@@ -45,28 +45,28 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     }
     
     func registrationViewController() {
-        let child = try! appContainer.resolve() as RegistrationCoordinator
+        let child = try! signContainer.resolve() as RegistrationCoordinator
         child.parentCoordinator = self
         self.childCoordinators.append(child)
         child.start()
     }
     
     func mainTabController() {
-        let child = try! appContainer.resolve() as TabBarCoordinator
+        let child = try! userContainer.resolve() as TabBarCoordinator
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()
     }
     
     func userList() {
-        let child = try! appContainer.resolve() as ListSamplesCoordinator
+        let child = try! userContainer.resolve() as ListSamplesCoordinator
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()
     }
     
     func addUserData(role: String,docId: String) {
-        let child = try! appContainer.resolve() as AddUserDataCoordinator
+        let child = try! userContainer.resolve() as AddUserDataCoordinator
         child.parentCoordinator = self
         child.docId = docId
         child.roleSet = role

@@ -27,11 +27,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navController = try! appContainer.resolve() as UINavigationController
 
         let coordinator = MainCoordinator(navigationController: navController,
-                                          mainView: try! appContainer.resolve(),
-                                          registrationView: try! appContainer.resolve(),
-                                          listView: try! appContainer.resolve(),
-                                          tabBar: try! appContainer.resolve(),
-                                          addingView: try! appContainer.resolve()
+                                          mainView: try! signContainer.resolve(),
+                                          registrationView: try! signContainer.resolve(),
+                                          listView: try! userContainer.resolve(),
+                                          tabBar: try! userContainer.resolve(),
+                                          addingView: try! signContainer.resolve()
         )
         coordinator.start()
         
