@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseStorage
+import Dip
 
 class MainCoordinator: Coordinator, MainCoordinatorImp {
     var childCoordinators = [Coordinator]()
@@ -30,7 +31,7 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     var tabBar : TabBarScreenProtocol
     
     func start() {
-        let child = MainScreenCoordinator(navigationController: navigationController, view: mainView)
+        let child = try! appContainer.resolve() as MainScreenCoordinator
         child.parentCoordinator = self
         self.childCoordinators.append(child)
         child.start()
@@ -44,28 +45,28 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     }
     
     func registrationViewController() {
-        let child = RegistrationCoordinator(navigationController: navigationController, view: registrationView)
+        let child = try! appContainer.resolve() as RegistrationCoordinator
         child.parentCoordinator = self
         self.childCoordinators.append(child)
         child.start()
     }
     
     func mainTabController() {
-        let child = TabBarCoordinator(navigationController: navigationController, view: tabBar)
+        let child = try! appContainer.resolve() as TabBarCoordinator
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()
     }
     
     func userList() {
-        let child = ListSamplesCoordinator(navigationController: navigationController, view: listView)
+        let child = try! appContainer.resolve() as ListSamplesCoordinator
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()
     }
     
     func addUserData(role: String,docId: String) {
-        let child = AddUserDataCoordinator(navigationController: navigationController, view: addingView)
+        let child = try! appContainer.resolve() as AddUserDataCoordinator
         child.parentCoordinator = self
         child.docId = docId
         child.roleSet = role

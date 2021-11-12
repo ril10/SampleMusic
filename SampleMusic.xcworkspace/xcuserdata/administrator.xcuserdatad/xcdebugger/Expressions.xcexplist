@@ -3,12 +3,29 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Coordinator.childDidFinish(_:):Coordinator.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainScreenCoordinator.goToRegistrationPage():MainScreenCoordinator.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.parentCoordinator">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainCoordinator.start():MainCoordinator.swift">
+      </ContextState>
+      <ContextState
          contextName = "AddingDataAboutUserViewModel.uploadImage(image:):AddingDataAboutUserViewModel.swift">
          <PersistentStrings>
             <PersistentString
                value = "userUid">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #3 in MainScreenViewController.viewDidLoad():MainScreenViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

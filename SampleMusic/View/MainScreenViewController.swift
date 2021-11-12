@@ -22,7 +22,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
 
     var viewModel : MainControllerImp!
     var drawView = MainScreenDraw()
-    var coordinator: MainCoordinator?
+    var coordinator: MainScreenCoordinator?
 
     //MARK: - ButtonAction
     @objc func signInAction(sender: UIButton!) {
@@ -39,7 +39,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func registrationButtonAction(sender: UIButton!) {
-        coordinator?.registrationViewController()
+        self.coordinator?.goToRegistrationPage()
     }
     //MARK: - Alert
     func errorWithLogin(e: Error) {
@@ -57,7 +57,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         alert.view.addSubview(loadingIndicator)
         viewModel.dismisAlert = { load in
             if load {
-                alert.dismiss(animated: true)
+                alert.dismiss(animated: false)
             }
         }
         NSLayoutConstraint.activate([
@@ -102,17 +102,17 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         
         viewModel.loadCompleteUser = { [weak self] load in
             if load {
-                self?.dismiss(animated: true, completion: {
-                    self?.coordinator?.userList()
-                })
+                self?.coordinator?.goToUser()
         
             }
         }
         viewModel.loadCompleteSeller = { [weak self] load in
             if load {
                 self?.dismiss(animated: true, completion: {
-                    self?.coordinator?.mainTabController()
+                    self?.coordinator?.finish()
+                    self?.coordinator?.goToSeller()
                 })
+                
             }
         }
         

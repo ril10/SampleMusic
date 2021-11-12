@@ -27,15 +27,13 @@ class SellerDetailViewModel: SellerImp {
     
     
     func userData() {
-        Auth.auth().addStateDidChangeListener { [weak self] auth, user in
-            if ((user) != nil) {
-                self?.db?.collection(Role.seller.rawValue.lowercased()).document(user!.uid).getDocument(completion: { (document, error) in
+        if let user = Auth.auth().currentUser {
+                self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in
                     if let data = document?.data() {
-                        self!.fetchData(data)
+                        self.fetchData(data)
                     }
                 })
             }
-        }
     }
     
     func fetchData(_ data: [String: Any]) {

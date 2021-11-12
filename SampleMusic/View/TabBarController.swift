@@ -63,9 +63,7 @@ class TabBarController: UITabBarController {
 
     @objc func logoutAction(sender: UIButton) {
         viewModel.logout()
-        coordinator?.finish()
-        coordinator?.parentCoordinator?.start()
-        
+        coordinator?.finish()        
     }
     
     @objc func editData(sender: UIButton) {

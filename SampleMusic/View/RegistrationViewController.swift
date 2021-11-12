@@ -67,7 +67,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     @objc func signInButton(sender: UIButton!) {
         coordinator?.finish()
-        coordinator?.parentCoordinator?.start()
+//        coordinator?.parentCoordinator?.start()
     }
     //MARK: - Alert
     func errorWithRegistration(e: Error) {
@@ -132,9 +132,6 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
-    }
-    deinit {
-        print("Registration Controller deinit")
     }
 }
 extension RegistrationViewController : RegistrationScreenProtocol {}

@@ -39,9 +39,8 @@ class MainScreenViewModel: MainControllerImp {
     }
     
     func userSign() {
-        Auth.auth().addStateDidChangeListener { [weak self] auth, user in
-            if ((user) != nil) {
-                self?.db?.collection(Role.user.rawValue.lowercased()).document(user!.uid).addSnapshotListener { [weak self] doc, error in
+            if let user = Auth.auth().currentUser {
+                self.db?.collection(Role.user.rawValue.lowercased()).document(user.uid).addSnapshotListener { [weak self] doc, error in
                     if let e = error {
                         self?.error?(e)
                     } else {
@@ -52,12 +51,10 @@ class MainScreenViewModel: MainControllerImp {
                     }
                 }
             }
-        }
     }
     func sellerSign() {
-        Auth.auth().addStateDidChangeListener { [weak self] auth, user in
-            if ((user) != nil) {
-                self?.db?.collection(Role.seller.rawValue.lowercased()).document(user!.uid).addSnapshotListener { [weak self] doc, error in
+        if let user = Auth.auth().currentUser {
+                self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).addSnapshotListener { [weak self] doc, error in
                     if let e = error {
                         self?.error?(e)
                     } else {
@@ -68,7 +65,6 @@ class MainScreenViewModel: MainControllerImp {
                     }
                 }
             }
-        }
     }
     
     func isUserSign() {

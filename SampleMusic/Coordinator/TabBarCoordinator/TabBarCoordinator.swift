@@ -20,7 +20,7 @@ class TabBarCoordinator : Coordinator {
     
     init(navigationController: UINavigationController,view: TabBarScreenProtocol) {
         self.navigationController = navigationController
-        self.view = view//TabBarController(viewModel: try! appContainer.resolve(), sellerController: try! appContainer.resolve() as SellerScreenProtocol , listController: try! appContainer.resolve() as ListSamplesScreenProtocol ) as TabBarScreenProtocol
+        self.view = view
     }
     
     func start() {
@@ -28,12 +28,8 @@ class TabBarCoordinator : Coordinator {
         self.navigationController.pushViewController(view, animated: true)
     }
     
-    func logout() {
-//        navigationController.popViewController(animated: <#T##Bool#>)
-        parentCoordinator?.childDidFinish(self)
-    }
-    
     func finish() {
+        navigationController.popViewController(animated: true)
         parentCoordinator?.childDidFinish(self)
     }
 }

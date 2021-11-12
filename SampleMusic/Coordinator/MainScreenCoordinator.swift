@@ -12,7 +12,7 @@ class MainScreenCoordinator : Coordinator {
     var view: MainScreenProtocol
     
     var childCoordinators = [Coordinator]()
-    weak var parentCoordinator : MainCoordinator?
+    var parentCoordinator : MainCoordinator?
     var navigationController: UINavigationController
 
     
@@ -22,13 +22,27 @@ class MainScreenCoordinator : Coordinator {
     }
 
     func start() {
-        view.coordinator = parentCoordinator
+        view.coordinator = self
         self.navigationController.pushViewController(view, animated: true)
     }
     
     func finish() {
+        navigationController.popViewController(animated: true)
         parentCoordinator?.childDidFinish(self)
     }
     
+    func goToRegistrationPage() {
+        self.parentCoordinator!.registrationViewController()
+        self.parentCoordinator?.childDidFinish(self)
+    }
     
+    func goToSeller() {
+        parentCoordinator?.mainTabController()
+        parentCoordinator?.childDidFinish(self)
+    }
+    
+    func goToUser() {
+        parentCoordinator?.userList()
+        parentCoordinator?.childDidFinish(self)
+    }
 }
