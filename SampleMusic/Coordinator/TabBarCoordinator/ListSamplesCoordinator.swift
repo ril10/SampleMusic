@@ -31,10 +31,10 @@ class ListSamplesCoordinator : Coordinator {
     }
     
     func finish() {
+        navigationController.popViewController(animated: true)
         navigationController.viewControllers.removeLast()
         parentCoordinator?.childDidFinish(self)
         parentCoordinator?.start()
-
     }
     
 }

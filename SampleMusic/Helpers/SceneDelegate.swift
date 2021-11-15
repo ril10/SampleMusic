@@ -32,9 +32,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                           listView: try! userContainer.resolve(),
                                           tabBar: try! userContainer.resolve(),
                                           addingView: try! signContainer.resolve(),
-                                          startView: try! appContainer.resolve()
+                                          startView: try! appContainer.resolve(),
+                                          uploadView: try! userContainer.resolve()
         )
-        coordinator.start()
+//        coordinator.start()
+        coordinator.uploadMusic()
 
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = navController

@@ -33,6 +33,6 @@ class TabBarCoordinator : Coordinator {
 //        navigationController.popViewController(animated: true)
         parentCoordinator?.childDidFinish(self)
         parentCoordinator?.start()
-
     }
+
 }

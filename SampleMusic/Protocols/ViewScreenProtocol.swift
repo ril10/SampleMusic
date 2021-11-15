@@ -21,5 +21,7 @@ protocol AddingDataScreenProtocol: AddingDataViewController { }
 
 protocol TabBarScreenProtocol: TabBarController { }
 
-protocol StartViewProtocol: StartViewController {  }
+protocol StartViewProtocol: StartViewController { }
+
+protocol UploadMusicProtocol: UploadMusicViewController { }
 

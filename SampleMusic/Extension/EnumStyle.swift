@@ -48,6 +48,7 @@ enum TextFieldLabel : String, CaseIterable {
     case enterLastName = "Enter your Last Name"
     case aboutSelf = "Type about your self"
     case allFields = "Fill all fields"
+    case sampleName = "Type sample name"
 }
 
 enum AlertTitle : String, CaseIterable {
@@ -66,6 +67,7 @@ enum TitleDetail : String, CaseIterable {
     case description = "Description:"
     case email = "Email:"
     case samples = "List of Samples"
+    case sampleName = "2.Type sample name:"
 }
 
 enum Icons : String, CaseIterable {

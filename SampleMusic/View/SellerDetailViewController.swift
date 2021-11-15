@@ -33,12 +33,13 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @objc func uploadMusic(sender: UIButton!) {
-        mediaPicker = MPMediaPickerController(mediaTypes: .music)
-        mediaPicker?.allowsPickingMultipleItems = false
-        mediaPicker?.delegate = self
-        if let controller = mediaPicker {
-            present(controller,animated: true,completion: nil)
-        }
+        coordinator?.uploadMusic()
+//        mediaPicker = MPMediaPickerController(mediaTypes: .music)
+//        mediaPicker?.allowsPickingMultipleItems = false
+//        mediaPicker?.delegate = self
+//        if let controller = mediaPicker {
+//            present(controller,animated: true,completion: nil)
+//        }
     }
     
     func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {

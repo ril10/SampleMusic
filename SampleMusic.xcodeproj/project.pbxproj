@@ -27,6 +27,10 @@
 		C325587E273D0C5800248FD8 /* MainScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325587D273D0C5800248FD8 /* MainScreenCoordinator.swift */; };
 		C3255880273EA1C900248FD8 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325587F273EA1C900248FD8 /* StartViewController.swift */; };
 		C3255882273EA21B00248FD8 /* StartViewDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3255881273EA21B00248FD8 /* StartViewDraw.swift */; };
+		C325588427427E7D00248FD8 /* UploadMusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325588327427E7D00248FD8 /* UploadMusicViewController.swift */; };
+		C325588627427EB400248FD8 /* UploadMusicDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325588527427EB400248FD8 /* UploadMusicDraw.swift */; };
+		C325588827427ED800248FD8 /* UploadMusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325588727427ED800248FD8 /* UploadMusicViewModel.swift */; };
+		C325588A2742801500248FD8 /* UploadMusicCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32558892742801500248FD8 /* UploadMusicCoordinator.swift */; };
 		C33CCA7B272BE47A00C7969E /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA7A272BE47A00C7969E /* DetailModel.swift */; };
 		C33CCA7D272C246600C7969E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA7C272C246600C7969E /* CustomTableViewCell.swift */; };
 		C33CCA80272C253200C7969E /* SampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA7F272C253200C7969E /* SampleModel.swift */; };
@@ -102,6 +106,10 @@
 		C325587D273D0C5800248FD8 /* MainScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenCoordinator.swift; sourceTree = "<group>"; };
 		C325587F273EA1C900248FD8 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		C3255881273EA21B00248FD8 /* StartViewDraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewDraw.swift; sourceTree = "<group>"; };
+		C325588327427E7D00248FD8 /* UploadMusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMusicViewController.swift; sourceTree = "<group>"; };
+		C325588527427EB400248FD8 /* UploadMusicDraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMusicDraw.swift; sourceTree = "<group>"; };
+		C325588727427ED800248FD8 /* UploadMusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMusicViewModel.swift; sourceTree = "<group>"; };
+		C32558892742801500248FD8 /* UploadMusicCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMusicCoordinator.swift; sourceTree = "<group>"; };
 		C33CCA7A272BE47A00C7969E /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		C33CCA7C272C246600C7969E /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		C33CCA7F272C253200C7969E /* SampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleModel.swift; sourceTree = "<group>"; };
@@ -201,6 +209,7 @@
 				C30150AC27328E6300C85EF3 /* SellerDetailDraw.swift */,
 				C30150AE2732906600C85EF3 /* ListSamplesDraw.swift */,
 				C3255881273EA21B00248FD8 /* StartViewDraw.swift */,
+				C325588527427EB400248FD8 /* UploadMusicDraw.swift */,
 			);
 			path = "Drawing View";
 			sourceTree = "<group>";
@@ -326,6 +335,7 @@
 				C366BE5427298E6900B3E182 /* AddingDataViewController.swift */,
 				C3255871273AA96500248FD8 /* TabBarController.swift */,
 				C325587F273EA1C900248FD8 /* StartViewController.swift */,
+				C325588327427E7D00248FD8 /* UploadMusicViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -339,6 +349,7 @@
 				C33CCA81272C3BC800C7969E /* SellerDetailViewModel.swift */,
 				C30150B02732A59F00C85EF3 /* ListSampleViewModel.swift */,
 				C3255873273AC46F00248FD8 /* TabBarControllerViewModel.swift */,
+				C325588727427ED800248FD8 /* UploadMusicViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -352,6 +363,7 @@
 				C381567E2726A962008E83AC /* MainCoordinator.swift */,
 				C3255869273A62D600248FD8 /* AddUserDataCoordinator.swift */,
 				C325587D273D0C5800248FD8 /* MainScreenCoordinator.swift */,
+				C32558892742801500248FD8 /* UploadMusicCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -616,11 +628,13 @@
 				C3255880273EA1C900248FD8 /* StartViewController.swift in Sources */,
 				C381567D2726A930008E83AC /* Coordinator.swift in Sources */,
 				C30150AB27312E3B00C85EF3 /* AddingDataDraw.swift in Sources */,
+				C325588827427ED800248FD8 /* UploadMusicViewModel.swift in Sources */,
 				C379FED3273943B4004ECCB9 /* SellerImp.swift in Sources */,
 				C33CCA80272C253200C7969E /* SampleModel.swift in Sources */,
 				C30150BD2733E07300C85EF3 /* TabBarCoordinator.swift in Sources */,
 				C3255878273C263200248FD8 /* ViewScreenProtocol.swift in Sources */,
 				C3255876273AC4EE00248FD8 /* TabBarImp.swift in Sources */,
+				C325588A2742801500248FD8 /* UploadMusicCoordinator.swift in Sources */,
 				C379FED127394390004ECCB9 /* AddingDataImp.swift in Sources */,
 				C381568A27281499008E83AC /* RegistrationViewModel.swift in Sources */,
 				C33CCA82272C3BC800C7969E /* SellerDetailViewModel.swift in Sources */,
@@ -636,6 +650,7 @@
 				C381568D27281B3F008E83AC /* Configure.swift in Sources */,
 				C366BE59272AEB5B00B3E182 /* EnumStyle.swift in Sources */,
 				C33CCA7D272C246600C7969E /* CustomTableViewCell.swift in Sources */,
+				C325588427427E7D00248FD8 /* UploadMusicViewController.swift in Sources */,
 				C38156842726F81B008E83AC /* Extension.swift in Sources */,
 				C3255872273AA96500248FD8 /* TabBarController.swift in Sources */,
 				C366BE5527298E6900B3E182 /* AddingDataViewController.swift in Sources */,
@@ -646,6 +661,7 @@
 				C38156882728147A008E83AC /* MainScreenViewModel.swift in Sources */,
 				C33CCA7B272BE47A00C7969E /* DetailModel.swift in Sources */,
 				C30150AD27328E6300C85EF3 /* SellerDetailDraw.swift in Sources */,
+				C325588627427EB400248FD8 /* UploadMusicDraw.swift in Sources */,
 				C3255868273A62BC00248FD8 /* RegistrationCoordinator.swift in Sources */,
 				C381567F2726A962008E83AC /* MainCoordinator.swift in Sources */,
 				C30150A727303C2400C85EF3 /* MainScreenDraw.swift in Sources */,

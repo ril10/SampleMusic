@@ -41,7 +41,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     //MARK: - ActionButton
     @objc func logoutAction(sender: UIButton!) {
         viewModel?.logout()
-        self.coordinator?.finish()
+        coordinator?.finish()
     }
     //MARK: - View
     
