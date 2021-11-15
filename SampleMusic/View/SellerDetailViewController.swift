@@ -7,12 +7,16 @@
 
 import UIKit
 import Dip
+import MediaPlayer
+import AVFoundation
 
-class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MPMediaPickerControllerDelegate {
 
     var coordinator : MainCoordinator?
     var drawView = SellerDetailDraw()
     var viewModel : SellerImp!
+    var mediaPicker : MPMediaPickerController?
+    var mediaItems = [MPMediaItem]()
     
     init(viewModel: SellerImp) {
         self.viewModel = viewModel
@@ -26,6 +30,20 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     //MARK: - ButtonAction
     @objc func editData(sender: UIButton!) {
         
+    }
+    
+    @objc func uploadMusic(sender: UIButton!) {
+        mediaPicker = MPMediaPickerController(mediaTypes: .music)
+        mediaPicker?.allowsPickingMultipleItems = false
+        mediaPicker?.delegate = self
+        if let controller = mediaPicker {
+            present(controller,animated: true,completion: nil)
+        }
+    }
+    
+    func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
+        mediaItems = mediaItemCollection.items
+        self.dismiss(animated: true, completion: nil)
     }
     
     //MARK: - TableView
@@ -60,6 +78,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
+        drawView.addButton.addTarget(self, action: #selector(uploadMusic(sender:)), for: .touchUpInside)
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
         viewModel?.reloadView = { [weak self] in

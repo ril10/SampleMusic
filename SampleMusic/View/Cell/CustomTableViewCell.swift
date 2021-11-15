@@ -57,6 +57,7 @@ class CustomTableViewCell: UITableViewCell {
         button.setImage(UIImage(systemName: Icons.play.rawValue,withConfiguration: largeConfig), for: .normal)
         button.tintColor = UIColor(named: Style.colorButton.rawValue)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(playMusic(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -80,6 +81,10 @@ class CustomTableViewCell: UITableViewCell {
     @objc func didSliderSlider(slider: UISlider!) {
         let value = slider.value
         
+    }
+    
+    @objc func playMusic(sender: UIButton!) {
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
         
     }
     
