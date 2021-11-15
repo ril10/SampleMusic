@@ -14,14 +14,12 @@ class ListSampleViewModel: ListSamplesImp {
 
     var reloadTableView : (() -> Void)?
     var db : Firestore?
-    var isLogout : ((Bool) -> Void)?
     init (db: Firestore) {
         self.db = db
     }
     func logout() {
             do {
                 try Auth.auth().signOut()
-                isLogout?(true)
             } catch let signOutError as NSError {
                 print(signOutError.localizedDescription)
             }

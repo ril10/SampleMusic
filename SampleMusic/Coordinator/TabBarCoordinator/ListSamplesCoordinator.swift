@@ -25,13 +25,16 @@ class ListSamplesCoordinator : Coordinator {
     }
     
     func start() {
-        view.coordinator = parentCoordinator
+        view.coordinator = self
         self.navigationController.setNavigationBarHidden(false, animated: true)
         self.navigationController.pushViewController(view, animated: true)
     }
     
     func finish() {
+        navigationController.viewControllers.removeLast()
         parentCoordinator?.childDidFinish(self)
+        parentCoordinator?.start()
+
     }
     
 }

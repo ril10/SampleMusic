@@ -9,6 +9,5 @@ import Foundation
 
 protocol ListSamplesImp {
     var reloadTableView : (() -> Void)? { get set }
-    var isLogout : ((Bool) -> Void)? { get set }
     func logout()
 }

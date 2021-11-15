@@ -33,15 +33,15 @@ class SellerDetailViewModel: SellerImp {
                 self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in
                     if let data = document?.data() {
                         let sellerData = DetailModel(data: data)
-                            self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender)
                         let imgRef = self.st?.reference(forURL: sellerData.imageUrl)
-                        imgRef?.getData(maxSize: 3 * 1024 * 1024, completion: { data, error in
+                        imgRef?.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
                             if let error = error {
                                 print(error.localizedDescription)
                             } else {
                                 self.image?(data!)
                             }
                         })
+                            self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender)
                     }
                 })
             }

@@ -10,7 +10,7 @@ import Dip
 
 class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         
-    var coordinator : MainCoordinator?
+    var coordinator : AddUserDataCoordinator?
     var viewModel : AddingDataImp?
     var drawView = AddingDataDraw()
 
@@ -82,7 +82,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         } else {
             loadAlertView()
             viewModel?.currentUser(firstName: drawView.firstNameTextField.text!, lastName: drawView.lastNameTextField.text!, description: drawView.descriptionTextField.text!)
-            viewModel?.uploadImage(image: (drawView.imageView.image?.pngData()!)!)
+            viewModel?.uploadImage(image: (drawView.imageView.image?.jpegData(compressionQuality: 0.25)!)!)
         }
     }
     //MARK: - Alert
@@ -136,12 +136,12 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         }
         viewModel?.navUser = { nav in
             if nav {
-                self.coordinator?.userList()
+                self.coordinator?.goToUser()
             }
         }
         viewModel?.navSeller = { nav in
             if nav {
-                self.coordinator?.mainTabController()
+                self.coordinator?.goToSeller()
             }
         }
         self.hideKeyboardWhenTappedAround()

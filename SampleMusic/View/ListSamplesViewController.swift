@@ -10,7 +10,7 @@ import Dip
 
 class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
-    var coordinator : MainCoordinator?
+    var coordinator : ListSamplesCoordinator?
     var drawView = ListSamplesDraw()
     var viewModel : ListSamplesImp!
     
@@ -41,12 +41,18 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     //MARK: - ActionButton
     @objc func logoutAction(sender: UIButton!) {
         viewModel?.logout()
+        self.coordinator?.finish()
     }
     //MARK: - View
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     override func loadView() {
         super.loadView()
-//        configureNavBar()
+        configureNavBar()
         view = UIView()
         view.backgroundColor = .white
         drawView.viewCompare(view: view)
@@ -60,11 +66,6 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         viewModel?.reloadTableView = { [weak self] in
             DispatchQueue.main.async {
                 self?.drawView.sampleTable.reloadData()
-            }
-        }
-        viewModel?.isLogout = { [weak self] log in
-            if log {
-//                self?.coordinator?.logout()
             }
         }
     }

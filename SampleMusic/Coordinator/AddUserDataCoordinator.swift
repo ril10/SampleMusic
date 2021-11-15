@@ -28,12 +28,24 @@ class AddUserDataCoordinator : Coordinator {
     func start() {
         view.viewModel?.docId = self.docId
         view.viewModel?.roleSet = self.roleSet
-        view.coordinator = parentCoordinator
+        view.coordinator = self
         self.navigationController.setNavigationBarHidden(true, animated: false)
         self.navigationController.pushViewController(view, animated: true)
     }
 
     func finish() {
         self.parentCoordinator?.childDidFinish(self)
+    }
+    
+    func goToSeller() {
+        navigationController.viewControllers.removeLast()
+        self.parentCoordinator?.childDidFinish(self)
+        self.parentCoordinator?.mainTabController()
+    }
+    
+    func goToUser() {
+        navigationController.viewControllers.removeLast()
+        self.parentCoordinator?.childDidFinish(self)
+        self.parentCoordinator?.userList()
     }
 }

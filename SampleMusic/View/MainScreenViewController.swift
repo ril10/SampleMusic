@@ -129,6 +129,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         viewModel.isUserSign()
         self.hideKeyboardWhenTappedAround()
     }
+    
 }
 
 extension MainScreenViewController : MainScreenProtocol {}

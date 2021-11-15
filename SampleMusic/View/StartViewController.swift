@@ -16,10 +16,12 @@ class StartViewController: UIViewController {
     
     //MARK: - ActionButton
     @objc func signUpButton(sender: UIButton!) {
+        coordinator?.finish()
         coordinator?.registrationViewController()
     }
     
     @objc func signInButton(sender: UIButton!) {
+        coordinator?.finish()
         coordinator?.mainScreenView()
     }
     

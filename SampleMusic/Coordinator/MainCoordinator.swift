@@ -72,7 +72,7 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     }
     
     func addUserData(role: String,docId: String) {
-        let child = try! userContainer.resolve() as AddUserDataCoordinator
+        let child = try! signContainer.resolve() as AddUserDataCoordinator
         child.parentCoordinator = self
         child.docId = docId
         child.roleSet = role
@@ -80,8 +80,8 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
         child.start()
     }
     
-    func tabBarFinish() {
-        navigationController.viewControllers = []
+    func finish() {
+        childDidFinish(self)
     }
     
 }
