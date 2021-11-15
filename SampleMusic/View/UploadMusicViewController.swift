@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Dip
 
 class UploadMusicViewController : UIViewController {
     

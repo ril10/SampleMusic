@@ -35,8 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                           startView: try! appContainer.resolve(),
                                           uploadView: try! userContainer.resolve()
         )
-//        coordinator.start()
-        coordinator.uploadMusic()
+        coordinator.start()
 
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = navController

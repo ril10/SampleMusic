@@ -12,7 +12,7 @@ import AVFoundation
 
 class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MPMediaPickerControllerDelegate {
 
-    var coordinator : MainCoordinator?
+    var coordinator : UploadMusicCoordinator?
     var drawView = SellerDetailDraw()
     var viewModel : SellerImp!
     var mediaPicker : MPMediaPickerController?
@@ -32,15 +32,12 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
-    @objc func uploadMusic(sender: UIButton!) {
-        coordinator?.uploadMusic()
 //        mediaPicker = MPMediaPickerController(mediaTypes: .music)
 //        mediaPicker?.allowsPickingMultipleItems = false
 //        mediaPicker?.delegate = self
 //        if let controller = mediaPicker {
 //            present(controller,animated: true,completion: nil)
 //        }
-    }
     
     func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
         mediaItems = mediaItemCollection.items
@@ -79,7 +76,6 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
-        drawView.addButton.addTarget(self, action: #selector(uploadMusic(sender:)), for: .touchUpInside)
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
         viewModel?.reloadView = { [weak self] in

@@ -39,6 +39,11 @@ class TabBarController: UITabBarController {
                 self?.view.setNeedsDisplay()
             }
         }
+        sellerController.drawView.addButton.addTarget(self, action: #selector(upload(sender:)), for: .touchUpInside)
+    }
+    
+    @objc func upload(sender: UIButton) {
+        coordinator?.parentCoordinator?.uploadMusic()
     }
     
     private func createNavController(for rootViewController: UIViewController,title: String, image: UIImage) -> UIViewController {

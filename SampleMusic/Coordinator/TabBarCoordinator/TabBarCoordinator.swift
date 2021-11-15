@@ -34,5 +34,10 @@ class TabBarCoordinator : Coordinator {
         parentCoordinator?.childDidFinish(self)
         parentCoordinator?.start()
     }
+    
+    func upload() {
+        parentCoordinator?.childDidFinish(self)
+        parentCoordinator?.uploadMusic()
+    }
 
 }
