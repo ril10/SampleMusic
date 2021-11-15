@@ -52,7 +52,6 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     override func loadView() {
         super.loadView()
-//        configureNavBar()
         view = UIView()
         view.backgroundColor = .white
         drawView.viewCompare(view: view)

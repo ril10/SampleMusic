@@ -74,8 +74,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        drawView.loginTextField.text?.removeAll()
-        drawView.passwordTextField.text?.removeAll()
+        textField.text?.removeAll()
         return true
     }
     //MARK: - View

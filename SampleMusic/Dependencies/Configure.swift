@@ -55,7 +55,7 @@ let userContainer = DependencyContainer { container in
     container.register(.unique) { TabBarCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     
     container.register(.shared) { ListSampleViewModel(db: try! appContainer.resolve()) as ListSamplesImp }
-    container.register(.shared) { SellerDetailViewModel(db: try! appContainer.resolve()) as SellerImp }
+    container.register(.shared) { SellerDetailViewModel(db: try! appContainer.resolve(),st: try! appContainer.resolve()) as SellerImp }
     container.register(.shared) { TabBarControllerViewModel(db: try! appContainer.resolve()) as TabBarImp }
     
     container.register(.singleton) { ListSamplesViewController(viewModel: try! container.resolve() as ListSamplesImp) as ListSamplesScreenProtocol }
@@ -67,12 +67,4 @@ let userContainer = DependencyContainer { container in
             listController: try! container.resolve() as ListSamplesScreenProtocol)
             as TabBarScreenProtocol
     }
-}
-
-func mainScreenViewController() -> MainScreenProtocol {
-    return try! signContainer.resolve()
-}
-
-func startViewController() -> StartViewProtocol {
-    return try! appContainer.resolve()
 }

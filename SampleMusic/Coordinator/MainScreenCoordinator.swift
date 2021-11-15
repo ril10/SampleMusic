@@ -27,7 +27,6 @@ class MainScreenCoordinator : Coordinator {
     }
     
     func finish() {
-        navigationController.popViewController(animated: true)
         parentCoordinator?.childDidFinish(self)
     }
     

@@ -109,7 +109,7 @@ class SellerDetailDraw: UIView {
     var imageView: UIImageView = {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
         image.image = UIImage(systemName: Icons.photo.rawValue)
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleToFill
         image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
         image.layer.borderWidth = 3.0
         image.layer.masksToBounds = false
