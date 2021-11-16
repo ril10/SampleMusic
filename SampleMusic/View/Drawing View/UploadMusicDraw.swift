@@ -131,10 +131,9 @@ class UploadMusicDraw : UIView {
         return button
     }()
     
-    var mediaPicker: MPMediaPickerController? = {
-        var media = MPMediaPickerController(mediaTypes: .music)
-        media.allowsPickingMultipleItems = false
-        return media
+    var mediaPicker: UIDocumentPickerViewController = {
+        var picker = UIDocumentPickerViewController(documentTypes: ["com.apple.iwork.pages.pages", "com.apple.iwork.numbers.numbers", "com.apple.iwork.keynote.key","public.image", "com.apple.application", "public.item","public.data", "public.content", "public.audiovisual-content", "public.movie", "public.audiovisual-content", "public.video", "public.audio", "public.text", "public.data", "public.zip-archive", "com.pkware.zip-archive", "public.composite-content", "public.text"], in: .import)
+        return picker
     }()
     
     //MARK: - BottomView

@@ -7,15 +7,14 @@
 
 import UIKit
 import Dip
-import MediaPlayer
+import MobileCoreServices
 import AVFoundation
 
-class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,MPMediaPickerControllerDelegate {
+class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIDocumentPickerDelegate {
     
     var viewModel : UploadMusicImp?
     var drawView = UploadMusicDraw()
     var coordinator : MainCoordinator?
-    var mediaItems = [MPMediaItem]()
     
     init(viewModel: UploadMusicImp) {
         self.viewModel = viewModel
@@ -33,9 +32,14 @@ class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePi
         self.dismiss(animated: true, completion: nil)
     }
     //MARK: - MediaPicker
-    func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
-        mediaItems = mediaItemCollection.items
-        self.dismiss(animated: true, completion: nil)
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        drawView.mediaPicker.modalPresentationStyle = .formSheet
+        let url = urls.first
+        if let u = url?.path {
+            if let audioUrl = URL(string: "file://" + u) {
+                viewModel?.uploadSample(sample: audioUrl, text: drawView.sampleTextField.text!)
+            }
+        }
     }
     //MARK: - ActionButton
     @objc func addImage(sender: UIButton!) {
@@ -47,9 +51,11 @@ class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePi
     }
     
     @objc func addMusic(sender: UIButton!) {
-        if let controller = drawView.mediaPicker {
-            present(controller,animated: true,completion: nil)
-        }
+        self.present(drawView.mediaPicker, animated: true, completion: nil)
+    }
+    
+    @objc func addInformation(sender: UIButton!) {
+        viewModel!.uploadSampleImage(image: (drawView.imageView.image?.jpegData(compressionQuality: 0.25)!)!, text: drawView.sampleTextField.text!)
     }
     //MARK: - UITextFieldDelegate
     
@@ -64,12 +70,13 @@ class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePi
     override func viewDidLoad() {
         super.viewDidLoad()
         drawView.imagePicker.delegate = self
-        drawView.mediaPicker?.delegate = self
+        drawView.mediaPicker.delegate = self
         viewModel?.reloadView = { [weak self] in
             self?.view.setNeedsDisplay()
         }
         drawView.buttonAddImage.addTarget(self, action: #selector(addImage(sender:)), for: .touchUpInside)
         drawView.buttonAddMusic.addTarget(self, action: #selector(addMusic(sender:)), for: .touchUpInside)
+        drawView.buttonAddInformation.addTarget(self, action: #selector(addInformation(sender:)), for: .touchUpInside)
         self.hideKeyboardWhenTappedAround()
     }
     

@@ -15,7 +15,8 @@ protocol UploadMusicImp {
     var db: Firestore! { get set }
     var st: Storage! { get set }
     var reloadView : (() -> Void)? { get set }
-    
+    func uploadSample(sample: URL,text: String)
+    func uploadSampleImage(image: Data,text: String)
     
     
 }
