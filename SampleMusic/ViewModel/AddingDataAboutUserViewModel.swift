@@ -70,6 +70,7 @@ class AddingDataAboutUserViewModel: AddingDataImp {
             if self.roleSet == "seller" {
                 self.loading?(true)
                 self.navSeller?(true)
+                self.createSampleCollection()
             } else {
                 self.loading?(true)
                 self.navUser?(true)
@@ -90,6 +91,12 @@ class AddingDataAboutUserViewModel: AddingDataImp {
                 }
             }
         }
+    }
+    
+    func createSampleCollection() {
+        self.db?.collection(Role.sample.rawValue.lowercased()).document((Auth.auth().currentUser?.uid)!).setData([
+            "uid":Auth.auth().currentUser?.uid as Any
+        ])
     }
     
     func genderSet(gender: String) {

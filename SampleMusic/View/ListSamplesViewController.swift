@@ -68,6 +68,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
                 self?.drawView.sampleTable.reloadData()
             }
         }
+        viewModel.getSamplesData()
     }
     
     //MARK: - Config NavBar

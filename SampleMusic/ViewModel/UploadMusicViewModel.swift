@@ -24,6 +24,7 @@ class UploadMusicViewModel: UploadMusicImp {
     }
     
     
+    
     func uploadSampleImage(image: Data,text: String) {
         let uploadTask = st?.reference().child("imageSamples/\(text).jpg").putData(image, metadata: nil) { _, error in
             guard error == nil else {
@@ -39,8 +40,8 @@ class UploadMusicViewModel: UploadMusicImp {
                     if let error = error {
                         print(error)
                     } else {
-                        self.db?.collection(Role.seller.rawValue.lowercased()).document((Auth.auth().currentUser?.uid)!).updateData([
-                            "sampleImageUrl":FieldValue.arrayUnion([url?.absoluteString as Any])
+                        self.db?.collection(Role.sample.rawValue.lowercased()).document((Auth.auth().currentUser?.uid)!).updateData([
+                            "sampleImageUrl":FieldValue.arrayUnion([url?.absoluteString as Any]),
                         ])
                     }
 
@@ -63,6 +64,12 @@ class UploadMusicViewModel: UploadMusicImp {
         }
     }
     
+    func addSampleName(text: String) {
+        self.db?.collection(Role.sample.rawValue.lowercased()).document((Auth.auth().currentUser?.uid)!).updateData([
+            "sampleName":FieldValue.arrayUnion([text as Any])
+        ])
+    }
+    
     func uploadSample(sample: URL,text: String) {
         let uploadTask = st?.reference().child("musicSamples/\(text).mp3").putFile(from: sample)
         
@@ -73,12 +80,13 @@ class UploadMusicViewModel: UploadMusicImp {
                     if let error = error {
                         print(error)
                     } else {
-                        self.db?.collection(Role.seller.rawValue.lowercased()).document((Auth.auth().currentUser?.uid)!).updateData([
+                        self.db?.collection(Role.sample.rawValue.lowercased()).document((Auth.auth().currentUser?.uid)!).updateData([
                             "sampleUrl":FieldValue.arrayUnion([url?.absoluteString as Any])
                         ])
+                        self.loading?(true)
                     }
                 }
-            self.loading?(true)
+
         }
         
         uploadTask?.observe(.failure) { snapshot in

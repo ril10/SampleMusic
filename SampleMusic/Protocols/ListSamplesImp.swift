@@ -10,4 +10,5 @@ import Foundation
 protocol ListSamplesImp {
     var reloadTableView : (() -> Void)? { get set }
     func logout()
+    func getSamplesData()
 }

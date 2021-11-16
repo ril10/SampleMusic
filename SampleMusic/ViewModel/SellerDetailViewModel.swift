@@ -26,6 +26,8 @@ class SellerDetailViewModel: SellerImp {
     }
     
     
+    
+    
     func userData() {
         if let user = Auth.auth().currentUser {
                 self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in

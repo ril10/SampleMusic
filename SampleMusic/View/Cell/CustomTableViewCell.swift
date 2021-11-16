@@ -10,10 +10,10 @@ import UIKit
 class CustomTableViewCell: UITableViewCell {
     
     
-    var sampleCell : SampleModel? {
+    var sampleCell : DataCellModel? {
         didSet {
-            imageUser.image = sampleCell?.userImage
-            labelSample.text = sampleCell?.sampleLabel
+            imageUser.image = sampleCell?.imageSample
+            labelSample.text = sampleCell?.sampleName
         }
     }
     

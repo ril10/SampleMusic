@@ -24,6 +24,7 @@ enum Gender : String, CaseIterable {
 enum Role : String, CaseIterable {
     case user = "User"
     case seller = "Seller"
+    case sample = "Sample"
     case chooseRole = "Choose your role*"
 }
 
