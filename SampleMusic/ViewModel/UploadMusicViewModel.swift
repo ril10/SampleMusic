@@ -6,9 +6,21 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseAuth
+import FirebaseStorage
+import Dip
 
-
-class UploadMusicViewModel {
+class UploadMusicViewModel: UploadMusicImp {
+    
+    var db: Firestore!
+    var st: Storage!
+    var reloadView : (() -> Void)?
+    
+    init(db: Firestore,st: Storage) {
+        self.db = db
+        self.st = st
+    }
     
     
     

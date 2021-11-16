@@ -32,18 +32,6 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         
     }
     
-//        mediaPicker = MPMediaPickerController(mediaTypes: .music)
-//        mediaPicker?.allowsPickingMultipleItems = false
-//        mediaPicker?.delegate = self
-//        if let controller = mediaPicker {
-//            present(controller,animated: true,completion: nil)
-//        }
-    
-    func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
-        mediaItems = mediaItemCollection.items
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10

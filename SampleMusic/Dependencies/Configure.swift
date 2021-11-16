@@ -58,8 +58,9 @@ let userContainer = DependencyContainer { container in
     container.register(.shared) { ListSampleViewModel(db: try! appContainer.resolve()) as ListSamplesImp }
     container.register(.shared) { SellerDetailViewModel(db: try! appContainer.resolve(),st: try! appContainer.resolve()) as SellerImp }
     container.register(.shared) { TabBarControllerViewModel(db: try! appContainer.resolve()) as TabBarImp }
+    container.register(.shared) { UploadMusicViewModel(db: try! appContainer.resolve(), st: try! appContainer.resolve()) as UploadMusicImp }
     
-    container.register(.shared) { UploadMusicViewController() as UploadMusicProtocol }
+    container.register(.singleton) { UploadMusicViewController(viewModel: try! container.resolve() as UploadMusicImp) as UploadMusicProtocol }
     container.register(.singleton) { ListSamplesViewController(viewModel: try! container.resolve() as ListSamplesImp) as ListSamplesScreenProtocol }
     container.register(.singleton) { SellerDetailViewController(viewModel: try! container.resolve() as SellerImp) as SellerScreenProtocol }
     container.register(.singleton) {

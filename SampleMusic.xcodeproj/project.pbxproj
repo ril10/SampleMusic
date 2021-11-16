@@ -17,6 +17,7 @@
 		C30150B12732A59F00C85EF3 /* ListSampleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30150B02732A59F00C85EF3 /* ListSampleViewModel.swift */; };
 		C30150B72733CD7800C85EF3 /* ListSamplesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30150B62733CD7800C85EF3 /* ListSamplesCoordinator.swift */; };
 		C30150BD2733E07300C85EF3 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30150BC2733E07300C85EF3 /* TabBarCoordinator.swift */; };
+		C310E2F627439D0000C47625 /* UploadMusicImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310E2F527439D0000C47625 /* UploadMusicImp.swift */; };
 		C3255868273A62BC00248FD8 /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3255867273A62BC00248FD8 /* RegistrationCoordinator.swift */; };
 		C325586A273A62D600248FD8 /* AddUserDataCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3255869273A62D600248FD8 /* AddUserDataCoordinator.swift */; };
 		C325586E273A9B7C00248FD8 /* MainCoordinatorImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325586D273A9B7C00248FD8 /* MainCoordinatorImp.swift */; };
@@ -96,6 +97,7 @@
 		C30150B02732A59F00C85EF3 /* ListSampleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSampleViewModel.swift; sourceTree = "<group>"; };
 		C30150B62733CD7800C85EF3 /* ListSamplesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSamplesCoordinator.swift; sourceTree = "<group>"; };
 		C30150BC2733E07300C85EF3 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		C310E2F527439D0000C47625 /* UploadMusicImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMusicImp.swift; sourceTree = "<group>"; };
 		C3255867273A62BC00248FD8 /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
 		C3255869273A62D600248FD8 /* AddUserDataCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserDataCoordinator.swift; sourceTree = "<group>"; };
 		C325586D273A9B7C00248FD8 /* MainCoordinatorImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorImp.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				C325586D273A9B7C00248FD8 /* MainCoordinatorImp.swift */,
 				C3255875273AC4EE00248FD8 /* TabBarImp.swift */,
 				C3255877273C263200248FD8 /* ViewScreenProtocol.swift */,
+				C310E2F527439D0000C47625 /* UploadMusicImp.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				C30150A927312C4600C85EF3 /* RegistrationViewDraw.swift in Sources */,
 				C325586E273A9B7C00248FD8 /* MainCoordinatorImp.swift in Sources */,
 				C3255880273EA1C900248FD8 /* StartViewController.swift in Sources */,
+				C310E2F627439D0000C47625 /* UploadMusicImp.swift in Sources */,
 				C381567D2726A930008E83AC /* Coordinator.swift in Sources */,
 				C30150AB27312E3B00C85EF3 /* AddingDataDraw.swift in Sources */,
 				C325588827427ED800248FD8 /* UploadMusicViewModel.swift in Sources */,

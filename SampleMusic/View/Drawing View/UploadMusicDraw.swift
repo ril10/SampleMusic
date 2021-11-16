@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 
 class UploadMusicDraw : UIView {
@@ -21,15 +22,6 @@ class UploadMusicDraw : UIView {
     
     lazy var middleStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [sampleNameLabel,sampleTextField])
-        stackView.alignment = .leading
-        stackView.distribution = .fill
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    lazy var musicStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [uploadLabel,buttonAddMusic])
         stackView.alignment = .leading
         stackView.distribution = .fill
         stackView.axis = .vertical
@@ -114,12 +106,7 @@ class UploadMusicDraw : UIView {
         textField.underLine()
         return textField
     }()
-    
-    var buttonAddInformation: UIButton = {
-        let button = UIButton()
-        button.coraleButton(title: Titles.add.rawValue)
-        return button
-    }()
+
     
     var uploadLabel: UILabel = {
         let label = UILabel()
@@ -144,6 +131,20 @@ class UploadMusicDraw : UIView {
         return button
     }()
     
+    var mediaPicker: MPMediaPickerController? = {
+        var media = MPMediaPickerController(mediaTypes: .music)
+        media.allowsPickingMultipleItems = false
+        return media
+    }()
+    
+    //MARK: - BottomView
+    
+    var buttonAddInformation: UIButton = {
+        let button = UIButton()
+        button.coraleButton(title: Titles.add.rawValue)
+        return button
+    }()
+    
     //MARK: - Constraints
     func viewCompare(view: UIView) {
         view.addSubview(stackView)
@@ -151,8 +152,9 @@ class UploadMusicDraw : UIView {
         topView.addSubview(imageView)
         topView.addSubview(buttonAddImage)
         middleView.addSubview(middleStackView)
-        middleView.addSubview(buttonAddInformation)
-        middleView.addSubview(musicStackView)
+        bottomView.addSubview(buttonAddInformation)
+        middleView.addSubview(uploadLabel)
+        middleView.addSubview(buttonAddMusic)
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -179,14 +181,18 @@ class UploadMusicDraw : UIView {
         
         NSLayoutConstraint.activate([
             middleStackView.topAnchor.constraint(equalTo: middleView.topAnchor),
-            middleStackView.bottomAnchor.constraint(equalTo: musicStackView.topAnchor,constant: -15),
             middleStackView.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 20),
-        
-            musicStackView.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 20),
-            musicStackView.trailingAnchor.constraint(equalTo: middleView.trailingAnchor),
-            musicStackView.bottomAnchor.constraint(equalTo: buttonAddInformation.topAnchor,constant: -30),
             
-            buttonAddInformation.bottomAnchor.constraint(equalTo: middleView.bottomAnchor),
+            uploadLabel.topAnchor.constraint(equalTo: middleStackView.bottomAnchor,constant: 15),
+            uploadLabel.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 20),
+            
+            buttonAddMusic.topAnchor.constraint(equalTo: uploadLabel.bottomAnchor),
+            buttonAddMusic.centerXAnchor.constraint(equalTo: middleView.centerXAnchor),
+            buttonAddMusic.bottomAnchor.constraint(equalTo: middleView.bottomAnchor),
+
+            
+            buttonAddInformation.topAnchor.constraint(equalTo: bottomView.topAnchor,constant: 50),
+            buttonAddInformation.heightAnchor.constraint(equalToConstant: 50),
             buttonAddInformation.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 20),
             buttonAddInformation.trailingAnchor.constraint(equalTo: middleView.trailingAnchor,constant: -20),
             
