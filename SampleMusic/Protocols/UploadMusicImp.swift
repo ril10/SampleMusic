@@ -17,6 +17,7 @@ protocol UploadMusicImp {
     var reloadView : (() -> Void)? { get set }
     func uploadSample(sample: URL,text: String)
     func uploadSampleImage(image: Data,text: String)
+    var loading : ((Bool) -> Void)? { get set }
     
     
 }

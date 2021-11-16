@@ -14,7 +14,7 @@ class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePi
     
     var viewModel : UploadMusicImp?
     var drawView = UploadMusicDraw()
-    var coordinator : MainCoordinator?
+    var coordinator : UploadMusicCoordinator?
     
     init(viewModel: UploadMusicImp) {
         self.viewModel = viewModel
@@ -37,7 +37,11 @@ class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePi
         let url = urls.first
         if let u = url?.path {
             if let audioUrl = URL(string: "file://" + u) {
-                viewModel?.uploadSample(sample: audioUrl, text: drawView.sampleTextField.text!)
+                if url == nil {
+                    errorWithFields()
+                } else {
+                    viewModel?.uploadSample(sample: audioUrl, text: drawView.sampleTextField.text!)
+                }
             }
         }
     }
@@ -55,10 +59,51 @@ class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePi
     }
     
     @objc func addInformation(sender: UIButton!) {
-        viewModel!.uploadSampleImage(image: (drawView.imageView.image?.jpegData(compressionQuality: 0.25)!)!, text: drawView.sampleTextField.text!)
+        if drawView.sampleTextField.text!.isEmpty || drawView.imageView.image == nil {
+            errorWithFields()
+        } else {
+            loadAlertView()
+            viewModel!.uploadSampleImage(image: (drawView.imageView.image?.jpegData(compressionQuality: 0.25)!)!, text: drawView.sampleTextField.text!)
+            
+        }
     }
-    //MARK: - UITextFieldDelegate
+    //MARK: - Alert
+    func errorWithFields() {
+        let alert = UIAlertController(title: AlertTitle.errorAddingData.rawValue, message: TextFieldLabel.allFields.rawValue, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Titles.ok.rawValue, style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
+    func loadAlertView() {
+        let alert = UIAlertController(title: AlertTitle.loading.rawValue, message: AlertTitle.wait.rawValue, preferredStyle: .alert)
+        alert.view.tintColor = UIColor.black
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
+        loadingIndicator.style = UIActivityIndicatorView.Style.large
+        loadingIndicator.startAnimating();
+        viewModel?.loading = { load in
+            if load {
+                loadingIndicator.stopAnimating()
+                loadingIndicator.hidesWhenStopped = true
+                self.dismiss(animated: true, completion: nil)
+                self.coordinator?.finish()
+                self.textFieldShouldClear(self.drawView.sampleTextField)
+                self.drawView.imageView.image = UIImage(systemName: Icons.photo.rawValue)
+                
+            }
+        }
+        alert.view.addSubview(loadingIndicator)
+        NSLayoutConstraint.activate([
+            loadingIndicator.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor),
+        ])
+        self.present(alert, animated: true)
+    }
+    
+
+    //MARK: - UITextFieldDelegate
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        textField.text?.removeAll()
+        return true
+    }
     //MARK: - View
     override func loadView() {
         super.loadView()

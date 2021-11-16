@@ -38,7 +38,7 @@ class MainScreenCoordinator : Coordinator {
     }
     
     func goToSeller() {
-        navigationController.viewControllers.removeLast()
+//        navigationController.viewControllers.removeLast()
         parentCoordinator?.mainTabController()
         parentCoordinator?.childDidFinish(self)
     }

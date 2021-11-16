@@ -10,13 +10,11 @@ import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
 import Dip
-import RxSwift
-import RxCocoa
+
 
 
 class SellerDetailViewModel: SellerImp {
 
-    var disposeBag : DisposeBag!
     var reloadView : (() -> Void)?
     var db : Firestore?
     var st : Storage?

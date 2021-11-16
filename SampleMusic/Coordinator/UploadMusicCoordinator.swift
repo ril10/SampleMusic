@@ -23,12 +23,12 @@ class UploadMusicCoordinator : Coordinator {
     }
     
     func start() {
-        view.coordinator = parentCoordiantor
+        view.coordinator = self
         self.navigationController.present(view, animated: true, completion: nil)
     }
     
     func finish() {
-        navigationController.popViewController(animated: true)
+        navigationController.dismiss(animated: true)
         parentCoordiantor?.childDidFinish(self)
     }
     

@@ -12,10 +12,11 @@ import FirebaseStorage
 import Dip
 
 class UploadMusicViewModel: UploadMusicImp {
-    
+
     var db: Firestore!
     var st: Storage!
     var reloadView : (() -> Void)?
+    var loading: ((Bool) -> Void)?
     
     init(db: Firestore,st: Storage) {
         self.db = db
@@ -29,23 +30,21 @@ class UploadMusicViewModel: UploadMusicImp {
                 print("Failed to upload")
                 return
             }
-            
-//            self.st?.reference().child("userAvatars/\(text).jpg")
-//                .downloadURL { url, error in
-//                    if let error = error {
-//                        print(error)
-//                    } else {
-//                        self.db?.collection(self.roleSet).document(self.docId!).updateData([
-//                            "imageUrl":url?.absoluteString as Any
-//                        ])
-//                    }
-//
-//                }
         }
 
         uploadTask?.observe(.success) { snapshot in
             print(snapshot.progress!.completedUnitCount)
-            
+            self.st?.reference().child("imageSamples/\(text).jpg")
+                .downloadURL { url, error in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        self.db?.collection(Role.seller.rawValue.lowercased()).document((Auth.auth().currentUser?.uid)!).updateData([
+                            "sampleImageUrl":FieldValue.arrayUnion([url?.absoluteString as Any])
+                        ])
+                    }
+
+                }
         }
         
         uploadTask?.observe(.failure) { snapshot in
@@ -69,7 +68,17 @@ class UploadMusicViewModel: UploadMusicImp {
         
         uploadTask?.observe(.success) { snapshot in
             print(snapshot.progress!.completedUnitCount)
-            
+            self.st?.reference().child("musicSamples/\(text).mp3")
+                .downloadURL { url, error in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        self.db?.collection(Role.seller.rawValue.lowercased()).document((Auth.auth().currentUser?.uid)!).updateData([
+                            "sampleUrl":FieldValue.arrayUnion([url?.absoluteString as Any])
+                        ])
+                    }
+                }
+            self.loading?(true)
         }
         
         uploadTask?.observe(.failure) { snapshot in
