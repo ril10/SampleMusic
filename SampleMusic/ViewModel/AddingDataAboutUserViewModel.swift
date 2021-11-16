@@ -93,7 +93,7 @@ class AddingDataAboutUserViewModel: AddingDataImp {
         }
     }
     
-    func createSampleCollection() {
+    private func createSampleCollection() {
         self.db?.collection(Role.sample.rawValue.lowercased()).document((Auth.auth().currentUser?.uid)!).setData([
             "uid":Auth.auth().currentUser?.uid as Any
         ])

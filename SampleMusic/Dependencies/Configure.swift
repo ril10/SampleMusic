@@ -55,7 +55,7 @@ let userContainer = DependencyContainer { container in
     container.register(.unique) { TabBarCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     container.register(.unique) { UploadMusicCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     
-    container.register(.shared) { ListSampleViewModel(db: try! appContainer.resolve()) as ListSamplesImp }
+    container.register(.shared) { ListSampleViewModel(db: try! appContainer.resolve(),st: try! appContainer.resolve()) as ListSamplesImp }
     container.register(.shared) { SellerDetailViewModel(db: try! appContainer.resolve(),st: try! appContainer.resolve()) as SellerImp }
     container.register(.shared) { TabBarControllerViewModel(db: try! appContainer.resolve()) as TabBarImp }
     container.register(.shared) { UploadMusicViewModel(db: try! appContainer.resolve(), st: try! appContainer.resolve()) as UploadMusicImp }
