@@ -14,13 +14,23 @@ class CustomTableViewCell: UITableViewCell {
         didSet {
             imageUser.image = sampleCell?.imageSample
             labelSample.text = sampleCell?.sampleName
+            
         }
     }
+    
+    lazy var stackView : UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [stackViewLeft,stackViewRight])
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     lazy var stackViewLeft : UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [labelSample,imageUser])
         stackView.alignment = .fill
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fill
         stackView.spacing = 5
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,14 +48,14 @@ class CustomTableViewCell: UITableViewCell {
     }()
     
     var imageUser : UIImageView = {
-        let image = UIImageView()
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
         image.image = UIImage(systemName: Icons.photo.rawValue)
         image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
         image.layer.borderWidth = 1.0
         image.layer.masksToBounds = false
         image.layer.borderColor = UIColor(named: Style.colorButton.rawValue)?.cgColor
         image.layer.cornerRadius = image.frame.size.width / 2
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleToFill
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -71,7 +81,7 @@ class CustomTableViewCell: UITableViewCell {
     }()
     
     var slider : UISlider = {
-        let slider = UISlider(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+        let slider = UISlider(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
         slider.value = 0.5
         slider.tintColor = UIColor(named: Style.colorButton.rawValue)
         slider.addTarget(self, action: #selector(didSliderSlider(slider:)), for: .valueChanged)
@@ -91,17 +101,14 @@ class CustomTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.addSubview(stackViewLeft)
-        contentView.addSubview(stackViewRight)
+        contentView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackViewLeft.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 15),
-            stackViewLeft.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 15),
-            stackViewLeft.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -15),
-            stackViewLeft.trailingAnchor.constraint(equalTo: stackViewRight.leadingAnchor,constant: -10),
-            stackViewRight.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 15),
-            stackViewRight.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -15),
-            stackViewRight.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -15),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            imageUser.widthAnchor.constraint(equalToConstant: 100),
         ])
 
         

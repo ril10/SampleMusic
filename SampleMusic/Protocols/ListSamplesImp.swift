@@ -11,4 +11,6 @@ protocol ListSamplesImp {
     var reloadTableView : (() -> Void)? { get set }
     func logout()
     func getSamplesData()
+    var samplesData : [DataCellModel] { get set }
+    func getCellModel(at indexPath: IndexPath) -> DataCellModel
 }

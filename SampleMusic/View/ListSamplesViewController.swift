@@ -30,12 +30,13 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath) as! CustomTableViewCell
-        cell.labelSample.text = "Some say"
+        let cellVm = viewModel.getCellModel(at: indexPath)
+        cell.sampleCell = cellVm
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.samplesData.count
     }
     
     //MARK: - ActionButton
@@ -47,7 +48,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+//        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func loadView() {

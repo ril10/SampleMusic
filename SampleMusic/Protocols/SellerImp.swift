@@ -12,4 +12,9 @@ protocol SellerImp {
     var fieldData : ((String,String,String,String,String) -> Void)? { get set }
     func userData()
     var image : ((Data) -> Void)? { get set }
+    var reloadTableView : (() -> Void)? { get set }
+    func getSamplesData()
+    var samplesData : [DataCellModel] { get set }
+    func getCellModel(at indexPath: IndexPath) -> DataCellModel
+    var dismissAlert : ((Bool) -> Void)? { get set }
 }

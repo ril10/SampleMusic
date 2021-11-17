@@ -31,15 +31,36 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     @objc func editData(sender: UIButton!) {
         
     }
-    
+    //MARK: - Alert
+    func alertLoading() {
+        let alert = UIAlertController(title: AlertTitle.loading.rawValue, message: AlertTitle.wait.rawValue, preferredStyle: .alert)
+        alert.view.tintColor = UIColor.black
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+        view.blurView()
+        alert.view.addSubview(loadingIndicator)
+        viewModel.dismissAlert = { load in
+            if load {
+                alert.dismiss(animated: false)
+                self.view.removeBlur()
+            }
+        }
+        NSLayoutConstraint.activate([
+            loadingIndicator.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor),
+        ])
+
+        self.present(alert, animated: true)
+    }
     //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return viewModel.samplesData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath) as! CustomTableViewCell
-        cell.labelSample.text = "Some say"
+        let cellVm = viewModel.getCellModel(at: indexPath)
+        cell.sampleCell = cellVm
         return cell
     }
     
@@ -51,7 +72,9 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        alertLoading()
         viewModel?.userData()
+        viewModel?.getSamplesData()
     }
     
     override func loadView() {
@@ -81,6 +104,12 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         viewModel.image = { [weak self] image in
             self?.drawView.imageView.image = UIImage(data: image)
         }
+        viewModel.reloadTableView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.drawView.sampleTable.reloadData()
+            }
+        }
+            
     }
     
     func configureNavBar() {

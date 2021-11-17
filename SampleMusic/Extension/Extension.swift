@@ -98,3 +98,17 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
+
+extension UIView {
+    func blurView() {
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.tag = 1
+        self.addSubview(blurEffectView)
+    }
+    func removeBlur() {
+        self.viewWithTag(1)?.removeFromSuperview()
+    }
+}

@@ -26,8 +26,8 @@ extension DependencyContainer {
 }
 let appContainer = DependencyContainer { container in
     unowned let container = container
-    container.register(.shared) { Storage.storage() as Storage }
-    container.register(.shared) { Firestore.firestore() as Firestore }
+    container.register(.singleton) { Storage.storage() as Storage }
+    container.register(.singleton) { Firestore.firestore() as Firestore }
     container.register(.singleton) { UINavigationController() as UINavigationController }
     container.register(.shared) { StartViewController() as StartViewProtocol }
 }
@@ -43,9 +43,9 @@ let signContainer = DependencyContainer { container in
     container.register(.shared) { RegistrationViewModel(db: try! appContainer.resolve()) as RegistrationControllerImp }
     container.register(.shared) { AddingDataAboutUserViewModel(db: try! appContainer.resolve(), st: try! appContainer.resolve()) as AddingDataImp }
     
-    container.register(.singleton) { MainScreenViewController(viewModel: try! container.resolve() as MainControllerImp) as MainScreenProtocol }
-    container.register(.singleton) { RegistrationViewController(viewModel: try! container.resolve() as RegistrationControllerImp) as RegistrationScreenProtocol }
-    container.register(.singleton) { AddingDataViewController(viewModel: try! container.resolve() as AddingDataImp) as AddingDataScreenProtocol }
+    container.register(.shared) { MainScreenViewController(viewModel: try! container.resolve() as MainControllerImp) as MainScreenProtocol }
+    container.register(.shared) { RegistrationViewController(viewModel: try! container.resolve() as RegistrationControllerImp) as RegistrationScreenProtocol }
+    container.register(.shared) { AddingDataViewController(viewModel: try! container.resolve() as AddingDataImp) as AddingDataScreenProtocol }
 }
 
 let userContainer = DependencyContainer { container in
@@ -60,10 +60,10 @@ let userContainer = DependencyContainer { container in
     container.register(.shared) { TabBarControllerViewModel(db: try! appContainer.resolve()) as TabBarImp }
     container.register(.shared) { UploadMusicViewModel(db: try! appContainer.resolve(), st: try! appContainer.resolve()) as UploadMusicImp }
     
-    container.register(.singleton) { UploadMusicViewController(viewModel: try! container.resolve() as UploadMusicImp) as UploadMusicProtocol }
-    container.register(.singleton) { ListSamplesViewController(viewModel: try! container.resolve() as ListSamplesImp) as ListSamplesScreenProtocol }
-    container.register(.singleton) { SellerDetailViewController(viewModel: try! container.resolve() as SellerImp) as SellerScreenProtocol }
-    container.register(.singleton) {
+    container.register(.shared) { UploadMusicViewController(viewModel: try! container.resolve() as UploadMusicImp) as UploadMusicProtocol }
+    container.register(.shared) { ListSamplesViewController(viewModel: try! container.resolve() as ListSamplesImp) as ListSamplesScreenProtocol }
+    container.register(.shared) { SellerDetailViewController(viewModel: try! container.resolve() as SellerImp) as SellerScreenProtocol }
+    container.register(.shared) {
         TabBarController(
             viewModel: try! container.resolve() as TabBarImp,
             sellerController: try! container.resolve() as SellerScreenProtocol,
