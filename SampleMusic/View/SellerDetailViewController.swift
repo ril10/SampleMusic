@@ -58,7 +58,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath) as! CustomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
         let cellVm = viewModel.getCellModel(at: indexPath)
         cell.sampleCell = cellVm
         return cell
@@ -86,7 +86,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
+        drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: TableCell.cell.rawValue)
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
         viewModel?.reloadView = { [weak self] in
@@ -105,11 +105,6 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         viewModel.image = { [weak self] image in
             self?.drawView.imageView.image = UIImage(data: image)
         }
-        //        viewModel.reloadTableView = { [weak self] in
-        //            DispatchQueue.main.async {
-        //                self?.drawView.sampleTable.reloadData()
-        //            }
-        //        }
         
     }
     

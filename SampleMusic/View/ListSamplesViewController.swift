@@ -29,7 +29,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell",for: indexPath) as! CustomTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
         let cellVm = viewModel.getCellModel(at: indexPath)
         cell.sampleCell = cellVm
         return cell
@@ -48,12 +48,11 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-//        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        viewModel.getSamplesData()
+        viewModel.getSamplesData()
     }
     
     override func loadView() {
@@ -66,7 +65,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
+        drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: TableCell.cell.rawValue)
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
         viewModel?.reloadTableView = { [weak self] in

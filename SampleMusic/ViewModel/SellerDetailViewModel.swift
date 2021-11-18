@@ -68,11 +68,13 @@ class SellerDetailViewModel: SellerImp {
                     if let error = error {
                         print(error.localizedDescription)
                     } else {
+                        var resData = [SampleModel]()
                         for document in query!.documents {
+                            
                             let sampleData = SampleModel(data: document.data())
-                            print("\(document.documentID) => \(document.data())")
-                            self.fetchData(res: [sampleData])
+                            resData.append(sampleData)
                         }
+                        self.fetchData(res: resData)
                     }
                 })
         }
@@ -88,6 +90,7 @@ class SellerDetailViewModel: SellerImp {
     
     func createCellModel(cell: SampleModel) -> DataCellModel {
         let name = cell.sampleName
+        print(cell.sampleImageUrl)
         self.st?.reference(forURL: cell.sampleImageUrl)
             .getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
                 if let error = error {

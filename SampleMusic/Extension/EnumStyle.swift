@@ -83,3 +83,7 @@ enum Icons : String, CaseIterable {
     case add = "plus"
 }
 
+enum TableCell : String, CaseIterable {
+    case cell = "CustomTableViewCell"
+}
+
