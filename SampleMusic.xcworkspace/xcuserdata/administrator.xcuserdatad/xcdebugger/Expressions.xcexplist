@@ -3,21 +3,44 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "closure #1 in closure #3 in MainScreenViewController.viewDidLoad():MainScreenViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SellerDetailViewModel.getSamplesData():SellerDetailViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SellerDetailViewController.tableView(_:numberOfRowsInSection:):SellerDetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "viewModel.samplesData.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ListSamplesViewController.viewWillAppear(_:):ListSamplesViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "MainCoordinator.start():MainCoordinator.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #2 in UploadMusicViewModel.uploadSampleImage(image:text:):UploadMusicViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "document.documentID">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in SellerDetailViewModel.getSamplesData():SellerDetailViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Coordinator.childDidFinish(_:):Coordinator.swift">
       </ContextState>
       <ContextState
          contextName = "SampleModel.init(data:):SampleModel.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #3 in MainScreenViewController.viewDidLoad():MainScreenViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "MainScreenCoordinator.goToRegistrationPage():MainScreenCoordinator.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.parentCoordinator">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "SellerDetailViewModel.fetchData(res:):SellerDetailViewModel.swift">
       </ContextState>
       <ContextState
          contextName = "AddingDataAboutUserViewModel.uploadImage(image:):AddingDataAboutUserViewModel.swift">
@@ -28,15 +51,12 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ListSampleViewModel.getSamplesData():ListSampleViewModel.swift">
+         contextName = "MainScreenCoordinator.goToRegistrationPage():MainScreenCoordinator.swift">
          <PersistentStrings>
             <PersistentString
-               value = "data.value(forKey: &quot;sampleName&quot;)">
+               value = "self.parentCoordinator">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Coordinator.childDidFinish(_:):Coordinator.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

@@ -120,6 +120,7 @@ class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePi
         viewModel?.reloadView = { [weak self] in
             self?.view.setNeedsDisplay()
         }
+        viewModel?.createSampleCollection()
         drawView.buttonAddImage.addTarget(self, action: #selector(addImage(sender:)), for: .touchUpInside)
         drawView.buttonAddMusic.addTarget(self, action: #selector(addMusic(sender:)), for: .touchUpInside)
         drawView.buttonAddInformation.addTarget(self, action: #selector(addInformation(sender:)), for: .touchUpInside)

@@ -51,6 +51,11 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
 //        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        viewModel.getSamplesData()
+    }
+    
     override func loadView() {
         super.loadView()
         configureNavBar()
@@ -69,7 +74,6 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
                 self?.drawView.sampleTable.reloadData()
             }
         }
-        viewModel.getSamplesData()
     }
     
     //MARK: - Config NavBar

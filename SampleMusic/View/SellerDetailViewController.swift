@@ -11,7 +11,7 @@ import MediaPlayer
 import AVFoundation
 
 class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MPMediaPickerControllerDelegate {
-
+    
     var coordinator : UploadMusicCoordinator?
     var drawView = SellerDetailDraw()
     var viewModel : SellerImp!
@@ -49,7 +49,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         NSLayoutConstraint.activate([
             loadingIndicator.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor),
         ])
-
+        
         self.present(alert, animated: true)
     }
     //MARK: - TableView
@@ -69,7 +69,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     //MARK: - View
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         alertLoading()
@@ -92,6 +92,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         viewModel?.reloadView = { [weak self] in
             DispatchQueue.main.async {
                 self?.view.setNeedsDisplay()
+                self?.drawView.sampleTable.reloadData()
             }
         }
         viewModel.fieldData = { [weak self] firstName,lastName,desc,email,gender in
@@ -104,22 +105,22 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         viewModel.image = { [weak self] image in
             self?.drawView.imageView.image = UIImage(data: image)
         }
-        viewModel.reloadTableView = { [weak self] in
-            DispatchQueue.main.async {
-                self?.drawView.sampleTable.reloadData()
-            }
-        }
-            
+        //        viewModel.reloadTableView = { [weak self] in
+        //            DispatchQueue.main.async {
+        //                self?.drawView.sampleTable.reloadData()
+        //            }
+        //        }
+        
     }
     
     func configureNavBar() {
         let nav = self.navigationController?.navigationBar
-
+        
         nav?.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor(named: Style.colorButton.rawValue) as Any,
             NSAttributedString.Key.font: UIFont(name: Style.fontTitleHeavy.rawValue, size: 18) as Any
         ]
-
+        
         nav?.isTranslucent = true
         nav?.barTintColor = .white
         nav?.topItem!.title = "Seller Detail"

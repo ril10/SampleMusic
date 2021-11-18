@@ -19,6 +19,7 @@ protocol UploadMusicImp {
     func uploadSampleImage(image: Data,text: String)
     var loading : ((Bool) -> Void)? { get set }
     func addSampleName(text: String)
+    func createSampleCollection()
     
     
 }

@@ -10,6 +10,7 @@ import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
 import Dip
+import UIKit
 
 
 
@@ -23,8 +24,8 @@ class SellerDetailViewModel: SellerImp {
     var dismissAlert: ((Bool) -> Void)?
     var fieldData : ((String,String,String,String,String) -> Void)?
     var sampleImage : UIImage?
-    var sampleName : String?
     var sampleData : String?
+
     init(db: Firestore,st: Storage) {
         self.db = db
         self.st = st
@@ -32,6 +33,7 @@ class SellerDetailViewModel: SellerImp {
     
     var samplesData = [DataCellModel]() {
         didSet {
+            reloadView?()
             reloadTableView?()
         }
     }
@@ -47,6 +49,7 @@ class SellerDetailViewModel: SellerImp {
                                 print(error.localizedDescription)
                             } else {
                                 self.image?(data!)
+                                self.dismissAlert?(true)
                             }
                         })
                             self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender)
@@ -59,14 +62,19 @@ class SellerDetailViewModel: SellerImp {
     
     func getSamplesData() {
         if let user = Auth.auth().currentUser {
-            self.db?.collection(Role.sample.rawValue.lowercased()).document(user.uid).getDocument(completion: { document, error in
-                if let data = document?.data() {
-                    if data.count > 1 {
-                        let sampleData = SampleModel(data: data)
-                        self.fetchData(res: [sampleData])
+            let refrence = db?.collection(Role.sample.rawValue.lowercased())
+            refrence?.whereField("ownerUid", isEqualTo: user.uid)
+                .getDocuments(completion: { query, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        for document in query!.documents {
+                            let sampleData = SampleModel(data: document.data())
+                            print("\(document.documentID) => \(document.data())")
+                            self.fetchData(res: [sampleData])
+                        }
                     }
-                }
-            })
+                })
         }
     }
     
@@ -76,39 +84,30 @@ class SellerDetailViewModel: SellerImp {
             resData.append(createCellModel(cell: r))
         }
         samplesData = resData
-        print(samplesData)
     }
     
     func createCellModel(cell: SampleModel) -> DataCellModel {
-
-        for img in cell.sampleImageUrl {
-            let storageRefrence = self.st?.reference(forURL: img)
-            storageRefrence?.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
+        let name = cell.sampleName
+        self.st?.reference(forURL: cell.sampleImageUrl)
+            .getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
-                    self.dismissAlert?(true)
                     self.reloadTableView?()
                     self.sampleImage = UIImage(data: data!)
                 }
             })
-        }
-        
-        for name in cell.sampleName {
-            sampleName = name
-        }
-        
-        for smp in cell.sampleUrl {
-            let storageRefrence = self.st?.reference(forURL: smp)
-            storageRefrence?.getData(maxSize: 3 * 1024 * 1024, completion: { data, error in
+
+        self.st?.reference(forURL: cell.sampleUrl)
+            .getData(maxSize: 3 * 1024 * 1024, completion: { data, error in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
-                    print(data)
+                   
                 }
             })
-        }
-        return DataCellModel(imageSample: sampleImage ?? (UIImage(systemName: Icons.photo.rawValue)!), sampleName: sampleName!, sampleData: "")
+        
+        return DataCellModel(imageSample: sampleImage ?? (UIImage(systemName: Icons.photo.rawValue)!), sampleName: name, sampleData: "")
     }
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {

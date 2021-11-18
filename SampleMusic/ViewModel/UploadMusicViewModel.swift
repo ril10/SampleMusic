@@ -23,9 +23,14 @@ class UploadMusicViewModel: UploadMusicImp {
         self.st = st
     }
     
-    
+    func createSampleCollection() {
+        self.db?.collection(Role.sample.rawValue.lowercased()).document().setData([
+            "ownerUid":Auth.auth().currentUser?.uid as Any
+        ])
+    }
     
     func uploadSampleImage(image: Data,text: String) {
+        let refrence = db.collection(Role.sample.rawValue.lowercased())
         let uploadTask = st?.reference().child("imageSamples/\(text).jpg").putData(image, metadata: nil) { _, error in
             guard error == nil else {
                 print("Failed to upload")
@@ -40,9 +45,16 @@ class UploadMusicViewModel: UploadMusicImp {
                     if let error = error {
                         print(error)
                     } else {
-                        self.db?.collection(Role.sample.rawValue.lowercased()).document((Auth.auth().currentUser?.uid)!).updateData([
-                            "sampleImageUrl":FieldValue.arrayUnion([url?.absoluteString as Any]),
-                        ])
+                    refrence.whereField("ownerUid", isEqualTo: Auth.auth().currentUser!.uid)
+                            .getDocuments { query, error in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                } else {
+                                    refrence.document(query!.documents.last!.documentID).updateData([
+                                        "sampleImageUrl":url?.absoluteString as Any,
+                                    ])
+                                }
+                            }
                     }
 
                 }
@@ -65,12 +77,21 @@ class UploadMusicViewModel: UploadMusicImp {
     }
     
     func addSampleName(text: String) {
-        self.db?.collection(Role.sample.rawValue.lowercased()).document((Auth.auth().currentUser?.uid)!).updateData([
-            "sampleName":FieldValue.arrayUnion([text as Any])
-        ])
+        let refrence = db.collection(Role.sample.rawValue.lowercased())
+        refrence.whereField("ownerUid", isEqualTo: Auth.auth().currentUser!.uid)
+                .getDocuments { query, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        refrence.document(query!.documents.last!.documentID).updateData([
+                            "sampleName":text as Any
+                        ])
+                    }
+                }
     }
     
     func uploadSample(sample: URL,text: String) {
+        let refrence = db.collection(Role.sample.rawValue.lowercased())
         let uploadTask = st?.reference().child("musicSamples/\(text).mp3").putFile(from: sample)
         
         uploadTask?.observe(.success) { snapshot in
@@ -80,9 +101,16 @@ class UploadMusicViewModel: UploadMusicImp {
                     if let error = error {
                         print(error)
                     } else {
-                        self.db?.collection(Role.sample.rawValue.lowercased()).document((Auth.auth().currentUser?.uid)!).updateData([
-                            "sampleUrl":FieldValue.arrayUnion([url?.absoluteString as Any])
-                        ])
+                        refrence.whereField("ownerUid", isEqualTo: Auth.auth().currentUser!.uid)
+                                .getDocuments { query, error in
+                                    if let error = error {
+                                        print(error.localizedDescription)
+                                    } else {
+                                        refrence.document(query!.documents.last!.documentID).updateData([
+                                            "sampleUrl":url?.absoluteString as Any
+                                        ])
+                                    }
+                                }
                         self.loading?(true)
                     }
                 }

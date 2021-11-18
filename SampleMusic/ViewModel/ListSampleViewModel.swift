@@ -50,8 +50,8 @@ class ListSampleViewModel: ListSamplesImp {
     func createCellModel(cell: SampleModel) -> DataCellModel {
         var image : UIImage?
         var sampleName : String?
-        cell.sampleImageUrl.map { val in
-            let storageRefrence = self.st?.reference(forURL: val)
+
+            let storageRefrence = self.st?.reference(forURL: cell.sampleImageUrl)
             storageRefrence?.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -59,22 +59,21 @@ class ListSampleViewModel: ListSamplesImp {
                     image = UIImage(data: data!)
                 }
             })
-        }
         
-        cell.sampleUrl.map { val in
-            let storageRefrence = self.st?.reference(forURL: val)
-            storageRefrence?.getData(maxSize: 3 * 1024 * 1024, completion: { data, error in
+        
+
+            let storRefrence = self.st?.reference(forURL: cell.sampleUrl)
+            storRefrence?.getData(maxSize: 3 * 1024 * 1024, completion: { data, error in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
                     print(data)
                 }
             })
-        }
         
-        cell.sampleName.map { val in
-            sampleName = val
-        }
+
+            sampleName = cell.sampleName
+        
         
         return DataCellModel(imageSample: (UIImage(systemName: Icons.pause.rawValue)!), sampleName: sampleName!, sampleData: "")
     }
