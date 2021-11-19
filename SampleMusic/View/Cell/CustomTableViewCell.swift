@@ -143,8 +143,6 @@ class CustomTableViewCell: UITableViewCell {
             
             player.pause()
             
-            
-            
         } catch {
             print("error")
         }

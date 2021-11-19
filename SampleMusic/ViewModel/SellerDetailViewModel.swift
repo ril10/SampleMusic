@@ -15,7 +15,7 @@ import FirebaseStorageUI
 
 
 class SellerDetailViewModel: SellerImp {
-
+    
     var reloadView : (() -> Void)?
     var reloadTableView : (() -> Void)?
     var db : Firestore?
@@ -23,8 +23,8 @@ class SellerDetailViewModel: SellerImp {
     var image: ((Data) -> Void)?
     var dismissAlert: ((Bool) -> Void)?
     var fieldData : ((String,String,String,String,String) -> Void)?
-
-
+    
+    
     init(db: Firestore,st: Storage) {
         self.db = db
         self.st = st
@@ -38,25 +38,25 @@ class SellerDetailViewModel: SellerImp {
     
     func userData() {
         if let user = Auth.auth().currentUser {
-                self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in
-                    if let data = document?.data() {
-                        let sellerData = DetailModel(data: data)
-                        let imgRef = self.st?.reference(forURL: sellerData.imageUrl)
-                        imgRef?.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
-                            if let error = error {
-                                print(error.localizedDescription)
-                            } else {
-                                self.image?(data!)
-                                self.dismissAlert?(true)
-                            }
-                        })
-                            self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender)
-                    }
-                })
-            }
+            self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in
+                if let data = document?.data() {
+                    let sellerData = DetailModel(data: data)
+                    let imgRef = self.st?.reference(forURL: sellerData.imageUrl)
+                    imgRef?.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else {
+                            self.image?(data!)
+                            self.dismissAlert?(true)
+                        }
+                    })
+                    self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender)
+                }
+            })
+        }
     }
     
-
+    
     
     func getSamplesData() {
         var resData = [SampleModel]()
@@ -91,10 +91,11 @@ class SellerDetailViewModel: SellerImp {
         let imageView = UIImageView()
         var imageArray = [String]()
         imageArray.append(cell.sampleImageUrl)
+        
         for img in imageArray {
             imageView.sd_setImage(with: (self.st?.reference(forURL: img))!)
         }
-        
+
         
         self.st?.reference(forURL: cell.sampleUrl)
             .downloadURL(completion: { url, error in
@@ -104,13 +105,16 @@ class SellerDetailViewModel: SellerImp {
                     sampleData = url?.absoluteString
                 }
             })
-
+        
+        
+        
+        
         return DataCellModel(imageSample: ((imageView.image) ?? UIImage(systemName: Icons.photo.rawValue))!, sampleName: name, sampleData: sampleData ?? "")
     }
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {
-
+        
         return samplesData[indexPath.row]
     }
-
+    
 }
