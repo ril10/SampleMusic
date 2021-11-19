@@ -11,7 +11,7 @@ import FirebaseStorage
 import FirebaseAuth
 import Dip
 import UIKit
-
+import FirebaseStorageUI
 
 
 class SellerDetailViewModel: SellerImp {
@@ -23,8 +23,7 @@ class SellerDetailViewModel: SellerImp {
     var image: ((Data) -> Void)?
     var dismissAlert: ((Bool) -> Void)?
     var fieldData : ((String,String,String,String,String) -> Void)?
-    var sampleImage : UIImage?
-    var sampleData : String?
+
 
     init(db: Firestore,st: Storage) {
         self.db = db
@@ -33,7 +32,6 @@ class SellerDetailViewModel: SellerImp {
     
     var samplesData = [DataCellModel]() {
         didSet {
-            reloadView?()
             reloadTableView?()
         }
     }
@@ -61,6 +59,7 @@ class SellerDetailViewModel: SellerImp {
 
     
     func getSamplesData() {
+        var resData = [SampleModel]()
         if let user = Auth.auth().currentUser {
             let refrence = db?.collection(Role.sample.rawValue.lowercased())
             refrence?.whereField("ownerUid", isEqualTo: user.uid)
@@ -68,14 +67,12 @@ class SellerDetailViewModel: SellerImp {
                     if let error = error {
                         print(error.localizedDescription)
                     } else {
-                        var resData = [SampleModel]()
                         for document in query!.documents {
-                            
                             let sampleData = SampleModel(data: document.data())
                             resData.append(sampleData)
                         }
-                        self.fetchData(res: resData)
                     }
+                    self.fetchData(res: resData)
                 })
         }
     }
@@ -90,30 +87,26 @@ class SellerDetailViewModel: SellerImp {
     
     func createCellModel(cell: SampleModel) -> DataCellModel {
         let name = cell.sampleName
-        print(cell.sampleImageUrl)
-        self.st?.reference(forURL: cell.sampleImageUrl)
-            .getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    self.reloadTableView?()
-                    self.sampleImage = UIImage(data: data!)
-                }
-            })
+        let imageView = UIImageView()
+        var imageArray = [String]()
+        imageArray.append(cell.sampleImageUrl)
+        for img in imageArray {
+            imageView.sd_setImage(with: (self.st?.reference(forURL: img))!)
+        }
+//        self.st?.reference(forURL: cell.sampleUrl)
+//            .getData(maxSize: 3 * 1024 * 1024, completion: { data, error in
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                } else {
+//
+//                }
+//            })
 
-        self.st?.reference(forURL: cell.sampleUrl)
-            .getData(maxSize: 3 * 1024 * 1024, completion: { data, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                   
-                }
-            })
-        
-        return DataCellModel(imageSample: sampleImage ?? (UIImage(systemName: Icons.photo.rawValue)!), sampleName: name, sampleData: "")
+        return DataCellModel(imageSample: ((imageView.image) ?? UIImage(systemName: Icons.photo.rawValue))!, sampleName: name, sampleData: "star-wars-theme-song")
     }
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {
+
         return samplesData[indexPath.row]
     }
 

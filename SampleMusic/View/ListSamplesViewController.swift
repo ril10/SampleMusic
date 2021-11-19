@@ -30,15 +30,37 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
-        let cellVm = viewModel.getCellModel(at: indexPath)
-        cell.sampleCell = cellVm
+        DispatchQueue.main.async {
+            let cellVm = self.viewModel.getCellModel(at: indexPath)
+            cell.sampleCell = cellVm
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.samplesData.count
     }
-    
+    //MARK: - Alert
+    func alertLoading() {
+        let alert = UIAlertController(title: AlertTitle.loading.rawValue, message: AlertTitle.wait.rawValue, preferredStyle: .alert)
+        alert.view.tintColor = UIColor.black
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
+        loadingIndicator.style = UIActivityIndicatorView.Style.medium
+        loadingIndicator.startAnimating();
+        view.blurView()
+        alert.view.addSubview(loadingIndicator)
+        viewModel.dismissAlert = { load in
+            if load {
+                alert.dismiss(animated: false)
+                self.view.removeBlur()
+            }
+        }
+        NSLayoutConstraint.activate([
+            loadingIndicator.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor),
+        ])
+        
+        self.present(alert, animated: true)
+    }
     //MARK: - ActionButton
     @objc func logoutAction(sender: UIButton!) {
         viewModel?.logout()
@@ -52,7 +74,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.getSamplesData()
+
     }
     
     override func loadView() {
@@ -73,6 +95,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
                 self?.drawView.sampleTable.reloadData()
             }
         }
+        viewModel?.getSamplesData()
     }
     
     //MARK: - Config NavBar

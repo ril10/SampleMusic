@@ -55,6 +55,7 @@
 		C381056C2746B1230071BC79 /* ChatPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381056B2746B1230071BC79 /* ChatPageViewController.swift */; };
 		C381056E2746B1530071BC79 /* ChatPageDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381056D2746B1530071BC79 /* ChatPageDrawView.swift */; };
 		C38105702746B17E0071BC79 /* ChatPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381056F2746B17E0071BC79 /* ChatPageViewModel.swift */; };
+		C38105722747B0D90071BC79 /* star-wars-theme-song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C38105712747B0D90071BC79 /* star-wars-theme-song.mp3 */; };
 		C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156452726A0BF008E83AC /* AppDelegate.swift */; };
 		C38156482726A0BF008E83AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156472726A0BF008E83AC /* SceneDelegate.swift */; };
 		C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156492726A0BF008E83AC /* MainScreenViewController.swift */; };
@@ -145,6 +146,7 @@
 		C381056B2746B1230071BC79 /* ChatPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPageViewController.swift; sourceTree = "<group>"; };
 		C381056D2746B1530071BC79 /* ChatPageDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPageDrawView.swift; sourceTree = "<group>"; };
 		C381056F2746B17E0071BC79 /* ChatPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPageViewModel.swift; sourceTree = "<group>"; };
+		C38105712747B0D90071BC79 /* star-wars-theme-song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "star-wars-theme-song.mp3"; sourceTree = "<group>"; };
 		C38156422726A0BF008E83AC /* SampleMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C38156452726A0BF008E83AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C38156472726A0BF008E83AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				C38156452726A0BF008E83AC /* AppDelegate.swift */,
+				C38105712747B0D90071BC79 /* star-wars-theme-song.mp3 */,
 				C38156472726A0BF008E83AC /* SceneDelegate.swift */,
 				C38156502726A0C0008E83AC /* LaunchScreen.storyboard */,
 				C38156752726A5D9008E83AC /* GoogleService-Info.plist */,
@@ -528,6 +531,7 @@
 			files = (
 				C38156522726A0C0008E83AC /* LaunchScreen.storyboard in Resources */,
 				C381564F2726A0C0008E83AC /* Assets.xcassets in Resources */,
+				C38105722747B0D90071BC79 /* star-wars-theme-song.mp3 in Resources */,
 				C38156762726A5D9008E83AC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

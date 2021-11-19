@@ -6,15 +6,20 @@
 //
 
 import UIKit
+import AVFoundation
 
 class CustomTableViewCell: UITableViewCell {
     
+    var sampleData : String?
+    var position = 0
+    
+    var player : AVAudioPlayer?
     
     var sampleCell : DataCellModel? {
         didSet {
             imageUser.image = sampleCell?.imageSample
             labelSample.text = sampleCell?.sampleName
-            
+            sampleData = sampleCell?.sampleData
         }
     }
     
@@ -95,6 +100,42 @@ class CustomTableViewCell: UITableViewCell {
     
     @objc func playMusic(sender: UIButton!) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
+        if  player?.isPlaying == true {
+            player?.pause()
+            buttonPlay.setImage(UIImage(systemName: Icons.play.rawValue,withConfiguration: largeConfig), for: .normal)
+        } else {
+            player?.play()
+            buttonPlay.setImage(UIImage(systemName: Icons.pause.rawValue,withConfiguration: largeConfig), for: .normal)
+        }
+    }
+    
+    func stopMusic() {
+        
+    }
+    
+    func configurePlayer() {
+        let urlString = Bundle.main.path(forResource: sampleData, ofType: "mp3")
+        
+        do {
+            try AVAudioSession.sharedInstance().setMode(.default)
+            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
+            
+            guard let urlString = urlString else {
+                return
+            }
+            
+            player = try AVAudioPlayer(contentsOf: URL(string: urlString)!)
+            
+            guard let player = player else {
+                return
+            }
+            
+            player.pause()
+
+        } catch {
+            print("error")
+        }
+        
         
     }
     
@@ -120,7 +161,7 @@ class CustomTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

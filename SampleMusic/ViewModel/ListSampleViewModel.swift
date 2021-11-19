@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseStorage
 import Dip
 import UIKit
+import FirebaseStorageUI
 
 class ListSampleViewModel: ListSamplesImp {
 
@@ -18,7 +19,8 @@ class ListSampleViewModel: ListSamplesImp {
     var db : Firestore?
     var st : Storage?
     var image : UIImage?
-
+    var dismissAlert: ((Bool) -> Void)?
+    
     var samplesData = [DataCellModel]() {
         didSet {
             reloadTableView?()
@@ -26,6 +28,7 @@ class ListSampleViewModel: ListSamplesImp {
     }
     init (db: Firestore,st: Storage) {
         self.db = db
+        self.st = st
     }
     
     func getSamplesData() {
@@ -54,30 +57,25 @@ class ListSampleViewModel: ListSamplesImp {
     }
     
     func createCellModel(cell: SampleModel) -> DataCellModel {
-        
-            let storageRefrence = self.st?.reference(forURL: cell.sampleImageUrl)
-            storageRefrence?.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    self.image = UIImage(data: data!)
-                }
-            })
-        
-            let storRefrence = self.st?.reference(forURL: cell.sampleUrl)
-            storRefrence?.getData(maxSize: 3 * 1024 * 1024, completion: { data, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    print(data)
-                }
-            })
-        
+        let sampleName = cell.sampleName
+        let imageView = UIImageView()
+        var imageArray = [String]()
+        imageArray.append(cell.sampleImageUrl)
+        for img in imageArray {
+            imageView.sd_setImage(with: (self.st?.reference(forURL: img))!)
+        }
 
-           let sampleName = cell.sampleName
         
+//            let storRefrence = self.st?.reference(forURL: cell.sampleUrl)
+//            storRefrence?.getData(maxSize: 3 * 1024 * 1024, completion: { data, error in
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                } else {
+//
+//                }
+//            })
         
-        return DataCellModel(imageSample: image ?? (UIImage(systemName: Icons.pause.rawValue)!), sampleName: sampleName, sampleData: "")
+        return DataCellModel(imageSample: ((imageView.image) ?? UIImage(systemName: Icons.photo.rawValue))!, sampleName: sampleName, sampleData: "")
     }
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {
