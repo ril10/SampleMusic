@@ -87,22 +87,25 @@ class SellerDetailViewModel: SellerImp {
     
     func createCellModel(cell: SampleModel) -> DataCellModel {
         let name = cell.sampleName
+        var sampleData : String?
         let imageView = UIImageView()
         var imageArray = [String]()
         imageArray.append(cell.sampleImageUrl)
         for img in imageArray {
             imageView.sd_setImage(with: (self.st?.reference(forURL: img))!)
         }
-//        self.st?.reference(forURL: cell.sampleUrl)
-//            .getData(maxSize: 3 * 1024 * 1024, completion: { data, error in
-//                if let error = error {
-//                    print(error.localizedDescription)
-//                } else {
-//
-//                }
-//            })
+        
+        
+        self.st?.reference(forURL: cell.sampleUrl)
+            .downloadURL(completion: { url, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    sampleData = url?.absoluteString
+                }
+            })
 
-        return DataCellModel(imageSample: ((imageView.image) ?? UIImage(systemName: Icons.photo.rawValue))!, sampleName: name, sampleData: "star-wars-theme-song")
+        return DataCellModel(imageSample: ((imageView.image) ?? UIImage(systemName: Icons.photo.rawValue))!, sampleName: name, sampleData: sampleData ?? "")
     }
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {

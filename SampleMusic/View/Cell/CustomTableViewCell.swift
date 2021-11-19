@@ -43,7 +43,7 @@ class CustomTableViewCell: UITableViewCell {
     }()
     
     lazy var stackViewRight : UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [buttonPlay,slider])
+        let stackView = UIStackView(arrangedSubviews: [buttonPlay,startTimeLabel,slider,endTimeLabel])
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.spacing = 5
@@ -87,15 +87,30 @@ class CustomTableViewCell: UITableViewCell {
     
     var slider : UISlider = {
         let slider = UISlider(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
-        slider.value = 0.5
+        slider.value = 0.0
         slider.tintColor = UIColor(named: Style.colorButton.rawValue)
-        slider.addTarget(self, action: #selector(didSliderSlider(slider:)), for: .valueChanged)
+        slider.addTarget(self, action: #selector(didSlider(slider:)), for: .valueChanged)
         return slider
     }()
     
-    @objc func didSliderSlider(slider: UISlider!) {
+    var startTimeLabel : UILabel = {
+        let label = UILabel()
+        label.text = "0:00"
+        return label
+    }()
+    
+    var endTimeLabel : UILabel = {
+        let label = UILabel()
+        label.text = "0:00"
+        return label
+    }()
+    
+    @objc func didSlider(slider: UISlider!) {
         let value = slider.value
-        
+        if player?.isPlaying == true {
+            
+        }
+        player?.play(atTime: TimeInterval(value))
     }
     
     @objc func playMusic(sender: UIButton!) {
@@ -107,10 +122,6 @@ class CustomTableViewCell: UITableViewCell {
             player?.play()
             buttonPlay.setImage(UIImage(systemName: Icons.pause.rawValue,withConfiguration: largeConfig), for: .normal)
         }
-    }
-    
-    func stopMusic() {
-        
     }
     
     func configurePlayer() {
@@ -131,7 +142,9 @@ class CustomTableViewCell: UITableViewCell {
             }
             
             player.pause()
-
+            
+            
+            
         } catch {
             print("error")
         }

@@ -30,10 +30,9 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
-        DispatchQueue.main.async {
             let cellVm = self.viewModel.getCellModel(at: indexPath)
             cell.sampleCell = cellVm
-        }
+            cell.configurePlayer()
         return cell
     }
     
