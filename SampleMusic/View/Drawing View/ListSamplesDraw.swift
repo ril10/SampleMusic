@@ -20,7 +20,7 @@ class ListSamplesDraw : UIView {
     }()
     
     var segment : UISegmentedControl = {
-        let segmentControl = UISegmentedControl(items: ["One","Two","Three"])
+        let segmentControl = UISegmentedControl(items: ["By Name","Sample Length"])
         segmentControl.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         segmentControl.backgroundColor = UIColor(named: Style.colorButton.rawValue)
         return segmentControl

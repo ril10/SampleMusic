@@ -14,4 +14,6 @@ protocol ListSamplesImp {
     var samplesData : [DataCellModel] { get set }
     func getCellModel(at indexPath: IndexPath) -> DataCellModel
     var dismissAlert : ((Bool) -> Void)? { get set }
+    func filterByName()
+    func filterByTrackLength()
 }

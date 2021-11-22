@@ -34,7 +34,7 @@ class ListSampleViewModel: ListSamplesImp {
         self.db = db
         self.st = st
     }
-    
+    //MARK: - TableViewData
     func getSamplesData() {
             db?.collection(Role.sample.rawValue.lowercased())
                 .getDocuments(completion: { ( query, error ) in
@@ -84,7 +84,16 @@ class ListSampleViewModel: ListSamplesImp {
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {
         return samplesData[indexPath.row]
     }
+    //MARK: - Filter
+    func filterByName() {
+       let sortedByName = samplesData.sorted { $0.sampleName < $1.sampleName }
+       samplesData = sortedByName
+    }
     
+    func filterByTrackLength() {
+        
+    }
+    //MARK: - LogOut
     func logout() {
             do {
                 try Auth.auth().signOut()

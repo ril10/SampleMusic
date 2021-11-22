@@ -68,6 +68,17 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     @objc func userDetail(sender: UIButton!) {
         coordinator?.goToDetailPage()
     }
+    
+    @objc func segmentAction(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            viewModel.filterByName()
+        case 1:
+            viewModel.filterByTrackLength()
+        default:
+            break
+        }
+    }
     //MARK: - View
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -85,6 +96,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         view = UIView()
         view.backgroundColor = .white
         drawView.viewCompare(view: view)
+        drawView.segment.addTarget(self, action: #selector(ListSamplesViewController.segmentAction(sender:)), for: .valueChanged)
     }
     
     override func viewDidLoad() {
