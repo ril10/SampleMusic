@@ -104,7 +104,10 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: TableCell.cell.rawValue)
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
-        drawView.searchSample.delegate = self
+        drawView.searchController.searchBar.delegate = self
+        drawView.searchController.hidesNavigationBarDuringPresentation = false
+        drawView.searchController.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
         viewModel?.reloadTableView = { [weak self] in
             DispatchQueue.main.async {
                 self?.drawView.sampleTable.reloadData()
@@ -129,6 +132,8 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
+        self.navigationItem.searchController = drawView.searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutAction(sender:)))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.circle"), style: .plain, target: self, action: #selector(userDetail(sender:)))
         self.navigationItem.setHidesBackButton(true, animated: true)
@@ -141,15 +146,14 @@ extension ListSamplesViewController : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //        viewModel.resultModel.removeAll()
-        
+        print(searchText)
         guard let textToSearch = searchBar.text, !textToSearch.isEmpty else {
             return
         }
-//        viewModel.searchResults(text: textToSearch)
+        viewModel.searchResults(text: textToSearch)
     }
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        viewModel.resultModel.removeAll()
+        viewModel.getSamplesData()
     }
 }
 

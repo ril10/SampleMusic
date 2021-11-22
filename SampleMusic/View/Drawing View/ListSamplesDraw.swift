@@ -11,7 +11,7 @@ class ListSamplesDraw : UIView {
     
     //MARK: - StackView
     lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [searchSample,segment,sampleTable])
+        let stackView = UIStackView(arrangedSubviews: [searchController.searchBar,segment,sampleTable])
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.axis = .vertical
@@ -26,12 +26,13 @@ class ListSamplesDraw : UIView {
         return segmentControl
     }()
     
-    var searchSample : UISearchBar = {
-        let search = UISearchBar()
-        search.searchBarStyle = UISearchBar.Style.default
-        search.placeholder = "Search..."
-        search.sizeToFit()
-        search.isTranslucent = false
+    lazy var searchController : UISearchController = {
+        let search = UISearchController(searchResultsController: nil)
+        search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.placeholder = "Search by Name"
+        search.searchBar.sizeToFit()
+        search.searchBar.searchBarStyle = .default
+        search.searchBar.translatesAutoresizingMaskIntoConstraints = true
         return search
     }()
     

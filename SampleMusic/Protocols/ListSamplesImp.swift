@@ -16,4 +16,5 @@ protocol ListSamplesImp {
     var dismissAlert : ((Bool) -> Void)? { get set }
     func filterByName()
     func filterByTrackLength()
+    func searchResults(text: String)
 }

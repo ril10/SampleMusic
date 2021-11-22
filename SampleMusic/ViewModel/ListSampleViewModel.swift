@@ -93,6 +93,12 @@ class ListSampleViewModel: ListSamplesImp {
     func filterByTrackLength() {
         
     }
+    
+    //MARK: - Search
+    func searchResults(text: String) {
+        let search = samplesData.filter { $0.sampleName.contains(text) }
+        samplesData = search
+    }
     //MARK: - LogOut
     func logout() {
             do {
