@@ -16,6 +16,7 @@ target 'SampleMusic' do
 	pod 'Firebase/Firestore', '8.8.0'
 	pod 'Firebase/Storage', '8.8.0'
 	pod 'FirebaseUI/Storage'
+	pod 'RealmSwift'
   target 'SampleMusicTests' do
     inherit! :search_paths
     # Pods for testing
