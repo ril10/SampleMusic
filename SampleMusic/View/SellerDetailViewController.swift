@@ -59,9 +59,8 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
-            let cellVm = self.viewModel.getCellModel(at: indexPath)
-            cell.sampleCell = cellVm
-        cell.configurePlayer()
+        let cellVm = self.viewModel.getCellModel(at: indexPath)
+        cell.sampleCell = cellVm
         return cell
     }
     

@@ -32,7 +32,6 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
             let cellVm = self.viewModel.getCellModel(at: indexPath)
             cell.sampleCell = cellVm
-            cell.configurePlayer()
         return cell
     }
     
@@ -65,6 +64,10 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         viewModel?.logout()
         coordinator?.finish()
     }
+    
+    @objc func userDetail(sender: UIButton!) {
+        
+    }
     //MARK: - View
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -89,6 +92,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: TableCell.cell.rawValue)
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
+        drawView.searchSample.delegate = self
         viewModel?.reloadTableView = { [weak self] in
             DispatchQueue.main.async {
                 self?.drawView.sampleTable.reloadData()
@@ -114,8 +118,27 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutAction(sender:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.circle"), style: .plain, target: self, action: #selector(userDetail(sender:)))
         self.navigationItem.setHidesBackButton(true, animated: true)
         
     }
 }
+
+//MARK: - SearchControllerDelegate
+extension ListSamplesViewController : UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        viewModel.resultModel.removeAll()
+        
+        guard let textToSearch = searchBar.text, !textToSearch.isEmpty else {
+            return
+        }
+//        viewModel.searchResults(text: textToSearch)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        viewModel.resultModel.removeAll()
+    }
+}
+
 extension ListSamplesViewController : ListSamplesScreenProtocol {}

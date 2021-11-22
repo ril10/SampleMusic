@@ -20,6 +20,10 @@ class ListSampleViewModel: ListSamplesImp {
     var st : Storage?
     var image : UIImage?
     var dismissAlert: ((Bool) -> Void)?
+    var sampleData : String?
+    let imageView = UIImageView()
+    var imageArray = [String]()
+    var player = MusicPlayer()
     
     var samplesData = [DataCellModel]() {
         didSet {
@@ -58,24 +62,23 @@ class ListSampleViewModel: ListSamplesImp {
     
     func createCellModel(cell: SampleModel) -> DataCellModel {
         let sampleName = cell.sampleName
-        let imageView = UIImageView()
-        var imageArray = [String]()
         imageArray.append(cell.sampleImageUrl)
         for img in imageArray {
             imageView.sd_setImage(with: (self.st?.reference(forURL: img))!)
         }
 
+        let ref = self.st?.reference().child("musicSamples/\(cell.sampleName).mp3")
+        ref?.downloadURL(completion: { url, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.sampleData = url?.absoluteString
+                self.player.configure(sampleData: url!.absoluteString)
+                
+            }
+        })
         
-//            let storRefrence = self.st?.reference(forURL: cell.sampleUrl)
-//            storRefrence?.getData(maxSize: 3 * 1024 * 1024, completion: { data, error in
-//                if let error = error {
-//                    print(error.localizedDescription)
-//                } else {
-//
-//                }
-//            })
-        
-        return DataCellModel(imageSample: ((imageView.image) ?? UIImage(systemName: Icons.photo.rawValue))!, sampleName: sampleName, sampleData: "")
+        return DataCellModel(imageSample: ((imageView.image) ?? UIImage(systemName: Icons.photo.rawValue))!, sampleName: sampleName, sampleData:  "https://firebasestorage.googleapis.com/v0/b/samplemusic-b90e3.appspot.com/o/musicSamples%2FHdhd.mp3?alt=media&token=cdcd13a9-4fce-451c-b73b-dd831c4890cd")
     }
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {

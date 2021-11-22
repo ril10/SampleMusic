@@ -55,6 +55,9 @@
 		C381056C2746B1230071BC79 /* ChatPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381056B2746B1230071BC79 /* ChatPageViewController.swift */; };
 		C381056E2746B1530071BC79 /* ChatPageDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381056D2746B1530071BC79 /* ChatPageDrawView.swift */; };
 		C38105702746B17E0071BC79 /* ChatPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381056F2746B17E0071BC79 /* ChatPageViewModel.swift */; };
+		C3810574274B94470071BC79 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3810573274B94470071BC79 /* MusicPlayer.swift */; };
+		C3810576274BB9D40071BC79 /* UserDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3810575274BB9D40071BC79 /* UserDetailCoordinator.swift */; };
+		C3810578274BCDBF0071BC79 /* UserDetailImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3810577274BCDBF0071BC79 /* UserDetailImp.swift */; };
 		C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156452726A0BF008E83AC /* AppDelegate.swift */; };
 		C38156482726A0BF008E83AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156472726A0BF008E83AC /* SceneDelegate.swift */; };
 		C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156492726A0BF008E83AC /* MainScreenViewController.swift */; };
@@ -145,6 +148,9 @@
 		C381056B2746B1230071BC79 /* ChatPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPageViewController.swift; sourceTree = "<group>"; };
 		C381056D2746B1530071BC79 /* ChatPageDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPageDrawView.swift; sourceTree = "<group>"; };
 		C381056F2746B17E0071BC79 /* ChatPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPageViewModel.swift; sourceTree = "<group>"; };
+		C3810573274B94470071BC79 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		C3810575274BB9D40071BC79 /* UserDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailCoordinator.swift; sourceTree = "<group>"; };
+		C3810577274BCDBF0071BC79 /* UserDetailImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailImp.swift; sourceTree = "<group>"; };
 		C38156422726A0BF008E83AC /* SampleMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C38156452726A0BF008E83AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C38156472726A0BF008E83AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -268,6 +274,7 @@
 				C3255875273AC4EE00248FD8 /* TabBarImp.swift */,
 				C3255877273C263200248FD8 /* ViewScreenProtocol.swift */,
 				C310E2F527439D0000C47625 /* UploadMusicImp.swift */,
+				C3810577274BCDBF0071BC79 /* UserDetailImp.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -334,6 +341,7 @@
 			children = (
 				C38156452726A0BF008E83AC /* AppDelegate.swift */,
 				C38156472726A0BF008E83AC /* SceneDelegate.swift */,
+				C3810573274B94470071BC79 /* MusicPlayer.swift */,
 				C38156502726A0C0008E83AC /* LaunchScreen.storyboard */,
 				C38156752726A5D9008E83AC /* GoogleService-Info.plist */,
 			);
@@ -397,6 +405,7 @@
 				C3255869273A62D600248FD8 /* AddUserDataCoordinator.swift */,
 				C325587D273D0C5800248FD8 /* MainScreenCoordinator.swift */,
 				C32558892742801500248FD8 /* UploadMusicCoordinator.swift */,
+				C3810575274BB9D40071BC79 /* UserDetailCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -658,6 +667,7 @@
 			files = (
 				C30150A927312C4600C85EF3 /* RegistrationViewDraw.swift in Sources */,
 				C325586E273A9B7C00248FD8 /* MainCoordinatorImp.swift in Sources */,
+				C3810574274B94470071BC79 /* MusicPlayer.swift in Sources */,
 				C38105622746B00A0071BC79 /* UserDetailDrawView.swift in Sources */,
 				C3255880273EA1C900248FD8 /* StartViewController.swift in Sources */,
 				C310E2F627439D0000C47625 /* UploadMusicImp.swift in Sources */,
@@ -678,6 +688,7 @@
 				C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */,
 				C30150B12732A59F00C85EF3 /* ListSampleViewModel.swift in Sources */,
 				C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */,
+				C3810578274BCDBF0071BC79 /* UserDetailImp.swift in Sources */,
 				C325586A273A62D600248FD8 /* AddUserDataCoordinator.swift in Sources */,
 				C38105682746B0D00071BC79 /* RecordPaveDrawView.swift in Sources */,
 				C325587E273D0C5800248FD8 /* MainScreenCoordinator.swift in Sources */,
@@ -709,6 +720,7 @@
 				C381567F2726A962008E83AC /* MainCoordinator.swift in Sources */,
 				C30150A727303C2400C85EF3 /* MainScreenDraw.swift in Sources */,
 				C3255874273AC46F00248FD8 /* TabBarControllerViewModel.swift in Sources */,
+				C3810576274BB9D40071BC79 /* UserDetailCoordinator.swift in Sources */,
 				C381056A2746B0F00071BC79 /* RecordPageViewModel.swift in Sources */,
 				C38156482726A0BF008E83AC /* SceneDelegate.swift in Sources */,
 				C30150AF2732906600C85EF3 /* ListSamplesDraw.swift in Sources */,

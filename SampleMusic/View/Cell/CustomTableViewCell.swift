@@ -7,13 +7,15 @@
 
 import UIKit
 import AVFoundation
+import Dip
 
 class CustomTableViewCell: UITableViewCell {
     
-    var sampleData : String?
+    var sampleData : String!
     var position = 0
     
-    var player : AVAudioPlayer?
+    var player = MusicPlayer()
+
     
     var sampleCell : DataCellModel? {
         didSet {
@@ -24,7 +26,7 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     lazy var stackView : UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [stackViewLeft,stackViewRight])
+        let stackView = UIStackView(arrangedSubviews: [stackViewLeft,imageUser])
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.axis = .horizontal
@@ -33,11 +35,11 @@ class CustomTableViewCell: UITableViewCell {
     }()
     
     lazy var stackViewLeft : UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [labelSample,imageUser])
+        let stackView = UIStackView(arrangedSubviews: [labelSample,stackViewRight])
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.spacing = 5
-        stackView.axis = .horizontal
+        stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -107,48 +109,25 @@ class CustomTableViewCell: UITableViewCell {
     
     @objc func didSlider(slider: UISlider!) {
         let value = slider.value
-        if player?.isPlaying == true {
+        if player.player.isPlaying == true {
             
         }
-        player?.play(atTime: TimeInterval(value))
+        player.player.play(atTime: TimeInterval(value))
     }
     
     @objc func playMusic(sender: UIButton!) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
-        if  player?.isPlaying == true {
-            player?.pause()
+        if  player.player.isPlaying == true {
+            player.stopMusic()
+            player.configure(sampleData: sampleData)
             buttonPlay.setImage(UIImage(systemName: Icons.play.rawValue,withConfiguration: largeConfig), for: .normal)
         } else {
-            player?.play()
+            player.playMusic()
+            player.configure(sampleData: sampleData)
             buttonPlay.setImage(UIImage(systemName: Icons.pause.rawValue,withConfiguration: largeConfig), for: .normal)
         }
     }
     
-    func configurePlayer() {
-        let urlString = Bundle.main.path(forResource: sampleData, ofType: "mp3")
-        
-        do {
-            try AVAudioSession.sharedInstance().setMode(.default)
-            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
-            
-            guard let urlString = urlString else {
-                return
-            }
-            
-            player = try AVAudioPlayer(contentsOf: URL(string: urlString)!)
-            
-            guard let player = player else {
-                return
-            }
-            
-            player.pause()
-            
-        } catch {
-            print("error")
-        }
-        
-        
-    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

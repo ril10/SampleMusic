@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import AudioToolbox
 
 
 protocol MainScreenProtocol: MainScreenViewController { }
@@ -24,4 +25,8 @@ protocol TabBarScreenProtocol: TabBarController { }
 protocol StartViewProtocol: StartViewController { }
 
 protocol UploadMusicProtocol: UploadMusicViewController { }
+
+protocol MusicPlayerProtocol : MusicPlayer { }
+
+protocol UserDetailProtocol : UserDetailViewController { }
 

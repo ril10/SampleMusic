@@ -11,6 +11,8 @@ import Firebase
 import FirebaseFirestore
 import FirebaseStorage
 import UIKit
+import AVFAudio
+import AVFoundation
 
 extension DependencyContainer {
     static func configure() -> DependencyContainer {
@@ -30,6 +32,7 @@ let appContainer = DependencyContainer { container in
     container.register(.singleton) { Firestore.firestore() as Firestore }
     container.register(.singleton) { UINavigationController() as UINavigationController }
     container.register(.shared) { StartViewController() as StartViewProtocol }
+    container.register(.shared) { MusicPlayer() as MusicPlayerProtocol }
 }
 
 let signContainer = DependencyContainer { container in
@@ -54,12 +57,15 @@ let userContainer = DependencyContainer { container in
     container.register(.unique) { ListSamplesCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     container.register(.unique) { TabBarCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     container.register(.unique) { UploadMusicCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
+    container.register(.unique) { UserDetailCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     
     container.register(.shared) { ListSampleViewModel(db: try! appContainer.resolve(),st: try! appContainer.resolve()) as ListSamplesImp }
     container.register(.shared) { SellerDetailViewModel(db: try! appContainer.resolve(),st: try! appContainer.resolve()) as SellerImp }
     container.register(.shared) { TabBarControllerViewModel(db: try! appContainer.resolve()) as TabBarImp }
     container.register(.shared) { UploadMusicViewModel(db: try! appContainer.resolve(), st: try! appContainer.resolve()) as UploadMusicImp }
+    container.register(.shared) { UserDetailViewModel(db: try! appContainer.resolve(), st: try! appContainer.resolve()) as UserDetailViewModelImp }
     
+    container.register(.shared) { UserDetailViewController(viewModel: try! container.resolve() as UserDetailViewModelImp ) as UserDetailProtocol }
     container.register(.shared) { UploadMusicViewController(viewModel: try! container.resolve() as UploadMusicImp) as UploadMusicProtocol }
     container.register(.shared) { ListSamplesViewController(viewModel: try! container.resolve() as ListSamplesImp) as ListSamplesScreenProtocol }
     container.register(.shared) { SellerDetailViewController(viewModel: try! container.resolve() as SellerImp) as SellerScreenProtocol }

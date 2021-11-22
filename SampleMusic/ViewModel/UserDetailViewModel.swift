@@ -6,9 +6,46 @@
 //
 
 import Foundation
+import FirebaseStorage
+import FirebaseFirestore
+import FirebaseAuth
 
 
-class UserDetailViewModel {
+class UserDetailViewModel: UserDetailViewModelImp  {
+    
+    var reloadView: (() -> Void)?
+    var fieldData: ((String, String, String, String, String) -> Void)?
+    var image: ((Data) -> Void)?
+    var dismissAlert: ((Bool) -> Void)?
+    var db : Firestore?
+    var st : Storage?
+    
+    
+    init(db: Firestore,st: Storage) {
+        self.db = db
+        self.st = st
+    }
+    
+    
+    func userData() {
+        if let user = Auth.auth().currentUser {
+            self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in
+                if let data = document?.data() {
+                    let sellerData = DetailModel(data: data)
+                    let imgRef = self.st?.reference(forURL: sellerData.imageUrl)
+                    imgRef?.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else {
+                            self.image?(data!)
+                            self.dismissAlert?(true)
+                        }
+                    })
+                    self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender)
+                }
+            })
+        }
+    }
     
     
     

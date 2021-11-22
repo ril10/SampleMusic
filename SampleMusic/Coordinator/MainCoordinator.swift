@@ -21,7 +21,8 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
          tabBar: TabBarScreenProtocol,
          addingView: AddingDataScreenProtocol,
          startView: StartViewProtocol,
-         uploadView: UploadMusicProtocol) {
+         uploadView: UploadMusicProtocol,
+         userDetailView: UserDetailProtocol) {
         self.navigationController = navigationController
         self.mainView = mainView
         self.registrationView = registrationView
@@ -30,6 +31,7 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
         self.addingView = addingView
         self.startView = startView
         self.uploadView = uploadView
+        self.userDetailView = userDetailView
     }
     
     var startView : StartViewProtocol
@@ -39,6 +41,7 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     var listView : ListSamplesScreenProtocol
     var tabBar : TabBarScreenProtocol
     var uploadView : UploadMusicProtocol
+    var userDetailView : UserDetailProtocol
     
     func start() {
         startView = try! appContainer.resolve() as StartViewProtocol
@@ -86,6 +89,13 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     func uploadMusic() {
         let child = try! userContainer.resolve() as UploadMusicCoordinator
         child.parentCoordiantor = self
+        childCoordinators.append(child)
+        child.start()
+    }
+    
+    func userDetail() {
+        let child = try! userContainer.resolve() as UserDetailCoordinator
+        child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()
     }

@@ -23,7 +23,10 @@ class SellerDetailViewModel: SellerImp {
     var image: ((Data) -> Void)?
     var dismissAlert: ((Bool) -> Void)?
     var fieldData : ((String,String,String,String,String) -> Void)?
-    
+    var sampleData : String?
+    let imageView = UIImageView()
+    var imageArray = [String]()
+    var player = MusicPlayer()
     
     init(db: Firestore,st: Storage) {
         self.db = db
@@ -80,40 +83,34 @@ class SellerDetailViewModel: SellerImp {
     func fetchData(res: [SampleModel]) {
         var resData = [DataCellModel]()
         for r in res {
-            resData.append(createCellModel(cell: r))
+            resData.append(self.createCellModel(cell: r))
         }
         samplesData = resData
     }
     
     func createCellModel(cell: SampleModel) -> DataCellModel {
-        let name = cell.sampleName
-        var sampleData : String?
-        let imageView = UIImageView()
-        var imageArray = [String]()
-        imageArray.append(cell.sampleImageUrl)
-        
-        for img in imageArray {
-            imageView.sd_setImage(with: (self.st?.reference(forURL: img))!)
-        }
+            
+            self.imageArray.append(cell.sampleImageUrl)
+            for img in self.imageArray {
+                self.imageView.sd_setImage(with: (self.st?.reference(forURL: img))!,placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+            }
 
-        
-        self.st?.reference(forURL: cell.sampleUrl)
-            .downloadURL(completion: { url, error in
+            let ref = self.st?.reference().child("musicSamples/\(cell.sampleName).mp3")
+            ref?.downloadURL(completion: { url, error in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
-                    sampleData = url?.absoluteString
+                    self.sampleData = url?.absoluteString
+                    self.player.configure(sampleData: url!.absoluteString)
+                    
                 }
             })
-        
-        
-        
-        
-        return DataCellModel(imageSample: ((imageView.image) ?? UIImage(systemName: Icons.photo.rawValue))!, sampleName: name, sampleData: sampleData ?? "")
+        let name = cell.sampleName
+
+        return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!, sampleName: name, sampleData: sampleData ??  "https://firebasestorage.googleapis.com/v0/b/samplemusic-b90e3.appspot.com/o/musicSamples%2FHdhd.mp3?alt=media&token=cdcd13a9-4fce-451c-b73b-dd831c4890cd")
     }
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {
-        
         return samplesData[indexPath.row]
     }
     

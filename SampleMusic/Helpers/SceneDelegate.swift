@@ -33,9 +33,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                           tabBar: try! userContainer.resolve(),
                                           addingView: try! signContainer.resolve(),
                                           startView: try! appContainer.resolve(),
-                                          uploadView: try! userContainer.resolve()
+                                          uploadView: try! userContainer.resolve(),
+                                          userDetailView: try! userContainer.resolve()
         )
         coordinator.start()
+
 
 
         let window = UIWindow(windowScene: windowScene)
