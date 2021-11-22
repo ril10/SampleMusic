@@ -24,6 +24,11 @@ class UserDetailViewController : UIViewController {
     }
     
  //MARK: - View
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.userData()
+    }
+    
     override func loadView() {
         super.loadView()
         configureNavBar()
@@ -71,7 +76,6 @@ class UserDetailViewController : UIViewController {
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editAction(sender:)))
-        self.navigationItem.setHidesBackButton(true, animated: true)
         
     }
 }

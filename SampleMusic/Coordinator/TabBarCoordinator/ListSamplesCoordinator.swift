@@ -37,4 +37,10 @@ class ListSamplesCoordinator : Coordinator {
         parentCoordinator?.start()
     }
     
+    func goToDetailPage() {
+        navigationController.popViewController(animated: true)
+        parentCoordinator?.childDidFinish(self)
+        parentCoordinator?.userDetail()
+    }
+    
 }

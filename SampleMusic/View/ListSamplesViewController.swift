@@ -66,7 +66,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     
     @objc func userDetail(sender: UIButton!) {
-        
+        coordinator?.goToDetailPage()
     }
     //MARK: - View
     

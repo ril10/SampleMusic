@@ -29,7 +29,7 @@ class UserDetailViewModel: UserDetailViewModelImp  {
     
     func userData() {
         if let user = Auth.auth().currentUser {
-            self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in
+            self.db?.collection(Role.user.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in
                 if let data = document?.data() {
                     let sellerData = DetailModel(data: data)
                     let imgRef = self.st?.reference(forURL: sellerData.imageUrl)
