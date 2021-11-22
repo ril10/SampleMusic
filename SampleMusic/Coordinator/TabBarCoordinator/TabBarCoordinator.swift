@@ -40,4 +40,8 @@ class TabBarCoordinator : Coordinator {
         parentCoordinator?.uploadMusic()
     }
 
+    func createSample() {
+        parentCoordinator?.childDidFinish(self)
+        parentCoordinator?.recordPage()
+    }
 }

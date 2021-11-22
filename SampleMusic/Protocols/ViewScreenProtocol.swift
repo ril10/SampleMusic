@@ -30,3 +30,5 @@ protocol MusicPlayerProtocol : MusicPlayer { }
 
 protocol UserDetailProtocol : UserDetailViewController { }
 
+protocol RecordPageProtocol : RecordPageViewController { }
+

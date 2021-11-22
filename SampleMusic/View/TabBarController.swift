@@ -40,10 +40,15 @@ class TabBarController: UITabBarController {
             }
         }
         sellerController.drawView.addButton.addTarget(self, action: #selector(upload(sender:)), for: .touchUpInside)
+        sellerController.drawView.createSampleButton.addTarget(self, action: #selector(createSample(sender:)), for: .touchUpInside)
     }
     
     @objc func upload(sender: UIButton) {
         coordinator?.parentCoordinator?.uploadMusic()
+    }
+    
+    @objc func createSample(sender: UIButton) {
+        coordinator?.createSample()
     }
     
     private func createNavController(for rootViewController: UIViewController,title: String, image: UIImage) -> UIViewController {

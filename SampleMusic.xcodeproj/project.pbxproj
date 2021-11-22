@@ -58,6 +58,7 @@
 		C3810574274B94470071BC79 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3810573274B94470071BC79 /* MusicPlayer.swift */; };
 		C3810576274BB9D40071BC79 /* UserDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3810575274BB9D40071BC79 /* UserDetailCoordinator.swift */; };
 		C3810578274BCDBF0071BC79 /* UserDetailImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3810577274BCDBF0071BC79 /* UserDetailImp.swift */; };
+		C381057A274BDA970071BC79 /* RecordPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3810579274BDA970071BC79 /* RecordPageCoordinator.swift */; };
 		C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156452726A0BF008E83AC /* AppDelegate.swift */; };
 		C38156482726A0BF008E83AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156472726A0BF008E83AC /* SceneDelegate.swift */; };
 		C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156492726A0BF008E83AC /* MainScreenViewController.swift */; };
@@ -151,6 +152,7 @@
 		C3810573274B94470071BC79 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		C3810575274BB9D40071BC79 /* UserDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailCoordinator.swift; sourceTree = "<group>"; };
 		C3810577274BCDBF0071BC79 /* UserDetailImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailImp.swift; sourceTree = "<group>"; };
+		C3810579274BDA970071BC79 /* RecordPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPageCoordinator.swift; sourceTree = "<group>"; };
 		C38156422726A0BF008E83AC /* SampleMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C38156452726A0BF008E83AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C38156472726A0BF008E83AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				C325587D273D0C5800248FD8 /* MainScreenCoordinator.swift */,
 				C32558892742801500248FD8 /* UploadMusicCoordinator.swift */,
 				C3810575274BB9D40071BC79 /* UserDetailCoordinator.swift */,
+				C3810579274BDA970071BC79 /* RecordPageCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -711,6 +714,7 @@
 				C38156882728147A008E83AC /* MainScreenViewModel.swift in Sources */,
 				C38105662746B07B0071BC79 /* RecordPageViewController.swift in Sources */,
 				C33CCA7B272BE47A00C7969E /* DetailModel.swift in Sources */,
+				C381057A274BDA970071BC79 /* RecordPageCoordinator.swift in Sources */,
 				C30150AD27328E6300C85EF3 /* SellerDetailDraw.swift in Sources */,
 				C325588627427EB400248FD8 /* UploadMusicDraw.swift in Sources */,
 				C3255868273A62BC00248FD8 /* RegistrationCoordinator.swift in Sources */,

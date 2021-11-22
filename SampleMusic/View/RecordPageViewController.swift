@@ -10,6 +10,8 @@ import UIKit
 
 class RecordPageViewController : UIViewController {
     
+    var coordinator : RecordPageCoordinator?
+    
     override func loadView() {
         super.loadView()
         view = UIView()
@@ -21,3 +23,5 @@ class RecordPageViewController : UIViewController {
     }
     
 }
+
+extension RecordPageViewController : RecordPageProtocol {}

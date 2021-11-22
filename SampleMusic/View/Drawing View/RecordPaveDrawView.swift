@@ -10,6 +10,8 @@ import UIKit
 
 class RecordPageDrawView : UIView {
     
-    
+    func viewCompare(view: UIView) {
+        
+    }
     
 }
