@@ -23,7 +23,6 @@ class RecordPageCoordinator : Coordinator {
     func start() {
         view.coordinator = self
         self.navigationController.present(view, animated: true, completion: nil)
-//        self.navigationController.pushViewController(view, animated: true)
     }
     
     

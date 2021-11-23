@@ -23,6 +23,7 @@ class ListSampleViewModel: ListSamplesImp {
     var sampleData : String?
     let imageView = UIImageView()
     var imageArray = [String]()
+    var sampleUrl = [String]()
     var player : MusicPlayerProtocol
     
     var samplesData = [DataCellModel]() {
@@ -70,19 +71,12 @@ class ListSampleViewModel: ListSamplesImp {
             }
         }
 
-        let ref = self.st?.reference().child("musicSamples/\(cell.sampleName).mp3")
-        ref?.downloadURL(completion: { url, error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                self.sampleData = url?.absoluteString
-                DispatchQueue.main.async {
-                    self.player.configure(sampleData: url!.absoluteString)
-                }
-            }
-        })
+        self.sampleUrl.append(cell.sampleUrl)
+        for smp in self.sampleUrl {
+            self.sampleData = smp
+        }
         
-        return DataCellModel(imageSample: ((imageView.image) ?? UIImage(systemName: Icons.photo.rawValue))!, sampleName: sampleName, sampleData:  "https://firebasestorage.googleapis.com/v0/b/samplemusic-b90e3.appspot.com/o/musicSamples%2FHdhd.mp3?alt=media&token=cdcd13a9-4fce-451c-b73b-dd831c4890cd")
+        return DataCellModel(imageSample: ((imageView.image) ?? UIImage(systemName: Icons.photo.rawValue))!, sampleName: sampleName, sampleData: sampleData ?? "")
     }
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {

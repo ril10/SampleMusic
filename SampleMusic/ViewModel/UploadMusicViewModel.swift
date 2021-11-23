@@ -30,6 +30,7 @@ class UploadMusicViewModel: UploadMusicImp {
     }
     
     func uploadSampleImage(image: Data,text: String) {
+        createSampleCollection()
         let refrence = db.collection(Role.sample.rawValue.lowercased())
         let uploadTask = st?.reference().child("imageSamples/\(text).jpg").putData(image, metadata: nil) { _, error in
             guard error == nil else {
@@ -92,11 +93,11 @@ class UploadMusicViewModel: UploadMusicImp {
     
     func uploadSample(sample: URL,text: String) {
         let refrence = db.collection(Role.sample.rawValue.lowercased())
-        let uploadTask = st?.reference().child("musicSamples/\(text).mp3").putFile(from: sample)
+        let uploadTask = st?.reference().child("musicSamples/\(text).m4a").putFile(from: sample)
         
         uploadTask?.observe(.success) { snapshot in
             print(snapshot.progress!.completedUnitCount)
-            self.st?.reference().child("musicSamples/\(text).mp3")
+            self.st?.reference().child("musicSamples/\(text).m4a")
                 .downloadURL { url, error in
                     if let error = error {
                         print(error)

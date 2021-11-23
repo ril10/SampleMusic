@@ -158,8 +158,6 @@ class RecordPageViewController : UIViewController, AVAudioRecorderDelegate {
     func finishRecording(success: Bool) {
 
         self.whistleRecord.stop()
-
-//        self.whistleRecord = nil
         
         if success {
             drawView.recordLabel.isHidden = true

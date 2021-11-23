@@ -26,6 +26,7 @@ class SellerDetailViewModel: SellerImp {
     var sampleData : String?
     let imageView = UIImageView()
     var imageArray = [String]()
+    var sampleUrl = [String]()
     var player : MusicPlayerProtocol
     
     init(db: Firestore,st: Storage,player: MusicPlayerProtocol) {
@@ -92,26 +93,20 @@ class SellerDetailViewModel: SellerImp {
     }
     
     func createCellModel(cell: SampleModel) -> DataCellModel {
-            
-            self.imageArray.append(cell.sampleImageUrl)
-            for img in self.imageArray {
-                self.imageView.sd_setImage(with: (self.st?.reference(forURL: img))!,placeholderImage: UIImage(systemName: Icons.photo.rawValue))
-            }
-
-            let ref = self.st?.reference().child("musicSamples/\(cell.sampleName).mp3")
-            ref?.downloadURL(completion: { url, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    DispatchQueue.main.async {
-                        self.sampleData = url?.absoluteString
-                        self.player.configure(sampleData: url!.absoluteString)
-                    }
-                }
-            })
+        
+        self.imageArray.append(cell.sampleImageUrl)
+        for img in self.imageArray {
+            self.imageView.sd_setImage(with: (self.st?.reference(forURL: img))!,placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+        }
+        
+        self.sampleUrl.append(cell.sampleUrl)
+        for smp in self.sampleUrl {
+            self.sampleData = smp
+        }
+        
         let name = cell.sampleName
-
-        return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!, sampleName: name, sampleData: sampleData ??  "https://firebasestorage.googleapis.com/v0/b/samplemusic-b90e3.appspot.com/o/musicSamples%2FHdhd.mp3?alt=media&token=cdcd13a9-4fce-451c-b73b-dd831c4890cd")
+        
+        return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!, sampleName: name, sampleData: self.sampleData ?? "")
     }
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {
