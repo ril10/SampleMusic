@@ -25,12 +25,7 @@ class RecordPageViewController : UIViewController, AVAudioRecorderDelegate {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    //MARK: - PhotoPicker
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image = info[.originalImage] as! UIImage
-        drawView.imageView.image = image
-        self.dismiss(animated: true, completion: nil)
-    }
+
     //MARK: - Alert
     func errorWithFields() {
         let alert = UIAlertController(title: AlertTitle.errorAddingData.rawValue, message: TextFieldLabel.allFields.rawValue, preferredStyle: .alert)
@@ -38,28 +33,6 @@ class RecordPageViewController : UIViewController, AVAudioRecorderDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func loadAlertView() {
-        let alert = UIAlertController(title: AlertTitle.loading.rawValue, message: AlertTitle.wait.rawValue, preferredStyle: .alert)
-        alert.view.tintColor = UIColor.black
-        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
-        loadingIndicator.style = UIActivityIndicatorView.Style.large
-        loadingIndicator.startAnimating();
-        viewModel?.loading = { load in
-            if load {
-                loadingIndicator.stopAnimating()
-                loadingIndicator.hidesWhenStopped = true
-                self.dismiss(animated: true, completion: nil)
-                self.textFieldShouldClear(self.drawView.sampleTextField)
-                self.drawView.imageView.image = UIImage(systemName: Icons.photo.rawValue)
-                
-            }
-        }
-        alert.view.addSubview(loadingIndicator)
-        NSLayoutConstraint.activate([
-            loadingIndicator.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor),
-        ])
-        self.present(alert, animated: true)
-    }
     //MARK: - AVAudio
     func recordAudio() {
         self.recordingSession = AVAudioSession.sharedInstance()
@@ -103,13 +76,6 @@ class RecordPageViewController : UIViewController, AVAudioRecorderDelegate {
         return getDocumentsDirectory().appendingPathComponent("\(name).m4a")
     }
     //MARK: - ActionButton
-    @objc func addImage(sender: UIButton!) {
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-            drawView.imagePicker.sourceType = .photoLibrary
-            drawView.imagePicker.allowsEditing = true
-            present(drawView.imagePicker, animated: true, completion: nil)
-        }
-    }
     
     @objc func createMusic(sender: UIButton!) {
         drawView.recordLabel.isHidden.toggle()
@@ -158,26 +124,15 @@ class RecordPageViewController : UIViewController, AVAudioRecorderDelegate {
     func finishRecording(success: Bool) {
 
         self.whistleRecord.stop()
-        
         if success {
             drawView.recordLabel.isHidden = true
             let activityViewController = UIActivityViewController(activityItems: [whistleRecord.url], applicationActivities: nil)
             present(activityViewController,animated: true) {
                 self.whistleRecord = nil
             }
+            
         } else {
             print("it not recorded")
-        }
-    }
-    
-    @objc func addInformation(sender: UIButton!) {
-        if drawView.sampleTextField.text!.isEmpty || drawView.imageView.image == nil {
-            errorWithFields()
-        } else {
-            loadAlertView()
-            viewModel?.uploadSampleImage(image: (drawView.imageView.image?.jpegData(compressionQuality: 0.25)!)!, text: drawView.sampleTextField.text!)
-            viewModel?.addSampleName(text: drawView.sampleTextField.text!)
-            
         }
     }
     
@@ -202,8 +157,7 @@ class RecordPageViewController : UIViewController, AVAudioRecorderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        drawView.buttonAddImage.addTarget(self, action: #selector(addImage(sender:)), for: .touchUpInside)
-        drawView.buttonAddInformation.addTarget(self, action: #selector(addInformation(sender:)), for: .touchUpInside)
+
         drawView.createMusic.addTarget(self, action: #selector(createMusic(sender:)), for: .touchUpInside)
         recordAudio()
         self.hideKeyboardWhenTappedAround()
