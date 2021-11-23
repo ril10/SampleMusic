@@ -12,7 +12,7 @@ import Dip
 
 class MusicPlayer {
     
-    var player = AVAudioPlayer()
+    var player : AVAudioPlayer?
     var isPlay = false
     
     func configure(sampleData: String) {
@@ -24,9 +24,9 @@ class MusicPlayer {
             let data = try! Data(contentsOf: url!)
             player = try AVAudioPlayer(data: data)
             if isPlay == true {
-                player.play()
+                player?.play()
             } else {
-                player.stop()
+                player?.stop()
             }
         } catch let error as NSError {
             print(error.localizedDescription)

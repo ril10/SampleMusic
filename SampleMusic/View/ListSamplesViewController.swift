@@ -113,7 +113,10 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
                 self?.drawView.sampleTable.reloadData()
             }
         }
-        viewModel?.getSamplesData()
+        DispatchQueue.main.async {
+            self.viewModel?.getSamplesData()
+        }
+        
     }
     
     //MARK: - Config NavBar
@@ -145,8 +148,6 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
 extension ListSamplesViewController : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        viewModel.resultModel.removeAll()
-        print(searchText)
         guard let textToSearch = searchBar.text, !textToSearch.isEmpty else {
             return
         }

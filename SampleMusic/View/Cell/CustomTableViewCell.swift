@@ -14,7 +14,7 @@ class CustomTableViewCell: UITableViewCell {
     var sampleData : String!
     var position = 0
     
-    var player = MusicPlayer()
+    var player = try! appContainer.resolve() as MusicPlayerProtocol
 
     
     var sampleCell : DataCellModel? {
@@ -109,15 +109,15 @@ class CustomTableViewCell: UITableViewCell {
     
     @objc func didSlider(slider: UISlider!) {
         let value = slider.value
-        if player.player.isPlaying == true {
+        if player.player?.isPlaying == true {
             
         }
-        player.player.play(atTime: TimeInterval(value))
+        player.player?.play(atTime: TimeInterval(value))
     }
     
     @objc func playMusic(sender: UIButton!) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
-        if  player.player.isPlaying == true {
+        if  player.player?.isPlaying == true {
             player.stopMusic()
             player.configure(sampleData: sampleData)
             buttonPlay.setImage(UIImage(systemName: Icons.play.rawValue,withConfiguration: largeConfig), for: .normal)

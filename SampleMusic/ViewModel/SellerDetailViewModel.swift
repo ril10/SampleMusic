@@ -26,11 +26,12 @@ class SellerDetailViewModel: SellerImp {
     var sampleData : String?
     let imageView = UIImageView()
     var imageArray = [String]()
-    var player = MusicPlayer()
+    var player : MusicPlayerProtocol
     
-    init(db: Firestore,st: Storage) {
+    init(db: Firestore,st: Storage,player: MusicPlayerProtocol) {
         self.db = db
         self.st = st
+        self.player = player
     }
     
     var samplesData = [DataCellModel]() {
@@ -53,7 +54,9 @@ class SellerDetailViewModel: SellerImp {
                             self.dismissAlert?(true)
                         }
                     })
-                    self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender)
+                    DispatchQueue.main.async {
+                        self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender)
+                    }
                 }
             })
         }
@@ -100,9 +103,10 @@ class SellerDetailViewModel: SellerImp {
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
-                    self.sampleData = url?.absoluteString
-                    self.player.configure(sampleData: url!.absoluteString)
-                    
+                    DispatchQueue.main.async {
+                        self.sampleData = url?.absoluteString
+                        self.player.configure(sampleData: url!.absoluteString)
+                    }
                 }
             })
         let name = cell.sampleName

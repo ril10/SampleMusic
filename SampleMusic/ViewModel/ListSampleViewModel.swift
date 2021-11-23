@@ -23,16 +23,17 @@ class ListSampleViewModel: ListSamplesImp {
     var sampleData : String?
     let imageView = UIImageView()
     var imageArray = [String]()
-    var player = MusicPlayer()
+    var player : MusicPlayerProtocol
     
     var samplesData = [DataCellModel]() {
         didSet {
             reloadTableView?()
         }
     }
-    init (db: Firestore,st: Storage) {
+    init (db: Firestore,st: Storage,player: MusicPlayerProtocol) {
         self.db = db
         self.st = st
+        self.player = player
     }
     //MARK: - TableViewData
     func getSamplesData() {
@@ -64,7 +65,9 @@ class ListSampleViewModel: ListSamplesImp {
         let sampleName = cell.sampleName
         imageArray.append(cell.sampleImageUrl)
         for img in imageArray {
-            imageView.sd_setImage(with: (self.st?.reference(forURL: img))!)
+            DispatchQueue.main.async {
+                self.imageView.sd_setImage(with: (self.st?.reference(forURL: img))!)
+            }
         }
 
         let ref = self.st?.reference().child("musicSamples/\(cell.sampleName).mp3")
@@ -73,8 +76,9 @@ class ListSampleViewModel: ListSamplesImp {
                 print(error.localizedDescription)
             } else {
                 self.sampleData = url?.absoluteString
-                self.player.configure(sampleData: url!.absoluteString)
-                
+                DispatchQueue.main.async {
+                    self.player.configure(sampleData: url!.absoluteString)
+                }
             }
         })
         
