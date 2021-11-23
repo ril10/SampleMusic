@@ -37,7 +37,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                           userDetailView: try! userContainer.resolve(),
                                           recordPageView: try! userContainer.resolve()
         )
-        coordinator.start()
+//        coordinator.start()
+        coordinator.recordPage()
 
 
 

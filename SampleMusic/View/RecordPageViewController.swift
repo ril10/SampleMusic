@@ -11,11 +11,13 @@ import UIKit
 class RecordPageViewController : UIViewController {
     
     var coordinator : RecordPageCoordinator?
+    var drawView = RecordPageDrawView()
     
     override func loadView() {
         super.loadView()
         view = UIView()
         view.backgroundColor = .white
+        drawView.viewCompare(view: view)
     }
     
     override func viewDidLoad() {

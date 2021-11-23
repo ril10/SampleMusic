@@ -102,7 +102,7 @@ class UploadMusicDraw : UIView {
     var sampleTextField: UITextField = {
         let textField = UITextField()
         textField.defaultTextField(placeholder: TextFieldLabel.sampleName.rawValue)
-        textField.textAlignment = .center
+        textField.textAlignment = .left
         textField.underLine()
         return textField
     }()
@@ -195,6 +195,7 @@ class UploadMusicDraw : UIView {
             buttonAddInformation.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 20),
             buttonAddInformation.trailingAnchor.constraint(equalTo: middleView.trailingAnchor,constant: -20),
             
+            sampleTextField.widthAnchor.constraint(equalTo: middleStackView.widthAnchor),
         ])
     }
 }
