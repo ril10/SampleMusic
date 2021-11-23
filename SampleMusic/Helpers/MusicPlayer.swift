@@ -14,6 +14,7 @@ class MusicPlayer {
     
     var player : AVAudioPlayer?
     var isPlay = false
+    var time : ((Int) -> Void)?
     
     func configure(sampleData: String) {
         do {
@@ -31,6 +32,12 @@ class MusicPlayer {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+        sampleTime(player)
+    }
+    
+    func sampleTime(_ player: AVAudioPlayer?) {
+        let time = Int(player!.duration)
+        self.time?(time)
     }
     
     func playMusic() {

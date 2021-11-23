@@ -97,13 +97,13 @@ class CustomTableViewCell: UITableViewCell {
     
     var startTimeLabel : UILabel = {
         let label = UILabel()
-        label.text = "0:00"
+        label.text = "00:00"
         return label
     }()
     
     var endTimeLabel : UILabel = {
         let label = UILabel()
-        label.text = "0:00"
+        label.text = "00:00"
         return label
     }()
     
@@ -141,7 +141,6 @@ class CustomTableViewCell: UITableViewCell {
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             imageUser.widthAnchor.constraint(equalToConstant: 100),
         ])
-
         
     }
     
@@ -151,12 +150,11 @@ class CustomTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
         // Configure the view for the selected state
     }
     

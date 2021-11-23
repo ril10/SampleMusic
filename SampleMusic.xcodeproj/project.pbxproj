@@ -50,7 +50,7 @@
 		C38105622746B00A0071BC79 /* UserDetailDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38105612746B00A0071BC79 /* UserDetailDrawView.swift */; };
 		C38105642746B0310071BC79 /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38105632746B0310071BC79 /* UserDetailViewModel.swift */; };
 		C38105662746B07B0071BC79 /* RecordPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38105652746B07B0071BC79 /* RecordPageViewController.swift */; };
-		C38105682746B0D00071BC79 /* RecordPaveDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38105672746B0D00071BC79 /* RecordPaveDrawView.swift */; };
+		C38105682746B0D00071BC79 /* RecordPageDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38105672746B0D00071BC79 /* RecordPageDrawView.swift */; };
 		C381056A2746B0F00071BC79 /* RecordPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38105692746B0F00071BC79 /* RecordPageViewModel.swift */; };
 		C381056C2746B1230071BC79 /* ChatPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381056B2746B1230071BC79 /* ChatPageViewController.swift */; };
 		C381056E2746B1530071BC79 /* ChatPageDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381056D2746B1530071BC79 /* ChatPageDrawView.swift */; };
@@ -145,7 +145,7 @@
 		C38105612746B00A0071BC79 /* UserDetailDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailDrawView.swift; sourceTree = "<group>"; };
 		C38105632746B0310071BC79 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
 		C38105652746B07B0071BC79 /* RecordPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPageViewController.swift; sourceTree = "<group>"; };
-		C38105672746B0D00071BC79 /* RecordPaveDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPaveDrawView.swift; sourceTree = "<group>"; };
+		C38105672746B0D00071BC79 /* RecordPageDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPageDrawView.swift; sourceTree = "<group>"; };
 		C38105692746B0F00071BC79 /* RecordPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPageViewModel.swift; sourceTree = "<group>"; };
 		C381056B2746B1230071BC79 /* ChatPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPageViewController.swift; sourceTree = "<group>"; };
 		C381056D2746B1530071BC79 /* ChatPageDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPageDrawView.swift; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 				C3255881273EA21B00248FD8 /* StartViewDraw.swift */,
 				C325588527427EB400248FD8 /* UploadMusicDraw.swift */,
 				C38105612746B00A0071BC79 /* UserDetailDrawView.swift */,
-				C38105672746B0D00071BC79 /* RecordPaveDrawView.swift */,
+				C38105672746B0D00071BC79 /* RecordPageDrawView.swift */,
 				C381056D2746B1530071BC79 /* ChatPageDrawView.swift */,
 			);
 			path = "Drawing View";
@@ -697,7 +697,7 @@
 				C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */,
 				C3810578274BCDBF0071BC79 /* UserDetailImp.swift in Sources */,
 				C325586A273A62D600248FD8 /* AddUserDataCoordinator.swift in Sources */,
-				C38105682746B0D00071BC79 /* RecordPaveDrawView.swift in Sources */,
+				C38105682746B0D00071BC79 /* RecordPageDrawView.swift in Sources */,
 				C325587E273D0C5800248FD8 /* MainScreenCoordinator.swift in Sources */,
 				C379FED5273943CB004ECCB9 /* ListSamplesImp.swift in Sources */,
 				C366BE5727298EBE00B3E182 /* AddingDataAboutUserViewModel.swift in Sources */,

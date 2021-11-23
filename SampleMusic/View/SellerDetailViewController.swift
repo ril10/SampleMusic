@@ -61,6 +61,9 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
         let cellVm = self.viewModel.getCellModel(at: indexPath)
         cell.sampleCell = cellVm
+        cell.player.time = { time in
+            cell.endTimeLabel.text = self.timeString(time: TimeInterval(time))
+        }
         return cell
     }
     
