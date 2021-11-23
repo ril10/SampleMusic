@@ -59,6 +59,7 @@
 		C3810576274BB9D40071BC79 /* UserDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3810575274BB9D40071BC79 /* UserDetailCoordinator.swift */; };
 		C3810578274BCDBF0071BC79 /* UserDetailImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3810577274BCDBF0071BC79 /* UserDetailImp.swift */; };
 		C381057A274BDA970071BC79 /* RecordPageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3810579274BDA970071BC79 /* RecordPageCoordinator.swift */; };
+		C381057C274CD19E0071BC79 /* RecordViewModelImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381057B274CD19E0071BC79 /* RecordViewModelImp.swift */; };
 		C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156452726A0BF008E83AC /* AppDelegate.swift */; };
 		C38156482726A0BF008E83AC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156472726A0BF008E83AC /* SceneDelegate.swift */; };
 		C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38156492726A0BF008E83AC /* MainScreenViewController.swift */; };
@@ -153,6 +154,7 @@
 		C3810575274BB9D40071BC79 /* UserDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailCoordinator.swift; sourceTree = "<group>"; };
 		C3810577274BCDBF0071BC79 /* UserDetailImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailImp.swift; sourceTree = "<group>"; };
 		C3810579274BDA970071BC79 /* RecordPageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordPageCoordinator.swift; sourceTree = "<group>"; };
+		C381057B274CD19E0071BC79 /* RecordViewModelImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewModelImp.swift; sourceTree = "<group>"; };
 		C38156422726A0BF008E83AC /* SampleMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C38156452726A0BF008E83AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C38156472726A0BF008E83AC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				C3255877273C263200248FD8 /* ViewScreenProtocol.swift */,
 				C310E2F527439D0000C47625 /* UploadMusicImp.swift */,
 				C3810577274BCDBF0071BC79 /* UserDetailImp.swift */,
+				C381057B274CD19E0071BC79 /* RecordViewModelImp.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				C30150AB27312E3B00C85EF3 /* AddingDataDraw.swift in Sources */,
 				C325588827427ED800248FD8 /* UploadMusicViewModel.swift in Sources */,
 				C379FED3273943B4004ECCB9 /* SellerImp.swift in Sources */,
+				C381057C274CD19E0071BC79 /* RecordViewModelImp.swift in Sources */,
 				C38105642746B0310071BC79 /* UserDetailViewModel.swift in Sources */,
 				C33CCA80272C253200C7969E /* SampleModel.swift in Sources */,
 				C310E2F82743DA7600C47625 /* DataCellModel.swift in Sources */,

@@ -131,6 +131,15 @@ class RecordPageDrawView : UIView {
         return button
     }()
     
+    lazy var recordLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Recoding..."
+        label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
+        label.textColor = UIColor(named: Style.colorButton.rawValue)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     var mediaPicker: UIDocumentPickerViewController = {
         var picker = UIDocumentPickerViewController(documentTypes: ["com.apple.iwork.pages.pages", "com.apple.iwork.numbers.numbers", "com.apple.iwork.keynote.key","public.image", "com.apple.application", "public.item","public.data", "public.content", "public.audiovisual-content", "public.movie", "public.audiovisual-content", "public.video", "public.audio", "public.text", "public.data", "public.zip-archive", "com.pkware.zip-archive", "public.composite-content", "public.text"], in: .import)
         return picker
@@ -154,6 +163,7 @@ class RecordPageDrawView : UIView {
         bottomView.addSubview(buttonAddInformation)
         middleView.addSubview(uploadLabel)
         middleView.addSubview(createMusic)
+        view.addSubview(recordLabel)
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -196,6 +206,11 @@ class RecordPageDrawView : UIView {
             buttonAddInformation.trailingAnchor.constraint(equalTo: middleView.trailingAnchor,constant: -20),
             
             sampleTextField.widthAnchor.constraint(equalTo: middleStackView.widthAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            recordLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            recordLabel.topAnchor.constraint(equalTo: createMusic.bottomAnchor),
         ])
     }
     
