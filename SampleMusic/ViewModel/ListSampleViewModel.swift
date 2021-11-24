@@ -25,6 +25,7 @@ class ListSampleViewModel: ListSamplesImp {
     let imageView = UIImageView()
     var imageArray = [String]()
     var sampleUrl = [String]()
+    var totalSeconds : Int?
     
     var samplesData = [DataCellModel]() {
         didSet {
@@ -50,6 +51,7 @@ class ListSampleViewModel: ListSamplesImp {
                     self.fetchData(res: resData)
                 }
             })
+        self.dismissAlert?(true)
     }
     
     func fetchData(res: [SampleModel]) {
@@ -62,7 +64,7 @@ class ListSampleViewModel: ListSamplesImp {
     }
     
     func createCellModel(cell: SampleModel) -> DataCellModel {
-        let sampleName = cell.sampleName
+        let name = cell.sampleName
         imageArray.append(cell.sampleImageUrl)
         for img in imageArray {
             self.imageView.sd_setImage(with: (self.st?.reference(forURL: img))!)
@@ -74,7 +76,12 @@ class ListSampleViewModel: ListSamplesImp {
         }
         let duratation = self.sampleDuratation(for: cell.sampleUrl)
         
-        return DataCellModel(imageSample: ((imageView.image) ?? UIImage(systemName: Icons.photo.rawValue))!, sampleName: sampleName, sampleData: sampleData ?? "", sampleDuratation: duratation)
+        return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!,
+                             sampleName: name,
+                             sampleData: self.sampleData ?? "",
+                             totalSeconds: self.totalSeconds!,
+                             sampleDuratation: duratation
+        )
     }
     
     func sampleDuratation(for resource: String) -> String {
@@ -82,6 +89,7 @@ class ListSampleViewModel: ListSamplesImp {
         let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
         let minutes = totalSeconds / 60
         let seconds = totalSeconds % 60
+        self.totalSeconds = totalSeconds
         return String(format:"%02i:%02i",minutes, seconds)
     }
     

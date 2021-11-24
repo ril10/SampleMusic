@@ -109,9 +109,18 @@ class CustomTableViewCell: UITableViewCell {
     }()
     
     @objc func didSlider(slider: UISlider!) {
-        let value = slider.value
+        slider.minimumValue = 0
+        slider.maximumValue = Float(sampleCell!.totalSeconds)
 
-        startTimeLabel.text = String(format: "%02i:%02i", Int(value * 10))
+        let value = Int(slider.value)
+        print("value:\(value)")
+
+        if value >= 60 {
+            startTimeLabel.text = String(format: "%02d:%02d", (value / 60), (value % 60))
+        } else {
+            startTimeLabel.text = String(format: "00:%02d", value)
+        }
+        
         
     }
     

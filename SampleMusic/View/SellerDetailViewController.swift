@@ -72,9 +72,9 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel?.getSamplesData()
-        alertLoading()
-
+        if viewModel.samplesData.count == 0 {
+            self.alertLoading()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -114,6 +114,10 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
         viewModel.image = { [weak self] image in
             self?.drawView.imageView.image = UIImage(data: image)
+        }
+        
+        DispatchQueue.main.async {
+            self.viewModel?.getSamplesData()
         }
 
     }

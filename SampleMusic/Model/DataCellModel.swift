@@ -12,5 +12,6 @@ struct DataCellModel {
     var imageSample : UIImage
     var sampleName : String
     var sampleData : String
+    var totalSeconds : Int
     var sampleDuratation : String
 }

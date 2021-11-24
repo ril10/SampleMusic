@@ -28,6 +28,7 @@ class SellerDetailViewModel: SellerImp {
     let imageView = UIImageView()
     var imageArray = [String]()
     var sampleUrl = [String]()
+    var totalSeconds : Int?
 
     
     init(db: Firestore,st: Storage) {
@@ -66,7 +67,6 @@ class SellerDetailViewModel: SellerImp {
     
     
     func getSamplesData() {
-        var resData = [SampleModel]()
         if let user = Auth.auth().currentUser {
             let refrence = db?.collection(Role.sample.rawValue.lowercased())
             refrence?.whereField("ownerUid", isEqualTo: user.uid)
@@ -111,7 +111,12 @@ class SellerDetailViewModel: SellerImp {
         let duratation = self.sampleDuratation(for: cell.sampleUrl)
 
         
-        return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!, sampleName: name, sampleData: self.sampleData ?? "", sampleDuratation: duratation)
+        return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!,
+                             sampleName: name,
+                             sampleData: self.sampleData ?? "",
+                             totalSeconds: self.totalSeconds!,
+                             sampleDuratation: duratation
+        )
     }
     
     func sampleDuratation(for resource: String) -> String {
@@ -119,11 +124,12 @@ class SellerDetailViewModel: SellerImp {
         let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
         let minutes = totalSeconds / 60
         let seconds = totalSeconds % 60
+        self.totalSeconds = totalSeconds
         return String(format:"%02i:%02i",minutes, seconds)
     }
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {
         return samplesData[indexPath.row]
     }
-    
+
 }
