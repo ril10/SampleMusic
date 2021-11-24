@@ -70,16 +70,17 @@ class SellerDetailViewModel: SellerImp {
         if let user = Auth.auth().currentUser {
             let refrence = db?.collection(Role.sample.rawValue.lowercased())
             refrence?.whereField("ownerUid", isEqualTo: user.uid)
-                .getDocuments(completion: { query, error in
+                .addSnapshotListener(includeMetadataChanges: true, listener: { documentSnapshot, error in
                     if let error = error {
                         print(error.localizedDescription)
                     } else {
-                        for document in query!.documents {
+                        var resData = [SampleModel]()
+                        for document in documentSnapshot!.documents {
                             let sampleData = SampleModel(data: document.data())
                             resData.append(sampleData)
                         }
+                        self.fetchData(res: resData)
                     }
-                    self.fetchData(res: resData)
                 })
         }
     }

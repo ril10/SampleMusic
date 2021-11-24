@@ -38,18 +38,18 @@ class ListSampleViewModel: ListSamplesImp {
     //MARK: - TableViewData
     func getSamplesData() {
             db?.collection(Role.sample.rawValue.lowercased())
-                .getDocuments(completion: { ( query, error ) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    } else {
-                        var resData = [SampleModel]()
-                        for document in query!.documents {
-                            let sampleData = SampleModel(data: document.data())
-                            resData.append(sampleData)
-                        }
-                        self.fetchData(res: resData)
+            .addSnapshotListener(includeMetadataChanges: true, listener: { documentSnapshot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    var resData = [SampleModel]()
+                    for document in documentSnapshot!.documents {
+                        let sampleData = SampleModel(data: document.data())
+                        resData.append(sampleData)
                     }
-                })
+                    self.fetchData(res: resData)
+                }
+            })
     }
     
     func fetchData(res: [SampleModel]) {
@@ -65,9 +65,7 @@ class ListSampleViewModel: ListSamplesImp {
         let sampleName = cell.sampleName
         imageArray.append(cell.sampleImageUrl)
         for img in imageArray {
-            DispatchQueue.main.async {
-                self.imageView.sd_setImage(with: (self.st?.reference(forURL: img))!)
-            }
+            self.imageView.sd_setImage(with: (self.st?.reference(forURL: img))!)
         }
 
         self.sampleUrl.append(cell.sampleUrl)

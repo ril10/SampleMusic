@@ -134,8 +134,8 @@ class CustomTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -10),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             imageUser.widthAnchor.constraint(equalToConstant: 100),
         ])
