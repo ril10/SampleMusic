@@ -23,7 +23,16 @@
          contextName = "CustomTableViewCell.playMusic(sender:):CustomTableViewCell.swift">
          <PersistentStrings>
             <PersistentString
+               value = "player.player?.prepareToPlay()">
+            </PersistentString>
+            <PersistentString
+               value = "player.player?.deviceCurrentTime">
+            </PersistentString>
+            <PersistentString
                value = "player.player?.settings">
+            </PersistentString>
+            <PersistentString
+               value = "player.player?.currentTime">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

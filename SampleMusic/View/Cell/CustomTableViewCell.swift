@@ -111,9 +111,7 @@ class CustomTableViewCell: UITableViewCell {
     @objc func didSlider(slider: UISlider!) {
         slider.minimumValue = 0
         slider.maximumValue = Float(sampleCell!.totalSeconds)
-
-        let value = Int(slider.value)
-        print("value:\(value)")
+        var value = Int(slider.value)
 
         if value >= 60 {
             startTimeLabel.text = String(format: "%02d:%02d", (value / 60), (value % 60))
@@ -129,6 +127,7 @@ class CustomTableViewCell: UITableViewCell {
         if  player.player?.isPlaying == true {
             buttonPlay.setImage(UIImage(systemName: Icons.play.rawValue,withConfiguration: largeConfig), for: .normal)
             player.configure(sampleData: sampleData)
+
         } else {
             buttonPlay.setImage(UIImage(systemName: Icons.pause.rawValue,withConfiguration: largeConfig), for: .normal)
             player.configure(sampleData: sampleData)

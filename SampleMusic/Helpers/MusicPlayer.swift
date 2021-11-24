@@ -10,7 +10,7 @@ import AVFAudio
 import Dip
 
 
-class MusicPlayer {
+class MusicPlayer: NSObject,AVAudioPlayerDelegate {
     
     var player : AVAudioPlayer?
     var isPlay = false
@@ -24,10 +24,21 @@ class MusicPlayer {
             let url = URL(string: urlString)
             let data = try! Data(contentsOf: url!)
             player = try AVAudioPlayer(data: data)
+            player?.delegate = self
+            player?.prepareToPlay()
             playMusic(isPlay: isPlay)
+
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+    }
+    
+    func audioPlayerBeginInterruption(_ player: AVAudioPlayer) {
+        print("playerBegin:\(player.currentTime)")
+    }
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        print("player:\(player.currentTime)")
     }
     
     func playMusicAt(_ at: Float) {
@@ -39,8 +50,16 @@ class MusicPlayer {
     func playMusic(isPlay: Bool) {
         if isPlay {
             player?.play()
+
+            let seconds = Int(player!.currentTime) % 60
+            let minutes = Int(player!.currentTime / 60) % 60
+            print(String(format: "%0.2d:%0.2d", minutes,seconds))
         } else {
             player?.stop()
+            
+            let seconds = Int(player!.currentTime) % 60
+            let minutes = Int(player!.currentTime / 60) % 60
+            print(String(format: "%0.2d:%0.2d", minutes,seconds))
         }
     }
     
