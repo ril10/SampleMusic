@@ -22,6 +22,7 @@ class CustomTableViewCell: UITableViewCell {
             imageUser.image = sampleCell?.imageSample
             labelSample.text = sampleCell?.sampleName
             sampleData = sampleCell?.sampleData
+            endTimeLabel.text = sampleCell?.sampleDuratation
         }
     }
     
@@ -109,22 +110,19 @@ class CustomTableViewCell: UITableViewCell {
     
     @objc func didSlider(slider: UISlider!) {
         let value = slider.value
-        if player.player?.isPlaying == true {
-            
-        }
-        player.player?.play(atTime: TimeInterval(value))
+
+        startTimeLabel.text = String(format: "%02i:%02i", Int(value * 10))
+        
     }
     
     @objc func playMusic(sender: UIButton!) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
         if  player.player?.isPlaying == true {
-            player.stopMusic()
-            player.configure(sampleData: sampleData)
             buttonPlay.setImage(UIImage(systemName: Icons.play.rawValue,withConfiguration: largeConfig), for: .normal)
-        } else {
-            player.playMusic()
             player.configure(sampleData: sampleData)
+        } else {
             buttonPlay.setImage(UIImage(systemName: Icons.pause.rawValue,withConfiguration: largeConfig), for: .normal)
+            player.configure(sampleData: sampleData)
         }
     }
     

@@ -20,6 +20,14 @@
          contextName = "ListSamplesViewController.viewWillAppear(_:):ListSamplesViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "CustomTableViewCell.playMusic(sender:):CustomTableViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "player.player?.settings">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MainCoordinator.start():MainCoordinator.swift">
       </ContextState>
       <ContextState

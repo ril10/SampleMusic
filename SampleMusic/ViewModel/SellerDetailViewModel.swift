@@ -12,6 +12,7 @@ import FirebaseAuth
 import Dip
 import UIKit
 import FirebaseStorageUI
+import AVFoundation
 
 
 class SellerDetailViewModel: SellerImp {
@@ -27,12 +28,11 @@ class SellerDetailViewModel: SellerImp {
     let imageView = UIImageView()
     var imageArray = [String]()
     var sampleUrl = [String]()
-    var player : MusicPlayerProtocol
+
     
-    init(db: Firestore,st: Storage,player: MusicPlayerProtocol) {
+    init(db: Firestore,st: Storage) {
         self.db = db
         self.st = st
-        self.player = player
     }
     
     var samplesData = [DataCellModel]() {
@@ -90,6 +90,7 @@ class SellerDetailViewModel: SellerImp {
             resData.append(self.createCellModel(cell: r))
         }
         samplesData = resData
+        
     }
     
     func createCellModel(cell: SampleModel) -> DataCellModel {
@@ -105,8 +106,19 @@ class SellerDetailViewModel: SellerImp {
         }
         
         let name = cell.sampleName
+
+        let duratation = self.sampleDuratation(for: cell.sampleUrl)
+
         
-        return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!, sampleName: name, sampleData: self.sampleData ?? "")
+        return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!, sampleName: name, sampleData: self.sampleData ?? "", sampleDuratation: duratation)
+    }
+    
+    func sampleDuratation(for resource: String) -> String {
+        let asset = AVAsset(url: URL(string: resource)!)
+        let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        return String(format:"%02i:%02i",minutes, seconds)
     }
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {

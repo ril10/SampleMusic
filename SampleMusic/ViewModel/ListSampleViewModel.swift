@@ -12,6 +12,7 @@ import FirebaseStorage
 import Dip
 import UIKit
 import FirebaseStorageUI
+import AVFoundation
 
 class ListSampleViewModel: ListSamplesImp {
 
@@ -24,17 +25,15 @@ class ListSampleViewModel: ListSamplesImp {
     let imageView = UIImageView()
     var imageArray = [String]()
     var sampleUrl = [String]()
-    var player : MusicPlayerProtocol
     
     var samplesData = [DataCellModel]() {
         didSet {
             reloadTableView?()
         }
     }
-    init (db: Firestore,st: Storage,player: MusicPlayerProtocol) {
+    init (db: Firestore,st: Storage) {
         self.db = db
         self.st = st
-        self.player = player
     }
     //MARK: - TableViewData
     func getSamplesData() {
@@ -75,8 +74,17 @@ class ListSampleViewModel: ListSamplesImp {
         for smp in self.sampleUrl {
             self.sampleData = smp
         }
+        let duratation = self.sampleDuratation(for: cell.sampleUrl)
         
-        return DataCellModel(imageSample: ((imageView.image) ?? UIImage(systemName: Icons.photo.rawValue))!, sampleName: sampleName, sampleData: sampleData ?? "")
+        return DataCellModel(imageSample: ((imageView.image) ?? UIImage(systemName: Icons.photo.rawValue))!, sampleName: sampleName, sampleData: sampleData ?? "", sampleDuratation: duratation)
+    }
+    
+    func sampleDuratation(for resource: String) -> String {
+        let asset = AVAsset(url: URL(string: resource)!)
+        let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        return String(format:"%02i:%02i",minutes, seconds)
     }
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {

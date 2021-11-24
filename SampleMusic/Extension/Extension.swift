@@ -94,15 +94,11 @@ extension UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    func timeString(time: TimeInterval) -> String {
-        let minute = Int(time) / 60 % 60
-        let second = Int(time) & 60
-        return String(format: "%02i:%02i", minute, second)
-    }
-    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+
 }
 
 extension UIView {
@@ -118,3 +114,12 @@ extension UIView {
         self.viewWithTag(1)?.removeFromSuperview()
     }
 }
+
+extension UIViewController {
+    func timeString(time: TimeInterval) -> String {
+        let minute = Int(time) / 60 % 60
+        let second = Int(time) & 60
+        return String(format: "%02i:%02i", minute, second)
+    }
+}
+

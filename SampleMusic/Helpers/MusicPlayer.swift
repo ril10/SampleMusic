@@ -14,9 +14,9 @@ class MusicPlayer {
     
     var player : AVAudioPlayer?
     var isPlay = false
-    var time : ((Int) -> Void)?
     
     func configure(sampleData: String) {
+        self.isPlay.toggle()
         do {
             try AVAudioSession.sharedInstance().setMode(.default)
             try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
@@ -24,28 +24,24 @@ class MusicPlayer {
             let url = URL(string: urlString)
             let data = try! Data(contentsOf: url!)
             player = try AVAudioPlayer(data: data)
-            if isPlay == true {
-                player?.play()
-            } else {
-                player?.stop()
-            }
+            playMusic(isPlay: isPlay)
         } catch let error as NSError {
             print(error.localizedDescription)
         }
-        sampleTime(player)
     }
     
-    func sampleTime(_ player: AVAudioPlayer?) {
-        let time = Int(player!.duration)
-        self.time?(time)
+    func playMusicAt(_ at: Float) {
+        let time = at * 10
+        print(TimeInterval(Int(time)))
+        player?.play(atTime: TimeInterval(Int(time)))
     }
     
-    func playMusic() {
-        self.isPlay = true
-    }
-    
-    func stopMusic() {
-        self.isPlay = false
+    func playMusic(isPlay: Bool) {
+        if isPlay {
+            player?.play()
+        } else {
+            player?.stop()
+        }
     }
     
 }
