@@ -41,7 +41,7 @@
 		C366BE5527298E6900B3E182 /* AddingDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE5427298E6900B3E182 /* AddingDataViewController.swift */; };
 		C366BE5727298EBE00B3E182 /* AddingDataAboutUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE5627298EBE00B3E182 /* AddingDataAboutUserViewModel.swift */; };
 		C366BE59272AEB5B00B3E182 /* EnumStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE58272AEB5B00B3E182 /* EnumStyle.swift */; };
-		C3767DF8274FB21300F4FF7D /* StateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3767DF7274FB21300F4FF7D /* StateModel.swift */; };
+		C3767DF8274FB21300F4FF7D /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3767DF7274FB21300F4FF7D /* State.swift */; };
 		C379FEC927393FC5004ECCB9 /* MainControllerImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379FEC827393FC5004ECCB9 /* MainControllerImp.swift */; };
 		C379FECF273940BB004ECCB9 /* RegistrationControllerImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379FECE273940BB004ECCB9 /* RegistrationControllerImp.swift */; };
 		C379FED127394390004ECCB9 /* AddingDataImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379FED027394390004ECCB9 /* AddingDataImp.swift */; };
@@ -137,7 +137,7 @@
 		C366BE5427298E6900B3E182 /* AddingDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingDataViewController.swift; sourceTree = "<group>"; };
 		C366BE5627298EBE00B3E182 /* AddingDataAboutUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingDataAboutUserViewModel.swift; sourceTree = "<group>"; };
 		C366BE58272AEB5B00B3E182 /* EnumStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumStyle.swift; sourceTree = "<group>"; };
-		C3767DF7274FB21300F4FF7D /* StateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateModel.swift; sourceTree = "<group>"; };
+		C3767DF7274FB21300F4FF7D /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		C379FEC827393FC5004ECCB9 /* MainControllerImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerImp.swift; sourceTree = "<group>"; };
 		C379FECE273940BB004ECCB9 /* RegistrationControllerImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationControllerImp.swift; sourceTree = "<group>"; };
 		C379FED027394390004ECCB9 /* AddingDataImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingDataImp.swift; sourceTree = "<group>"; };
@@ -361,7 +361,7 @@
 				C33CCA7A272BE47A00C7969E /* DetailModel.swift */,
 				C33CCA7F272C253200C7969E /* SampleModel.swift */,
 				C310E2F72743DA7500C47625 /* DataCellModel.swift */,
-				C3767DF7274FB21300F4FF7D /* StateModel.swift */,
+				C3767DF7274FB21300F4FF7D /* State.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -678,7 +678,7 @@
 				C325586E273A9B7C00248FD8 /* MainCoordinatorImp.swift in Sources */,
 				C3810574274B94470071BC79 /* MusicPlayer.swift in Sources */,
 				C38105622746B00A0071BC79 /* UserDetailDrawView.swift in Sources */,
-				C3767DF8274FB21300F4FF7D /* StateModel.swift in Sources */,
+				C3767DF8274FB21300F4FF7D /* State.swift in Sources */,
 				C3255880273EA1C900248FD8 /* StartViewController.swift in Sources */,
 				C310E2F627439D0000C47625 /* UploadMusicImp.swift in Sources */,
 				C381567D2726A930008E83AC /* Coordinator.swift in Sources */,
