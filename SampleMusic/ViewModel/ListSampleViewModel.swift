@@ -19,7 +19,6 @@ class ListSampleViewModel: ListSamplesImp {
     var reloadTableView : (() -> Void)?
     var db : Firestore?
     var st : Storage?
-    var image : UIImage?
     var dismissAlert: ((Bool) -> Void)?
     var sampleData : String?
     let imageView = UIImageView()
@@ -32,6 +31,7 @@ class ListSampleViewModel: ListSamplesImp {
             reloadTableView?()
         }
     }
+    var searchData = [DataCellModel]()
     init (db: Firestore,st: Storage) {
         self.db = db
         self.st = st
@@ -60,6 +60,7 @@ class ListSampleViewModel: ListSamplesImp {
             resData.append(createCellModel(cell: r))
         }
         samplesData = resData
+        searchData = samplesData
 
     }
     
@@ -96,6 +97,7 @@ class ListSampleViewModel: ListSamplesImp {
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {
         return samplesData[indexPath.row]
     }
+    
     //MARK: - Filter
     func filterByName() {
        let sortedByName = samplesData.sorted { $0.sampleName < $1.sampleName }
@@ -103,13 +105,18 @@ class ListSampleViewModel: ListSamplesImp {
     }
     
     func filterByTrackLength() {
-        
+        let sortedBySampleLength = samplesData.sorted { $0.totalSeconds < $1.totalSeconds }
+        samplesData = sortedBySampleLength
     }
     
     //MARK: - Search
     func searchResults(text: String) {
-        let search = samplesData.filter { $0.sampleName.contains(text) }
+        let search = searchData.filter { $0.sampleName.contains(text) }
         samplesData = search
+    }
+    
+    func getSearchData() {
+        samplesData = searchData
     }
     //MARK: - LogOut
     func logout() {

@@ -17,4 +17,5 @@ protocol ListSamplesImp {
     func filterByName()
     func filterByTrackLength()
     func searchResults(text: String)
+    func getSearchData()
 }

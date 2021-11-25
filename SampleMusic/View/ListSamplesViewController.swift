@@ -151,13 +151,16 @@ extension ListSamplesViewController : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let textToSearch = searchBar.text, !textToSearch.isEmpty else {
-            return
+            return viewModel.getSearchData()
         }
+
         viewModel.searchResults(text: textToSearch)
     }
+
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        viewModel.getSamplesData()
+        viewModel.getSearchData()
     }
+    
 }
 
 extension ListSamplesViewController : ListSamplesScreenProtocol {}
