@@ -12,6 +12,7 @@ import Dip
 import UIKit
 
 class MainScreenViewModel: MainControllerImp {
+    
     var db: Firestore!
     var reloadView : (() -> Void)?
     var error : ((Error) -> Void)?
@@ -65,14 +66,6 @@ class MainScreenViewModel: MainControllerImp {
                     }
                 }
             }
-    }
-    
-    func isUserSign() {
-        if Auth.auth().currentUser != nil {
-            print("User is signIn")
-        } else {
-            print("User isn't signIn")
-        }
     }
     
 }

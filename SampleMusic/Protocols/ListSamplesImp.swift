@@ -18,4 +18,5 @@ protocol ListSamplesImp {
     func filterByTrackLength()
     func searchResults(text: String)
     func getSearchData()
+    func signUser()
 }

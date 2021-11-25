@@ -11,8 +11,6 @@ import Firebase
 import FirebaseFirestore
 import FirebaseStorage
 import UIKit
-import AVFAudio
-import AVFoundation
 
 extension DependencyContainer {
     static func configure() -> DependencyContainer {
@@ -31,7 +29,8 @@ let appContainer = DependencyContainer { container in
     container.register(.singleton) { Storage.storage() as Storage }
     container.register(.singleton) { Firestore.firestore() as Firestore }
     container.register(.singleton) { UINavigationController() as UINavigationController }
-    container.register(.shared) { StartViewController() as StartViewProtocol }
+    container.register(.shared) { StartViewModel(db: try! container.resolve()) as StartViewImp }
+    container.register(.shared) { StartViewController(viewModel: try! container.resolve() as StartViewImp ) as StartViewProtocol }
     container.register(.shared) { MusicPlayer() as MusicPlayerProtocol }
 }
 

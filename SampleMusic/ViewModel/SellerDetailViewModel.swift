@@ -13,6 +13,7 @@ import Dip
 import UIKit
 import FirebaseStorageUI
 import AVFoundation
+import RealmSwift
 
 
 class SellerDetailViewModel: SellerImp {
@@ -29,6 +30,8 @@ class SellerDetailViewModel: SellerImp {
     var imageArray = [String]()
     var sampleUrl = [String]()
     var totalSeconds : Int?
+    let realm = try! Realm()
+    var state : Results<State>?
 
     
     init(db: Firestore,st: Storage) {
@@ -44,6 +47,9 @@ class SellerDetailViewModel: SellerImp {
     
     func userData() {
         if let user = Auth.auth().currentUser {
+            let state = State()
+            state.state = user.uid
+            self.saveUid(state)
             self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in
                 if let data = document?.data() {
                     let sellerData = DetailModel(data: data)
@@ -130,6 +136,16 @@ class SellerDetailViewModel: SellerImp {
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {
         return samplesData[indexPath.row]
+    }
+    
+    func saveUid(_ state: State) {
+        do {
+            try realm.write {
+                realm.add(state)
+            }
+        } catch {
+            print("Error saving state \(error)")
+        }
     }
 
 }

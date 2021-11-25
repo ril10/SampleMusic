@@ -119,6 +119,8 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
             self.viewModel?.getSamplesData()
         }
         
+        viewModel.signUser()
+        
     }
     
     //MARK: - Config NavBar

@@ -13,6 +13,7 @@ import Dip
 import UIKit
 import FirebaseStorageUI
 import AVFoundation
+import RealmSwift
 
 class ListSampleViewModel: ListSamplesImp {
 
@@ -25,6 +26,8 @@ class ListSampleViewModel: ListSamplesImp {
     var imageArray = [String]()
     var sampleUrl = [String]()
     var totalSeconds : Int?
+    let realm = try! Realm()
+    var state : Results<State>?
     
     var samplesData = [DataCellModel]() {
         didSet {
@@ -35,6 +38,14 @@ class ListSampleViewModel: ListSamplesImp {
     init (db: Firestore,st: Storage) {
         self.db = db
         self.st = st
+    }
+    
+    func signUser() {
+        if let user = Auth.auth().currentUser {
+            let state = State()
+            state.state = user.uid
+            self.saveUid(state)
+        }
     }
     //MARK: - TableViewData
     func getSamplesData() {
@@ -125,6 +136,16 @@ class ListSampleViewModel: ListSamplesImp {
             } catch let signOutError as NSError {
                 print(signOutError.localizedDescription)
             }
+    }
+    
+    func saveUid(_ state: State) {
+        do {
+            try realm.write {
+                realm.add(state)
+            }
+        } catch {
+            print("Error saving state \(error)")
+        }
     }
     
 }

@@ -12,7 +12,16 @@ class StartViewController: UIViewController {
     
     var drawView = StartViewDraw()
     var coordinator : MainCoordinator?
+    var viewModel : StartViewImp
     
+    init(viewModel: StartViewImp) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - ActionButton
     @objc func signUpButton(sender: UIButton!) {
@@ -26,6 +35,10 @@ class StartViewController: UIViewController {
     }
     
     //MARK: - View
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     
     override func loadView() {
         super.loadView()
