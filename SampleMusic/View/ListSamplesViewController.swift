@@ -90,6 +90,13 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         if viewModel.samplesData.count == 0 {
             self.alertLoading()
         }
+        viewModel.hideUserDetail()
+        viewModel.hide = { hide in
+            if hide {
+                self.navigationItem.rightBarButtonItem?.image = nil
+            }
+        }
+
     }
     
     override func loadView() {
@@ -99,6 +106,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         view.backgroundColor = .white
         drawView.viewCompare(view: view)
         drawView.segment.addTarget(self, action: #selector(ListSamplesViewController.segmentAction(sender:)), for: .valueChanged)
+
     }
     
     override func viewDidLoad() {
@@ -120,6 +128,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         }
         
         viewModel.signUser()
+
         
     }
     

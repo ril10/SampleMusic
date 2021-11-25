@@ -22,6 +22,7 @@ class ListSampleViewModel: ListSamplesImp {
     var st : Storage?
     var dismissAlert: ((Bool) -> Void)?
     var sampleData : String?
+    var hide : ((Bool) -> Void)?
     let imageView = UIImageView()
     var imageArray = [String]()
     var sampleUrl = [String]()
@@ -45,6 +46,20 @@ class ListSampleViewModel: ListSamplesImp {
             let state = State()
             state.state = user.uid
             self.saveUid(state)
+        }
+    }
+    
+    func hideUserDetail() {
+        if let user = Auth.auth().currentUser {
+            db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).addSnapshotListener({ [weak self] doc, error in
+                if let e = error {
+                    print(e.localizedDescription)
+                } else {
+                    if doc?.data() != nil {
+                        self?.hide?(true)
+                    }
+                }
+            })
         }
     }
     //MARK: - TableViewData

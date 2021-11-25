@@ -19,4 +19,6 @@ protocol ListSamplesImp {
     func searchResults(text: String)
     func getSearchData()
     func signUser()
+    var hide : ((Bool) -> Void)? { get set }
+    func hideUserDetail()
 }

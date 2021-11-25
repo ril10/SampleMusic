@@ -12,16 +12,6 @@ class StartViewController: UIViewController {
     
     var drawView = StartViewDraw()
     var coordinator : MainCoordinator?
-    var viewModel : StartViewImp
-    
-    init(viewModel: StartViewImp) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     //MARK: - ActionButton
     @objc func signUpButton(sender: UIButton!) {

@@ -42,8 +42,6 @@
 		C366BE5727298EBE00B3E182 /* AddingDataAboutUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE5627298EBE00B3E182 /* AddingDataAboutUserViewModel.swift */; };
 		C366BE59272AEB5B00B3E182 /* EnumStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE58272AEB5B00B3E182 /* EnumStyle.swift */; };
 		C3767DF8274FB21300F4FF7D /* StateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3767DF7274FB21300F4FF7D /* StateModel.swift */; };
-		C3767DFA274FBE5000F4FF7D /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3767DF9274FBE5000F4FF7D /* StartViewModel.swift */; };
-		C3767DFC274FBE7400F4FF7D /* StartViewImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3767DFB274FBE7400F4FF7D /* StartViewImp.swift */; };
 		C379FEC927393FC5004ECCB9 /* MainControllerImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379FEC827393FC5004ECCB9 /* MainControllerImp.swift */; };
 		C379FECF273940BB004ECCB9 /* RegistrationControllerImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379FECE273940BB004ECCB9 /* RegistrationControllerImp.swift */; };
 		C379FED127394390004ECCB9 /* AddingDataImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379FED027394390004ECCB9 /* AddingDataImp.swift */; };
@@ -140,8 +138,6 @@
 		C366BE5627298EBE00B3E182 /* AddingDataAboutUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingDataAboutUserViewModel.swift; sourceTree = "<group>"; };
 		C366BE58272AEB5B00B3E182 /* EnumStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumStyle.swift; sourceTree = "<group>"; };
 		C3767DF7274FB21300F4FF7D /* StateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateModel.swift; sourceTree = "<group>"; };
-		C3767DF9274FBE5000F4FF7D /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
-		C3767DFB274FBE7400F4FF7D /* StartViewImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewImp.swift; sourceTree = "<group>"; };
 		C379FEC827393FC5004ECCB9 /* MainControllerImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerImp.swift; sourceTree = "<group>"; };
 		C379FECE273940BB004ECCB9 /* RegistrationControllerImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationControllerImp.swift; sourceTree = "<group>"; };
 		C379FED027394390004ECCB9 /* AddingDataImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingDataImp.swift; sourceTree = "<group>"; };
@@ -286,7 +282,6 @@
 				C310E2F527439D0000C47625 /* UploadMusicImp.swift */,
 				C3810577274BCDBF0071BC79 /* UserDetailImp.swift */,
 				C381057B274CD19E0071BC79 /* RecordViewModelImp.swift */,
-				C3767DFB274FBE7400F4FF7D /* StartViewImp.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -404,7 +399,6 @@
 				C38105632746B0310071BC79 /* UserDetailViewModel.swift */,
 				C38105692746B0F00071BC79 /* RecordPageViewModel.swift */,
 				C381056F2746B17E0071BC79 /* ChatPageViewModel.swift */,
-				C3767DF9274FBE5000F4FF7D /* StartViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -689,9 +683,7 @@
 				C310E2F627439D0000C47625 /* UploadMusicImp.swift in Sources */,
 				C381567D2726A930008E83AC /* Coordinator.swift in Sources */,
 				C30150AB27312E3B00C85EF3 /* AddingDataDraw.swift in Sources */,
-				C3767DFA274FBE5000F4FF7D /* StartViewModel.swift in Sources */,
 				C325588827427ED800248FD8 /* UploadMusicViewModel.swift in Sources */,
-				C3767DFC274FBE7400F4FF7D /* StartViewImp.swift in Sources */,
 				C379FED3273943B4004ECCB9 /* SellerImp.swift in Sources */,
 				C381057C274CD19E0071BC79 /* RecordViewModelImp.swift in Sources */,
 				C38105642746B0310071BC79 /* UserDetailViewModel.swift in Sources */,
