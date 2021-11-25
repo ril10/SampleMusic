@@ -33,33 +33,24 @@ class MusicPlayer: NSObject,AVAudioPlayerDelegate {
         }
     }
     
-    func audioPlayerBeginInterruption(_ player: AVAudioPlayer) {
-        print("playerBegin:\(player.currentTime)")
-    }
-    
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        print("player:\(player.currentTime)")
+        if flag {
+            player.pause()
+        }
     }
     
-    func playMusicAt(_ at: Float) {
-        let time = at * 10
-        print(TimeInterval(Int(time)))
-        player?.play(atTime: TimeInterval(Int(time)))
+    func playMusicAt(_ value: Int) {
+        player?.pause()
+        player?.currentTime = TimeInterval(value)
+        player?.prepareToPlay()
+        player?.play()
     }
     
     func playMusic(isPlay: Bool) {
         if isPlay {
             player?.play()
-
-            let seconds = Int(player!.currentTime) % 60
-            let minutes = Int(player!.currentTime / 60) % 60
-            print(String(format: "%0.2d:%0.2d", minutes,seconds))
         } else {
-            player?.stop()
-            
-            let seconds = Int(player!.currentTime) % 60
-            let minutes = Int(player!.currentTime / 60) % 60
-            print(String(format: "%0.2d:%0.2d", minutes,seconds))
+            player?.pause()
         }
     }
     

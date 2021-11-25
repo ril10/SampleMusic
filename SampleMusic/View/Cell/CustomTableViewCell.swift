@@ -12,7 +12,6 @@ import Dip
 class CustomTableViewCell: UITableViewCell {
     
     var sampleData : String!
-    var position = 0
     
     var player = try! appContainer.resolve() as MusicPlayerProtocol
 
@@ -93,6 +92,7 @@ class CustomTableViewCell: UITableViewCell {
         slider.value = 0.0
         slider.tintColor = UIColor(named: Style.colorButton.rawValue)
         slider.addTarget(self, action: #selector(didSlider(slider:)), for: .valueChanged)
+        
         return slider
     }()
     
@@ -109,28 +109,55 @@ class CustomTableViewCell: UITableViewCell {
     }()
     
     @objc func didSlider(slider: UISlider!) {
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
         slider.minimumValue = 0
         slider.maximumValue = Float(sampleCell!.totalSeconds)
-        var value = Int(slider.value)
+        let value = Int(slider.value)
 
         if value >= 60 {
             startTimeLabel.text = String(format: "%02d:%02d", (value / 60), (value % 60))
         } else {
             startTimeLabel.text = String(format: "00:%02d", value)
         }
-        
-        
+        player.playMusicAt(value)
+        if player.player?.isPlaying == true {
+            buttonPlay.setImage(UIImage(systemName: Icons.pause.rawValue,withConfiguration: largeConfig), for: .normal)
+        } else {
+            buttonPlay.setImage(UIImage(systemName: Icons.play.rawValue,withConfiguration: largeConfig), for: .normal)
+        }
+    }
+    
+    @objc func updateSlider() {
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
+        slider.minimumValue = 0
+        slider.maximumValue = Float(sampleCell!.totalSeconds)
+        slider.value = Float(player.player!.currentTime)
+        let value = Int(slider.value)
+        if value >= 60 {
+            startTimeLabel.text = String(format: "%02d:%02d", (value / 60), (value % 60))
+        } else {
+            startTimeLabel.text = String(format: "00:%02d", value)
+        }
+        if player.player?.isPlaying == false {
+            buttonPlay.setImage(UIImage(systemName: Icons.play.rawValue,withConfiguration: largeConfig), for: .normal)
+        }
     }
     
     @objc func playMusic(sender: UIButton!) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
+        player.configure(sampleData: sampleData)
         if  player.player?.isPlaying == true {
             buttonPlay.setImage(UIImage(systemName: Icons.play.rawValue,withConfiguration: largeConfig), for: .normal)
-            player.configure(sampleData: sampleData)
-
+            player.player?.pause()
         } else {
             buttonPlay.setImage(UIImage(systemName: Icons.pause.rawValue,withConfiguration: largeConfig), for: .normal)
-            player.configure(sampleData: sampleData)
+            player.player?.play()
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                self.updateSlider()
+                if self.player.player?.isPlaying == false {
+                    timer.invalidate()
+                }
+            }
         }
     }
     
