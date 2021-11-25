@@ -63,12 +63,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             coordinator.start()
         }
-
+        
 
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = navController
         window.makeKeyAndVisible()
         self.window = window
+        
+        print(realm.configuration.fileURL?.absoluteURL)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

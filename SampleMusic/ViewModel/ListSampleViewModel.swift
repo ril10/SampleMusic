@@ -148,6 +148,9 @@ class ListSampleViewModel: ListSamplesImp {
     func logout() {
             do {
                 try Auth.auth().signOut()
+                try! realm.write({
+                    realm.deleteAll()
+                })
             } catch let signOutError as NSError {
                 print(signOutError.localizedDescription)
             }

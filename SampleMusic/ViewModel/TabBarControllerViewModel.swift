@@ -9,10 +9,12 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 import Dip
+import RealmSwift
 
 class TabBarControllerViewModel: TabBarImp {
     var db: Firestore!
     var reloadView : (() -> Void)?
+    let realm = try! Realm()
     
     init (db: Firestore) {
         self.db = db
@@ -20,6 +22,9 @@ class TabBarControllerViewModel: TabBarImp {
     func logout() {
             do {
                 try Auth.auth().signOut()
+                try! realm.write({
+                    realm.deleteAll()
+                })
             } catch let signOutError as NSError {
                 print(signOutError.localizedDescription)
             }
