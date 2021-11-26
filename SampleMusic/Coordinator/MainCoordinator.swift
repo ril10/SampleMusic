@@ -25,7 +25,8 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
          userDetailView: UserDetailProtocol,
          recordPageView: RecordPageProtocol,
          chatPageView: ChatPageProtocol,
-         chatDetailView: ChatDetailProtocol) {
+         chatDetailView: ChatDetailProtocol,
+         sellerDetailView: SellerScreenProtocol) {
         self.navigationController = navigationController
         self.mainView = mainView
         self.registrationView = registrationView
@@ -38,6 +39,7 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
         self.recordPageView = recordPageView
         self.chatPageView = chatPageView
         self.chatDetailView = chatDetailView
+        self.sellerDetailView = sellerDetailView
     }
     
     var startView : StartViewProtocol
@@ -51,6 +53,7 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     var recordPageView : RecordPageProtocol
     var chatPageView : ChatPageProtocol
     var chatDetailView : ChatDetailProtocol
+    var sellerDetailView : SellerScreenProtocol
     
     func start() {
         startView = try! appContainer.resolve() as StartViewProtocol
@@ -125,6 +128,13 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     
     func chatDetail() {
         let child = try! userContainer.resolve() as ChatDetailCoordinator
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start()
+    }
+    
+    func sellerDetail() {
+        let child = try! userContainer.resolve() as SellerDetailCoordinator
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()

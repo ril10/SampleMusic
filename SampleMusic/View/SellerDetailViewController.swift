@@ -12,7 +12,7 @@ import AVFoundation
 
 class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MPMediaPickerControllerDelegate {
     
-    var coordinator : UploadMusicCoordinator?
+    var coordinator : SellerDetailCoordinator?
     var drawView = SellerDetailDraw()
     var viewModel : SellerImp!
     var mediaPicker : MPMediaPickerController?

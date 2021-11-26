@@ -38,6 +38,10 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.samplesData.count
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coordinator?.goToSellerPage()
+    }
     //MARK: - Alert
     func alertLoading() {
         let alert = UIAlertController(title: AlertTitle.loading.rawValue, message: AlertTitle.wait.rawValue, preferredStyle: .alert)

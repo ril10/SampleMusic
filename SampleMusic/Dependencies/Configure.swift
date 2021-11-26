@@ -59,6 +59,7 @@ let userContainer = DependencyContainer { container in
     container.register(.unique) { RecordPageCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     container.register(.unique) { ChatPageCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     container.register(.unique) { ChatDetailCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
+    container.register(.unique) { SellerDetailCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     
     container.register(.shared) { ListSampleViewModel(db: try! appContainer.resolve(),st: try! appContainer.resolve()) as ListSamplesImp }
     container.register(.shared) { SellerDetailViewModel(db: try! appContainer.resolve(),st: try! appContainer.resolve()) as SellerImp }
