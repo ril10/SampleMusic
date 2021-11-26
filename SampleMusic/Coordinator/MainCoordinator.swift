@@ -23,7 +23,8 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
          startView: StartViewProtocol,
          uploadView: UploadMusicProtocol,
          userDetailView: UserDetailProtocol,
-         recordPageView: RecordPageProtocol) {
+         recordPageView: RecordPageProtocol,
+         chatPageView: ChatPageProtocol) {
         self.navigationController = navigationController
         self.mainView = mainView
         self.registrationView = registrationView
@@ -34,6 +35,7 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
         self.uploadView = uploadView
         self.userDetailView = userDetailView
         self.recordPageView = recordPageView
+        self.chatPageView = chatPageView
     }
     
     var startView : StartViewProtocol
@@ -45,6 +47,7 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     var uploadView : UploadMusicProtocol
     var userDetailView : UserDetailProtocol
     var recordPageView : RecordPageProtocol
+    var chatPageView : ChatPageProtocol
     
     func start() {
         startView = try! appContainer.resolve() as StartViewProtocol
@@ -105,6 +108,13 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     
     func recordPage() {
         let child = try! userContainer.resolve() as RecordPageCoordinator
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        child.start()
+    }
+    
+    func chatPage() {
+        let child = try! userContainer.resolve() as ChatPageCoordinator
         child.parentCoordinator = self
         childCoordinators.append(child)
         child.start()

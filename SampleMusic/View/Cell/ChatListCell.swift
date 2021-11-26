@@ -7,8 +7,9 @@
 
 import UIKit
 
-class UserMessageCell: UITableViewCell {
+class ChatListCell: UITableViewCell {
 
+    
     lazy var stackView : UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [imageUser,lastMessage])
         stackView.alignment = .fill

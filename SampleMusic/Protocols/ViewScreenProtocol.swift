@@ -32,3 +32,5 @@ protocol UserDetailProtocol : UserDetailViewController { }
 
 protocol RecordPageProtocol : RecordPageViewController { }
 
+protocol ChatPageProtocol : ChatPageViewController { }
+

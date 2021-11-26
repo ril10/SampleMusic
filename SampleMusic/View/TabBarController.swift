@@ -65,9 +65,10 @@ class TabBarController: UITabBarController {
             NSAttributedString.Key.foregroundColor: UIColor(named: Style.colorButton.rawValue) as Any,
             NSAttributedString.Key.font: UIFont(name: Style.fontTitleHeavy.rawValue, size: 18) as Any
         ]
-        
+        let edit = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editData(sender:)))
+        let message = UIBarButtonItem(image: UIImage(systemName: "message"), style: .plain, target: self, action: #selector(message(sender:)))
+        rootViewController.navigationItem.rightBarButtonItems = [edit, message]
         rootViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutAction(sender:)))
-        rootViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editData(sender:)))
         return navController
     }
 
@@ -77,6 +78,10 @@ class TabBarController: UITabBarController {
     }
     
     @objc func editData(sender: UIButton) {
+        
+    }
+    
+    @objc func message(sender: UIButton) {
         
     }
     

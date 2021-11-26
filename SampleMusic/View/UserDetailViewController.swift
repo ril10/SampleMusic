@@ -69,7 +69,7 @@ class UserDetailViewController : UIViewController {
     }
     
     @objc func message(sender: UIButton) {
-        
+        coordinator?.navToChatList()
     }
     //MARK: - Config NavBar
     

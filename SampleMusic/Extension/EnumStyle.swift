@@ -85,5 +85,7 @@ enum Icons : String, CaseIterable {
 
 enum TableCell : String, CaseIterable {
     case cell = "CustomTableViewCell"
+    case chatCell = "ChatCell"
+    case chatDetailCell = "ChatDetailCell"
 }
 
