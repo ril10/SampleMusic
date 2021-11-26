@@ -28,7 +28,11 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     //MARK: - ButtonAction
-    @objc func editData(sender: UIButton!) {
+    @objc func editAction(sender: UIButton!) {
+        
+    }
+    
+    @objc func message(sender: UIButton) {
         
     }
     //MARK: - Alert
@@ -136,7 +140,9 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editData(sender:)))
+        let edit = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editAction(sender:)))
+        let message = UIBarButtonItem(image: UIImage(systemName: "message"), style: .plain, target: self, action: #selector(message(sender:)))
+        self.navigationItem.rightBarButtonItems = [edit, message]
         self.navigationItem.setHidesBackButton(false, animated: false)
     }
 }

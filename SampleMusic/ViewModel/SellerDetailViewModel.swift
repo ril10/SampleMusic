@@ -32,7 +32,7 @@ class SellerDetailViewModel: SellerImp {
     var totalSeconds : Int?
     let realm = try! Realm()
     var state : Results<State>?
-
+    var duratation : String?
     
     init(db: Firestore,st: Storage) {
         self.db = db
@@ -114,24 +114,19 @@ class SellerDetailViewModel: SellerImp {
         
         let name = cell.sampleName
 
-        let duratation = self.sampleDuratation(for: cell.sampleUrl)
-
+        let asset = AVAsset(url: URL(string: cell.sampleUrl)!)
+        let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        self.totalSeconds = totalSeconds
+        self.duratation = String(format:"%02i:%02i",minutes, seconds)
         
         return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!,
                              sampleName: name,
                              sampleData: self.sampleData ?? "",
                              totalSeconds: self.totalSeconds!,
-                             sampleDuratation: duratation
+                             sampleDuratation: self.duratation!
         )
-    }
-    
-    func sampleDuratation(for resource: String) -> String {
-        let asset = AVAsset(url: URL(string: resource)!)
-        let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
-        let minutes = totalSeconds / 60
-        let seconds = totalSeconds % 60
-        self.totalSeconds = totalSeconds
-        return String(format:"%02i:%02i",minutes, seconds)
     }
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {

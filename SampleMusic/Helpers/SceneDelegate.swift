@@ -47,6 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     print(e.localizedDescription)
                 } else {
                     if doc?.data() != nil {
+                        navController.isNavigationBarHidden = true
                         coordinator.userList()
                     }
                 }
@@ -56,6 +57,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     print(e.localizedDescription)
                 } else {
                     if doc?.data() != nil {
+                        navController.isNavigationBarHidden = true
                         coordinator.mainTabController()
                     }
                 }

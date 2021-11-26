@@ -29,6 +29,7 @@ class ListSampleViewModel: ListSamplesImp {
     var totalSeconds : Int?
     let realm = try! Realm()
     var state : Results<State>?
+    var duratation : String?
     
     var samplesData = [DataCellModel]() {
         didSet {
@@ -101,23 +102,19 @@ class ListSampleViewModel: ListSamplesImp {
         for smp in self.sampleUrl {
             self.sampleData = smp
         }
-        let duratation = self.sampleDuratation(for: cell.sampleUrl)
+        let asset = AVAsset(url: URL(string: cell.sampleUrl)!)
+        let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        self.totalSeconds = totalSeconds
+        self.duratation = String(format:"%02i:%02i",minutes, seconds)
         
         return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!,
                              sampleName: name,
                              sampleData: self.sampleData ?? "",
                              totalSeconds: self.totalSeconds!,
-                             sampleDuratation: duratation
+                             sampleDuratation: self.duratation!
         )
-    }
-    
-    func sampleDuratation(for resource: String) -> String {
-        let asset = AVAsset(url: URL(string: resource)!)
-        let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
-        let minutes = totalSeconds / 60
-        let seconds = totalSeconds % 60
-        self.totalSeconds = totalSeconds
-        return String(format:"%02i:%02i",minutes, seconds)
     }
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {
@@ -151,6 +148,7 @@ class ListSampleViewModel: ListSamplesImp {
                 try! realm.write({
                     realm.deleteAll()
                 })
+                self.samplesData = []
             } catch let signOutError as NSError {
                 print(signOutError.localizedDescription)
             }

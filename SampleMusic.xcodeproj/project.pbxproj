@@ -42,6 +42,7 @@
 		C366BE5727298EBE00B3E182 /* AddingDataAboutUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE5627298EBE00B3E182 /* AddingDataAboutUserViewModel.swift */; };
 		C366BE59272AEB5B00B3E182 /* EnumStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE58272AEB5B00B3E182 /* EnumStyle.swift */; };
 		C3767DF8274FB21300F4FF7D /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3767DF7274FB21300F4FF7D /* State.swift */; };
+		C3767DFE2750D3D200F4FF7D /* UserMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3767DFD2750D3D200F4FF7D /* UserMessageCell.swift */; };
 		C379FEC927393FC5004ECCB9 /* MainControllerImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379FEC827393FC5004ECCB9 /* MainControllerImp.swift */; };
 		C379FECF273940BB004ECCB9 /* RegistrationControllerImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379FECE273940BB004ECCB9 /* RegistrationControllerImp.swift */; };
 		C379FED127394390004ECCB9 /* AddingDataImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379FED027394390004ECCB9 /* AddingDataImp.swift */; };
@@ -138,6 +139,7 @@
 		C366BE5627298EBE00B3E182 /* AddingDataAboutUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingDataAboutUserViewModel.swift; sourceTree = "<group>"; };
 		C366BE58272AEB5B00B3E182 /* EnumStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumStyle.swift; sourceTree = "<group>"; };
 		C3767DF7274FB21300F4FF7D /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		C3767DFD2750D3D200F4FF7D /* UserMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessageCell.swift; sourceTree = "<group>"; };
 		C379FEC827393FC5004ECCB9 /* MainControllerImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainControllerImp.swift; sourceTree = "<group>"; };
 		C379FECE273940BB004ECCB9 /* RegistrationControllerImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationControllerImp.swift; sourceTree = "<group>"; };
 		C379FED027394390004ECCB9 /* AddingDataImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingDataImp.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				C33CCA7C272C246600C7969E /* CustomTableViewCell.swift */,
+				C3767DFD2750D3D200F4FF7D /* UserMessageCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -694,6 +697,7 @@
 				C3255876273AC4EE00248FD8 /* TabBarImp.swift in Sources */,
 				C325588A2742801500248FD8 /* UploadMusicCoordinator.swift in Sources */,
 				C379FED127394390004ECCB9 /* AddingDataImp.swift in Sources */,
+				C3767DFE2750D3D200F4FF7D /* UserMessageCell.swift in Sources */,
 				C381568A27281499008E83AC /* RegistrationViewModel.swift in Sources */,
 				C33CCA82272C3BC800C7969E /* SellerDetailViewModel.swift in Sources */,
 				C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */,

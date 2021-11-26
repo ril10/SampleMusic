@@ -24,6 +24,12 @@ class UserDetailViewController : UIViewController {
     }
     
  //MARK: - View
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationItem.backBarButtonItem?.title = ""
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.userData()
@@ -54,9 +60,15 @@ class UserDetailViewController : UIViewController {
         viewModel.image = { [weak self] image in
             self?.drawView.imageView.image = UIImage(data: image)
         }
+        
+        title = "User Detail"
     }
     //MARK: - ActionButton
     @objc func editAction(sender: UIButton) {
+        
+    }
+    
+    @objc func message(sender: UIButton) {
         
     }
     //MARK: - Config NavBar
@@ -75,8 +87,9 @@ class UserDetailViewController : UIViewController {
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editAction(sender:)))
-        
+        let edit = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editAction(sender:)))
+        let message = UIBarButtonItem(image: UIImage(systemName: "message"), style: .plain, target: self, action: #selector(message(sender:)))
+        self.navigationItem.rightBarButtonItems = [edit, message]
     }
 }
 
