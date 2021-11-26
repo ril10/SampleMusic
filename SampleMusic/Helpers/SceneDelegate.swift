@@ -40,7 +40,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                           uploadView: try! userContainer.resolve(),
                                           userDetailView: try! userContainer.resolve(),
                                           recordPageView: try! userContainer.resolve(),
-                                          chatPageView: try! userContainer.resolve()
+                                          chatPageView: try! userContainer.resolve(),
+                                          chatDetailView: try! userContainer.resolve()
         )
         if let sign = Auth.auth().currentUser {
             db.collection(Role.user.rawValue.lowercased()).document(sign.uid).addSnapshotListener { doc, error in
@@ -65,7 +66,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         } else {
 //            coordinator.start()
-            coordinator.chatPage()
+            coordinator.chatDetail()
         }
         
 

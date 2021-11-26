@@ -58,6 +58,7 @@ let userContainer = DependencyContainer { container in
     container.register(.unique) { UserDetailCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     container.register(.unique) { RecordPageCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     container.register(.unique) { ChatPageCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
+    container.register(.unique) { ChatDetailCoordinator(navigationController: try! appContainer.resolve(), view: try! container.resolve()) }
     
     container.register(.shared) { ListSampleViewModel(db: try! appContainer.resolve(),st: try! appContainer.resolve()) as ListSamplesImp }
     container.register(.shared) { SellerDetailViewModel(db: try! appContainer.resolve(),st: try! appContainer.resolve()) as SellerImp }
@@ -66,6 +67,7 @@ let userContainer = DependencyContainer { container in
     container.register(.shared) { UserDetailViewModel(db: try! appContainer.resolve(), st: try! appContainer.resolve()) as UserDetailViewModelImp }
     container.register(.shared) { RecordPageViewModel(db: try! appContainer.resolve(), st: try! appContainer.resolve()) as RecordViewModelImp }
     
+    container.register(.shared) { ChatDetailViewController() as ChatDetailProtocol }
     container.register(.shared) { ChatPageViewController() as ChatPageProtocol }
     container.register(.shared) { RecordPageViewController(viewModel: try! container.resolve() as RecordViewModelImp) as RecordPageProtocol }
     container.register(.shared) { UserDetailViewController(viewModel: try! container.resolve() as UserDetailViewModelImp) as UserDetailProtocol }

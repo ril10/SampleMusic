@@ -19,6 +19,8 @@
 		C30150BD2733E07300C85EF3 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30150BC2733E07300C85EF3 /* TabBarCoordinator.swift */; };
 		C310E2F627439D0000C47625 /* UploadMusicImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310E2F527439D0000C47625 /* UploadMusicImp.swift */; };
 		C310E2F82743DA7600C47625 /* DataCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310E2F72743DA7500C47625 /* DataCellModel.swift */; };
+		C31601192751009000D35E70 /* ChatDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31601182751009000D35E70 /* ChatDetailCoordinator.swift */; };
+		C316011B2751014300D35E70 /* ChatDetailDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C316011A2751014300D35E70 /* ChatDetailDrawView.swift */; };
 		C3255868273A62BC00248FD8 /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3255867273A62BC00248FD8 /* RegistrationCoordinator.swift */; };
 		C325586A273A62D600248FD8 /* AddUserDataCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3255869273A62D600248FD8 /* AddUserDataCoordinator.swift */; };
 		C325586E273A9B7C00248FD8 /* MainCoordinatorImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C325586D273A9B7C00248FD8 /* MainCoordinatorImp.swift */; };
@@ -121,6 +123,8 @@
 		C30150BC2733E07300C85EF3 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		C310E2F527439D0000C47625 /* UploadMusicImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMusicImp.swift; sourceTree = "<group>"; };
 		C310E2F72743DA7500C47625 /* DataCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCellModel.swift; sourceTree = "<group>"; };
+		C31601182751009000D35E70 /* ChatDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailCoordinator.swift; sourceTree = "<group>"; };
+		C316011A2751014300D35E70 /* ChatDetailDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailDrawView.swift; sourceTree = "<group>"; };
 		C3255867273A62BC00248FD8 /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
 		C3255869273A62D600248FD8 /* AddUserDataCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserDataCoordinator.swift; sourceTree = "<group>"; };
 		C325586D273A9B7C00248FD8 /* MainCoordinatorImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorImp.swift; sourceTree = "<group>"; };
@@ -259,6 +263,7 @@
 				C38105612746B00A0071BC79 /* UserDetailDrawView.swift */,
 				C38105672746B0D00071BC79 /* RecordPageDrawView.swift */,
 				C381056D2746B1530071BC79 /* ChatPageDrawView.swift */,
+				C316011A2751014300D35E70 /* ChatDetailDrawView.swift */,
 			);
 			path = "Drawing View";
 			sourceTree = "<group>";
@@ -433,6 +438,7 @@
 				C3810575274BB9D40071BC79 /* UserDetailCoordinator.swift */,
 				C3810579274BDA970071BC79 /* RecordPageCoordinator.swift */,
 				C3767DFF2750DA3500F4FF7D /* ChatPageCoordinator.swift */,
+				C31601182751009000D35E70 /* ChatDetailCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -703,6 +709,7 @@
 				C381567D2726A930008E83AC /* Coordinator.swift in Sources */,
 				C30150AB27312E3B00C85EF3 /* AddingDataDraw.swift in Sources */,
 				C325588827427ED800248FD8 /* UploadMusicViewModel.swift in Sources */,
+				C31601192751009000D35E70 /* ChatDetailCoordinator.swift in Sources */,
 				C379FED3273943B4004ECCB9 /* SellerImp.swift in Sources */,
 				C381057C274CD19E0071BC79 /* RecordViewModelImp.swift in Sources */,
 				C38105642746B0310071BC79 /* UserDetailViewModel.swift in Sources */,
@@ -728,6 +735,7 @@
 				C379FED5273943CB004ECCB9 /* ListSamplesImp.swift in Sources */,
 				C366BE5727298EBE00B3E182 /* AddingDataAboutUserViewModel.swift in Sources */,
 				C366BE532729726200B3E182 /* SellerDetailViewController.swift in Sources */,
+				C316011B2751014300D35E70 /* ChatDetailDrawView.swift in Sources */,
 				C381568F272822C6008E83AC /* ListSamplesViewController.swift in Sources */,
 				C38105702746B17E0071BC79 /* ChatPageViewModel.swift in Sources */,
 				C381568D27281B3F008E83AC /* Configure.swift in Sources */,

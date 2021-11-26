@@ -34,3 +34,5 @@ protocol RecordPageProtocol : RecordPageViewController { }
 
 protocol ChatPageProtocol : ChatPageViewController { }
 
+protocol ChatDetailProtocol : ChatDetailViewController { }
+
