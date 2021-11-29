@@ -11,4 +11,5 @@ import Foundation
 struct Message {
     let senderUid : String
     let body : String
+    let date : Double
 }

@@ -9,6 +9,18 @@ import UIKit
 
 class ChatDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    var viewModel : ChatDetailimp
+    
+    init(viewModel: ChatDetailimp) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     var coordinator : ChatDetailCoordinator?
     var drawView = ChatDetailDrawView()
     //MARK: - TableView
@@ -27,6 +39,17 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
+    //MARK: UITextFieldDelegate
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        textField.text?.removeAll()
+        return true
+    }
+    //MARK: - Action Button
+    
+    @objc func sendMessage(sender: UIButton) {
+        viewModel.sendMessage(text: drawView.messageTextField.text!)
+        textFieldShouldClear(drawView.messageTextField)
+    }
 
     //MARK: - View
     override func loadView() {
@@ -42,7 +65,12 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
         title = "Chat"
-        // Do any additional setup after loading the view.
+        drawView.sendMessage.addTarget(self, action: #selector(sendMessage(sender:)), for: .touchUpInside)
+        viewModel.reloadTableView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.drawView.sampleTable.reloadData()
+            }
+        }
     }
 
 }

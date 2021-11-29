@@ -88,6 +88,7 @@
 		C381568A27281499008E83AC /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381568927281499008E83AC /* RegistrationViewModel.swift */; };
 		C381568D27281B3F008E83AC /* Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381568C27281B3F008E83AC /* Configure.swift */; };
 		C381568F272822C6008E83AC /* ListSamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381568E272822C6008E83AC /* ListSamplesViewController.swift */; };
+		C38BC32E2755105C0027E33C /* ChatDetailImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BC32D2755105C0027E33C /* ChatDetailImp.swift */; };
 		C3B12B82A5DA3D1EE4F81576 /* Pods_SampleMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A42DF66B3173C4A7A37D45E /* Pods_SampleMusic.framework */; };
 /* End PBXBuildFile section */
 
@@ -201,6 +202,7 @@
 		C381568927281499008E83AC /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		C381568C27281B3F008E83AC /* Configure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configure.swift; sourceTree = "<group>"; };
 		C381568E272822C6008E83AC /* ListSamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSamplesViewController.swift; sourceTree = "<group>"; };
+		C38BC32D2755105C0027E33C /* ChatDetailImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailImp.swift; sourceTree = "<group>"; };
 		E4DC9775D6CA46AC94652080 /* Pods-SampleMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMusic.release.xcconfig"; path = "Target Support Files/Pods-SampleMusic/Pods-SampleMusic.release.xcconfig"; sourceTree = "<group>"; };
 		F308F32D44207B62349E262C /* Pods_SampleMusic_SampleMusicUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleMusic_SampleMusicUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -307,6 +309,7 @@
 				C310E2F527439D0000C47625 /* UploadMusicImp.swift */,
 				C3810577274BCDBF0071BC79 /* UserDetailImp.swift */,
 				C381057B274CD19E0071BC79 /* RecordViewModelImp.swift */,
+				C38BC32D2755105C0027E33C /* ChatDetailImp.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				C325587E273D0C5800248FD8 /* MainScreenCoordinator.swift in Sources */,
 				C379FED5273943CB004ECCB9 /* ListSamplesImp.swift in Sources */,
 				C3160121275130A800D35E70 /* SellerDetailCoordinator.swift in Sources */,
+				C38BC32E2755105C0027E33C /* ChatDetailImp.swift in Sources */,
 				C366BE5727298EBE00B3E182 /* AddingDataAboutUserViewModel.swift in Sources */,
 				C366BE532729726200B3E182 /* SellerDetailViewController.swift in Sources */,
 				C316011B2751014300D35E70 /* ChatDetailDrawView.swift in Sources */,

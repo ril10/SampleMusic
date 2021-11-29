@@ -8,6 +8,12 @@
 import UIKit
 
 class ChatDetailCell: UITableViewCell {
+    
+    var messageCell : Message? {
+        didSet {
+            message.text = messageCell?.body
+        }
+    }
 
     var messageView : UIView = {
         let view = UIView()
