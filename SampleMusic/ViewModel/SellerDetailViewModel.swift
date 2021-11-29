@@ -17,7 +17,6 @@ import RealmSwift
 
 
 class SellerDetailViewModel: SellerImp {
-    
     var reloadView : (() -> Void)?
     var reloadTableView : (() -> Void)?
     var db : Firestore?
@@ -33,6 +32,7 @@ class SellerDetailViewModel: SellerImp {
     let realm = try! Realm()
     var state : Results<State>?
     var duratation : String?
+    var ownerUid : String?
     
     init(db: Firestore,st: Storage) {
         self.db = db
@@ -68,6 +68,43 @@ class SellerDetailViewModel: SellerImp {
                 }
             })
         }
+    }
+    
+    func getDataFromUser(ownerUid: String) {
+        self.db?.collection(Role.seller.rawValue.lowercased()).document(ownerUid).getDocument(completion: { (document, error) in
+            if let data = document?.data() {
+                let sellerData = DetailModel(data: data)
+                let imgRef = self.st?.reference(forURL: sellerData.imageUrl)
+                imgRef?.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        self.image?(data!)
+                        self.dismissAlert?(true)
+                    }
+                })
+                DispatchQueue.main.async {
+                    self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender)
+                }
+            }
+        })
+    }
+    
+    func getDataSamplesFromUser(ownerUid: String) {
+        let refrence = db?.collection(Role.sample.rawValue.lowercased())
+        refrence?.whereField("ownerUid", isEqualTo: ownerUid)
+            .addSnapshotListener(includeMetadataChanges: true, listener: { documentSnapshot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    var resData = [SampleModel]()
+                    for document in documentSnapshot!.documents {
+                        let sampleData = SampleModel(data: document.data())
+                        resData.append(sampleData)
+                    }
+                    self.fetchData(res: resData)
+                }
+            })
     }
     
     

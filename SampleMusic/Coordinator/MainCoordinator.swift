@@ -133,9 +133,10 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
         child.start()
     }
     
-    func sellerDetail() {
+    func sellerDetail(ownerUid: String) {
         let child = try! userContainer.resolve() as SellerDetailCoordinator
         child.parentCoordinator = self
+        child.ownerUid = ownerUid
         childCoordinators.append(child)
         child.start()
     }

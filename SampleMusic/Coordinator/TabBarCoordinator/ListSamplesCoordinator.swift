@@ -43,9 +43,9 @@ class ListSamplesCoordinator : Coordinator {
         parentCoordinator?.userDetail()
     }
     
-    func goToSellerPage() {
+    func goToSellerPage(ownerUid: String) {
         parentCoordinator?.childDidFinish(self)
-        parentCoordinator?.sellerDetail()
+        parentCoordinator?.sellerDetail(ownerUid: ownerUid)
     }
     
 }

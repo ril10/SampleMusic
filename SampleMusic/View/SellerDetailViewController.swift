@@ -33,7 +33,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @objc func message(sender: UIButton) {
-        
+        coordinator?.writeMessage()
     }
     //MARK: - Alert
     func alertLoading() {
@@ -78,9 +78,20 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if viewModel.samplesData.count == 0 {
+        if viewModel.ownerUid != nil {
+            self.viewModel.getDataFromUser(ownerUid: viewModel.ownerUid!)
+            self.viewModel.getDataSamplesFromUser(ownerUid: viewModel.ownerUid!)
+            self.drawView.addButton.isHidden = true
+            self.drawView.createSampleButton.isHidden = true
             self.alertLoading()
+            configureNavBar()
+        } else {
+            if viewModel.samplesData.count == 0 {
+                self.alertLoading()
+                
+            }
         }
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -97,6 +108,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: TableCell.cell.rawValue)
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
@@ -140,9 +152,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
-        let edit = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editAction(sender:)))
-        let message = UIBarButtonItem(image: UIImage(systemName: "message"), style: .plain, target: self, action: #selector(message(sender:)))
-        self.navigationItem.rightBarButtonItems = [edit, message]
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "message"), style: .plain, target: self, action: #selector(message(sender:)))
         self.navigationItem.setHidesBackButton(false, animated: false)
     }
 }

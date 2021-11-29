@@ -240,6 +240,7 @@ class SellerDetailDraw: UIView {
         return tableView
     }()
     
+    
     //MARK: - Contstraints
     func viewCompare(view: UIView) {
         view.addSubview(scrollView)

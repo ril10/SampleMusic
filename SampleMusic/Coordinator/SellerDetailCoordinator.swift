@@ -15,6 +15,8 @@ class SellerDetailCoordinator : Coordinator {
     var navigationController: UINavigationController
     var view : SellerScreenProtocol
     
+    var ownerUid : String?
+    
     init(navigationController: UINavigationController, view: SellerScreenProtocol) {
         self.navigationController = navigationController
         self.view = view
@@ -22,7 +24,13 @@ class SellerDetailCoordinator : Coordinator {
     
     func start() {
         view.coordinator = self
+        view.viewModel.ownerUid = self.ownerUid!
         self.navigationController.pushViewController(view, animated: true)
+    }
+    
+    func writeMessage() {
+        self.parentCoordinator?.childDidFinish(self)
+        self.parentCoordinator?.chatDetail()
     }
     
     

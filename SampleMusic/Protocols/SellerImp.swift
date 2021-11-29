@@ -17,4 +17,7 @@ protocol SellerImp {
     var samplesData : [DataCellModel] { get set }
     func getCellModel(at indexPath: IndexPath) -> DataCellModel
     var dismissAlert : ((Bool) -> Void)? { get set }
+    var ownerUid : String? { get set }
+    func getDataFromUser(ownerUid: String)
+    func getDataSamplesFromUser(ownerUid: String)
 }

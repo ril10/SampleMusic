@@ -42,8 +42,9 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        //coordinator?.goToSellerPage()
+        let cellVm = self.viewModel.getCellModel(at: indexPath)
+        print(cellVm.ownerUid)
+        coordinator?.goToSellerPage(ownerUid: cellVm.ownerUid)
     }
     //MARK: - Alert
     func alertLoading() {

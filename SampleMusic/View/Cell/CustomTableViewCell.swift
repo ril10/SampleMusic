@@ -12,6 +12,7 @@ import Dip
 class CustomTableViewCell: UITableViewCell {
     
     var sampleData : String!
+    var ownerUid : String!
     
     var player = try! appContainer.resolve() as MusicPlayerProtocol
 
@@ -22,6 +23,7 @@ class CustomTableViewCell: UITableViewCell {
             labelSample.text = sampleCell?.sampleName
             sampleData = sampleCell?.sampleData
             endTimeLabel.text = sampleCell?.sampleDuratation
+            ownerUid = sampleCell?.ownerUid
         }
     }
     
