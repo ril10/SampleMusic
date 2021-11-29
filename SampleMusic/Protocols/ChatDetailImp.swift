@@ -12,4 +12,7 @@ protocol ChatDetailimp {
     var db : Firestore? { get set }
     var reloadTableView : (() -> Void)? { get set }
     func sendMessage(text: String)
+    var messageData : [Message] { get set }
+    func loadMessages()
+    func getCellModel(at indexPath: IndexPath) -> Message
 }

@@ -89,6 +89,7 @@
 		C381568D27281B3F008E83AC /* Configure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381568C27281B3F008E83AC /* Configure.swift */; };
 		C381568F272822C6008E83AC /* ListSamplesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381568E272822C6008E83AC /* ListSamplesViewController.swift */; };
 		C38BC32E2755105C0027E33C /* ChatDetailImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BC32D2755105C0027E33C /* ChatDetailImp.swift */; };
+		C38BC330275518DA0027E33C /* MessageDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BC32F275518DA0027E33C /* MessageDataModel.swift */; };
 		C3B12B82A5DA3D1EE4F81576 /* Pods_SampleMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A42DF66B3173C4A7A37D45E /* Pods_SampleMusic.framework */; };
 /* End PBXBuildFile section */
 
@@ -203,6 +204,7 @@
 		C381568C27281B3F008E83AC /* Configure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configure.swift; sourceTree = "<group>"; };
 		C381568E272822C6008E83AC /* ListSamplesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSamplesViewController.swift; sourceTree = "<group>"; };
 		C38BC32D2755105C0027E33C /* ChatDetailImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailImp.swift; sourceTree = "<group>"; };
+		C38BC32F275518DA0027E33C /* MessageDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDataModel.swift; sourceTree = "<group>"; };
 		E4DC9775D6CA46AC94652080 /* Pods-SampleMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMusic.release.xcconfig"; path = "Target Support Files/Pods-SampleMusic/Pods-SampleMusic.release.xcconfig"; sourceTree = "<group>"; };
 		F308F32D44207B62349E262C /* Pods_SampleMusic_SampleMusicUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleMusic_SampleMusicUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -393,6 +395,7 @@
 				C3767E012750DC7B00F4FF7D /* ChatListModel.swift */,
 				C3767E032750DE1A00F4FF7D /* CellChatModel.swift */,
 				C316011C2751230300D35E70 /* Message.swift */,
+				C38BC32F275518DA0027E33C /* MessageDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				C30150BD2733E07300C85EF3 /* TabBarCoordinator.swift in Sources */,
 				C3255878273C263200248FD8 /* ViewScreenProtocol.swift in Sources */,
 				C3255876273AC4EE00248FD8 /* TabBarImp.swift in Sources */,
+				C38BC330275518DA0027E33C /* MessageDataModel.swift in Sources */,
 				C316011D2751230300D35E70 /* Message.swift in Sources */,
 				C325588A2742801500248FD8 /* UploadMusicCoordinator.swift in Sources */,
 				C379FED127394390004ECCB9 /* AddingDataImp.swift in Sources */,

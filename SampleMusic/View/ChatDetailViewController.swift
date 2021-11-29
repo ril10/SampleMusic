@@ -25,14 +25,13 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
     var drawView = ChatDetailDrawView()
     //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return viewModel.messageData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.chatDetailCell.rawValue, for: indexPath) as! ChatDetailCell
-        
-        cell.message.text = "Hello World!"
-        
+        let cellVm = self.viewModel.getCellModel(at: indexPath)
+        cell.messageCell = cellVm
         return cell
     }
     
@@ -52,6 +51,11 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
     }
 
     //MARK: - View
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.loadMessages()
+    }
+    
     override func loadView() {
         super.loadView()
         view = UIView()
