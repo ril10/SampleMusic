@@ -13,10 +13,14 @@ import Dip
 
 class UploadMusicViewModel: UploadMusicImp {
 
+
     var db: Firestore!
     var st: Storage!
     var reloadView : (() -> Void)?
     var loading: ((Bool) -> Void)?
+    var imageSampleUrl : String?
+    var sampleName : String?
+    var sampleUrl : String?
     
     init(db: Firestore,st: Storage) {
         self.db = db
@@ -25,12 +29,14 @@ class UploadMusicViewModel: UploadMusicImp {
     
     func createSampleCollection() {
         self.db?.collection(Role.sample.rawValue.lowercased()).document().setData([
-            "ownerUid":Auth.auth().currentUser?.uid as Any
+            "ownerUid":Auth.auth().currentUser?.uid as Any,
+            "sampleImageUrl":self.imageSampleUrl as Any,
+            "sampleName":self.sampleName as Any,
+            "sampleUrl":self.sampleUrl as Any
         ])
     }
     
     func uploadSampleImage(image: Data,text: String) {
-        createSampleCollection()
         let refrence = db.collection(Role.sample.rawValue.lowercased())
         let uploadTask = st?.reference().child("imageSamples/\(text).jpg").putData(image, metadata: nil) { _, error in
             guard error == nil else {
@@ -51,9 +57,8 @@ class UploadMusicViewModel: UploadMusicImp {
                                 if let error = error {
                                     print(error.localizedDescription)
                                 } else {
-                                    refrence.document(query!.documents.last!.documentID).updateData([
-                                        "sampleImageUrl":url?.absoluteString as Any,
-                                    ])
+                                    self.imageSampleUrl = url?.absoluteString
+                                    self.createSampleCollection()
                                 }
                             }
                     }
@@ -84,9 +89,7 @@ class UploadMusicViewModel: UploadMusicImp {
                     if let error = error {
                         print(error.localizedDescription)
                     } else {
-                        refrence.document(query!.documents.last!.documentID).updateData([
-                            "sampleName":text as Any
-                        ])
+                        self.sampleName = text
                     }
                 }
     }
@@ -107,11 +110,10 @@ class UploadMusicViewModel: UploadMusicImp {
                                     if let error = error {
                                         print(error.localizedDescription)
                                     } else {
-                                        refrence.document(query!.documents.last!.documentID).updateData([
-                                            "sampleUrl":url?.absoluteString as Any
-                                        ])
+                                        self.sampleUrl = url?.absoluteString
                                     }
                                 }
+                        
                         self.loading?(true)
                     }
                 }

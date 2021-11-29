@@ -62,8 +62,8 @@ class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePi
         if drawView.sampleTextField.text!.isEmpty || drawView.imageView.image == nil {
             errorWithFields()
         } else {
+//            viewModel?.createSampleCollection()
             loadAlertView()
-//            viewModel!.createSampleCollection()
             viewModel!.uploadSampleImage(image: (drawView.imageView.image?.jpegData(compressionQuality: 0.25)!)!, text: drawView.sampleTextField.text!)
             viewModel!.addSampleName(text: drawView.sampleTextField.text!)
             

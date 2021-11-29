@@ -12,6 +12,11 @@
 	<string>Please allow access to upload photos.</string>
 	<key>FirebaseAutomaticScreenReportingEnabled</key>
 	<false/>
+    <key>NSAppTransportSecurity</key>
+        <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+        </dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

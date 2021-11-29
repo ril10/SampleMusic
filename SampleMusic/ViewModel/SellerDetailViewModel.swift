@@ -101,31 +101,33 @@ class SellerDetailViewModel: SellerImp {
     }
     
     func createCellModel(cell: SampleModel) -> DataCellModel {
+        let ownerUid = cell.ownerUid
         
-        self.imageArray.append(cell.sampleImageUrl)
+        self.imageArray.append(cell.sampleImageUrl ?? "")
         for img in self.imageArray {
             self.imageView.sd_setImage(with: (self.st?.reference(forURL: img))!,placeholderImage: UIImage(systemName: Icons.photo.rawValue))
         }
         
-        self.sampleUrl.append(cell.sampleUrl)
+        self.sampleUrl.append(cell.sampleUrl ?? "")
         for smp in self.sampleUrl {
             self.sampleData = smp
         }
         
         let name = cell.sampleName
+            let asset = AVAsset(url: URL(string: cell.sampleUrl ?? "gs://")!)
+            let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
+            let minutes = totalSeconds / 60
+            let seconds = totalSeconds % 60
+            self.totalSeconds = totalSeconds
+            self.duratation = String(format:"%02i:%02i",minutes, seconds)
 
-        let asset = AVAsset(url: URL(string: cell.sampleUrl)!)
-        let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
-        let minutes = totalSeconds / 60
-        let seconds = totalSeconds % 60
-        self.totalSeconds = totalSeconds
-        self.duratation = String(format:"%02i:%02i",minutes, seconds)
         
         return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!,
-                             sampleName: name,
+                             sampleName: name ?? "",
                              sampleData: self.sampleData ?? "",
-                             totalSeconds: self.totalSeconds!,
-                             sampleDuratation: self.duratation!
+                             totalSeconds: self.totalSeconds ?? 0,
+                             sampleDuratation: self.duratation ?? "",
+                             ownerUid: ownerUid ?? ""
         )
     }
     

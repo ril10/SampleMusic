@@ -63,8 +63,10 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
-        let cellVm = self.viewModel.getCellModel(at: indexPath)
-        cell.sampleCell = cellVm
+        DispatchQueue.main.async {
+            let cellVm = self.viewModel.getCellModel(at: indexPath)
+            cell.sampleCell = cellVm
+        }
         return cell
     }
     
@@ -120,9 +122,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
             self?.drawView.imageView.image = UIImage(data: image)
         }
         
-        DispatchQueue.main.async {
-            self.viewModel?.getSamplesData()
-        }
+        self.viewModel?.getSamplesData()
 
     }
     

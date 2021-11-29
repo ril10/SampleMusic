@@ -30,8 +30,10 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
+        DispatchQueue.main.async {
             let cellVm = self.viewModel.getCellModel(at: indexPath)
             cell.sampleCell = cellVm
+        }
         return cell
     }
     
@@ -40,7 +42,8 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.goToSellerPage()
+        
+        //coordinator?.goToSellerPage()
     }
     //MARK: - Alert
     func alertLoading() {
@@ -91,8 +94,10 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         if viewModel.samplesData.count == 0 {
             self.alertLoading()
+            self.viewModel.getSamplesData()
         }
         viewModel.hideUserDetail()
         viewModel.hide = { hide in
@@ -127,10 +132,6 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
                 self?.drawView.sampleTable.reloadData()
             }
         }
-        DispatchQueue.main.async {
-            self.viewModel?.getSamplesData()
-        }
-        
         viewModel.signUser()
 
     }

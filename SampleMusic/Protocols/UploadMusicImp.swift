@@ -20,6 +20,4 @@ protocol UploadMusicImp {
     var loading : ((Bool) -> Void)? { get set }
     func addSampleName(text: String)
     func createSampleCollection()
-    
-    
 }

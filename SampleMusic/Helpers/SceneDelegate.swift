@@ -68,7 +68,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             coordinator.start()
         }
-        
+//        coordinator.start()
 
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = navController
