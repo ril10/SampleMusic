@@ -12,6 +12,8 @@ class ChatDetailCell: UITableViewCell {
     var messageCell : Message? {
         didSet {
             message.text = messageCell?.body
+            leftImage.image = messageCell?.leftImage
+            rightImage.image = messageCell?.rightImage
         }
     }
 

@@ -9,6 +9,7 @@ import Foundation
 import FirebaseStorage
 import FirebaseFirestore
 import FirebaseAuth
+import RealmSwift
 
 
 class UserDetailViewModel: UserDetailViewModelImp  {
@@ -32,21 +33,18 @@ class UserDetailViewModel: UserDetailViewModelImp  {
             self.db?.collection(Role.user.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in
                 if let data = document?.data() {
                     let sellerData = DetailModel(data: data)
-                    let imgRef = self.st?.reference(forURL: sellerData.imageUrl)
-                    imgRef?.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        } else {
-                            self.image?(data!)
-                            self.dismissAlert?(true)
-                        }
-                    })
+                    self.loadImage()
                     self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender)
+                    self.dismissAlert?(true)
                 }
             })
         }
     }
     
-    
+    func loadImage() {
+        let localRealm = try! Realm()
+        let tasks = localRealm.objects(ChatUser.self).first
+        self.image?((tasks?.senderImage)!)
+    }
     
 }

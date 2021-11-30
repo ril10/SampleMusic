@@ -79,6 +79,9 @@ class SellerDetailViewModel: SellerImp {
                     if let error = error {
                         print(error.localizedDescription)
                     } else {
+                        let chatUser = ChatUser()
+                        chatUser.recieverImage = data
+                        self.saveToRealm(chatUser)
                         self.image?(data!)
                         self.dismissAlert?(true)
                     }
@@ -176,6 +179,16 @@ class SellerDetailViewModel: SellerImp {
         do {
             try realm.write {
                 realm.add(state)
+            }
+        } catch {
+            print("Error saving state \(error)")
+        }
+    }
+    
+    func saveToRealm(_ chatUser: ChatUser) {
+        do {
+            try realm.write {
+                realm.add(chatUser)
             }
         } catch {
             print("Error saving state \(error)")

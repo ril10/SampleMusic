@@ -43,7 +43,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellVm = self.viewModel.getCellModel(at: indexPath)
-        print(cellVm.ownerUid)
+        viewModel.getUid(cellVm.ownerUid)
         coordinator?.goToSellerPage(ownerUid: cellVm.ownerUid)
     }
     //MARK: - Alert
@@ -95,7 +95,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        viewModel.userImage()
         if viewModel.samplesData.count == 0 {
             self.alertLoading()
             self.viewModel.getSamplesData()

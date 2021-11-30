@@ -9,6 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import Dip
+import RealmSwift
 
 
 class ChatDetailViewModel: ChatDetailimp {
@@ -55,7 +56,12 @@ class ChatDetailViewModel: ChatDetailimp {
         let cellMessage = cell.message
         let cellUid = cell.senderUid
         let cellData = cell.data
-        return Message(senderUid: cellUid ?? "", body: cellMessage ?? "", date: cellData ?? 0.0)
+        let localRealm = try! Realm()
+        let tasks = localRealm.objects(ChatUser.self).first
+        let tasksLeftImage = localRealm.objects(ChatUser.self).last
+        let leftImage = UIImage(data: (tasksLeftImage?.recieverImage)!)
+        let rightImage = UIImage(data: (tasks?.senderImage)!)
+        return Message(senderUid: cellUid ?? "", body: cellMessage ?? "", date: cellData ?? 0.0, rightImage: rightImage!, leftImage: leftImage!)
     }
     
     func getCellModel(at indexPath: IndexPath) -> Message {
@@ -68,7 +74,6 @@ class ChatDetailViewModel: ChatDetailimp {
                 "message":text as Any,
                 "sendDate": Date().timeIntervalSince1970,
                 "ownerUid": user.uid as Any
-                
             ])
         }
     }

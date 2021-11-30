@@ -33,6 +33,18 @@ class UserDetailViewController : UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.userData()
+        viewModel.fieldData = { [weak self] firstName,lastName,desc,email,gender in
+            self?.drawView.firstNameData.text = firstName
+            self?.drawView.secondNameData.text = lastName
+            self?.drawView.descriptionData.text = desc
+            self?.drawView.emailData.text = email
+            self?.drawView.genderData.text = gender
+        }
+        viewModel.image = { [weak self] image in
+            DispatchQueue.main.async {
+                self?.drawView.imageView.image = UIImage(data: image)
+            }
+        }
     }
     
     override func loadView() {
@@ -50,16 +62,7 @@ class UserDetailViewController : UIViewController {
                 self?.view.setNeedsDisplay()
             }
         }
-        viewModel.fieldData = { [weak self] firstName,lastName,desc,email,gender in
-            self?.drawView.firstNameData.text = firstName
-            self?.drawView.secondNameData.text = lastName
-            self?.drawView.descriptionData.text = desc
-            self?.drawView.emailData.text = email
-            self?.drawView.genderData.text = gender
-        }
-        viewModel.image = { [weak self] image in
-            self?.drawView.imageView.image = UIImage(data: image)
-        }
+
         
         title = "User Detail"
     }

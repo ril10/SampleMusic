@@ -63,6 +63,35 @@ class ListSampleViewModel: ListSamplesImp {
             })
         }
     }
+    
+    func userImage() {
+        if let user = Auth.auth().currentUser {
+            self.db?.collection(Role.user.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in
+                if let data = document?.data() {
+                    let sellerData = DetailModel(data: data)
+                    let imgRef = self.st?.reference(forURL: sellerData.imageUrl)
+                    imgRef?.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else {
+                            let chatUser = ChatUser()
+                            chatUser.senderImage = data
+                            self.saveToRealm(chatUser)
+                        }
+                    })
+                }
+            })
+        }
+    }
+    
+    func getUid(_ recivierUid: String) {
+        if let user = Auth.auth().currentUser {
+        let chatUser = ChatUser()
+        chatUser.recieverUid = recivierUid
+        chatUser.ownerUid = user.uid
+        self.saveToRealm(chatUser)
+        }
+    }
     //MARK: - TableViewData
     func getSamplesData() {
             db?.collection(Role.sample.rawValue.lowercased())
@@ -161,6 +190,16 @@ class ListSampleViewModel: ListSamplesImp {
         do {
             try realm.write {
                 realm.add(state)
+            }
+        } catch {
+            print("Error saving state \(error)")
+        }
+    }
+    
+    func saveToRealm(_ chatUser: ChatUser) {
+        do {
+            try realm.write {
+                realm.add(chatUser)
             }
         } catch {
             print("Error saving state \(error)")

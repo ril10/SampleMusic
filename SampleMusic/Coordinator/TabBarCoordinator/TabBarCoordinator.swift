@@ -44,4 +44,9 @@ class TabBarCoordinator : Coordinator {
         parentCoordinator?.childDidFinish(self)
         parentCoordinator?.recordPage()
     }
+    
+    func goToChat() {
+        parentCoordinator?.childDidFinish(self)
+        parentCoordinator?.chatPage()
+    }
 }
