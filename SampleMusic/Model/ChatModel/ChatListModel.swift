@@ -10,11 +10,15 @@ import UIKit
 
 
 class ChatListModel {
-    var imageUser : String
-    var message : String
+    var imageUser : String?
+    var message : String?
+    var recieverUid : String?
+    var senderUid : String?
     
-    init(imageUser: String, message: String) {
-        self.imageUser = imageUser
-        self.message = message
+    init(data: [String:Any]) {
+        self.imageUser = data["imageUser"] as? String
+        self.message = data["message"] as? String
+        self.recieverUid = data["recieverUid"] as? String
+        self.senderUid = data["senderUid"] as? String
     }
 }

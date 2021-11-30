@@ -161,6 +161,8 @@ class SellerDetailViewModel: SellerImp {
             self.totalSeconds = totalSeconds
             self.duratation = String(format:"%02i:%02i",minutes, seconds)
 
+
+
         
         return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!,
                              sampleName: name ?? "",
@@ -188,7 +190,7 @@ class SellerDetailViewModel: SellerImp {
     func saveToRealm(_ chatUser: ChatUser) {
         do {
             try realm.write {
-                realm.add(chatUser)
+                realm.add(chatUser,update: .error)
             }
         } catch {
             print("Error saving state \(error)")

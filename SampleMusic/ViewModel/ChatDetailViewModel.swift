@@ -16,6 +16,8 @@ class ChatDetailViewModel: ChatDetailimp {
 
     var reloadTableView : (() -> Void)?
     var db : Firestore?
+    let localRealm = try! Realm()
+    var hidden : ((Bool) -> Void)?
     
     init(db: Firestore) {
         self.db = db
@@ -38,6 +40,7 @@ class ChatDetailViewModel: ChatDetailimp {
                     resData.append(messageData)
                 }
                 self.fetchData(res: resData)
+                
             }
         })
     }
@@ -49,14 +52,12 @@ class ChatDetailViewModel: ChatDetailimp {
             resData.append(self.createCellModel(cell: r))
         }
         messageData = resData
-        
     }
     
     func createCellModel(cell: MessageDataModel) -> Message {
         let cellMessage = cell.message
         let cellUid = cell.senderUid
         let cellData = cell.data
-        let localRealm = try! Realm()
         let tasks = localRealm.objects(ChatUser.self).first
         let tasksLeftImage = localRealm.objects(ChatUser.self).last
         let leftImage = UIImage(data: (tasksLeftImage?.recieverImage)!)
@@ -69,12 +70,23 @@ class ChatDetailViewModel: ChatDetailimp {
     }
     
     func sendMessage(text: String) {
+        let tasks = localRealm.objects(ChatUser.self).where { $0.recieverUid != nil }
         if let user = Auth.auth().currentUser {
             self.db?.collection(Role.message.rawValue).document().setData([
                 "message":text as Any,
                 "sendDate": Date().timeIntervalSince1970,
-                "ownerUid": user.uid as Any
+                "ownerUid": user.uid as Any,
+                "recieverUid": tasks.first?.recieverUid
             ])
+        }
+    }
+    
+    func checkUser() {
+        if let user = Auth.auth().currentUser {
+            let tasks = localRealm.objects(ChatUser.self).first
+            if tasks!.ownerUid == user.uid {
+                self.hidden?(true)
+            }
         }
     }
     

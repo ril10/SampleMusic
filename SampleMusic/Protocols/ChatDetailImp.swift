@@ -15,4 +15,6 @@ protocol ChatDetailimp {
     var messageData : [Message] { get set }
     func loadMessages()
     func getCellModel(at indexPath: IndexPath) -> Message
+    var hidden : ((Bool) -> Void)? { get set }
+    func checkUser()
 }

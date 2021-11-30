@@ -25,7 +25,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     //MARK: - TableView
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 140
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

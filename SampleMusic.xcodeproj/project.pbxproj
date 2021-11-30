@@ -91,6 +91,7 @@
 		C38BC32E2755105C0027E33C /* ChatDetailImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BC32D2755105C0027E33C /* ChatDetailImp.swift */; };
 		C38BC330275518DA0027E33C /* MessageDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BC32F275518DA0027E33C /* MessageDataModel.swift */; };
 		C397693E27560F87006578B5 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397693D27560F87006578B5 /* ChatUser.swift */; };
+		C397694227566B53006578B5 /* ChatPageImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397694127566B53006578B5 /* ChatPageImp.swift */; };
 		C3B12B82A5DA3D1EE4F81576 /* Pods_SampleMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A42DF66B3173C4A7A37D45E /* Pods_SampleMusic.framework */; };
 /* End PBXBuildFile section */
 
@@ -207,6 +208,7 @@
 		C38BC32D2755105C0027E33C /* ChatDetailImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailImp.swift; sourceTree = "<group>"; };
 		C38BC32F275518DA0027E33C /* MessageDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDataModel.swift; sourceTree = "<group>"; };
 		C397693D27560F87006578B5 /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
+		C397694127566B53006578B5 /* ChatPageImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPageImp.swift; sourceTree = "<group>"; };
 		E4DC9775D6CA46AC94652080 /* Pods-SampleMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMusic.release.xcconfig"; path = "Target Support Files/Pods-SampleMusic/Pods-SampleMusic.release.xcconfig"; sourceTree = "<group>"; };
 		F308F32D44207B62349E262C /* Pods_SampleMusic_SampleMusicUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleMusic_SampleMusicUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -314,6 +316,7 @@
 				C3810577274BCDBF0071BC79 /* UserDetailImp.swift */,
 				C381057B274CD19E0071BC79 /* RecordViewModelImp.swift */,
 				C38BC32D2755105C0027E33C /* ChatDetailImp.swift */,
+				C397694127566B53006578B5 /* ChatPageImp.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 				C3767DFE2750D3D200F4FF7D /* ChatListCell.swift in Sources */,
 				C3767E022750DC7B00F4FF7D /* ChatListModel.swift in Sources */,
 				C381568A27281499008E83AC /* RegistrationViewModel.swift in Sources */,
+				C397694227566B53006578B5 /* ChatPageImp.swift in Sources */,
 				C33CCA82272C3BC800C7969E /* SellerDetailViewModel.swift in Sources */,
 				C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */,
 				C30150B12732A59F00C85EF3 /* ListSampleViewModel.swift in Sources */,

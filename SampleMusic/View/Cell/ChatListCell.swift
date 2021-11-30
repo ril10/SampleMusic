@@ -9,14 +9,33 @@ import UIKit
 
 class ChatListCell: UITableViewCell {
 
+    var chatSell : CellChatModel? {
+        didSet {
+            lastMessage.text = chatSell?.message
+        }
+    }
     
     lazy var stackView : UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [imageUser,lastMessage])
         stackView.alignment = .fill
         stackView.distribution = .fill
+        stackView.spacing = 10
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
+    }()
+    
+    var messageView : UIImageView = {
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
+        image.layer.borderWidth = 1.0
+        image.layer.masksToBounds = false
+        image.layer.borderColor = UIColor(named: Style.colorButton.rawValue)?.cgColor
+        image.layer.cornerRadius = 10
+        image.contentMode = .scaleToFill
+        image.clipsToBounds = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
     }()
     
     var imageUser : UIImageView = {
@@ -45,16 +64,28 @@ class ChatListCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.addSubview(stackView)
+        contentView.addSubview(messageView)
+        messageView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 10),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -10),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            messageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            messageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            messageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            messageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            stackView.topAnchor.constraint(equalTo: messageView.topAnchor,constant: 10),
+            stackView.leadingAnchor.constraint(equalTo: messageView.leadingAnchor,constant: 10),
+            stackView.trailingAnchor.constraint(equalTo: messageView.trailingAnchor,constant: -10),
+            stackView.bottomAnchor.constraint(equalTo: messageView.bottomAnchor,constant: -10),
+            
             imageUser.widthAnchor.constraint(equalToConstant: 100),
         ])
         
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
     }
     
     required init?(coder: NSCoder) {

@@ -32,11 +32,21 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.chatDetailCell.rawValue, for: indexPath) as! ChatDetailCell
         let cellVm = self.viewModel.getCellModel(at: indexPath)
         cell.messageCell = cellVm
+        viewModel.checkUser()
+        viewModel.hidden = { hide in
+            if hide {
+                cell.leftImage.isHidden = true
+                cell.rightImage.isHidden = false
+            } else {
+                cell.leftImage.isHidden = false
+                cell.rightImage.isHidden = true
+            }
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 70
     }
     //MARK: UITextFieldDelegate
     func textFieldShouldClear(_ textField: UITextField) -> Bool {

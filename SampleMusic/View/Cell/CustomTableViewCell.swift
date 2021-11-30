@@ -27,6 +27,19 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
     
+    var messageView : UIImageView = {
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
+        image.layer.borderWidth = 1.0
+        image.layer.masksToBounds = false
+        image.layer.borderColor = UIColor(named: Style.colorButton.rawValue)?.cgColor
+        image.layer.cornerRadius = 10
+        image.contentMode = .scaleToFill
+        image.clipsToBounds = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
     lazy var stackView : UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [stackViewLeft,imageUser])
         stackView.alignment = .fill
@@ -167,16 +180,27 @@ class CustomTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.addSubview(stackView)
+        contentView.addSubview(messageView)
+        messageView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            messageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            messageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            messageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            messageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            imageUser.widthAnchor.constraint(equalToConstant: 100),
+            
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 10),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 10),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -10),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            imageUser.widthAnchor.constraint(equalToConstant: 100),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -10),
         ])
         
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
     }
     
     required init?(coder: NSCoder) {

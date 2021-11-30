@@ -24,6 +24,7 @@ class ChatPageDrawView : UIView {
         let screenSize: CGRect = UIScreen.main.bounds
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
+        tableView.separatorStyle = .none
         tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         return tableView
     }()

@@ -71,7 +71,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 140
     }
     
     //MARK: - View
@@ -91,6 +91,10 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
                 
             }
         }
+        DispatchQueue.main.async {
+            self.viewModel?.getSamplesData()
+        }
+        
 
     }
     
@@ -134,7 +138,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
             self?.drawView.imageView.image = UIImage(data: image)
         }
         
-        self.viewModel?.getSamplesData()
+        
 
     }
     
@@ -152,7 +156,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "message"), style: .plain, target: self, action: #selector(message(sender:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send Message", style: .plain, target: self, action: #selector(message(sender:)))
         self.navigationItem.setHidesBackButton(false, animated: false)
     }
 }

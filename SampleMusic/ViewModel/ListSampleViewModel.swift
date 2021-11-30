@@ -76,6 +76,7 @@ class ListSampleViewModel: ListSamplesImp {
                         } else {
                             let chatUser = ChatUser()
                             chatUser.senderImage = data
+                            chatUser.ownerUid = user.uid
                             self.saveToRealm(chatUser)
                         }
                     })
@@ -132,12 +133,15 @@ class ListSampleViewModel: ListSamplesImp {
         for smp in self.sampleUrl {
             self.sampleData = smp
         }
+        DispatchQueue.main.async {
             let asset = AVAsset(url: URL(string: cell.sampleUrl ?? "gs://")!)
             let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
             let minutes = totalSeconds / 60
             let seconds = totalSeconds % 60
             self.totalSeconds = totalSeconds
             self.duratation = String(format:"%02i:%02i",minutes, seconds)
+        }
+
 
         
         return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!,
@@ -199,7 +203,7 @@ class ListSampleViewModel: ListSamplesImp {
     func saveToRealm(_ chatUser: ChatUser) {
         do {
             try realm.write {
-                realm.add(chatUser)
+                realm.add(chatUser, update: .error)
             }
         } catch {
             print("Error saving state \(error)")
