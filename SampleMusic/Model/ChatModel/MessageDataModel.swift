@@ -10,19 +10,23 @@ import Foundation
 
 struct MessageDataModel: Codable {
     var message : String?
-    var senderUid : String?
-    var data : Double?
+    var ownerUid : String?
+    var sendDate : Double?
+    var recieverUid : String?
+    
     
     init(data: [String:Any]) {
         self.message = data["message"] as? String
-        self.senderUid = data["senderUid"] as? String
-        self.data = data["data"] as? Double
+        self.ownerUid = data["ownerUid"] as? String
+        self.sendDate = data["sendDate"] as? Double
+        self.recieverUid = data["recieverUid"] as? String
     }
     
     enum CodingKeys: String, CodingKey {
         case message
-        case senderUid
-        case data
+        case ownerUid
+        case sendDate
+        case recieverUid
     }
     
 }

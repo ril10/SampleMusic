@@ -17,4 +17,7 @@ protocol ChatDetailimp {
     func getCellModel(at indexPath: IndexPath) -> Message
     var hidden : ((Bool) -> Void)? { get set }
     func checkUser()
+    var ownerUid : String? { get set }
+    var chatRoom : String? { get set }
+    var recieverUid : String? { get set }
 }

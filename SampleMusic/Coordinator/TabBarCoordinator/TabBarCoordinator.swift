@@ -47,6 +47,6 @@ class TabBarCoordinator : Coordinator {
     
     func goToChat() {
         parentCoordinator?.childDidFinish(self)
-        parentCoordinator?.chatPage()
+//        parentCoordinator?.chatDetail(ownerUid: view.viewModel.ownerUid!)
     }
 }

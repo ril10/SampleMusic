@@ -126,17 +126,22 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
         child.start()
     }
     
-    func chatDetail() {
+    func chatDetail(ownerUid: String, chatRoom: String, recieverUid: String) {
         let child = try! userContainer.resolve() as ChatDetailCoordinator
         child.parentCoordinator = self
+        child.ownerUid = ownerUid
+        child.chatRoom = chatRoom
+        child.recieverUid = recieverUid
         childCoordinators.append(child)
         child.start()
     }
     
-    func sellerDetail(ownerUid: String) {
+    func sellerDetail(ownerUid: String, chatRoom: String, recieverUid: String) {
         let child = try! userContainer.resolve() as SellerDetailCoordinator
         child.parentCoordinator = self
         child.ownerUid = ownerUid
+        child.chatRoom = chatRoom
+        child.recieverUid = recieverUid
         childCoordinators.append(child)
         child.start()
     }

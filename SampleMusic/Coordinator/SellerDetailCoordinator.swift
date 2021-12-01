@@ -16,6 +16,8 @@ class SellerDetailCoordinator : Coordinator {
     var view : SellerScreenProtocol
     
     var ownerUid : String?
+    var chatRoom : String?
+    var recieverUid : String?
     
     init(navigationController: UINavigationController, view: SellerScreenProtocol) {
         self.navigationController = navigationController
@@ -30,7 +32,7 @@ class SellerDetailCoordinator : Coordinator {
     
     func writeMessage() {
         self.parentCoordinator?.childDidFinish(self)
-        self.parentCoordinator?.chatDetail()
+        self.parentCoordinator?.chatDetail(ownerUid: ownerUid!, chatRoom: chatRoom!, recieverUid: recieverUid!)
     }
     
     

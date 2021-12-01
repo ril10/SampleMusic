@@ -11,7 +11,7 @@ class ChatListCell: UITableViewCell {
 
     var chatSell : CellChatModel? {
         didSet {
-            lastMessage.text = chatSell?.message
+            lastMessage.text = chatSell?.chatRoom
         }
     }
     

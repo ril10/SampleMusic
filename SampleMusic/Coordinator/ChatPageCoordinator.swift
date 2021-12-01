@@ -25,6 +25,10 @@ class ChatPageCoordinator : Coordinator {
         self.navigationController.pushViewController(view, animated: true)
     }
     
+    func goToChatDetail(ownerUid: String, chatRoom: String,recieverUid: String) {
+        self.parentCoordinator?.childDidFinish(self)
+        self.parentCoordinator?.chatDetail(ownerUid: ownerUid, chatRoom: chatRoom, recieverUid: recieverUid)
+    }
     
     
 }

@@ -27,6 +27,7 @@ enum Role : String, CaseIterable {
     case sample = "Sample"
     case chooseRole = "Choose your role*"
     case message = "message"
+    case chatRoom = "chatRoom"
 }
 
 enum Titles : String, CaseIterable {

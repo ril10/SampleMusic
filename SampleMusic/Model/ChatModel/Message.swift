@@ -14,4 +14,5 @@ struct Message {
     let date : Double
     let rightImage : UIImage
     let leftImage : UIImage
+    let recieverUid : String
 }

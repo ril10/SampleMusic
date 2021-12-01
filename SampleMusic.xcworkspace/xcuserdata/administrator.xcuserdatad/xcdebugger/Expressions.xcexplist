@@ -3,6 +3,40 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ChatDetailViewModel.createCellModel(cell:):ChatDetailViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #2 in UploadMusicViewModel.uploadSampleImage(image:text:):UploadMusicViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "document.documentID">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SellerDetailViewModel.getSamplesData():SellerDetailViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainScreenCoordinator.goToRegistrationPage():MainScreenCoordinator.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.parentCoordinator">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ListSamplesViewController.viewWillAppear(_:):ListSamplesViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Coordinator.childDidFinish(_:):Coordinator.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SampleModel.init(data:):SampleModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "RecordPageViewController.finishRecording(success:):RecordPageViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "SellerDetailViewController.tableView(_:numberOfRowsInSection:):SellerDetailViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -11,13 +45,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #3 in MainScreenViewController.viewDidLoad():MainScreenViewController.swift">
+         contextName = "ChatDetailViewModel.sendMessage(text:):ChatDetailViewModel.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.recUid">
+            </PersistentString>
+            <PersistentString
+               value = "self.ownerUid">
+            </PersistentString>
+            <PersistentString
+               value = "self.senderUid">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "SellerDetailViewModel.getSamplesData():SellerDetailViewModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ListSamplesViewController.viewWillAppear(_:):ListSamplesViewController.swift">
+         contextName = "MainCoordinator.start():MainCoordinator.swift">
       </ContextState>
       <ContextState
          contextName = "CustomTableViewCell.playMusic(sender:):CustomTableViewCell.swift">
@@ -37,19 +79,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MainCoordinator.start():MainCoordinator.swift">
-      </ContextState>
-      <ContextState
-         contextName = "AppDelegate.application(_:didFinishLaunchingWithOptions:):AppDelegate.swift">
-      </ContextState>
-      <ContextState
-         contextName = "RecordPageViewController.finishRecording(success:):RecordPageViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in closure #1 in closure #2 in UploadMusicViewModel.uploadSampleImage(image:text:):UploadMusicViewModel.swift">
+         contextName = "ChatDetailViewModel.checkUser():ChatDetailViewModel.swift">
          <PersistentStrings>
             <PersistentString
-               value = "document.documentID">
+               value = "cell.ownerUid">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -57,22 +90,13 @@
          contextName = "CustomTableViewCell.updateSlider():CustomTableViewCell.swift">
       </ContextState>
       <ContextState
+         contextName = "closure #1 in closure #3 in MainScreenViewController.viewDidLoad():MainScreenViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in SellerDetailViewModel.getSamplesData():SellerDetailViewModel.swift">
       </ContextState>
       <ContextState
-         contextName = "Coordinator.childDidFinish(_:):Coordinator.swift">
-      </ContextState>
-      <ContextState
          contextName = "DependencyContainer.resolveChild(child:):AutoInjection.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ListSamplesViewController.viewDidLoad():ListSamplesViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "SampleModel.init(data:):SampleModel.swift">
-      </ContextState>
-      <ContextState
-         contextName = "SellerDetailViewModel.fetchData(res:):SellerDetailViewModel.swift">
       </ContextState>
       <ContextState
          contextName = "AddingDataAboutUserViewModel.uploadImage(image:):AddingDataAboutUserViewModel.swift">
@@ -83,12 +107,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MainScreenCoordinator.goToRegistrationPage():MainScreenCoordinator.swift">
+         contextName = "AppDelegate.application(_:didFinishLaunchingWithOptions:):AppDelegate.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ListSamplesViewController.viewDidLoad():ListSamplesViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SellerDetailViewModel.fetchData(res:):SellerDetailViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "SellerDetailViewController.viewWillAppear(_:):SellerDetailViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.parentCoordinator">
+               value = "viewModel.currentUserUid()">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SellerDetailViewModel.currentUserUid():SellerDetailViewModel.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

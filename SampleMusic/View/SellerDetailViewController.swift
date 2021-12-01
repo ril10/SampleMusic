@@ -83,24 +83,16 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
             self.viewModel.getDataSamplesFromUser(ownerUid: viewModel.ownerUid!)
             self.drawView.addButton.isHidden = true
             self.drawView.createSampleButton.isHidden = true
-            self.alertLoading()
             configureNavBar()
-        } else {
+//            self.alertLoading()
+        }
+        if viewModel.currentUserUid() == viewModel.currentUserUid() {
             if viewModel.samplesData.count == 0 {
                 self.alertLoading()
-                
+                self.viewModel?.getSamplesData()
+                viewModel?.userData()
             }
         }
-        DispatchQueue.main.async {
-            self.viewModel?.getSamplesData()
-        }
-        
-
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel?.userData()
     }
     
     override func loadView() {

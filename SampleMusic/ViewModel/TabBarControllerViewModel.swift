@@ -12,9 +12,12 @@ import Dip
 import RealmSwift
 
 class TabBarControllerViewModel: TabBarImp {
+    var recUid: String?
+    
     var db: Firestore!
     var reloadView : (() -> Void)?
     let realm = try! Realm()
+    var ownerUid : String?
     
     init (db: Firestore) {
         self.db = db
@@ -28,6 +31,10 @@ class TabBarControllerViewModel: TabBarImp {
             } catch let signOutError as NSError {
                 print(signOutError.localizedDescription)
             }
+    }
+    
+    func getCurrentUser() {
+        self.ownerUid = Auth.auth().currentUser!.uid
     }
     
 }

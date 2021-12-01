@@ -26,22 +26,19 @@ class ChatPageViewModel: ChatPageImp {
     }
     
     func loadMessages() {
-        if let user = Auth.auth().currentUser {
-            self.db.collection(Role.message.rawValue).whereField("recieverUid", isEqualTo: user.uid)
-                .addSnapshotListener({ querySnapshot, error in
+        self.db.collection(Role.chatRoom.rawValue)
+            .getDocuments { querySnapshot, error in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
                     var resData = [ChatListModel]()
                     for document in querySnapshot!.documents {
-                        let messageData = ChatListModel(data: document.data())
-                        resData.append(messageData)
+                        let chatCell = ChatListModel(data: document.data())
+                        resData.append(chatCell)
                     }
                     self.fetchData(res: resData)
-                    
                 }
-            })
-        }
+            }
     }
     
     
@@ -56,9 +53,9 @@ class ChatPageViewModel: ChatPageImp {
     func createCellModel(cell: ChatListModel) -> CellChatModel {
         let senderUid = cell.senderUid
         let recieverUid = cell.recieverUid
-        let message = cell.message
+        let chatRoom = cell.chatRoom
         
-        return CellChatModel(image: UIImage(systemName: Icons.photo.rawValue)!, message: message!, senderUid: senderUid ?? "", recieverUid: recieverUid ?? "")
+        return CellChatModel(image: UIImage(systemName: Icons.photo.rawValue)!, chatRoom: chatRoom!, senderUid: senderUid ?? "", recieverUid: recieverUid ?? "")
     }
     
     func getCellModel(at indexPath: IndexPath) -> CellChatModel {

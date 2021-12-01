@@ -30,6 +30,8 @@ class ListSampleViewModel: ListSamplesImp {
     let realm = try! Realm()
     var state : Results<State>?
     var duratation : String?
+    var chatRoom : String?
+    var curUser : String?
     
     var samplesData = [DataCellModel]() {
         didSet {
@@ -46,6 +48,7 @@ class ListSampleViewModel: ListSamplesImp {
         if let user = Auth.auth().currentUser {
             let state = State()
             state.state = user.uid
+            self.curUser = user.uid
             self.saveUid(state)
         }
     }
@@ -92,6 +95,18 @@ class ListSampleViewModel: ListSamplesImp {
         chatUser.ownerUid = user.uid
         self.saveToRealm(chatUser)
         }
+    }
+    
+    func createChatRoom(ownerUid: String, recieverUid: String) {
+        let ref = db?.collection(Role.chatRoom.rawValue).document()
+        let id = ref?.documentID
+        ref?.setData([
+            "chatRoom": id as Any,
+            "ownerUid": ownerUid as Any,
+            "recieverUid": recieverUid as Any
+        ])
+        self.chatRoom = id
+
     }
     //MARK: - TableViewData
     func getSamplesData() {

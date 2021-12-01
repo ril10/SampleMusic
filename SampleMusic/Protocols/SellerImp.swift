@@ -20,4 +20,5 @@ protocol SellerImp {
     var ownerUid : String? { get set }
     func getDataFromUser(ownerUid: String)
     func getDataSamplesFromUser(ownerUid: String)
+    func currentUserUid() -> String
 }

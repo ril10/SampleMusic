@@ -41,7 +41,8 @@ class ChatPageViewController : UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let cellVm = viewModel.getCellModel(at: indexPath)
+        coordinator?.goToChatDetail(ownerUid: cellVm.senderUid, chatRoom: cellVm.chatRoom, recieverUid: cellVm.recieverUid)
     }
     //MARK: - View
     override func viewDidAppear(_ animated: Bool) {

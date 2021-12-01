@@ -110,7 +110,9 @@ class SellerDetailViewModel: SellerImp {
             })
     }
     
-    
+    func currentUserUid() -> String {
+        return Auth.auth().currentUser!.uid
+    }
     
     func getSamplesData() {
         if let user = Auth.auth().currentUser {
