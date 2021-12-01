@@ -28,7 +28,7 @@ class UserDetailCoordinator : Coordinator {
     
     func navToChatList() {
         parentCoordinator?.childDidFinish(self)
-        parentCoordinator?.chatPage()
+        parentCoordinator?.chatPage(recieverUid: "")
     }
     
     

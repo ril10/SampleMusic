@@ -119,7 +119,7 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
         child.start()
     }
     
-    func chatPage() {
+    func chatPage(recieverUid: String) {
         let child = try! userContainer.resolve() as ChatPageCoordinator
         child.parentCoordinator = self
         childCoordinators.append(child)

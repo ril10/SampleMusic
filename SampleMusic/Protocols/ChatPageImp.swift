@@ -14,4 +14,9 @@ protocol ChatPageImp {
     func loadMessages()
     var chatList : [CellChatModel] { get set }
     func getCellModel(at indexPath: IndexPath) -> CellChatModel
+    func ifUserSign()
+    func ifSellerSign()
+    var userSign : ((Bool) -> Void)? { get set }
+    var sellerSign : ((Bool) -> Void)? { get set }
+    func loadMessageIfUser()
 }

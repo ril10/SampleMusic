@@ -47,7 +47,20 @@ class ChatPageViewController : UIViewController, UITableViewDataSource, UITableV
     //MARK: - View
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.loadMessages()
+        viewModel.ifSellerSign()
+        viewModel.ifUserSign()
+        
+        viewModel.sellerSign = { log in
+            if log {
+                self.viewModel.loadMessages()
+            }
+        }
+        
+        viewModel.userSign = { log in
+            if log {
+                self.viewModel.loadMessageIfUser()
+            }
+        }
     }
     
     override func loadView() {
