@@ -32,16 +32,18 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.chatDetailCell.rawValue, for: indexPath) as! ChatDetailCell
         let cellVm = self.viewModel.getCellModel(at: indexPath)
         cell.messageCell = cellVm
-        viewModel.checkUser()
-        viewModel.hidden = { hide in
-            if hide {
-                cell.leftImage.isHidden = true
-                cell.rightImage.isHidden = false
-            } else {
-                cell.leftImage.isHidden = false
-                cell.rightImage.isHidden = true
-            }
+
+        viewModel.ifUserSign()
+        viewModel.ifSellerSign()
+        viewModel.userSign = { sign in
+            cell.leftImage.isHidden = true
+            cell.rightImage.isHidden = false
         }
+        viewModel.sellerSign = { sign in
+            cell.leftImage.isHidden = false
+            cell.rightImage.isHidden = true
+        }
+
         return cell
     }
     
@@ -56,8 +58,20 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
     //MARK: - Action Button
     
     @objc func sendMessage(sender: UIButton) {
-        viewModel.sendMessage(text: drawView.messageTextField.text!)
-        textFieldShouldClear(drawView.messageTextField)
+        viewModel.ifUserSign()
+        viewModel.ifSellerSign()
+        viewModel.userSign = { sign in
+            if sign {
+                self.viewModel.sendMessage(text: self.drawView.messageTextField.text!)
+                self.textFieldShouldClear(self.drawView.messageTextField)
+            }
+        }
+        viewModel.sellerSign = { sign in
+            if sign {
+                self.viewModel.sendMessageIfSeller(text: self.drawView.messageTextField.text!)
+                self.textFieldShouldClear(self.drawView.messageTextField)
+            }
+        }
     }
 
     //MARK: - View

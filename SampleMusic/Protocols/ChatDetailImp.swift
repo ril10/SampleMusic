@@ -15,9 +15,12 @@ protocol ChatDetailimp {
     var messageData : [Message] { get set }
     func loadMessages()
     func getCellModel(at indexPath: IndexPath) -> Message
-    var hidden : ((Bool) -> Void)? { get set }
-    func checkUser()
     var ownerUid : String? { get set }
     var chatRoom : String? { get set }
     var recieverUid : String? { get set }
+    var userSign : ((Bool) -> Void)? { get set }
+    var sellerSign : ((Bool) -> Void)? { get set }
+    func sendMessageIfSeller(text: String)
+    func ifUserSign()
+    func ifSellerSign()
 }

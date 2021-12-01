@@ -17,12 +17,13 @@ class ChatDetailViewModel: ChatDetailimp {
     var reloadTableView : (() -> Void)?
     var db : Firestore?
     let localRealm = try! Realm()
-    var hidden : ((Bool) -> Void)?
     var senderUid : String?
     var recUid : String?
     var ownerUid : String?
     var chatRoom : String?
     var recieverUid : String?
+    var userSign : ((Bool) -> Void)?
+    var sellerSign : ((Bool) -> Void)?
     
     init(db: Firestore) {
         self.db = db
@@ -46,7 +47,7 @@ class ChatDetailViewModel: ChatDetailimp {
                     resData.append(messageData)
                 }
                 self.fetchData(res: resData)
-                
+                self.reloadTableView?()
             }
         })
     }
@@ -91,16 +92,45 @@ class ChatDetailViewModel: ChatDetailimp {
         }
     }
     
-    func checkUser() {
+    func sendMessageIfSeller(text: String) {
+        let tasks = localRealm.objects(ChatUser.self).where { $0.recieverUid != nil }
         if let user = Auth.auth().currentUser {
-//            let tasks = localRealm.objects(ChatUser.self).first
-//            if tasks!.ownerUid == user.uid {
-//                self.hidden?(true)
-//            }
-            if user.uid == ownerUid! {
-                self.hidden?(true)
+            self.db?.collection(Role.message.rawValue).document().setData([
+                "message":text as Any,
+                "sendDate": Date().timeIntervalSince1970,
+                "ownerUid": user.uid as Any,
+                "recieverUid": senderUid as Any,//tasks.first?.recieverUid as Any
+                "chatRoom": self.chatRoom as Any
+            ])
+        }
+    }
+    
+    func ifUserSign() {
+        if let user = Auth.auth().currentUser {
+            self.db?.collection(Role.user.rawValue.lowercased()).document(user.uid).addSnapshotListener { [weak self] doc, error in
+                if let e = error {
+                    print(e.localizedDescription)
+                } else {
+                    if doc?.data() != nil {
+                        self?.userSign?(true)
+                    }
+                }
             }
         }
+    }
+    
+    func ifSellerSign() {
+        if let user = Auth.auth().currentUser {
+            self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).addSnapshotListener { [weak self] doc, error in
+                    if let e = error {
+                        print(e.localizedDescription)
+                    } else {
+                        if doc?.data() != nil {
+                            self?.sellerSign?(true)
+                        }
+                    }
+                }
+            }
     }
     
 }
