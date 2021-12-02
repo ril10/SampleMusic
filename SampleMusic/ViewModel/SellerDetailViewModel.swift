@@ -147,7 +147,8 @@ class SellerDetailViewModel: SellerImp {
         
         self.imageArray.append(cell.sampleImageUrl ?? "")
         for img in self.imageArray {
-            self.imageView.sd_setImage(with: (self.st?.reference(forURL: img))!,placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+            self.imageView.sd_setImage(with: self.st!.reference(forURL: img),placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+            
         }
         
         self.sampleUrl.append(cell.sampleUrl ?? "")
@@ -156,17 +157,17 @@ class SellerDetailViewModel: SellerImp {
         }
         
         let name = cell.sampleName
-            let asset = AVAsset(url: URL(string: cell.sampleUrl ?? "gs://")!)
-            let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
-            let minutes = totalSeconds / 60
-            let seconds = totalSeconds % 60
-            self.totalSeconds = totalSeconds
-            self.duratation = String(format:"%02i:%02i",minutes, seconds)
-
-
-
+        let asset = AVAsset(url: URL(string: cell.sampleUrl ?? "gs://")!)
+        let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        self.totalSeconds = totalSeconds
+        self.duratation = String(format:"%02i:%02i",minutes, seconds)
         
-        return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!,
+        
+        
+        
+        return DataCellModel(imageSample: imageView.image!,
                              sampleName: name ?? "",
                              sampleData: self.sampleData ?? "",
                              totalSeconds: self.totalSeconds ?? 0,
@@ -198,5 +199,5 @@ class SellerDetailViewModel: SellerImp {
             print("Error saving state \(error)")
         }
     }
-
+    
 }

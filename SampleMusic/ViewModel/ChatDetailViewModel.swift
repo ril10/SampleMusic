@@ -13,12 +13,11 @@ import RealmSwift
 
 
 class ChatDetailViewModel: ChatDetailimp {
-
+    
     var reloadTableView : (() -> Void)?
     var db : Firestore?
     let localRealm = try! Realm()
     var senderUid : String?
-    var recUid : String?
     var ownerUid : String?
     var chatRoom : String?
     var recieverUid : String?
@@ -31,25 +30,24 @@ class ChatDetailViewModel: ChatDetailimp {
     
     var messageData = [Message]() {
         didSet {
-            reloadTableView?()
+            self.reloadTableView?()
         }
     }
     
     func loadMessages() {
         self.db?.collection(Role.message.rawValue).whereField("chatRoom", isEqualTo: self.chatRoom!)
             .addSnapshotListener({ querySnapshot, error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                var resData = [MessageDataModel]()
-                for document in querySnapshot!.documents {
-                    let messageData = MessageDataModel(data: document.data())
-                    resData.append(messageData)
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    var resData = [MessageDataModel]()
+                    for document in querySnapshot!.documents {
+                        let messageData = MessageDataModel(data: document.data())
+                        resData.append(messageData)
+                    }
+                    self.fetchData(res: resData)
                 }
-                self.fetchData(res: resData)
-                self.reloadTableView?()
-            }
-        })
+            })
     }
     
     
@@ -67,7 +65,6 @@ class ChatDetailViewModel: ChatDetailimp {
         self.senderUid = cellUid
         let cellData = cell.sendDate
         let recieverUid = cell.recieverUid
-        self.recUid = recieverUid
         let tasks = localRealm.objects(ChatUser.self).first
         let tasksLeftImage = localRealm.objects(ChatUser.self).last
         let leftImage = UIImage(systemName: Icons.photo.rawValue)//UIImage(data: (tasksLeftImage?.recieverImage)!)
@@ -122,15 +119,15 @@ class ChatDetailViewModel: ChatDetailimp {
     func ifSellerSign() {
         if let user = Auth.auth().currentUser {
             self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).addSnapshotListener { [weak self] doc, error in
-                    if let e = error {
-                        print(e.localizedDescription)
-                    } else {
-                        if doc?.data() != nil {
-                            self?.sellerSign?(true)
-                        }
+                if let e = error {
+                    print(e.localizedDescription)
+                } else {
+                    if doc?.data() != nil {
+                        self?.sellerSign?(true)
                     }
                 }
             }
+        }
     }
     
 }

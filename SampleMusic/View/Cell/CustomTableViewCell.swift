@@ -27,17 +27,17 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
     
-    var messageView : UIImageView = {
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
-        image.layer.borderWidth = 1.0
-        image.layer.masksToBounds = false
-        image.layer.borderColor = UIColor(named: Style.colorButton.rawValue)?.cgColor
-        image.layer.cornerRadius = 10
-        image.contentMode = .scaleToFill
-        image.clipsToBounds = true
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
+    var messageView : UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        view.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
+        view.layer.borderWidth = 1.0
+        view.layer.masksToBounds = false
+        view.layer.borderColor = UIColor(named: Style.colorButton.rawValue)?.cgColor
+        view.layer.cornerRadius = 10
+        view.contentMode = .scaleToFill
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     lazy var stackView : UIStackView = {

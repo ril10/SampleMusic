@@ -16,7 +16,7 @@ import AVFoundation
 import RealmSwift
 
 class ListSampleViewModel: ListSamplesImp {
-
+    
     var reloadTableView : (() -> Void)?
     var db : Firestore?
     var st : Storage?
@@ -90,10 +90,10 @@ class ListSampleViewModel: ListSamplesImp {
     
     func getUid(_ recivierUid: String) {
         if let user = Auth.auth().currentUser {
-        let chatUser = ChatUser()
-        chatUser.recieverUid = recivierUid
-        chatUser.ownerUid = user.uid
-        self.saveToRealm(chatUser)
+            let chatUser = ChatUser()
+            chatUser.recieverUid = recivierUid
+            chatUser.ownerUid = user.uid
+            self.saveToRealm(chatUser)
         }
     }
     
@@ -106,34 +106,35 @@ class ListSampleViewModel: ListSamplesImp {
             "recieverUid": recieverUid as Any
         ])
         self.chatRoom = id
-
+        
     }
-    //MARK: - TableViewData
-    func getSamplesData() {
-            db?.collection(Role.sample.rawValue.lowercased())
-            .addSnapshotListener(includeMetadataChanges: true, listener: { documentSnapshot, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    var resData = [SampleModel]()
-                    for document in documentSnapshot!.documents {
-                        let sampleData = SampleModel(data: document.data())
-                        resData.append(sampleData)
+//    MARK: - TableViewData
+        func getSamplesData() {
+         db?.collection(Role.sample.rawValue.lowercased())
+                .addSnapshotListener(includeMetadataChanges: true, listener: { querySnapshot, error in
+                    guard let snapshot = querySnapshot else {
+                        print("Error retreiving snapshot: \(error!)")
+                        return
                     }
-                    self.fetchData(res: resData)
-                }
-            })
-        self.dismissAlert?(true)
-    }
+                    let queryData = snapshot.documents.map { (document) -> SampleModel in
+                        let sampleData = SampleModel(data: document.data())
+                        return sampleData
+                    }
+                    self.fetchData(res: queryData)
+                })
+            self.dismissAlert?(true)
+        }
+    
     
     func fetchData(res: [SampleModel]) {
         var resData = [DataCellModel]()
         for r in res {
             resData.append(createCellModel(cell: r))
         }
+
         samplesData = resData
         searchData = samplesData
-
+        
     }
     
     func createCellModel(cell: SampleModel) -> DataCellModel {
@@ -141,25 +142,23 @@ class ListSampleViewModel: ListSamplesImp {
         let ownerUid = cell.ownerUid
         imageArray.append(cell.sampleImageUrl ?? "")
         for img in imageArray {
-            self.imageView.sd_setImage(with: (self.st?.reference(forURL: img))!)
+            self.imageView.sd_setImage(with: (self.st!.reference(forURL: img)),placeholderImage: UIImage(systemName: Icons.photo.rawValue))
         }
-
+        
         self.sampleUrl.append(cell.sampleUrl ?? "")
         for smp in self.sampleUrl {
             self.sampleData = smp
         }
-        DispatchQueue.main.async {
-            let asset = AVAsset(url: URL(string: cell.sampleUrl ?? "gs://")!)
-            let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
-            let minutes = totalSeconds / 60
-            let seconds = totalSeconds % 60
-            self.totalSeconds = totalSeconds
-            self.duratation = String(format:"%02i:%02i",minutes, seconds)
-        }
-
-
+        let asset = AVAsset(url: URL(string: cell.sampleUrl ?? "gs://")!)
+        let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        self.totalSeconds = totalSeconds
+        self.duratation = String(format:"%02i:%02i",minutes, seconds)
         
-        return DataCellModel(imageSample: imageView.image ?? UIImage(systemName: Icons.photo.rawValue)!,
+        
+        
+        return DataCellModel(imageSample: imageView.image!,
                              sampleName: name ?? "",
                              sampleData: self.sampleData ?? "",
                              totalSeconds: self.totalSeconds ?? 0,
@@ -174,8 +173,8 @@ class ListSampleViewModel: ListSamplesImp {
     
     //MARK: - Filter
     func filterByName() {
-       let sortedByName = samplesData.sorted { $0.sampleName < $1.sampleName }
-       samplesData = sortedByName
+        let sortedByName = samplesData.sorted { $0.sampleName < $1.sampleName }
+        samplesData = sortedByName
     }
     
     func filterByTrackLength() {
@@ -194,15 +193,15 @@ class ListSampleViewModel: ListSamplesImp {
     }
     //MARK: - LogOut
     func logout() {
-            do {
-                try Auth.auth().signOut()
-                try! realm.write({
-                    realm.deleteAll()
-                })
-                self.samplesData = []
-            } catch let signOutError as NSError {
-                print(signOutError.localizedDescription)
-            }
+        do {
+            try Auth.auth().signOut()
+            try! realm.write({
+                realm.deleteAll()
+            })
+            self.samplesData = []
+        } catch let signOutError as NSError {
+            print(signOutError.localizedDescription)
+        }
     }
     
     func saveUid(_ state: State) {

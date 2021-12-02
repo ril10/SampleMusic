@@ -36,12 +36,17 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         viewModel.ifUserSign()
         viewModel.ifSellerSign()
         viewModel.userSign = { sign in
-            cell.leftImage.isHidden = true
-            cell.rightImage.isHidden = false
+            if sign {
+                cell.leftImage.isHidden = true
+                cell.rightImage.isHidden = false
+            }
         }
         viewModel.sellerSign = { sign in
-            cell.leftImage.isHidden = false
-            cell.rightImage.isHidden = true
+            if sign {
+                cell.rightImage.isHidden = true
+                cell.leftImage.isHidden = false
+            }
+            
         }
 
         return cell
