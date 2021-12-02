@@ -9,7 +9,7 @@ import UIKit
 
 
 struct DataCellModel {
-    var imageSample : UIImage
+    var imageSample : String
     var sampleName : String
     var sampleData : String
     var totalSeconds : Int

@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseStorage
 import Dip
 import UIKit
-import FirebaseStorageUI
+import SDWebImage
 import AVFoundation
 import RealmSwift
 
@@ -23,8 +23,6 @@ class ListSampleViewModel: ListSamplesImp {
     var dismissAlert: ((Bool) -> Void)?
     var sampleData : String?
     var hide : ((Bool) -> Void)?
-    let imageView = UIImageView()
-    var imageArray = [String]()
     var sampleUrl = [String]()
     var totalSeconds : Int?
     let realm = try! Realm()
@@ -32,6 +30,9 @@ class ListSampleViewModel: ListSamplesImp {
     var duratation : String?
     var chatRoom : String?
     var curUser : String?
+    var image : UIImageView?
+    var imgArr = [String]()
+    var imageUrl : String?
     
     var samplesData = [DataCellModel]() {
         didSet {
@@ -121,6 +122,7 @@ class ListSampleViewModel: ListSamplesImp {
                         return sampleData
                     }
                     self.fetchData(res: queryData)
+                    self.reloadTableView?()
                 })
             self.dismissAlert?(true)
         }
@@ -131,7 +133,6 @@ class ListSampleViewModel: ListSamplesImp {
         for r in res {
             resData.append(createCellModel(cell: r))
         }
-
         samplesData = resData
         searchData = samplesData
         
@@ -140,15 +141,17 @@ class ListSampleViewModel: ListSamplesImp {
     func createCellModel(cell: SampleModel) -> DataCellModel {
         let name = cell.sampleName
         let ownerUid = cell.ownerUid
-        imageArray.append(cell.sampleImageUrl ?? "")
-        for img in imageArray {
-            self.imageView.sd_setImage(with: (self.st!.reference(forURL: img)),placeholderImage: UIImage(systemName: Icons.photo.rawValue))
-        }
         
+        self.imgArr.append(cell.sampleImageUrl ?? "")
+        for img in self.imgArr {
+            self.imageUrl = img
+        }
+
         self.sampleUrl.append(cell.sampleUrl ?? "")
         for smp in self.sampleUrl {
             self.sampleData = smp
         }
+        
         let asset = AVAsset(url: URL(string: cell.sampleUrl ?? "gs://")!)
         let totalSeconds = Int(CMTimeGetSeconds(asset.duration))
         let minutes = totalSeconds / 60
@@ -158,7 +161,7 @@ class ListSampleViewModel: ListSamplesImp {
         
         
         
-        return DataCellModel(imageSample: imageView.image!,
+        return DataCellModel(imageSample: self.imageUrl ?? "",
                              sampleName: name ?? "",
                              sampleData: self.sampleData ?? "",
                              totalSeconds: self.totalSeconds ?? 0,

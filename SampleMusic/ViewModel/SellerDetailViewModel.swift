@@ -11,7 +11,6 @@ import FirebaseStorage
 import FirebaseAuth
 import Dip
 import UIKit
-import FirebaseStorageUI
 import AVFoundation
 import RealmSwift
 
@@ -33,6 +32,7 @@ class SellerDetailViewModel: SellerImp {
     var state : Results<State>?
     var duratation : String?
     var ownerUid : String?
+    var imageUrl : String?
     
     init(db: Firestore,st: Storage) {
         self.db = db
@@ -147,8 +147,7 @@ class SellerDetailViewModel: SellerImp {
         
         self.imageArray.append(cell.sampleImageUrl ?? "")
         for img in self.imageArray {
-            self.imageView.sd_setImage(with: self.st!.reference(forURL: img),placeholderImage: UIImage(systemName: Icons.photo.rawValue))
-            
+            self.imageUrl = img
         }
         
         self.sampleUrl.append(cell.sampleUrl ?? "")
@@ -167,7 +166,7 @@ class SellerDetailViewModel: SellerImp {
         
         
         
-        return DataCellModel(imageSample: imageView.image!,
+        return DataCellModel(imageSample: self.imageUrl ?? "",
                              sampleName: name ?? "",
                              sampleData: self.sampleData ?? "",
                              totalSeconds: self.totalSeconds ?? 0,

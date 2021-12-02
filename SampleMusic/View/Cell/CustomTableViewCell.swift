@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 import Dip
+import SDWebImage
 
 class CustomTableViewCell: UITableViewCell {
     
@@ -19,7 +20,7 @@ class CustomTableViewCell: UITableViewCell {
     
     var sampleCell : DataCellModel? {
         didSet {
-            imageUser.image = sampleCell?.imageSample
+            imageUser.sd_setImage(with: URL(string: sampleCell!.imageSample), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
             labelSample.text = sampleCell?.sampleName
             sampleData = sampleCell?.sampleData
             endTimeLabel.text = sampleCell?.sampleDuratation
@@ -195,7 +196,6 @@ class CustomTableViewCell: UITableViewCell {
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -10),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -10),
         ])
-        
     }
     
     override func layoutSubviews() {
