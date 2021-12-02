@@ -86,6 +86,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
             break
         }
     }
+
     //MARK: - View
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -133,7 +134,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
             }
         }
         viewModel.signUser()
-
+        
     }
     
     //MARK: - Config NavBar

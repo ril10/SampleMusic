@@ -153,8 +153,7 @@ class ListSampleViewModel: ListSamplesImp {
             self.sampleData = smp
         }
         
-//        let asset = AVAsset(url: URL(string: cell.sampleUrl ?? "gs://")!)
-        let totalSeconds =  cell.duration ?? 0//Int(CMTimeGetSeconds(asset.duration))
+        let totalSeconds =  cell.duration ?? 0
         let minutes = totalSeconds / 60
         let seconds = totalSeconds % 60
         self.totalSeconds = totalSeconds
