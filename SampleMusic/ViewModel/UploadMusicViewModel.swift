@@ -10,6 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
 import Dip
+import AVFoundation
 
 class UploadMusicViewModel: UploadMusicImp {
 
@@ -21,6 +22,7 @@ class UploadMusicViewModel: UploadMusicImp {
     var imageSampleUrl : String?
     var sampleName : String?
     var sampleUrl : String?
+    var sampleDuration : Int?
     
     init(db: Firestore,st: Storage) {
         self.db = db
@@ -32,7 +34,8 @@ class UploadMusicViewModel: UploadMusicImp {
             "ownerUid":Auth.auth().currentUser?.uid as Any,
             "sampleImageUrl":self.imageSampleUrl as Any,
             "sampleName":self.sampleName as Any,
-            "sampleUrl":self.sampleUrl as Any
+            "sampleUrl":self.sampleUrl as Any,
+            "duration":self.sampleDuration as Any
         ])
     }
     
@@ -111,6 +114,8 @@ class UploadMusicViewModel: UploadMusicImp {
                                         print(error.localizedDescription)
                                     } else {
                                         self.sampleUrl = url?.absoluteString
+                                        let asset = AVAsset(url: url!)
+                                        self.sampleDuration = Int(CMTimeGetSeconds(asset.duration))
                                     }
                                 }
                         

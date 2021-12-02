@@ -70,7 +70,7 @@ class RecordPageDrawView : UIView {
         let label = UILabel()
         label.text = "Recoding..."
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
-        label.textColor = UIColor(named: Style.colorButton.rawValue)
+        label.textColor = UIColor(named: Style.coralColor.rawValue)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

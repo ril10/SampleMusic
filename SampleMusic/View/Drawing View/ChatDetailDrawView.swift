@@ -65,7 +65,7 @@ class ChatDetailDrawView : UIView {
     func viewCompare(view: UIView) {
         view.addSubview(stackView)
         view.addSubview(bottomStackView)
-        view.backgroundColor = UIColor(cgColor: UIColor(named: Style.colorButton.rawValue)!.cgColor)
+        view.backgroundColor = UIColor(cgColor: UIColor(named: Style.coralColor.rawValue)!.cgColor)
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

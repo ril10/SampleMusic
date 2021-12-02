@@ -33,7 +33,7 @@ class CustomTableViewCell: UITableViewCell {
         view.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
         view.layer.borderWidth = 1.0
         view.layer.masksToBounds = false
-        view.layer.borderColor = UIColor(named: Style.colorButton.rawValue)?.cgColor
+        view.layer.borderColor = UIColor(named: Style.coralColor.rawValue)?.cgColor
         view.layer.cornerRadius = 10
         view.contentMode = .scaleToFill
         view.clipsToBounds = true
@@ -76,7 +76,7 @@ class CustomTableViewCell: UITableViewCell {
         image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
         image.layer.borderWidth = 1.0
         image.layer.masksToBounds = false
-        image.layer.borderColor = UIColor(named: Style.colorButton.rawValue)?.cgColor
+        image.layer.borderColor = UIColor(named: Style.coralColor.rawValue)?.cgColor
         image.layer.cornerRadius = image.frame.size.width / 2
         image.contentMode = .scaleToFill
         image.clipsToBounds = true
@@ -88,7 +88,7 @@ class CustomTableViewCell: UITableViewCell {
         let button = UIButton()
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
         button.setImage(UIImage(systemName: Icons.play.rawValue,withConfiguration: largeConfig), for: .normal)
-        button.tintColor = UIColor(named: Style.colorButton.rawValue)
+        button.tintColor = UIColor(named: Style.coralColor.rawValue)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(playMusic(sender:)), for: .touchUpInside)
         return button
@@ -106,7 +106,7 @@ class CustomTableViewCell: UITableViewCell {
     var slider : UISlider = {
         let slider = UISlider(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
         slider.value = 0.0
-        slider.tintColor = UIColor(named: Style.colorButton.rawValue)
+        slider.tintColor = UIColor(named: Style.coralColor.rawValue)
         slider.addTarget(self, action: #selector(didSlider(slider:)), for: .valueChanged)
         
         return slider

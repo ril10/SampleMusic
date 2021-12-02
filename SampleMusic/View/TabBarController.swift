@@ -66,7 +66,7 @@ class TabBarController: UITabBarController {
         rootViewController.navigationController?.navigationBar.layoutIfNeeded()
         rootViewController.navigationController?.navigationBar.barTintColor = .white
         rootViewController.navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor(named: Style.colorButton.rawValue) as Any,
+            NSAttributedString.Key.foregroundColor: UIColor(named: Style.coralColor.rawValue) as Any,
             NSAttributedString.Key.font: UIFont(name: Style.fontTitleHeavy.rawValue, size: 18) as Any
         ]
         let edit = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editData(sender:)))

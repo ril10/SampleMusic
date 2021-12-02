@@ -46,7 +46,7 @@ extension UITextField {
 
 extension UIButton {
     func coraleButton(title: String) {
-        self.backgroundColor = UIColor(named: Style.colorButton.rawValue)
+        self.backgroundColor = UIColor(named: Style.coralColor.rawValue)
         self.setTitle(title, for: .normal)
         self.setTitleColor(.white, for: .normal)
         self.layer.cornerRadius = 10
@@ -59,7 +59,7 @@ extension UIButton {
     func coralLighButton(title: String) {
         self.backgroundColor = .clear
         self.setTitle(title, for: .normal)
-        self.setTitleColor(UIColor(named: Style.colorButton.rawValue), for: .normal)
+        self.setTitleColor(UIColor(named: Style.coralColor.rawValue), for: .normal)
         self.titleLabel?.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 15)
         self.translatesAutoresizingMaskIntoConstraints = false
     }

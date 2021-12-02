@@ -10,7 +10,7 @@ import Foundation
 enum Style : String, CaseIterable {
     case fontTitleLight = "Avenir Light"
     case fontTitleHeavy = "Avenir Heavy"
-    case colorButton = "mainScreenRed"
+    case coralColor = "mainScreenRed"
     case appName = "Music Sample"
 }
 

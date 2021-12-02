@@ -142,7 +142,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         let nav = self.navigationController?.navigationBar
         
         nav?.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor(named: Style.colorButton.rawValue) as Any,
+            NSAttributedString.Key.foregroundColor: UIColor(named: Style.coralColor.rawValue) as Any,
             NSAttributedString.Key.font: UIFont(name: Style.fontTitleHeavy.rawValue, size: 18) as Any
         ]
         

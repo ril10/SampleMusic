@@ -30,7 +30,7 @@ class ChatListCell: UITableViewCell {
         image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
         image.layer.borderWidth = 1.0
         image.layer.masksToBounds = false
-        image.layer.borderColor = UIColor(named: Style.colorButton.rawValue)?.cgColor
+        image.layer.borderColor = UIColor(named: Style.coralColor.rawValue)?.cgColor
         image.layer.cornerRadius = 10
         image.contentMode = .scaleToFill
         image.clipsToBounds = true
@@ -44,7 +44,7 @@ class ChatListCell: UITableViewCell {
         image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
         image.layer.borderWidth = 1.0
         image.layer.masksToBounds = false
-        image.layer.borderColor = UIColor(named: Style.colorButton.rawValue)?.cgColor
+        image.layer.borderColor = UIColor(named: Style.coralColor.rawValue)?.cgColor
         image.layer.cornerRadius = image.frame.size.width / 2
         image.contentMode = .scaleToFill
         image.clipsToBounds = true

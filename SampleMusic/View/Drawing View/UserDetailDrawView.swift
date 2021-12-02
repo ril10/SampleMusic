@@ -97,7 +97,7 @@ class UserDetailDrawView : UIView {
         image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
         image.layer.borderWidth = 3.0
         image.layer.masksToBounds = false
-        image.layer.borderColor = UIColor(named: Style.colorButton.rawValue)?.cgColor
+        image.layer.borderColor = UIColor(named: Style.coralColor.rawValue)?.cgColor
         image.layer.cornerRadius = image.frame.size.width / 2
         image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
