@@ -67,7 +67,7 @@ let userContainer = DependencyContainer { container in
     container.register(.shared) { UploadMusicViewModel(db: try! appContainer.resolve(), st: try! appContainer.resolve()) as UploadMusicImp }
     container.register(.shared) { UserDetailViewModel(db: try! appContainer.resolve(), st: try! appContainer.resolve()) as UserDetailViewModelImp }
     container.register(.shared) { RecordPageViewModel(db: try! appContainer.resolve(), st: try! appContainer.resolve()) as RecordViewModelImp }
-    container.register(.shared) { ChatDetailViewModel(db: try! appContainer.resolve()) as ChatDetailimp }
+    container.register(.shared) { ChatDetailViewModel(db: try! appContainer.resolve(), st: try! appContainer.resolve()) as ChatDetailimp }
     container.register(.shared) { ChatPageViewModel(db: try! appContainer.resolve()) as ChatPageImp }
     
     container.register(.shared) { ChatDetailViewController(viewModel: try! container.resolve() as ChatDetailimp) as ChatDetailProtocol }

@@ -22,9 +22,8 @@ class ChatDetailDrawView : UIView {
     
     lazy var bottomStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [messageTextField,sendMessage])
-        stackView.alignment = .fill
+        stackView.alignment = .center
         stackView.distribution = .fill
-        stackView.spacing = 15
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -41,7 +40,8 @@ class ChatDetailDrawView : UIView {
     }()
     
     var messageTextField : UITextField = {
-        let textField = UITextField()
+        let widthText = UIScreen.main.bounds.width
+        let textField = UITextField(frame: CGRect(x: 0, y: 0, width: widthText, height: 0))
         textField.placeholder = "Write a message"
         textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.autocorrectionType = UITextAutocorrectionType.default
@@ -64,17 +64,23 @@ class ChatDetailDrawView : UIView {
     
     func viewCompare(view: UIView) {
         view.addSubview(stackView)
-        view.addSubview(bottomStackView)
+        view.addSubview(messageTextField)
+        view.addSubview(sendMessage)
         view.backgroundColor = UIColor(cgColor: UIColor(named: Style.coralColor.rawValue)!.cgColor)
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            bottomStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 15),
-            bottomStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -15),
-            bottomStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomStackView.topAnchor,constant: -15),
+            stackView.bottomAnchor.constraint(equalTo: messageTextField.topAnchor,constant: -15),
+            
+            messageTextField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -15),
+            messageTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 15),
+            messageTextField.widthAnchor.constraint(equalTo: view.widthAnchor,constant: view.frame.size.width - 80),
+           
+            sendMessage.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -15),
+            sendMessage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -15),
+            sendMessage.leadingAnchor.constraint(equalTo: messageTextField.trailingAnchor,constant: 10),
         ])
     }
     

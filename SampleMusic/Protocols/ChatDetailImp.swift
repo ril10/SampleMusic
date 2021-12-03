@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseStorage
 
 protocol ChatDetailimp {
     var db : Firestore? { get set }
@@ -18,9 +19,6 @@ protocol ChatDetailimp {
     var ownerUid : String? { get set }
     var chatRoom : String? { get set }
     var recieverUid : String? { get set }
-    var userSign : ((Bool) -> Void)? { get set }
-    var sellerSign : ((Bool) -> Void)? { get set }
-    func sendMessageIfSeller(text: String)
-    func ifUserSign()
-    func ifSellerSign()
+    func checkCurrentUser() -> String
+    var st : Storage? { get set }
 }

@@ -19,8 +19,7 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
+
     var coordinator : ChatDetailCoordinator?
     var drawView = ChatDetailDrawView()
     //MARK: - TableView
@@ -32,29 +31,27 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.chatDetailCell.rawValue, for: indexPath) as! ChatDetailCell
         let cellVm = self.viewModel.getCellModel(at: indexPath)
         cell.messageCell = cellVm
-
-        viewModel.ifUserSign()
-        viewModel.ifSellerSign()
-        viewModel.userSign = { sign in
-            if sign {
-                cell.leftImage.isHidden = true
-                cell.rightImage.isHidden = false
-            }
+        
+        if cellVm.senderUid == self.viewModel.checkCurrentUser() {
+            cell.leftImage.isHidden = true
+            cell.rightImage.isHidden = false
+        } else {
+            cell.leftImage.isHidden = false
+            cell.rightImage.isHidden = true
         }
-        viewModel.sellerSign = { sign in
-            if sign {
-                cell.rightImage.isHidden = true
-                cell.leftImage.isHidden = false
-            }
-            
-        }
-
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellVm = self.viewModel.getCellModel(at: indexPath)
+        print(cellVm.senderUid)
+        print(cellVm.recieverUid)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
+
     //MARK: UITextFieldDelegate
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         textField.text?.removeAll()
@@ -63,20 +60,8 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
     //MARK: - Action Button
     
     @objc func sendMessage(sender: UIButton) {
-        viewModel.ifUserSign()
-        viewModel.ifSellerSign()
-        viewModel.userSign = { sign in
-            if sign {
-                self.viewModel.sendMessage(text: self.drawView.messageTextField.text!)
-                self.textFieldShouldClear(self.drawView.messageTextField)
-            }
-        }
-        viewModel.sellerSign = { sign in
-            if sign {
-                self.viewModel.sendMessageIfSeller(text: self.drawView.messageTextField.text!)
-                self.textFieldShouldClear(self.drawView.messageTextField)
-            }
-        }
+        self.viewModel.sendMessage(text: self.drawView.messageTextField.text!)
+        self.textFieldShouldClear(self.drawView.messageTextField)
     }
 
     //MARK: - View
@@ -102,10 +87,19 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         viewModel.reloadTableView = { [weak self] in
             DispatchQueue.main.async {
                 self?.drawView.sampleTable.reloadData()
+                let indexPath = IndexPath(row: (self?.viewModel.messageData.count)! - 1, section: 0)
+                self?.drawView.sampleTable.scrollToRow(at: indexPath, at: .top, animated: true)
             }
         }
+        self.hideKeyboardWhenTappedAround()
     }
 
 }
 
 extension ChatDetailViewController : ChatDetailProtocol {}
+//extension ChatDetailViewController : TextViewUpdateProtocol {
+//    func textViewChanged() {
+//        drawView.sampleTable.beginUpdates()
+//        drawView.sampleTable.endUpdates()
+//    }
+//}
