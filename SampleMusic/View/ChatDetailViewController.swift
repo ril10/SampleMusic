@@ -49,10 +49,17 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        let cellVm = self.viewModel.getCellModel(at: indexPath)
+        let rowHeight : CGFloat = 70
+        if cellVm.body.count > 25 {
+            return UITableView.automaticDimension
+        } else {
+            return rowHeight
+        }
     }
 
-    //MARK: UITextFieldDelegate
+
+    //MARK: - UITextFieldDelegate
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         textField.text?.removeAll()
         return true
@@ -82,6 +89,7 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         drawView.sampleTable.register(ChatDetailCell.self, forCellReuseIdentifier: TableCell.chatDetailCell.rawValue)
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
+        drawView.sampleTable.estimatedRowHeight = 70
         title = "Chat"
         drawView.sendMessage.addTarget(self, action: #selector(sendMessage(sender:)), for: .touchUpInside)
         viewModel.reloadTableView = { [weak self] in
@@ -97,9 +105,4 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
 }
 
 extension ChatDetailViewController : ChatDetailProtocol {}
-//extension ChatDetailViewController : TextViewUpdateProtocol {
-//    func textViewChanged() {
-//        drawView.sampleTable.beginUpdates()
-//        drawView.sampleTable.endUpdates()
-//    }
-//}
+

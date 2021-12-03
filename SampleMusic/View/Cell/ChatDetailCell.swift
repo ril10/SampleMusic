@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol TextViewUpdateProtocol {
-    func textViewChanged()
-}
-
 class ChatDetailCell: UITableViewCell {
     
     var messageCell : Message? {
@@ -20,31 +16,6 @@ class ChatDetailCell: UITableViewCell {
             rightImage.image = messageCell?.rightImage
         }
     }
-    
-    var textViewUpdateDelegate: TextViewUpdateProtocol!
-    
-    lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [leftImage,message,rightImage])
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        stackView.spacing = 5
-        stackView.axis = .horizontal
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    var messageView : UIImageView = {
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
-        image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
-        image.layer.borderWidth = 1.0
-        image.layer.masksToBounds = false
-        image.layer.borderColor = UIColor(named: Style.coralColor.rawValue)?.cgColor
-        image.layer.cornerRadius = image.frame.size.height / 2
-        image.contentMode = .scaleToFill
-        image.clipsToBounds = true
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
-    }()
     
     var leftImage : UIImageView = {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
@@ -81,6 +52,12 @@ class ChatDetailCell: UITableViewCell {
         textView.isScrollEnabled = false
         textView.isEditable = false
         textView.sizeToFit()
+        textView.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
+        textView.layer.borderWidth = 1.0
+        textView.layer.masksToBounds = false
+        textView.layer.borderColor = UIColor(named: Style.coralColor.rawValue)?.cgColor
+        textView.layer.cornerRadius = textView.frame.size.height / 2
+        textView.clipsToBounds = true
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
@@ -88,41 +65,39 @@ class ChatDetailCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.addSubview(messageView)
-        messageView.addSubview(stackView)
-        
+        contentView.addSubview(leftImage)
+        contentView.addSubview(rightImage)
+        contentView.addSubview(message)
+
         
         NSLayoutConstraint.activate([
-            messageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            messageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            messageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            messageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            
-            leftImage.leadingAnchor.constraint(equalTo: messageView.leadingAnchor),
-            leftImage.topAnchor.constraint(equalTo: messageView.topAnchor),
-            leftImage.bottomAnchor.constraint(equalTo: messageView.bottomAnchor),
-
-            rightImage.trailingAnchor.constraint(equalTo: messageView.trailingAnchor),
-            rightImage.bottomAnchor.constraint(equalTo: messageView.bottomAnchor),
-            rightImage.topAnchor.constraint(equalTo: messageView.topAnchor),
+            message.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -60),
+            message.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 50),
+            message.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            message.topAnchor.constraint(equalTo: contentView.topAnchor),
 
             leftImage.widthAnchor.constraint(equalToConstant: 50),
             rightImage.widthAnchor.constraint(equalToConstant: 50),
-            
-            message.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            message.topAnchor.constraint(equalTo: contentView.topAnchor),
+            leftImage.heightAnchor.constraint(equalToConstant: 50),
+            rightImage.heightAnchor.constraint(equalToConstant: 50),
             
 
         ])
         
         if leftImage.isHidden == true {
             NSLayoutConstraint.activate([
-            
+                message.leadingAnchor.constraint(equalTo: leftImage.trailingAnchor,constant: -50),
+                message.topAnchor.constraint(equalTo: contentView.topAnchor),
             ])
+            
+            
         } else {
             NSLayoutConstraint.activate([
-
+                message.trailingAnchor.constraint(equalTo: rightImage.trailingAnchor,constant: -50),
+                rightImage.leadingAnchor.constraint(equalTo: message.trailingAnchor),
+                message.topAnchor.constraint(equalTo: contentView.topAnchor),
             ])
+            
         }
         
     }
@@ -146,10 +121,4 @@ class ChatDetailCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-}
-
-extension ChatDetailCell: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        textViewUpdateDelegate.textViewChanged()
-    }
 }
