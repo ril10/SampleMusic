@@ -72,6 +72,17 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         return 140
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let cellVm = self.viewModel.getCellModel(at: indexPath)
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
+            self?.viewModel.deleteSample(by: cellVm.sampleName)
+            completionHandler(true)
+        }
+        delete.backgroundColor = .systemRed
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+
+    
     //MARK: - View
     
     override func viewWillAppear(_ animated: Bool) {

@@ -21,4 +21,5 @@ protocol SellerImp {
     func getDataFromUser(ownerUid: String)
     func getDataSamplesFromUser(ownerUid: String)
     func currentUserUid() -> String
+    func deleteSample(by name: String)
 }

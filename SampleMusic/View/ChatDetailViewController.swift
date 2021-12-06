@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChatDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ChatDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
     var viewModel : ChatDetailimp
     
@@ -64,6 +64,7 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         textField.text?.removeAll()
         return true
     }
+    
     //MARK: - Action Button
     
     @objc func sendMessage(sender: UIButton) {

@@ -72,13 +72,23 @@ class ChatDetailViewModel: ChatDetailimp {
         let cellUid = cell.ownerUid
         self.senderUid = cellUid
         let cellData = cell.sendDate
-        
-        
-        let leftImage = UIImage(systemName: Icons.photo.rawValue)
-        let rightImage = UIImage(systemName: Icons.photo.rawValue)//UIImage(data: (tasks?.senderImage)!)
-        return Message(senderUid: cellUid ?? "", body: cellMessage ?? "", date: cellData ?? 0.0, rightImage: rightImage!, leftImage: leftImage!,recieverUid: self.ownerUid!)
+        let leftImage = getImage(by: cell.recieverUid!)
+        let rightImage = getImage(by: cell.ownerUid!)
+        return Message(senderUid: cellUid ?? "", body: cellMessage ?? "", date: cellData ?? 0.0, rightImage: rightImage, leftImage: leftImage,recieverUid: self.ownerUid!)
     }
     
+    func getImage(by uid: String) -> String {
+        var urlPath : String?
+        let pathRefrence = st?.reference(withPath: "userAvatars/\(uid).jpg")
+        pathRefrence?.downloadURL(completion: { url, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                urlPath = url?.absoluteString
+            }
+        })
+        return urlPath ?? ""
+    }
     
     func getCellModel(at indexPath: IndexPath) -> Message {
         return messageData[indexPath.row]

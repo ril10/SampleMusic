@@ -156,7 +156,6 @@ class SellerDetailViewModel: SellerImp {
         }
         
         let name = cell.sampleName
-
         let totalSeconds = cell.duration ?? 0
         let minutes = totalSeconds / 60
         let seconds = totalSeconds % 60
@@ -177,6 +176,51 @@ class SellerDetailViewModel: SellerImp {
     
     func getCellModel(at indexPath: IndexPath) -> DataCellModel {
         return samplesData[indexPath.row]
+    }
+    
+    func deleteSample(by name: String) {
+        self.db?.collection(Role.sample.rawValue.lowercased()).whereField("sampleName", isEqualTo: name)
+            .getDocuments(completion: { querySnapshot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    for document in querySnapshot!.documents {
+                        self.deleteFromFirestore(document.documentID,name: name)
+                    }
+                }
+            })
+    }
+    
+    private func deleteFromFirestore(_ documentId: String,name: String) {
+        self.db?.collection(Role.sample.rawValue.lowercased()).document(documentId).delete(completion: { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.deleteImageStorage(by: name)
+            }
+        })
+    }
+    
+    private func deleteImageStorage(by name: String) {
+        let imgRef = st?.reference().child("imageSamples/\(name).jpg")
+        imgRef?.delete(completion: { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.deleteSampleData(by: name)
+            }
+        })
+    }
+    
+    private func deleteSampleData(by name: String) {
+        let sampleRef = st?.reference().child("musicSamples/\(name).m4a")
+        sampleRef?.delete(completion: { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print("Delete success")
+            }
+        })
     }
     
     func saveUid(_ state: State) {

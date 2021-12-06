@@ -6,16 +6,18 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ChatDetailCell: UITableViewCell {
     
     var messageCell : Message? {
         didSet {
             message.text = messageCell?.body
-            leftImage.image = messageCell?.leftImage
-            rightImage.image = messageCell?.rightImage
+            leftImage.sd_setImage(with: URL(string: messageCell!.leftImage), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+            rightImage.sd_setImage(with: URL(string: messageCell!.rightImage), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
         }
     }
+
     
     var leftImage : UIImageView = {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
@@ -62,6 +64,7 @@ class ChatDetailCell: UITableViewCell {
         return textView
     }()
     
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -77,8 +80,8 @@ class ChatDetailCell: UITableViewCell {
             message.topAnchor.constraint(equalTo: contentView.topAnchor),
 
             leftImage.widthAnchor.constraint(equalToConstant: 50),
-            rightImage.widthAnchor.constraint(equalToConstant: 50),
             leftImage.heightAnchor.constraint(equalToConstant: 50),
+            rightImage.widthAnchor.constraint(equalToConstant: 50),
             rightImage.heightAnchor.constraint(equalToConstant: 50),
             
 
@@ -86,20 +89,16 @@ class ChatDetailCell: UITableViewCell {
         
         if leftImage.isHidden == true {
             NSLayoutConstraint.activate([
-                message.leadingAnchor.constraint(equalTo: leftImage.trailingAnchor,constant: -50),
-                message.topAnchor.constraint(equalTo: contentView.topAnchor),
+                message.leadingAnchor.constraint(equalTo: rightImage.leadingAnchor)
             ])
-            
             
         } else {
             NSLayoutConstraint.activate([
                 message.trailingAnchor.constraint(equalTo: rightImage.trailingAnchor,constant: -50),
-                rightImage.leadingAnchor.constraint(equalTo: message.trailingAnchor),
-                message.topAnchor.constraint(equalTo: contentView.topAnchor),
+                message.leadingAnchor.constraint(equalTo: leftImage.trailingAnchor),
             ])
-            
         }
-        
+
     }
     
     override func layoutSubviews() {
