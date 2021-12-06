@@ -79,9 +79,6 @@ class SellerDetailViewModel: SellerImp {
                     if let error = error {
                         print(error.localizedDescription)
                     } else {
-                        let chatUser = ChatUser()
-                        chatUser.recieverImage = data
-                        self.saveToRealm(chatUser)
                         self.image?(data!)
                         self.dismissAlert?(true)
                     }
@@ -96,6 +93,7 @@ class SellerDetailViewModel: SellerImp {
     func getDataSamplesFromUser(ownerUid: String) {
         let refrence = db?.collection(Role.sample.rawValue.lowercased())
         refrence?.whereField("ownerUid", isEqualTo: ownerUid)
+            .order(by: "index")
             .addSnapshotListener(includeMetadataChanges: true, listener: { documentSnapshot, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -118,6 +116,7 @@ class SellerDetailViewModel: SellerImp {
         if let user = Auth.auth().currentUser {
             let refrence = db?.collection(Role.sample.rawValue.lowercased())
             refrence?.whereField("ownerUid", isEqualTo: user.uid)
+                .order(by: "index")
                 .addSnapshotListener(includeMetadataChanges: true, listener: { documentSnapshot, error in
                     if let error = error {
                         print(error.localizedDescription)
@@ -162,7 +161,7 @@ class SellerDetailViewModel: SellerImp {
         self.totalSeconds = totalSeconds
         self.duratation = String(format:"%02i:%02i",minutes, seconds)
         
-        
+        let sampleIndex = cell.index
         
         
         return DataCellModel(imageSample: self.imageUrl ?? "",
@@ -170,7 +169,8 @@ class SellerDetailViewModel: SellerImp {
                              sampleData: self.sampleData ?? "",
                              totalSeconds: self.totalSeconds ?? 0,
                              sampleDuratation: self.duratation ?? "",
-                             ownerUid: ownerUid ?? ""
+                             ownerUid: ownerUid ?? "",
+                             index: sampleIndex ?? 0
         )
     }
     
@@ -223,6 +223,28 @@ class SellerDetailViewModel: SellerImp {
         })
     }
     
+    func getSampleIndex(start index: Int,changeIndex: Int) {
+        self.db?.collection(Role.sample.rawValue).whereField("index", isEqualTo: index)
+            .addSnapshotListener({ querySnapshot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    for document in querySnapshot!.documents {
+                        self.changeSampleIndex(by: changeIndex, documentId: document.documentID)
+                    }
+                }
+            })
+    }
+    
+    
+    
+    private func changeSampleIndex(by index: Int,documentId: String) {
+        self.db?.collection(Role.sample.rawValue).document(documentId)
+            .updateData([
+                "index": index as Any
+            ])
+    }
+    
     func saveUid(_ state: State) {
         do {
             try realm.write {
@@ -233,14 +255,5 @@ class SellerDetailViewModel: SellerImp {
         }
     }
     
-    func saveToRealm(_ chatUser: ChatUser) {
-        do {
-            try realm.write {
-                realm.add(chatUser,update: .error)
-            }
-        } catch {
-            print("Error saving state \(error)")
-        }
-    }
     
 }

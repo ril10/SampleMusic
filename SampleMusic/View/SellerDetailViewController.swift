@@ -35,6 +35,16 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     @objc func message(sender: UIButton) {
         coordinator?.writeMessage()
     }
+    
+    @objc func sortSampleTable(sender: UIButton) {
+        if drawView.sampleTable.isEditing {
+            drawView.sampleTable.isEditing = false
+            drawView.sortButton.setImage(UIImage(systemName: Icons.sort.rawValue), for: .normal)
+        } else {
+            drawView.sampleTable.isEditing = true
+            drawView.sortButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        }
+    }
     //MARK: - Alert
     func alertLoading() {
         let alert = UIAlertController(title: AlertTitle.loading.rawValue, message: AlertTitle.wait.rawValue, preferredStyle: .alert)
@@ -65,6 +75,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
         let cellVm = self.viewModel.getCellModel(at: indexPath)
         cell.sampleCell = cellVm
+        
         return cell
     }
     
@@ -81,6 +92,19 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         delete.backgroundColor = .systemRed
         return UISwipeActionsConfiguration(actions: [delete])
     }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let itemToMove = viewModel.samplesData[sourceIndexPath.row]
+        viewModel.samplesData.remove(at: sourceIndexPath.row)
+        viewModel.samplesData.insert(itemToMove, at: destinationIndexPath.row)
+        let cellVm = viewModel.getCellModel(at: sourceIndexPath)
+        print(cellVm.index)
+    }
+    
 
     
     //MARK: - View
@@ -109,6 +133,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         view = UIView()
         view.backgroundColor = .white
         drawView.viewCompare(view: view)
+        drawView.sortButton.addTarget(self, action: #selector(sortSampleTable(sender:)), for: .touchUpInside)
     }
     
     override func viewDidLoad() {

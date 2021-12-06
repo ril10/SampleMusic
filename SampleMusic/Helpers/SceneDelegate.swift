@@ -75,7 +75,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         self.window = window
         
-//        print(realm.configuration.fileURL?.absoluteURL)
+        print(realm.configuration.fileURL?.absoluteURL)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

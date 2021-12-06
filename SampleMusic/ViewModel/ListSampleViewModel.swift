@@ -15,7 +15,7 @@ import SDWebImage
 import AVFoundation
 import RealmSwift
 
-class ListSampleViewModel: ListSamplesImp {
+class ListSampleViewModel: ListSamplesImp {    
     
     var reloadTableView : (() -> Void)?
     var db : Firestore?
@@ -66,36 +66,6 @@ class ListSampleViewModel: ListSamplesImp {
                     }
                 }
             })
-        }
-    }
-    
-    func userImage() {
-        if let user = Auth.auth().currentUser {
-            self.db?.collection(Role.user.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in
-                if let data = document?.data() {
-                    let sellerData = DetailModel(data: data)
-                    let imgRef = self.st?.reference(forURL: sellerData.imageUrl)
-                    imgRef?.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        } else {
-                            let chatUser = ChatUser()
-                            chatUser.senderImage = data
-                            chatUser.ownerUid = user.uid
-                            self.saveToRealm(chatUser)
-                        }
-                    })
-                }
-            })
-        }
-    }
-    
-    func getUid(_ recivierUid: String) {
-        if let user = Auth.auth().currentUser {
-            let chatUser = ChatUser()
-            chatUser.recieverUid = recivierUid
-            chatUser.ownerUid = user.uid
-            self.saveToRealm(chatUser)
         }
     }
     
@@ -159,14 +129,15 @@ class ListSampleViewModel: ListSamplesImp {
         self.totalSeconds = totalSeconds
         self.duratation = String(format:"%02i:%02i",minutes, seconds)
         
-        
+        let sampleIndex = cell.index
         
         return DataCellModel(imageSample: self.imageUrl ?? "",
                              sampleName: name ?? "",
                              sampleData: self.sampleData ?? "",
                              totalSeconds: self.totalSeconds ?? 0,
                              sampleDuratation: self.duratation ?? "",
-                             ownerUid: ownerUid ?? ""
+                             ownerUid: ownerUid ?? "",
+                             index: sampleIndex ?? 0
         )
     }
     
@@ -216,15 +187,6 @@ class ListSampleViewModel: ListSamplesImp {
             print("Error saving state \(error)")
         }
     }
-    
-    func saveToRealm(_ chatUser: ChatUser) {
-        do {
-            try realm.write {
-                realm.add(chatUser, update: .error)
-            }
-        } catch {
-            print("Error saving state \(error)")
-        }
-    }
+
     
 }

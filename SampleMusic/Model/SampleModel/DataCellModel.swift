@@ -15,4 +15,5 @@ struct DataCellModel {
     var totalSeconds : Int
     var sampleDuratation : String
     var ownerUid : String
+    var index : Int
 }

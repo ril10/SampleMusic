@@ -21,8 +21,6 @@ protocol ListSamplesImp {
     func signUser()
     var hide : ((Bool) -> Void)? { get set }
     func hideUserDetail()
-    func userImage()
-    func getUid(_ recivierUid: String)
     func createChatRoom(ownerUid: String, recieverUid: String)
     var chatRoom : String? { get set }
     var curUser : String? { get set }

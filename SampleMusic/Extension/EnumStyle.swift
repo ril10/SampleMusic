@@ -83,6 +83,7 @@ enum Icons : String, CaseIterable {
     case pause = "pause"
     case mic = "mic.badge.plus"
     case add = "plus"
+    case sort = "arrow.up.arrow.down"
 }
 
 enum TableCell : String, CaseIterable {

@@ -62,7 +62,6 @@ class UserDetailViewController : UIViewController {
                 self?.view.setNeedsDisplay()
             }
         }
-
         
         title = "User Detail"
     }

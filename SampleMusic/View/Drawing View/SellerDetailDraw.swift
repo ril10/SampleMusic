@@ -80,7 +80,7 @@ class SellerDetailDraw: UIView {
         return stackView
     }()
     lazy var samplesStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [samplesLabel,addButton,createSampleButton])
+        let stackView = UIStackView(arrangedSubviews: [samplesLabel,sortButton,addButton,createSampleButton])
         stackView.alignment = .leading
         stackView.distribution = .fillProportionally
         stackView.axis = .horizontal
@@ -226,6 +226,16 @@ class SellerDetailDraw: UIView {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
         button.setTitleColor(UIColor.black, for: .normal)
         button.setImage(UIImage(systemName: Icons.mic.rawValue ,withConfiguration: largeConfig), for: .normal)
+        button.tintColor = UIColor.black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    var sortButton: UIButton = {
+        let button = UIButton()
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.setImage(UIImage(systemName: Icons.sort.rawValue ,withConfiguration: largeConfig), for: .normal)
         button.tintColor = UIColor.black
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
