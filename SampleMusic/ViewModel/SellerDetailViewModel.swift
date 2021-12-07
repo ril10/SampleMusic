@@ -16,6 +16,8 @@ import RealmSwift
 
 
 class SellerDetailViewModel: SellerImp {
+    
+    
     var reloadView : (() -> Void)?
     var reloadTableView : (() -> Void)?
     var db : Firestore?
@@ -223,27 +225,36 @@ class SellerDetailViewModel: SellerImp {
         })
     }
     
-    func getSampleIndex(start index: Int,changeIndex: Int) {
-        self.db?.collection(Role.sample.rawValue).whereField("index", isEqualTo: index)
-            .addSnapshotListener({ querySnapshot, error in
+    func getSampleIndex(start index: Int, destination destIndex: Int) {
+        self.db?.collection(Role.sample.rawValue.lowercased())
+            .whereField("ownerUid", isEqualTo: Auth.auth().currentUser!.uid as Any)
+            .whereField("index", isEqualTo: index)
+            .getDocuments() { (querySnapshot, error) in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
+                    var first = index
+                    var second = destIndex
                     for document in querySnapshot!.documents {
-                        self.changeSampleIndex(by: changeIndex, documentId: document.documentID)
+                        first = second
+                        if first == second {
+                            self.changeSampleIndex(destinationIndex: first, documentId: document.documentID)
+                        } else {
+                            self.changeSampleIndex(destinationIndex: second, documentId: document.documentID)
+                        }
+                        
                     }
                 }
-            })
+            }
     }
     
-    
-    
-    private func changeSampleIndex(by index: Int,documentId: String) {
-        self.db?.collection(Role.sample.rawValue).document(documentId)
+    private func changeSampleIndex(destinationIndex: Int,documentId: String) {
+        self.db?.collection(Role.sample.rawValue.lowercased()).document(documentId)
             .updateData([
-                "index": index as Any
+                "index": destinationIndex as Any
             ])
     }
+
     
     func saveUid(_ state: State) {
         do {

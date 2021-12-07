@@ -101,8 +101,11 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         let itemToMove = viewModel.samplesData[sourceIndexPath.row]
         viewModel.samplesData.remove(at: sourceIndexPath.row)
         viewModel.samplesData.insert(itemToMove, at: destinationIndexPath.row)
-        let cellVm = viewModel.getCellModel(at: sourceIndexPath)
-        print(cellVm.index)
+        
+        for (index, element) in viewModel.samplesData.enumerated() {
+            viewModel.getSampleIndex(start: index, destination: element.index)
+        }
+
     }
     
 
