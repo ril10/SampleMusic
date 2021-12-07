@@ -119,6 +119,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
             self.viewModel.getDataSamplesFromUser(ownerUid: viewModel.ownerUid!)
             self.drawView.addButton.isHidden = true
             self.drawView.createSampleButton.isHidden = true
+            self.drawView.sortButton.isHidden = true
             configureNavBar()
 //            self.alertLoading()
         }

@@ -96,8 +96,10 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         viewModel.reloadTableView = { [weak self] in
             DispatchQueue.main.async {
                 self?.drawView.sampleTable.reloadData()
-                let indexPath = IndexPath(row: (self?.viewModel.messageData.count)! - 1, section: 0)
-                self?.drawView.sampleTable.scrollToRow(at: indexPath, at: .top, animated: true)
+                if (self?.viewModel.messageData.count)! > 0 {
+                    let indexPath = IndexPath(row: (self?.viewModel.messageData.count)! - 1, section: 0)
+                    self?.drawView.sampleTable.scrollToRow(at: indexPath, at: .top, animated: true)
+                }
             }
         }
         self.hideKeyboardWhenTappedAround()
