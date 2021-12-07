@@ -68,7 +68,7 @@ class ListSampleViewModel: ListSamplesImp {
             })
         }
     }
-    
+        
     func createChatRoom(ownerUid: String, recieverUid: String) {
         let ref = db?.collection(Role.chatRoom.rawValue).document()
         let id = ref?.documentID
