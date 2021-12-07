@@ -48,7 +48,7 @@ class TabBarController: UITabBarController {
     }
     
     @objc func upload(sender: UIButton) {
-        coordinator?.parentCoordinator?.uploadMusic()
+        coordinator?.upload()
     }
     
     @objc func createSample(sender: UIButton) {

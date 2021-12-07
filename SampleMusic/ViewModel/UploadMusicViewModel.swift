@@ -35,9 +35,11 @@ class UploadMusicViewModel: UploadMusicImp {
             "sampleImageUrl":self.imageSampleUrl as Any,
             "sampleName":self.sampleName as Any,
             "sampleUrl":self.sampleUrl as Any,
-            "duration":self.sampleDuration as Any
+            "duration":self.sampleDuration as Any,
+            "index":0 as Any,
         ])
     }
+    
     
     func uploadSampleImage(image: Data,text: String) {
         let refrence = db.collection(Role.sample.rawValue.lowercased())

@@ -91,6 +91,8 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        drawView.segment.selectedSegmentIndex = UISegmentedControl.noSegment
+        viewModel.getSearchData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -175,6 +177,7 @@ extension ListSamplesViewController : UISearchBarDelegate {
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         viewModel.getSearchData()
+        drawView.segment.selectedSegmentIndex = UISegmentedControl.noSegment
     }
     
 }
