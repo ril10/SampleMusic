@@ -53,6 +53,7 @@
 "CHAT_LIST" = "Список чатов";
 "WRITE_MSSG" = "Написать сообщение";
 "SEND_MESS" = "Отправить сообщение";
+"CHAT_DETAIL" = "Чат";
 //MARK: - Upload Page
 "UPLOAD_IMAGE" = "1.Загрузите изображение для демо";
 "SAMPLE_NAME" = "2.Введите название демо:";

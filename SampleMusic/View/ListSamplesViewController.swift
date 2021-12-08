@@ -98,7 +98,6 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        viewModel.userImage()
         if viewModel.samplesData.count == 0 {
             self.alertLoading()
             self.viewModel.getSamplesData()

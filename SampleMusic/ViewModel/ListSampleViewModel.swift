@@ -93,7 +93,6 @@ class ListSampleViewModel: ListSamplesImp {
                         return sampleData
                     }
                     self.fetchData(res: queryData)
-                    self.reloadTableView?()
                 })
             self.dismissAlert?(true)
         }

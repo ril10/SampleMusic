@@ -73,8 +73,9 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
     }
 
     //MARK: - View
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavBar()
         viewModel.loadMessages()
     }
     
@@ -91,18 +92,37 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
         drawView.sampleTable.estimatedRowHeight = 70
-        title = "Chat"
-        drawView.sendMessage.addTarget(self, action: #selector(sendMessage(sender:)), for: .touchUpInside)
         viewModel.reloadTableView = { [weak self] in
             DispatchQueue.main.async {
-                self?.drawView.sampleTable.reloadData()
                 if (self?.viewModel.messageData.count)! > 0 {
+                    self?.drawView.sampleTable.reloadData()
                     let indexPath = IndexPath(row: (self?.viewModel.messageData.count)! - 1, section: 0)
                     self?.drawView.sampleTable.scrollToRow(at: indexPath, at: .top, animated: true)
                 }
             }
         }
+        title = "Chat"
+        drawView.sendMessage.addTarget(self, action: #selector(sendMessage(sender:)), for: .touchUpInside)
+
         self.hideKeyboardWhenTappedAround()
+    }
+    
+    func configureNavBar() {
+        let nav = self.navigationController?.navigationBar
+        
+        nav?.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont(name: Style.fontTitleHeavy.rawValue, size: 18) as Any
+        ]
+        
+        nav?.isTranslucent = true
+        nav?.barTintColor = .white
+        nav?.topItem?.title = NSLocalizedString(ChatKeys.chatDetail.rawValue, comment: "")
+        nav?.setBackgroundImage(UIImage(), for: .default)
+        nav?.shadowImage = UIImage()
+        nav?.layoutIfNeeded()
+        
+        self.navigationItem.setHidesBackButton(false, animated: true)
     }
 
 }

@@ -64,6 +64,7 @@ enum ChatKeys : String, CaseIterable {
     case chatList = "CHAT_LIST"
     case writeMess = "WRITE_MSSG"
     case sendMess = "SEND_MESS"
+    case chatDetail = "CHAT_DETAIL"
 }
 
 enum UploadKeys : String, CaseIterable {

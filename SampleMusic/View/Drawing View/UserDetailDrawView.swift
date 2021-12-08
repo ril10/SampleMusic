@@ -130,7 +130,7 @@ class UserDetailDrawView : UIView {
     }()
     var emailLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString(MainKeys.email.rawValue, comment: "")
+        label.text = NSLocalizedString(DetailKeys.email.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false

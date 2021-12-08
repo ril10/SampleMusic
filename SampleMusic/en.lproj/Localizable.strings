@@ -53,6 +53,7 @@
 "CHAT_LIST" = "Chat List";
 "WRITE_MSSG" = "Write a message";
 "SEND_MESS" = "Send message";
+"CHAT_DETAIL" = "Chat Detail";
 //MARK: - Upload Page
 "UPLOAD_IMAGE" = "1.Upload image for sample";
 "SAMPLE_NAME" = "2.Type sample name:";

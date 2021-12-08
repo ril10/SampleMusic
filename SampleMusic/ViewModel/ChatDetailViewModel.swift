@@ -23,6 +23,8 @@ class ChatDetailViewModel: ChatDetailimp {
     var ownerUid : String?
     var chatRoom : String?
     var recieverUid : String?
+    var leftImage : String?
+    var rightImage : String?
 
     
     init(db: Firestore, st: Storage) {
@@ -72,22 +74,27 @@ class ChatDetailViewModel: ChatDetailimp {
         let cellUid = cell.ownerUid
         self.senderUid = cellUid
         let cellData = cell.sendDate
-        let leftImage = getImage(by: cell.recieverUid!)
-        let rightImage = getImage(by: cell.ownerUid!)
-        return Message(senderUid: cellUid ?? "", body: cellMessage ?? "", date: cellData ?? 0.0, rightImage: rightImage, leftImage: leftImage,recieverUid: self.ownerUid!)
-    }
-    
-    func getImage(by uid: String) -> String {
-        var urlPath : String?
-        let pathRefrence = st?.reference(withPath: "userAvatars/\(uid).jpg")
-        pathRefrence?.downloadURL(completion: { url, error in
+        
+        let imgLeftRefrence = st?.reference(withPath: "userAvatars/\((cell.recieverUid)!).jpg")
+        imgLeftRefrence?.downloadURL(completion: { url, error in
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                urlPath = url?.absoluteString
+                self.leftImage = url?.absoluteString
             }
         })
-        return urlPath ?? ""
+        
+        let imgRightRefrence = st?.reference(withPath: "userAvatars/\((cell.ownerUid)!).jpg")
+        imgRightRefrence?.downloadURL(completion: { url, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.rightImage = url?.absoluteString
+            }
+        })
+        
+        
+        return Message(senderUid: cellUid ?? "", body: cellMessage ?? "", date: cellData ?? 0.0, rightImage: self.rightImage ?? "", leftImage: self.leftImage ?? "",recieverUid: self.ownerUid!)
     }
     
     func getCellModel(at indexPath: IndexPath) -> Message {
