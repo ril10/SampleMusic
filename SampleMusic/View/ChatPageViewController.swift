@@ -45,6 +45,7 @@ class ChatPageViewController : UIViewController, UITableViewDataSource, UITableV
         coordinator?.goToChatDetail(ownerUid: cellVm.senderUid, chatRoom: cellVm.chatRoom, recieverUid: cellVm.recieverUid)
     }
     //MARK: - View
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.ifSellerSign()

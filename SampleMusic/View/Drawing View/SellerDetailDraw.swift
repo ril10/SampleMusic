@@ -201,6 +201,16 @@ class SellerDetailDraw: UIView {
         return label
     }()
     
+//    var titleLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = NSLocalizedString(DetailKeys.sDetail.rawValue, comment: "")
+//        label.font = UIFont(name: Style.coralColor.rawValue, size: 18)
+//        label.numberOfLines = 2
+//        label.adjustsFontSizeToFitWidth = true
+//        label.textAlignment = .center
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
     //MARK: - BottomView
     var samplesLabel: UILabel = {
         let label = UILabel()

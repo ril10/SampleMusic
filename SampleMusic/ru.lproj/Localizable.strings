@@ -38,7 +38,7 @@
 "UNDEFINED" = "НЕОПРЕДЕЛЕН";
 "ADD" = "ДОБАВИТЬ";
 //MARK: - Samples Page
-"SAMPLES" = "Лист Дэмо";
+"SAMPLES" = "Дэмо Лист";
 "B_NAME" = "По Имени";
 "LENGTH" = "По Длине";
 //MARK: - Detail Inf
@@ -47,7 +47,7 @@
 "DESCRIPTION" = "О себе:";
 "GENDER" = "Пол:";
 "USER_DETAIL" = "Страница пользователя";
-"SELLER_DETAIL" = "Страница продавца";
+"SELLER_DETAIL" = "Страница\nпродавца";
 "EMAIL_DETAIL" = "Почта:";
 //MARK: - Chat
 "CHAT_LIST" = "Список чатов";

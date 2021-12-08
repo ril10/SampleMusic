@@ -47,6 +47,7 @@ class TabBarCoordinator : Coordinator {
     
     func goToChat(recieverUid: String) {
         parentCoordinator?.childDidFinish(self)
+        self.navigationController.isNavigationBarHidden = false
         parentCoordinator?.chatPage(recieverUid: recieverUid)
     }
 }

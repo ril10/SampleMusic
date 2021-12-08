@@ -116,6 +116,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 80.0)
         if viewModel.ownerUid != nil {
             self.viewModel.getDataFromUser(ownerUid: viewModel.ownerUid!)
             self.viewModel.getDataSamplesFromUser(ownerUid: viewModel.ownerUid!)
@@ -184,7 +185,6 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         nav?.isTranslucent = true
         nav?.barTintColor = .white
-        nav?.topItem!.title = NSLocalizedString(DetailKeys.sDetail.rawValue, comment: "")
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
