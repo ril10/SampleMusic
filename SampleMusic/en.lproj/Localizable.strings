@@ -1,0 +1,70 @@
+/* 
+  Localizable.strings
+  SampleMusic
+
+  Created by Siarhei Luk on 8.12.21.
+  
+*/
+
+//MARK: - Main
+"SIGN_IN" = "Sign In";
+"SIGN_UP" = "Sign Up";
+"EMAIL" = "Email";
+"ENTERLOGIN" = "Enter your login";
+"WELCOME" = "Welcome";
+"PASSWORD" = "Password";
+"ENTERPASSW" = "Enter your password";
+"LOADING" = "Loading";
+"PLEASE_WAIT" = "Please wait...";
+"LOGOUT" = "Logout";
+"SEARCH" = "Search by name";
+"EDIT" = "Edit";
+"LIST_SAMPLES" = "List of samples";
+"OK" = "Ok";
+//MARK: - Sign Up page
+"CHOSEROLE" = "Choose your role*";
+"USER" = "User";
+"SELLER" = "Seller";
+"CONTINUE" = "Continue";
+"HAVE_ACC" = "Have an Account?";
+"FORGET_PASSW" = "Forget Password?";
+//MARK: - Add Data Page
+"FIRST_NAME" = "Enter your First Name";
+"LAST_NAME" = "Enter your Last Name";
+"YOUR_SELF" = "Type about your self";
+"CHOOSE_GENDER" = "Choose you're gender";
+"MALE" = "Male";
+"FEMALE" = "FEMALE";
+"UNDEFINED" = "Undefined";
+"ADD" = "Add";
+//MARK: - Samples Page
+"SAMPLES" = "Samples";
+"B_NAME" = "By Name";
+"LENGTH" = "By Length";
+//MARK: - Detail Inf
+"F_NAME" = "First Name:";
+"L_NAME" = "Last Name:";
+"DESCRIPTION" = "Description:";
+"GENDER" = "Gender:";
+"USER_DETAIL" = "User Detail";
+"SELLER_DETAIL" = "Seller Detail";
+"EMAIL_DETAIL" = "Email:";
+//MARK: - Chat
+"CHAT_LIST" = "Chat List";
+"WRITE_MSSG" = "Write a message";
+"SEND_MESS" = "Send message";
+//MARK: - Upload Page
+"UPLOAD_IMAGE" = "1.Upload image for sample";
+"SAMPLE_NAME" = "2.Type sample name:";
+"TYPE_NAME" = "Type sample name";
+"CHOOSE_SAMPLE" = "3.Choose sample to upload";
+//MARK: - Record Page
+"RECORD_NAME" = "1.Type sample name:";
+"RECORD_SAMPLE" = "2.Create your sample";
+"RECORDING" = "Recording...";
+//MARK: - Alert
+"E_SIGN_IN" = "Error Sign In";
+"E_SIGN_UP" = "Error Sign Up";
+"E_ROLE" = "Select your role";
+"E_ADD_DATA" = "Error Adding Data";
+"E_FIELDS" = "Fill all fields";

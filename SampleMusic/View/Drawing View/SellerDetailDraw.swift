@@ -122,7 +122,7 @@ class SellerDetailDraw: UIView {
     //MARK: - MiddleView
     var firstNameLabel: UILabel = {
         let label = UILabel()
-        label.text = TitleDetail.firstName.rawValue
+        label.text = NSLocalizedString(DetailKeys.fName.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -130,7 +130,7 @@ class SellerDetailDraw: UIView {
     }()
     var secondNameLabel: UILabel = {
         let label = UILabel()
-        label.text = TitleDetail.lastName.rawValue
+        label.text = NSLocalizedString(DetailKeys.lName.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -138,7 +138,7 @@ class SellerDetailDraw: UIView {
     }()
     var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = TitleDetail.description.rawValue
+        label.text = NSLocalizedString(DetailKeys.descr.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -146,7 +146,7 @@ class SellerDetailDraw: UIView {
     }()
     var emailLabel: UILabel = {
         let label = UILabel()
-        label.text = TitleDetail.email.rawValue
+        label.text = NSLocalizedString(DetailKeys.email.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -154,7 +154,7 @@ class SellerDetailDraw: UIView {
     }()
     var genderLabel: UILabel = {
         let label = UILabel()
-        label.text = TitleDetail.gender.rawValue
+        label.text = NSLocalizedString(DetailKeys.gend.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -204,7 +204,7 @@ class SellerDetailDraw: UIView {
     //MARK: - BottomView
     var samplesLabel: UILabel = {
         let label = UILabel()
-        label.text = TitleDetail.samples.rawValue
+        label.text = NSLocalizedString(MainKeys.listSamples.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false

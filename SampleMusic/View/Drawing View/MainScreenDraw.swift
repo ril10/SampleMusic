@@ -90,7 +90,7 @@ class MainScreenDraw : UIView {
     //MARK: - MiddleView
     var middleLabelSign: UILabel = {
         let label = UILabel()
-        label.text = Titles.signIn.rawValue
+        label.text = NSLocalizedString(MainKeys.signIn.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 30)
         label.tintColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -99,7 +99,7 @@ class MainScreenDraw : UIView {
     
     var middleLabelWelcome: UILabel = {
         let label = UILabel()
-        label.text = Titles.welcome.rawValue
+        label.text = NSLocalizedString(MainKeys.welcome.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15)
         label.tintColor = .lightGray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -108,13 +108,13 @@ class MainScreenDraw : UIView {
     
     var loginLabel: UILabel = {
         let label = UILabel()
-        label.redLabel(title: Titles.email.rawValue)
+        label.redLabel(title: NSLocalizedString(MainKeys.email.rawValue, comment: ""))
         return label
     }()
     
     var passwordLabel: UILabel = {
         let label = UILabel()
-        label.redLabel(title: Titles.password.rawValue)
+        label.redLabel(title: NSLocalizedString(MainKeys.password.rawValue, comment: ""))
         return label
     }()
     
@@ -134,14 +134,14 @@ class MainScreenDraw : UIView {
     
     var signButton: UIButton = {
         let button = UIButton()
-        button.coraleButton(title: Titles.signIn.rawValue)
+        button.coraleButton(title: NSLocalizedString(MainKeys.signIn.rawValue, comment: ""))
         return button
     }()
     
     var forgetButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
-        button.setTitle(Titles.forgetPassword.rawValue, for: .normal)
+        button.setTitle(NSLocalizedString(SignUpKeys.forgetPassw.rawValue, comment: ""), for: .normal)
         button.setTitleColor(.lightGray, for: .normal)
         button.titleLabel?.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -150,7 +150,7 @@ class MainScreenDraw : UIView {
     
     var signUpButton: UIButton = {
         let button = UIButton()
-        button.coralLighButton(title: Titles.signUp.rawValue)
+        button.coralLighButton(title: NSLocalizedString(MainKeys.signUp.rawValue, comment: ""))
         return button
     }()
     //MARK: - Constraints

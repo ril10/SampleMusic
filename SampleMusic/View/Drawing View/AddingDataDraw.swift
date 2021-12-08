@@ -104,21 +104,21 @@ class AddingDataDraw : UIView {
     //MARK: - MiddleView
     var firstNameTextField: UITextField = {
         let textField = UITextField()
-        textField.defaultTextField(placeholder: TextFieldLabel.enterFirstName.rawValue)
+        textField.defaultTextField(placeholder: NSLocalizedString(AddDataKeys.firstName.rawValue, comment: ""))
         textField.underLine()
         return textField
     }()
     
     var lastNameTextField: UITextField = {
         let textField = UITextField()
-        textField.defaultTextField(placeholder: TextFieldLabel.enterLastName.rawValue)
+        textField.defaultTextField(placeholder: NSLocalizedString(AddDataKeys.lastName.rawValue, comment: ""))
         textField.underLine()
         return textField
     }()
     
     var descriptionTextField: UITextField = {
         let textField = UITextField()
-        textField.defaultTextField(placeholder: TextFieldLabel.aboutSelf.rawValue)
+        textField.defaultTextField(placeholder: NSLocalizedString(AddDataKeys.yourSelf.rawValue, comment: ""))
         textField.underLine()
         return textField
     }()
@@ -153,7 +153,7 @@ class AddingDataDraw : UIView {
     //MARK: - BottomView
     var buttonAddInformation: UIButton = {
         let button = UIButton()
-        button.coraleButton(title: Titles.add.rawValue)
+        button.coraleButton(title: NSLocalizedString(AddDataKeys.add.rawValue, comment: ""))
         return button
     }()
     

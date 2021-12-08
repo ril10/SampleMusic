@@ -62,8 +62,8 @@ class UserDetailViewController : UIViewController {
                 self?.view.setNeedsDisplay()
             }
         }
-        
-        title = "User Detail"
+        let locTitle = NSLocalizedString(DetailKeys.uDetail.rawValue, comment: "")
+        title = locTitle
     }
     //MARK: - ActionButton
     @objc func editAction(sender: UIButton) {
@@ -85,12 +85,13 @@ class UserDetailViewController : UIViewController {
         
         nav?.isTranslucent = true
         nav?.barTintColor = .white
-        nav?.topItem?.title = "User Detail"
+        nav?.topItem?.title = NSLocalizedString(DetailKeys.uDetail.rawValue, comment: "")
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
-        let edit = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editAction(sender:)))
-        let message = UIBarButtonItem(image: UIImage(systemName: "message"), style: .plain, target: self, action: #selector(message(sender:)))
+        let locEdit = NSLocalizedString(MainKeys.edit.rawValue, comment: "")
+        let edit = UIBarButtonItem(title: locEdit, style: .plain, target: self, action: #selector(editAction(sender:)))
+        let message = UIBarButtonItem(image: UIImage(systemName: Icons.message.rawValue), style: .plain, target: self, action: #selector(message(sender:)))
         self.navigationItem.rightBarButtonItems = [edit, message]
     }
 }

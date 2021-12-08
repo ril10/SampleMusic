@@ -79,7 +79,7 @@ class ChatPageViewController : UIViewController, UITableViewDataSource, UITableV
         viewModel.reloadTableView = { [weak self] in
             self?.drawView.sampleTable.reloadData()
         }
-        title = "Chat List"
+        title = NSLocalizedString(ChatKeys.chatList.rawValue, comment: "")
     }
     
     func configureNavBar() {
@@ -92,7 +92,7 @@ class ChatPageViewController : UIViewController, UITableViewDataSource, UITableV
         
         nav?.isTranslucent = true
         nav?.barTintColor = .white
-        nav?.topItem?.title = "Chat List"
+        nav?.topItem?.title = NSLocalizedString(ChatKeys.chatList.rawValue, comment: "")
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()

@@ -77,7 +77,7 @@ class UploadMusicDraw : UIView {
     
     var imageLabel: UILabel = {
         let label = UILabel()
-        label.text = "1.Upload image for sample"
+        label.text = NSLocalizedString(UploadKeys.uplImg.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +92,7 @@ class UploadMusicDraw : UIView {
     //MARK: - MiddleView
     var sampleNameLabel: UILabel = {
         let label = UILabel()
-        label.text = TitleDetail.sampleName.rawValue
+        label.text = NSLocalizedString(UploadKeys.sampleName.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +101,7 @@ class UploadMusicDraw : UIView {
     
     var sampleTextField: UITextField = {
         let textField = UITextField()
-        textField.defaultTextField(placeholder: TextFieldLabel.sampleName.rawValue)
+        textField.defaultTextField(placeholder: NSLocalizedString(UploadKeys.typeName.rawValue, comment: ""))
         textField.textAlignment = .left
         textField.underLine()
         return textField
@@ -110,7 +110,7 @@ class UploadMusicDraw : UIView {
     
     var uploadLabel: UILabel = {
         let label = UILabel()
-        label.text = "3.Choose sample to upload"
+        label.text = NSLocalizedString(UploadKeys.chooseSample.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -140,7 +140,7 @@ class UploadMusicDraw : UIView {
     
     var buttonAddInformation: UIButton = {
         let button = UIButton()
-        button.coraleButton(title: Titles.add.rawValue)
+        button.coraleButton(title: NSLocalizedString(AddDataKeys.add.rawValue, comment: ""))
         return button
     }()
     

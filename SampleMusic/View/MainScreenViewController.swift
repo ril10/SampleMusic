@@ -45,13 +45,17 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }
     //MARK: - Alert
     func errorWithLogin(e: Error) {
-        let alert = UIAlertController(title: AlertTitle.errorSignIn.rawValue, message: e.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Titles.ok.rawValue, style: .default, handler: nil))
+        let alertTitle = NSLocalizedString(ErrorKeys.eSignIn.rawValue, comment: "")
+        let okTitle = NSLocalizedString(MainKeys.ok.rawValue, comment: "")
+        let alert = UIAlertController(title: alertTitle, message: e.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     func loadAlertView() {
-        let alert = UIAlertController(title: AlertTitle.loading.rawValue, message: AlertTitle.wait.rawValue, preferredStyle: .alert)
+        let loadTitle = NSLocalizedString(MainKeys.loading.rawValue, comment: "")
+        let waitTitile = NSLocalizedString(MainKeys.wait.rawValue, comment: "")
+        let alert = UIAlertController(title: loadTitle, message: waitTitile, preferredStyle: .alert)
         alert.view.tintColor = UIColor.black
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
         loadingIndicator.style = UIActivityIndicatorView.Style.medium

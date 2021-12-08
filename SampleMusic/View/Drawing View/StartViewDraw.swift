@@ -25,13 +25,15 @@ class StartViewDraw : UIView {
     
     var signUpButton: UIButton = {
         let button = UIButton()
-        button.coraleButton(title: Titles.signUp.rawValue)
+        let buttonTitle = NSLocalizedString("SIGN_UP", comment: "")
+        button.coraleButton(title: buttonTitle)
         return button
     }()
     
     var signInButton: UIButton = {
         let button = UIButton()
-        button.coraleButton(title: Titles.signIn.rawValue)
+        let buttonTitle = NSLocalizedString("SIGN_IN", comment: "")
+        button.coraleButton(title: buttonTitle)
         return button
     }()
     

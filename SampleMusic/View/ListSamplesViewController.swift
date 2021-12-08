@@ -46,7 +46,9 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     }
     //MARK: - Alert
     func alertLoading() {
-        let alert = UIAlertController(title: AlertTitle.loading.rawValue, message: AlertTitle.wait.rawValue, preferredStyle: .alert)
+        let alertTitile = NSLocalizedString(MainKeys.loading.rawValue, comment: "")
+        let waitTitle = NSLocalizedString(MainKeys.wait.rawValue, comment: "")
+        let alert = UIAlertController(title: alertTitile, message: waitTitle, preferredStyle: .alert)
         alert.view.tintColor = UIColor.black
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
         loadingIndicator.style = UIActivityIndicatorView.Style.medium
@@ -150,14 +152,15 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         
         nav?.isTranslucent = true
         nav?.barTintColor = .white
-        nav?.topItem?.title = "Samples"
+        nav?.topItem?.title = NSLocalizedString(SamplesKeys.samples.rawValue, comment: "")
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
         self.navigationItem.searchController = drawView.searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutAction(sender:)))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.circle"), style: .plain, target: self, action: #selector(userDetail(sender:)))
+        let logoutTitle = NSLocalizedString(MainKeys.logout.rawValue, comment: "")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: logoutTitle, style: .plain, target: self, action: #selector(logoutAction(sender:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Icons.person.rawValue), style: .plain, target: self, action: #selector(userDetail(sender:)))
         self.navigationItem.setHidesBackButton(true, animated: true)
         
     }

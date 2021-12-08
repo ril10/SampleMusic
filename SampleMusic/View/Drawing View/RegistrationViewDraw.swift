@@ -71,7 +71,7 @@ class RegistrationViewDraw : UIView {
     //MARK: - TopView
     var topLabel: UILabel = {
         let label = UILabel()
-        label.text = Titles.signUp.rawValue
+        label.text = NSLocalizedString(MainKeys.signUp.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 40.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +80,7 @@ class RegistrationViewDraw : UIView {
     
     var loginLabel: UILabel = {
         let label = UILabel()
-        label.text = Titles.email.rawValue
+        label.text = NSLocalizedString(MainKeys.email.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15)
         label.textColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +89,7 @@ class RegistrationViewDraw : UIView {
     
     var passwordLabel: UILabel = {
         let label = UILabel()
-        label.text = Titles.password.rawValue
+        label.text = NSLocalizedString(MainKeys.password.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15)
         label.textColor = .red
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -113,7 +113,7 @@ class RegistrationViewDraw : UIView {
     //MARK: - MiddleView
     var radioLabel: UILabel = {
         let label = UILabel()
-        label.text = Role.chooseRole.rawValue
+        label.text = NSLocalizedString(SignUpKeys.choseRole.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -135,13 +135,13 @@ class RegistrationViewDraw : UIView {
     //MARK: - BottomView
     var registerButton: UIButton = {
         let button = UIButton()
-        button.coraleButton(title: Titles.contin.rawValue)
+        button.coraleButton(title: NSLocalizedString(SignUpKeys.contin.rawValue, comment: ""))
         return button
     }()
     
     var accountLabel: UILabel = {
         let label = UILabel()
-        label.text = Titles.haveAcc.rawValue
+        label.text = NSLocalizedString(SignUpKeys.haveAcc.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .lightGray
@@ -150,7 +150,7 @@ class RegistrationViewDraw : UIView {
     
     var signInButton: UIButton = {
         let button = UIButton()
-        button.coralLighButton(title: Titles.signIn.rawValue)
+        button.coralLighButton(title: NSLocalizedString(MainKeys.signIn.rawValue, comment: ""))
         return button
     }()
     

@@ -26,7 +26,7 @@ class RecordPageDrawView : UIView {
     //MARK: - TopView
     var uploadLabel: UILabel = {
         let label = UILabel()
-        label.text = "2.Create your sample"
+        label.text = NSLocalizedString(RecordKeys.recordSample.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +36,7 @@ class RecordPageDrawView : UIView {
     //MARK: - MiddleView
     var sampleNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "1.Type sample name:"
+        label.text = NSLocalizedString(RecordKeys.recordName.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +45,7 @@ class RecordPageDrawView : UIView {
     
     var sampleTextField: UITextField = {
         let textField = UITextField()
-        textField.defaultTextField(placeholder: TextFieldLabel.sampleName.rawValue)
+        textField.defaultTextField(placeholder: NSLocalizedString(UploadKeys.typeName.rawValue, comment: ""))
         textField.textAlignment = .left
         textField.underLine()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +68,7 @@ class RecordPageDrawView : UIView {
     
     lazy var recordLabel: UILabel = {
         let label = UILabel()
-        label.text = "Recoding..."
+        label.text = NSLocalizedString(RecordKeys.record.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.textColor = UIColor(named: Style.coralColor.rawValue)
         label.translatesAutoresizingMaskIntoConstraints = false

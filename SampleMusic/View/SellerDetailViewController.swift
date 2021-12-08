@@ -42,12 +42,14 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
             drawView.sortButton.setImage(UIImage(systemName: Icons.sort.rawValue), for: .normal)
         } else {
             drawView.sampleTable.isEditing = true
-            drawView.sortButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+            drawView.sortButton.setImage(UIImage(systemName: Icons.check.rawValue), for: .normal)
         }
     }
     //MARK: - Alert
     func alertLoading() {
-        let alert = UIAlertController(title: AlertTitle.loading.rawValue, message: AlertTitle.wait.rawValue, preferredStyle: .alert)
+        let alertTitile = NSLocalizedString(MainKeys.loading.rawValue, comment: "")
+        let waitTitle = NSLocalizedString(MainKeys.wait.rawValue, comment: "")
+        let alert = UIAlertController(title: alertTitile, message: waitTitle, preferredStyle: .alert)
         alert.view.tintColor = UIColor.black
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
         loadingIndicator.style = UIActivityIndicatorView.Style.medium
@@ -182,11 +184,12 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         nav?.isTranslucent = true
         nav?.barTintColor = .white
-        nav?.topItem!.title = "Seller Detail"
+        nav?.topItem!.title = NSLocalizedString(DetailKeys.sDetail.rawValue, comment: "")
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send Message", style: .plain, target: self, action: #selector(message(sender:)))
+        let sendTitle = NSLocalizedString(ChatKeys.sendMess.rawValue, comment: "")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: sendTitle, style: .plain, target: self, action: #selector(message(sender:)))
         self.navigationItem.setHidesBackButton(false, animated: false)
     }
 }

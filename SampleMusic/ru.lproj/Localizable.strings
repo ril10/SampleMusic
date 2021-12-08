@@ -1,0 +1,71 @@
+/* 
+  Localizable.strings
+  SampleMusic
+
+  Created by Siarhei Luk on 8.12.21.
+  
+*/
+
+//MARK: - Main
+"SIGN_IN" = "Авторизация";
+"SIGN_UP" = "Регистрация";
+"EMAIL" = "Почта";
+"ENTERLOGIN" = "Введите ваш логин";
+"WELCOME" = "Привет :)";
+"PASSWORD" = "Пароль";
+"ENTERPASSW" = "Введите ваш пароль";
+"LOADING" = "Загрузка";
+"PLEASE_WAIT" = "Пожалуйста подождите...";
+"LOGOUT" = "Выход";
+"SEARCH" = "Поиск по названию";
+"EDIT" = "Изменить";
+"LIST_SAMPLES" = "Список дэмо треков";
+"OK" = "Ок";
+//MARK: - Sign Up page
+"CHOSEROLE" = "Выберите ваш тип*";
+"USER" = "Пользователь";
+"SELLER" = "Продавец";
+"CONTINUE" = "Продолжить";
+"HAVE_ACC" = "Есть аккаунт?";
+"FORGET_PASSW" = "Забыли пароль?";
+//MARK: - Upload Page
+"FIRST_NAME" = "Введите ваше имя";
+"LAST_NAME" = "Введите вашу фамилию";
+"YOUR_SELF" = "Немного о себе";
+"CHOOSE_GENDER" = "Выберите ваш пол";
+"MALE" = "МУЖСКОЙ";
+"FEMALE" = "ЖЕНСКИЙ";
+"UNDEFINED" = "НЕОПРЕДЕЛЕН";
+"ADD" = "ДОБАВИТЬ";
+//MARK: - Samples Page
+"SAMPLES" = "Лист Дэмо";
+"B_NAME" = "По Имени";
+"LENGTH" = "По Длине";
+//MARK: - Detail Inf
+"F_NAME" = "Имя:";
+"L_NAME" = "Фамилия:";
+"DESCRIPTION" = "О себе:";
+"GENDER" = "Пол:";
+"USER_DETAIL" = "Страница пользователя";
+"SELLER_DETAIL" = "Страница продавца";
+"EMAIL_DETAIL" = "Почта:";
+//MARK: - Chat
+"CHAT_LIST" = "Список чатов";
+"WRITE_MSSG" = "Написать сообщение";
+"SEND_MESS" = "Отправить сообщение";
+//MARK: - Upload Page
+"UPLOAD_IMAGE" = "1.Загрузите изображение для демо";
+"SAMPLE_NAME" = "2.Введите название демо:";
+"TYPE_NAME" = "Введите название для демо";
+"CHOOSE_SAMPLE" = "3.Выберите демо для загрузки";
+//MARK: - Record Page
+"RECORD_NAME" = "1.Введите название для демо:";
+"RECORD_SAMPLE" = "2.Создайте ваше демо";
+"RECORDING" = "Запись...";
+//MARK: - Alert
+"E_SIGN_IN" = "Ошибка авторизации";
+"E_SIGN_UP" = "Ошибка регистрации";
+"E_ROLE" = "Выберите ваш тип!";
+"E_ADD_DATA" = "Ошибка добавления данных";
+"E_FIELDS" = "Заполните все поля";
+

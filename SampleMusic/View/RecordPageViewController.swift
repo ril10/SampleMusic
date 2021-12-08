@@ -28,8 +28,11 @@ class RecordPageViewController : UIViewController, AVAudioRecorderDelegate {
 
     //MARK: - Alert
     func errorWithFields() {
-        let alert = UIAlertController(title: AlertTitle.errorAddingData.rawValue, message: TextFieldLabel.allFields.rawValue, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Titles.ok.rawValue, style: .default, handler: nil))
+        let alertTitle = NSLocalizedString(ErrorKeys.eData.rawValue, comment: "")
+        let recomendTitle = NSLocalizedString(ErrorKeys.eField.rawValue, comment: "")
+        let okTitle = NSLocalizedString(MainKeys.ok.rawValue, comment: "")
+        let alert = UIAlertController(title: alertTitle, message: recomendTitle, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     

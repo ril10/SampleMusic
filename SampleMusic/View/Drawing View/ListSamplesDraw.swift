@@ -20,7 +20,9 @@ class ListSamplesDraw : UIView {
     }()
     
     var segment : UISegmentedControl = {
-        let segmentControl = UISegmentedControl(items: ["By Name","Sample Length"])
+        let locName = NSLocalizedString(SamplesKeys.bName.rawValue, comment: "")
+        let locLength = NSLocalizedString(SamplesKeys.bLength.rawValue, comment: "")
+        let segmentControl = UISegmentedControl(items: [locName,locLength])
         segmentControl.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         segmentControl.backgroundColor = UIColor(named: Style.coralColor.rawValue)
         return segmentControl
@@ -29,7 +31,7 @@ class ListSamplesDraw : UIView {
     lazy var searchController : UISearchController = {
         let search = UISearchController(searchResultsController: nil)
         search.obscuresBackgroundDuringPresentation = false
-        search.searchBar.placeholder = "Search by Name"
+        search.searchBar.placeholder = NSLocalizedString(MainKeys.search.rawValue, comment: "")
         search.searchBar.sizeToFit()
         search.searchBar.searchBarStyle = .default
         search.searchBar.translatesAutoresizingMaskIntoConstraints = true

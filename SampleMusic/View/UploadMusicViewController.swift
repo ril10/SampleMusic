@@ -71,13 +71,18 @@ class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePi
     }
     //MARK: - Alert
     func errorWithFields() {
-        let alert = UIAlertController(title: AlertTitle.errorAddingData.rawValue, message: TextFieldLabel.allFields.rawValue, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Titles.ok.rawValue, style: .default, handler: nil))
+        let alertTitle = NSLocalizedString(ErrorKeys.eData.rawValue, comment: "")
+        let okTitle = NSLocalizedString(MainKeys.ok.rawValue, comment: "")
+        let fieldTitle = NSLocalizedString(ErrorKeys.eField.rawValue, comment: "")
+        let alert = UIAlertController(title: alertTitle, message: fieldTitle, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     func loadAlertView() {
-        let alert = UIAlertController(title: AlertTitle.loading.rawValue, message: AlertTitle.wait.rawValue, preferredStyle: .alert)
+        let alertTitle = NSLocalizedString(MainKeys.loading.rawValue, comment: "")
+        let waitTitle = NSLocalizedString(MainKeys.wait.rawValue, comment: "")
+        let alert = UIAlertController(title: alertTitle, message: waitTitle, preferredStyle: .alert)
         alert.view.tintColor = UIColor.black
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
         loadingIndicator.style = UIActivityIndicatorView.Style.large

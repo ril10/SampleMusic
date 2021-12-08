@@ -15,7 +15,7 @@ extension UITextField {
         self.layer.addSublayer(bottomLine)
     }
     func loginTextField() {
-        self.placeholder = TextFieldLabel.enterLog.rawValue
+        self.placeholder = NSLocalizedString(MainKeys.enterLogin.rawValue, comment: "")
         self.borderStyle = UITextField.BorderStyle.none
         self.autocorrectionType = UITextAutocorrectionType.no
         self.keyboardType = UIKeyboardType.emailAddress
@@ -24,7 +24,7 @@ extension UITextField {
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     func passwordTextField() {
-        self.placeholder = TextFieldLabel.enterPassword.rawValue
+        self.placeholder = NSLocalizedString(MainKeys.typePass.rawValue, comment: "")
         self.borderStyle = UITextField.BorderStyle.none
         self.autocorrectionType = UITextAutocorrectionType.no
         self.keyboardType = UIKeyboardType.default
@@ -120,6 +120,12 @@ extension UIViewController {
         let minute = Int(time) / 60 % 60
         let second = Int(time) & 60
         return String(format: "%02i:%02i", minute, second)
+    }
+}
+
+extension String {
+    var localizedLized: String {
+        return NSLocalizedString(self, comment: "")
     }
 }
 

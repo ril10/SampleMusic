@@ -42,7 +42,7 @@ class ChatDetailDrawView : UIView {
     var messageTextField : UITextField = {
         let widthText = UIScreen.main.bounds.width
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: widthText, height: 0))
-        textField.placeholder = "Write a message"
+        textField.placeholder = NSLocalizedString(ChatKeys.writeMess.rawValue, comment: "")
         textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.autocorrectionType = UITextAutocorrectionType.default
         textField.keyboardType = UIKeyboardType.default
@@ -54,7 +54,7 @@ class ChatDetailDrawView : UIView {
     var sendMessage : UIButton = {
         let button = UIButton()
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
-        button.setImage(UIImage(systemName: "paperplane",withConfiguration: largeConfig), for: .normal)
+        button.setImage(UIImage(systemName: Icons.send.rawValue,withConfiguration: largeConfig), for: .normal)
         button.tintColor = UIColor.darkGray
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

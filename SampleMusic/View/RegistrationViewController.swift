@@ -77,19 +77,26 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     }
     //MARK: - Alert
     func errorWithRegistration(e: Error) {
-        let alert = UIAlertController(title: AlertTitle.errorSignUp.rawValue, message: e.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Titles.ok.rawValue, style: .default, handler: nil))
+        let signTitle = NSLocalizedString(ErrorKeys.eSignUp.rawValue, comment: "")
+        let okTitle = NSLocalizedString(MainKeys.ok.rawValue, comment: "")
+        let alert = UIAlertController(title: signTitle, message: e.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     func errorWithRole() {
-        let alert = UIAlertController(title: AlertTitle.errorSignUp.rawValue, message: AlertTitle.selectRole.rawValue, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Titles.ok.rawValue, style: .default, handler: nil))
+        let signTitle = NSLocalizedString(ErrorKeys.eSignUp.rawValue, comment: "")
+        let okTitle = NSLocalizedString(MainKeys.ok.rawValue, comment: "")
+        let roleTitle = NSLocalizedString(SignUpKeys.choseRole.rawValue, comment: "")
+        let alert = UIAlertController(title: signTitle, message: roleTitle, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
     func loadAlertView() {
-        let alert = UIAlertController(title: AlertTitle.loading.rawValue, message: AlertTitle.wait.rawValue, preferredStyle: .alert)
+        let loadTitle = NSLocalizedString(MainKeys.loading.rawValue, comment: "")
+        let waitTitle = NSLocalizedString(MainKeys.wait.rawValue, comment: "")
+        let alert = UIAlertController(title: loadTitle, message: waitTitle, preferredStyle: .alert)
         alert.view.tintColor = UIColor.black
         let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) as UIActivityIndicatorView
         loadingIndicator.style = UIActivityIndicatorView.Style.medium
