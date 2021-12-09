@@ -66,10 +66,6 @@ class UserDetailViewController : UIViewController {
         title = locTitle
     }
     //MARK: - ActionButton
-    @objc func editAction(sender: UIButton) {
-        
-    }
-    
     @objc func message(sender: UIButton) {
         coordinator?.navToChatList()
     }
@@ -89,10 +85,9 @@ class UserDetailViewController : UIViewController {
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
-        let locEdit = NSLocalizedString(MainKeys.edit.rawValue, comment: "")
-        let edit = UIBarButtonItem(title: locEdit, style: .plain, target: self, action: #selector(editAction(sender:)))
+
         let message = UIBarButtonItem(image: UIImage(systemName: Icons.message.rawValue), style: .plain, target: self, action: #selector(message(sender:)))
-        self.navigationItem.rightBarButtonItems = [edit, message]
+        self.navigationItem.rightBarButtonItems = [message]
     }
 }
 

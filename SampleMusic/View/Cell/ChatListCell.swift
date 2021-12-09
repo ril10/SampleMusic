@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ChatListCell: UITableViewCell {
 
     var chatSell : CellChatModel? {
         didSet {
-            lastMessage.text = chatSell?.chatRoom
+            lastMessage.text = chatSell?.message
+            imageUser.sd_setImage(with: URL(string: chatSell!.image), completed: nil)
         }
     }
     

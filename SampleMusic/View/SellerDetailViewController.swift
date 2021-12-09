@@ -116,7 +116,6 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 80.0)
         if viewModel.ownerUid != nil {
             self.viewModel.getDataFromUser(ownerUid: viewModel.ownerUid!)
             self.viewModel.getDataSamplesFromUser(ownerUid: viewModel.ownerUid!)
@@ -124,7 +123,6 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
             self.drawView.createSampleButton.isHidden = true
             self.drawView.sortButton.isHidden = true
             configureNavBar()
-//            self.alertLoading()
         }
         if viewModel.currentUserUid() == viewModel.currentUserUid() {
             if viewModel.samplesData.count == 0 {

@@ -10,15 +10,17 @@ import UIKit
 
 
 class CellChatModel {
-    var image : UIImage
+    var image : String
     var chatRoom : String
     var senderUid : String
     var recieverUid : String
+    var message : String
     
-    init(image: UIImage, chatRoom : String, senderUid: String, recieverUid: String) {
+    init(image: String, chatRoom : String, senderUid: String, recieverUid: String, message: String) {
         self.image = image
         self.chatRoom = chatRoom
         self.recieverUid = recieverUid
         self.senderUid = senderUid
+        self.message = message
     }
 }

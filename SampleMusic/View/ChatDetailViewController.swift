@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ChatDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
@@ -29,16 +30,18 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.chatDetailCell.rawValue, for: indexPath) as! ChatDetailCell
-        let cellVm = self.viewModel.getCellModel(at: indexPath)
+        let cellVm = viewModel.getCellModel(at: indexPath)
+        
         cell.messageCell = cellVm
         
-        if cellVm.senderUid == self.viewModel.checkCurrentUser() {
+        if cellVm.senderUid == viewModel.checkCurrentUser() {
             cell.leftImage.isHidden = true
             cell.rightImage.isHidden = false
         } else {
             cell.leftImage.isHidden = false
             cell.rightImage.isHidden = true
         }
+            
         return cell
     }
     
@@ -84,6 +87,7 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         view = UIView()
         view.backgroundColor = .white
         drawView.viewCompare(view: view)
+        drawView.sendMessage.addTarget(self, action: #selector(sendMessage(sender:)), for: .touchUpInside)
     }
     
     override func viewDidLoad() {
@@ -94,16 +98,17 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         drawView.sampleTable.estimatedRowHeight = 70
         viewModel.reloadTableView = { [weak self] in
             DispatchQueue.main.async {
+                self?.drawView.sampleTable.reloadData()
                 if (self?.viewModel.messageData.count)! > 0 {
-                    self?.drawView.sampleTable.reloadData()
                     let indexPath = IndexPath(row: (self?.viewModel.messageData.count)! - 1, section: 0)
                     self?.drawView.sampleTable.scrollToRow(at: indexPath, at: .top, animated: true)
+                    self?.drawView.sampleTable.reloadData()
                 }
             }
         }
         title = "Chat"
-        drawView.sendMessage.addTarget(self, action: #selector(sendMessage(sender:)), for: .touchUpInside)
-
+        
+        
         self.hideKeyboardWhenTappedAround()
     }
     

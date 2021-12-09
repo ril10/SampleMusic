@@ -32,7 +32,9 @@ class ChatPageViewController : UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.chatCell.rawValue, for: indexPath) as! ChatListCell
         let cellVm = viewModel.getCellModel(at: indexPath)
+        
         cell.chatSell = cellVm
+        
         return cell
     }
     

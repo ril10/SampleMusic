@@ -13,8 +13,9 @@ class ChatDetailCell: UITableViewCell {
     var messageCell : Message? {
         didSet {
             message.text = messageCell?.body
-            leftImage.sd_setImage(with: URL(string: messageCell!.leftImage), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
-            rightImage.sd_setImage(with: URL(string: messageCell!.rightImage), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+            print(messageCell?.leftImage)
+            leftImage.sd_setImage(with: URL(string: messageCell!.leftImage), completed: nil)
+            rightImage.sd_setImage(with: URL(string: messageCell!.rightImage), completed: nil)
         }
     }
 

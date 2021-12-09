@@ -76,11 +76,10 @@ class TabBarController: UITabBarController {
             NSAttributedString.Key.foregroundColor: UIColor(named: Style.coralColor.rawValue) as Any,
             NSAttributedString.Key.font: UIFont(name: Style.fontTitleHeavy.rawValue, size: 18) as Any
         ]
-        let editTitle = NSLocalizedString(MainKeys.edit.rawValue, comment: "")
+
         let logoutTitle = NSLocalizedString(MainKeys.logout.rawValue, comment: "")
-        let edit = UIBarButtonItem(title: editTitle, style: .plain, target: self, action: #selector(editData(sender:)))
-        let message = UIBarButtonItem(image: UIImage(systemName: Icons.message.rawValue), style: .plain, target: self, action: #selector(message(sender:)))
-        rootViewController.navigationItem.rightBarButtonItems = [edit, message]
+
+        rootViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Icons.message.rawValue), style: .plain, target: self, action: #selector(message(sender:)))
         rootViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: logoutTitle, style: .plain, target: self, action: #selector(logoutAction(sender:)))
         return navController
     }

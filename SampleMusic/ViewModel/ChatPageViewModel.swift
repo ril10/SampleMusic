@@ -8,17 +8,26 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseStorage
 
 class ChatPageViewModel: ChatPageImp {
     
     var reloadTableView : (() -> Void)?
     var db : Firestore
+    var st : Storage
     var recieverUid : String?
     var userSign : ((Bool) -> Void)?
     var sellerSign : ((Bool) -> Void)?
+    var imageAvatar : String?
+    var leftImage : String?
+    var rightImage : String?
+    var message : Any?
+    var imageUrl : Any?
+    var uidImg : String?
     
-    init(db: Firestore) {
+    init(db: Firestore,st: Storage) {
         self.db = db
+        self.st = st
     }
     
     var chatList = [CellChatModel]() {
@@ -26,10 +35,11 @@ class ChatPageViewModel: ChatPageImp {
             reloadTableView?()
         }
     }
+
     
     func loadMessages() {
         self.db.collection(Role.chatRoom.rawValue).whereField("recieverUid", isEqualTo: Auth.auth().currentUser!.uid)
-            .getDocuments { querySnapshot, error in
+            .addSnapshotListener(includeMetadataChanges: true) { querySnapshot, error in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
@@ -37,6 +47,8 @@ class ChatPageViewModel: ChatPageImp {
                     for document in querySnapshot!.documents {
                         let chatCell = ChatListModel(data: document.data())
                         resData.append(chatCell)
+                        self.getLastMessage(by: "recieverUid")
+                        self.getImage(type: Role.user.rawValue.lowercased(),by: resData)
                     }
                     self.fetchData(res: resData)
                 }
@@ -45,7 +57,7 @@ class ChatPageViewModel: ChatPageImp {
     
     func loadMessageIfUser() {
         self.db.collection(Role.chatRoom.rawValue).whereField("ownerUid", isEqualTo: Auth.auth().currentUser!.uid)
-            .getDocuments { querySnapshot, error in
+            .addSnapshotListener(includeMetadataChanges: true) { querySnapshot, error in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
@@ -53,6 +65,8 @@ class ChatPageViewModel: ChatPageImp {
                     for document in querySnapshot!.documents {
                         let chatCell = ChatListModel(data: document.data())
                         resData.append(chatCell)
+                        self.getLastMessage(by: "ownerUid")
+                        self.getImage(type: Role.user.rawValue.lowercased(),by: resData)
                     }
                     self.fetchData(res: resData)
                 }
@@ -87,7 +101,6 @@ class ChatPageViewModel: ChatPageImp {
             }
     }
     
-    
     func fetchData(res: [ChatListModel]) {
         var resData = [CellChatModel]()
         for r in res {
@@ -97,11 +110,42 @@ class ChatPageViewModel: ChatPageImp {
     }
     
     func createCellModel(cell: ChatListModel) -> CellChatModel {
-        let senderUid = cell.senderUid
+        let senderUid = cell.ownerUid
         let recieverUid = cell.recieverUid
         let chatRoom = cell.chatRoom
         
-        return CellChatModel(image: UIImage(systemName: Icons.photo.rawValue)!, chatRoom: chatRoom!, senderUid: senderUid ?? "", recieverUid: recieverUid ?? "")
+        return CellChatModel(image: self.imageUrl as? String ?? "", chatRoom: chatRoom!, senderUid: senderUid ?? "", recieverUid: recieverUid ?? "", message: self.message as? String ?? "")
+    }
+    
+   private func getLastMessage(by uid: String) {
+        db.collection(Role.message.rawValue).whereField(uid, isEqualTo: Auth.auth().currentUser?.uid)
+            .order(by: "sendDate")
+            .addSnapshotListener { (querySnapshot, error) in
+                guard let documents = querySnapshot?.documents else {
+                    return
+                }
+                let dataMessage = documents.map { $0["message"]! }
+                for data in dataMessage {
+                    self.message = data
+                }
+                
+            }
+    }
+    
+    private func getImage(type user: String,by uid: [ChatListModel]) {
+        for img in uid {
+            db.collection(user).whereField("uid", isEqualTo: img.ownerUid)
+                .addSnapshotListener { (querySnapshot, error) in
+                    guard let documents = querySnapshot?.documents else {
+                        return
+                    }
+                    let dataImage = documents.map { $0["imageUrl"]! }
+                    for data in dataImage {
+                        self.imageUrl = data
+                    }
+                }
+        }
+
     }
     
     func getCellModel(at indexPath: IndexPath) -> CellChatModel {
