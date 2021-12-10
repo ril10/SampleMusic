@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 
 class ChatDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
-
+    
     var viewModel : ChatDetailimp
     
     init(viewModel: ChatDetailimp) {
@@ -20,7 +20,7 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     var coordinator : ChatDetailCoordinator?
     var drawView = ChatDetailDrawView()
     //MARK: - TableView
@@ -31,7 +31,6 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.chatDetailCell.rawValue, for: indexPath) as! ChatDetailCell
         let cellVm = viewModel.getCellModel(at: indexPath)
-        
         cell.messageCell = cellVm
         
         if cellVm.senderUid == viewModel.checkCurrentUser() {
@@ -41,7 +40,6 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
             cell.leftImage.isHidden = false
             cell.rightImage.isHidden = true
         }
-            
         return cell
     }
     
@@ -60,8 +58,8 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
             return rowHeight
         }
     }
-
-
+    
+    
     //MARK: - UITextFieldDelegate
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         textField.text?.removeAll()
@@ -74,7 +72,7 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         self.viewModel.sendMessage(text: self.drawView.messageTextField.text!)
         self.textFieldShouldClear(self.drawView.messageTextField)
     }
-
+    
     //MARK: - View
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -129,7 +127,7 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         
         self.navigationItem.setHidesBackButton(false, animated: true)
     }
-
+    
 }
 
 extension ChatDetailViewController : ChatDetailProtocol {}

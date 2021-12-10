@@ -118,7 +118,7 @@ class ChatPageViewModel: ChatPageImp {
     }
     
    private func getLastMessage(by uid: String) {
-        db.collection(Role.message.rawValue).whereField(uid, isEqualTo: Auth.auth().currentUser?.uid)
+       db.collection(Role.message.rawValue).whereField(uid, isEqualTo: Auth.auth().currentUser?.uid as Any)
             .order(by: "sendDate")
             .addSnapshotListener { (querySnapshot, error) in
                 guard let documents = querySnapshot?.documents else {
@@ -134,7 +134,7 @@ class ChatPageViewModel: ChatPageImp {
     
     private func getImage(type user: String,by uid: [ChatListModel]) {
         for img in uid {
-            db.collection(user).whereField("uid", isEqualTo: img.ownerUid)
+            db.collection(user).whereField("uid", isEqualTo: img.ownerUid as Any)
                 .addSnapshotListener { (querySnapshot, error) in
                     guard let documents = querySnapshot?.documents else {
                         return

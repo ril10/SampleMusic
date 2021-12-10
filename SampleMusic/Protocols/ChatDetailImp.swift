@@ -10,7 +10,6 @@ import FirebaseFirestore
 import FirebaseStorage
 
 protocol ChatDetailimp {
-    var db : Firestore? { get set }
     var reloadTableView : (() -> Void)? { get set }
     func sendMessage(text: String)
     var messageData : [Message] { get set }
@@ -20,5 +19,4 @@ protocol ChatDetailimp {
     var chatRoom : String? { get set }
     var recieverUid : String? { get set }
     func checkCurrentUser() -> String
-    var st : Storage? { get set }
 }

@@ -17,12 +17,9 @@ class ChatDetailViewModel: ChatDetailimp {
     var reloadTableView : (() -> Void)?
     var db : Firestore?
     var st : Storage?
-    var senderUid : String?
     var ownerUid : String?
     var chatRoom : String?
     var recieverUid : String?
-    var leftImage : String?
-    var rightImage : String?
     var imageUrl : Any?
     
     
@@ -64,8 +61,6 @@ class ChatDetailViewModel: ChatDetailimp {
         var resData = [Message]()
         for r in res {
             resData.append(self.createCellModel(cell: r))
-            self.getImage(type: Role.seller.rawValue.lowercased(), by: (r.recieverUid)!)
-            self.getImage(type: Role.user.rawValue.lowercased(), by: (r.ownerUid)!)
         }
         messageData = resData
     }
@@ -73,14 +68,11 @@ class ChatDetailViewModel: ChatDetailimp {
     func createCellModel(cell: MessageDataModel) -> Message {
         let cellMessage = cell.message
         let cellUid = cell.ownerUid
-        self.senderUid = cellUid
         let cellData = cell.sendDate
         
         return Message(senderUid: cellUid ?? "",
                        body: cellMessage ?? "",
                        date: cellData ?? 0.0,
-                       rightImage: self.imageUrl as? String ?? "",
-                       leftImage: self.imageUrl as? String ?? "",
                        recieverUid: self.ownerUid!)
     }
     
@@ -101,19 +93,5 @@ class ChatDetailViewModel: ChatDetailimp {
                 self.reloadTableView?()
             }
         }
-    }
-    
-    private func getImage(type user: String,by uid: String) {
-        db?.collection(user).whereField("uid", isEqualTo: uid)
-                .addSnapshotListener { (querySnapshot, error) in
-                    guard let documents = querySnapshot?.documents else {
-                        return
-                    }
-                    let dataImage = documents.map { $0["imageUrl"]! }
-                    for data in dataImage {
-                        self.imageUrl = data
-                    }
-                }
-
     }
 }

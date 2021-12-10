@@ -7,18 +7,48 @@
 
 import UIKit
 import SDWebImage
+import FirebaseStorage
+import Dip
 
 class ChatDetailCell: UITableViewCell {
+    
+    var leftImageUrl : String?
+    var rightImageUrl : String?
+    var st = try! appContainer.resolve() as Storage
     
     var messageCell : Message? {
         didSet {
             message.text = messageCell?.body
-            print(messageCell?.leftImage)
-            leftImage.sd_setImage(with: URL(string: messageCell!.leftImage), completed: nil)
-            rightImage.sd_setImage(with: URL(string: messageCell!.rightImage), completed: nil)
+            getLeftImage(with: messageCell?.recieverUid ?? "")
+            getRightImage(with: messageCell?.senderUid ?? "")
         }
     }
 
+   private func getLeftImage(with uid: String) {
+        st.reference(withPath: "userAvatars/\(uid).jpg")
+        .downloadURL(completion: { url, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                DispatchQueue.main.async {
+                    self.leftImage.sd_setImage(with: url , placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+                }
+            }
+        })
+    }
+    
+    private func getRightImage(with uid: String) {
+        st.reference(withPath: "userAvatars/\(uid).jpg")
+        .downloadURL(completion: { url, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                DispatchQueue.main.async {
+                    self.rightImage.sd_setImage(with: url, placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+                }
+            }
+        })
+    }
     
     var leftImage : UIImageView = {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))

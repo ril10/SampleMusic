@@ -12,7 +12,5 @@ struct Message {
     let senderUid : String
     let body : String
     let date : Double
-    let rightImage : String
-    let leftImage : String
     let recieverUid : String
 }
