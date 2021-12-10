@@ -90,6 +90,9 @@ class ChatDetailViewModel: ChatDetailimp {
                     "recieverUid": recieverUid as Any,
                     "chatRoom": self.chatRoom as Any
                 ])
+                self.db?.collection(Role.chatRoom.rawValue).document(self.chatRoom!).updateData([
+                    "lastMessage":text as Any
+                ])
                 self.reloadTableView?()
             }
         }

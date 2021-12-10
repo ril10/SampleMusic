@@ -12,8 +12,6 @@ import Dip
 
 class ChatDetailCell: UITableViewCell {
     
-    var leftImageUrl : String?
-    var rightImageUrl : String?
     var st = try! appContainer.resolve() as Storage
     
     var messageCell : Message? {

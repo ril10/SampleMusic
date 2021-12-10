@@ -34,7 +34,6 @@ class ChatPageViewController : UIViewController, UITableViewDataSource, UITableV
         let cellVm = viewModel.getCellModel(at: indexPath)
         
         cell.chatSell = cellVm
-        
         return cell
     }
     
@@ -44,7 +43,7 @@ class ChatPageViewController : UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellVm = viewModel.getCellModel(at: indexPath)
-        coordinator?.goToChatDetail(ownerUid: cellVm.senderUid, chatRoom: cellVm.chatRoom, recieverUid: cellVm.recieverUid)
+        coordinator?.goToChatDetail(ownerUid: cellVm.ownerUid, chatRoom: cellVm.chatRoom, recieverUid: cellVm.recieverUid)
     }
     //MARK: - View
     

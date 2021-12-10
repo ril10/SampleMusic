@@ -18,12 +18,7 @@ class ChatPageViewModel: ChatPageImp {
     var recieverUid : String?
     var userSign : ((Bool) -> Void)?
     var sellerSign : ((Bool) -> Void)?
-    var imageAvatar : String?
-    var leftImage : String?
-    var rightImage : String?
-    var message : Any?
     var imageUrl : Any?
-    var uidImg : String?
     
     init(db: Firestore,st: Storage) {
         self.db = db
@@ -47,8 +42,6 @@ class ChatPageViewModel: ChatPageImp {
                     for document in querySnapshot!.documents {
                         let chatCell = ChatListModel(data: document.data())
                         resData.append(chatCell)
-                        self.getLastMessage(by: "recieverUid")
-                        self.getImage(type: Role.user.rawValue.lowercased(),by: resData)
                     }
                     self.fetchData(res: resData)
                 }
@@ -65,8 +58,6 @@ class ChatPageViewModel: ChatPageImp {
                     for document in querySnapshot!.documents {
                         let chatCell = ChatListModel(data: document.data())
                         resData.append(chatCell)
-                        self.getLastMessage(by: "ownerUid")
-                        self.getImage(type: Role.user.rawValue.lowercased(),by: resData)
                     }
                     self.fetchData(res: resData)
                 }
@@ -107,46 +98,21 @@ class ChatPageViewModel: ChatPageImp {
             resData.append(self.createCellModel(cell: r))
         }
         chatList = resData
+        
     }
     
     func createCellModel(cell: ChatListModel) -> CellChatModel {
-        let senderUid = cell.ownerUid
+        let senderUid = cell.senderUid
         let recieverUid = cell.recieverUid
         let chatRoom = cell.chatRoom
+        let message = cell.lastMessage
         
-        return CellChatModel(image: self.imageUrl as? String ?? "", chatRoom: chatRoom!, senderUid: senderUid ?? "", recieverUid: recieverUid ?? "", message: self.message as? String ?? "")
+        return CellChatModel(chatRoom: chatRoom!,
+                             ownerUid: senderUid ?? "",
+                             recieverUid: recieverUid ?? "",
+                             message: message ?? "")
     }
     
-   private func getLastMessage(by uid: String) {
-       db.collection(Role.message.rawValue).whereField(uid, isEqualTo: Auth.auth().currentUser?.uid as Any)
-            .order(by: "sendDate")
-            .addSnapshotListener { (querySnapshot, error) in
-                guard let documents = querySnapshot?.documents else {
-                    return
-                }
-                let dataMessage = documents.map { $0["message"]! }
-                for data in dataMessage {
-                    self.message = data
-                }
-                
-            }
-    }
-    
-    private func getImage(type user: String,by uid: [ChatListModel]) {
-        for img in uid {
-            db.collection(user).whereField("uid", isEqualTo: img.ownerUid as Any)
-                .addSnapshotListener { (querySnapshot, error) in
-                    guard let documents = querySnapshot?.documents else {
-                        return
-                    }
-                    let dataImage = documents.map { $0["imageUrl"]! }
-                    for data in dataImage {
-                        self.imageUrl = data
-                    }
-                }
-        }
-
-    }
     
     func getCellModel(at indexPath: IndexPath) -> CellChatModel {
         return chatList[indexPath.row]
