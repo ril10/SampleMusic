@@ -134,7 +134,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     override func loadView() {
         super.loadView()
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: Style.backgroundColor.rawValue)
         drawView.viewCompare(view: view)
         drawView.sortButton.addTarget(self, action: #selector(sortSampleTable(sender:)), for: .touchUpInside)
     }

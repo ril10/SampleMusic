@@ -116,7 +116,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     override func loadView() {
         super.loadView()
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: Style.backgroundColor.rawValue)
         drawView.viewCompare(view: view)
         drawView.segment.addTarget(self, action: #selector(ListSamplesViewController.segmentAction(sender:)), for: .valueChanged)
 

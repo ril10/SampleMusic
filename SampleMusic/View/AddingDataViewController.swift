@@ -121,7 +121,7 @@ class AddingDataViewController: UIViewController,UITextFieldDelegate,UIImagePick
         super.loadView()
         
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: Style.backgroundColor.rawValue)
         drawView.viewCompare(view: view)
         drawView.buttonAddImage.addTarget(self, action: #selector(addImageAction(sender:)), for: .touchUpInside)
         drawView.radioMale.addTarget(self, action: #selector(maleSelect(sender:)), for: .touchUpInside)

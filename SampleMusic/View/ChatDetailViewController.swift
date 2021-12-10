@@ -90,7 +90,7 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
     override func loadView() {
         super.loadView()
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: Style.backgroundColor.rawValue)
         drawView.viewCompare(view: view)
         drawView.sendMessage.addTarget(self, action: #selector(sendMessage(sender:)), for: .touchUpInside)
     }

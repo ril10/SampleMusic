@@ -88,10 +88,6 @@ class TabBarController: UITabBarController {
         coordinator?.finish()        
     }
     
-    @objc func editData(sender: UIButton) {
-        
-    }
-    
     @objc func message(sender: UIButton) {
         coordinator?.goToChat(recieverUid: "")
     }

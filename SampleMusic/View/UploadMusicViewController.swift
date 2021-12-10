@@ -115,7 +115,7 @@ class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePi
     override func loadView() {
         super.loadView()
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: Style.backgroundColor.rawValue)
         drawView.viewCompare(view: view)
     }
     

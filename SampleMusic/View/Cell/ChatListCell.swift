@@ -75,7 +75,7 @@ class ChatListCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20)
-        label.textColor = .black
+        label.textColor = UIColor(named: Style.textColor.rawValue)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

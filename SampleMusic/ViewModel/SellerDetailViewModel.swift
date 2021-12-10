@@ -243,7 +243,7 @@ class SellerDetailViewModel: SellerImp {
                     print(error.localizedDescription)
                 } else {
                     var first = index
-                    var second = destIndex
+                    let second = destIndex
                     for document in querySnapshot!.documents {
                         first = second
                         if first == second {

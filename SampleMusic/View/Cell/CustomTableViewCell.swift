@@ -98,7 +98,7 @@ class CustomTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20)
-        label.textColor = .black
+        label.textColor = UIColor(named: Style.coralColor.rawValue)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

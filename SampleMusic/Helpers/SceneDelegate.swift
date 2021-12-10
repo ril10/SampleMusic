@@ -44,13 +44,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                           chatDetailView: try! userContainer.resolve(),
                                           sellerDetailView: try! userContainer.resolve()
         )
+        navController.isNavigationBarHidden = true
         if let sign = Auth.auth().currentUser {
             db.collection(Role.user.rawValue.lowercased()).document(sign.uid).addSnapshotListener { doc, error in
                 if let e = error {
                     print(e.localizedDescription)
                 } else {
                     if doc?.data() != nil {
-                        navController.isNavigationBarHidden = true
                         coordinator.userList()
                     }
                 }
@@ -60,7 +60,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     print(e.localizedDescription)
                 } else {
                     if doc?.data() != nil {
-                        navController.isNavigationBarHidden = true
                         coordinator.mainTabController()
                     }
                 }
@@ -68,7 +67,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             coordinator.start()
         }
-//        coordinator.start()
 
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = navController

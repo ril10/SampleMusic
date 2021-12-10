@@ -73,7 +73,7 @@ class ChatPageViewController : UIViewController, UITableViewDataSource, UITableV
     override func loadView() {
         super.loadView()
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: Style.backgroundColor.rawValue)
         drawView.viewCompare(view: view)
     }
     

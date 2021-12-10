@@ -33,7 +33,7 @@ class StartViewController: UIViewController {
     override func loadView() {
         super.loadView()
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: Style.backgroundColor.rawValue)
         
         drawView.viewCompare(view: view)
         drawView.signUpButton.addTarget(self, action: #selector(signUpButton(sender:)), for: .touchUpInside)

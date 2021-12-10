@@ -11,6 +11,8 @@ enum Style : String, CaseIterable {
     case fontTitleLight = "Avenir Light"
     case fontTitleHeavy = "Avenir Heavy"
     case coralColor = "mainScreenRed"
+    case textColor = "textColor"
+    case backgroundColor = "backgroundColor"
     case appName = "Music Sample"
 }
 
@@ -25,53 +27,9 @@ enum Role : String, CaseIterable {
     case user = "User"
     case seller = "Seller"
     case sample = "Sample"
-//    case chooseRole = "Choose your role*"
     case message = "message"
     case chatRoom = "chatRoom"
 }
-
-//enum Titles : String, CaseIterable {
-//    case signIn = "Sign In"
-//    case email = "Email"
-//    case password = "Password"
-//    case signUp = "Sign Up"
-//    case forgetPassword = "Forget Password?"
-//    case ok = "Ok"
-//    case welcome = "Welome!"
-//    case contin = "Continue"
-//    case haveAcc = "Have an Account?"
-//    case add = "Add"
-//}
-
-//enum TextFieldLabel : String, CaseIterable {
-//    case enterLog = "Enter your login"
-//    case enterEmail = "Enter your email"
-//    case enterPassword = "Enter your password"
-//    case enterFirstName = "Enter your First Name"
-//    case enterLastName = "Enter your Last Name"
-//    case aboutSelf = "Type about your self"
-//    case allFields = "Fill all fields"
-//    case sampleName = "Type sample name"
-//}NSLocalizedString(MainKeys.signIn.rawValue, comment: "")
-
-//enum AlertTitle : String, CaseIterable {
-//    case errorSignIn = "Error Sign In"
-//    case errorSignUp = "Error Sign Up"
-//    case selectRole = "Select your role"
-//    case errorAddingData = "Error Adding data"
-//    case loading = "Loading"
-//    case wait = "Please wait..."
-//}
-
-//enum TitleDetail : String, CaseIterable {
-//    case firstName = "First Name:"
-//    case lastName = "Last Name:"
-//    case gender = "Gender:"
-//    case description = "Description:"
-//    case email = "Email:"
-//    case samples = "List of Samples"
-//    case sampleName = "2.Type sample name:"
-//}
 
 enum Icons : String, CaseIterable {
     case photo = "photo"

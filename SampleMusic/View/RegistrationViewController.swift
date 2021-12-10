@@ -129,7 +129,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         super.loadView()
         
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: Style.backgroundColor.rawValue)
         drawView.viewCompare(view: view)
         drawView.radioUser.addTarget(self, action: #selector(userSelected(sender:)), for: .touchUpInside)
         drawView.radioSeller.addTarget(self, action: #selector(sellerSelected(sender:)), for: .touchUpInside)

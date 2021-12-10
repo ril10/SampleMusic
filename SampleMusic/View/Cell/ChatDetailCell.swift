@@ -79,7 +79,7 @@ class ChatDetailCell: UITableViewCell {
     var message : UITextView = {
         let textView = UITextView()
         textView.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20)
-        textView.textColor = .black
+        textView.textColor = UIColor(named: Style.textColor.rawValue)
         textView.isScrollEnabled = false
         textView.isEditable = false
         textView.sizeToFit()

@@ -162,7 +162,6 @@ class SellerDetailDraw: UIView {
     }()
     var firstNameData: UILabel = {
         let label = UILabel()
-        label.text = ""
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -170,7 +169,6 @@ class SellerDetailDraw: UIView {
     }()
     var secondNameData: UILabel = {
         let label = UILabel()
-        label.text = ""
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -178,7 +176,6 @@ class SellerDetailDraw: UIView {
     }()
     var descriptionData: UILabel = {
         let label = UILabel()
-        label.text = ""
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -186,7 +183,6 @@ class SellerDetailDraw: UIView {
     }()
     var emailData: UILabel = {
         let label = UILabel()
-        label.text = ""
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -194,7 +190,6 @@ class SellerDetailDraw: UIView {
     }()
     var genderData: UILabel = {
         let label = UILabel()
-        label.text = ""
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -216,7 +211,7 @@ class SellerDetailDraw: UIView {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
         button.setTitleColor(UIColor.black, for: .normal)
         button.setImage(UIImage(systemName: Icons.add.rawValue ,withConfiguration: largeConfig), for: .normal)
-        button.tintColor = UIColor.black
+        button.tintColor = .systemRed
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -226,7 +221,7 @@ class SellerDetailDraw: UIView {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
         button.setTitleColor(UIColor.black, for: .normal)
         button.setImage(UIImage(systemName: Icons.mic.rawValue ,withConfiguration: largeConfig), for: .normal)
-        button.tintColor = UIColor.black
+        button.tintColor = .systemRed
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -236,7 +231,7 @@ class SellerDetailDraw: UIView {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 15, weight: .bold, scale: .large)
         button.setTitleColor(UIColor.black, for: .normal)
         button.setImage(UIImage(systemName: Icons.sort.rawValue ,withConfiguration: largeConfig), for: .normal)
-        button.tintColor = UIColor.black
+        button.tintColor = .systemRed
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

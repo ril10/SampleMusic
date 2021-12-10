@@ -91,7 +91,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         super.loadView()
         
         view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: Style.backgroundColor.rawValue)
         
         drawView.viewCompare(view: view)
         drawView.signButton.addTarget(self, action: #selector(signInAction(sender:)), for: .touchUpInside)
