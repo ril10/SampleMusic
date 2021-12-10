@@ -80,6 +80,13 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         viewModel.loadMessages()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(named: Style.coralColor.rawValue) as Any
+        ]
+    }
+    
     override func loadView() {
         super.loadView()
         view = UIView()
@@ -104,7 +111,7 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
                 }
             }
         }
-        title = "Chat"
+        title = NSLocalizedString(ChatKeys.chatDetail.rawValue, comment: "")
         
         
         self.hideKeyboardWhenTappedAround()
@@ -124,7 +131,7 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
-        
+        self.navigationItem.backButtonTitle = ""
         self.navigationItem.setHidesBackButton(false, animated: true)
     }
     

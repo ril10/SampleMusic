@@ -23,4 +23,5 @@ protocol SellerImp {
     func currentUserUid() -> String
     func deleteSample(by name: String)
     func getSampleIndex(start index: Int, destination destIndex: Int)
+    func createChatRoom(ownerUid: String, recieverUid: String)
 }

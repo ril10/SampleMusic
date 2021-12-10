@@ -98,6 +98,8 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        title = ""
+        configureNavBar()
         if viewModel.samplesData.count == 0 {
             self.alertLoading()
             self.viewModel.getSamplesData()
@@ -113,7 +115,6 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     override func loadView() {
         super.loadView()
-        configureNavBar()
         view = UIView()
         view.backgroundColor = .white
         drawView.viewCompare(view: view)
@@ -136,7 +137,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
             }
         }
         viewModel.signUser()
-        
+        title = NSLocalizedString(SamplesKeys.samples.rawValue, comment: "")
     }
     
     //MARK: - Config NavBar

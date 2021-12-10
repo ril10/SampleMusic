@@ -28,11 +28,9 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     //MARK: - ButtonAction
-    @objc func editAction(sender: UIButton!) {
-        
-    }
     
     @objc func message(sender: UIButton) {
+        viewModel.createChatRoom(ownerUid: viewModel.currentUserUid(), recieverUid: viewModel.ownerUid ?? "")
         coordinator?.writeMessage()
     }
     

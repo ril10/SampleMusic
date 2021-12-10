@@ -48,6 +48,7 @@ class TabBarCoordinator : Coordinator {
     func goToChat(recieverUid: String) {
         parentCoordinator?.childDidFinish(self)
         self.navigationController.isNavigationBarHidden = false
+        self.navigationController.navigationItem.backButtonTitle = ""
         parentCoordinator?.chatPage(recieverUid: recieverUid)
     }
 }

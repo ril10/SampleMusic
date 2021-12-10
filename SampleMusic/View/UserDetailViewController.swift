@@ -27,7 +27,7 @@ class UserDetailViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.backBarButtonItem?.title = ""
+        configureNavBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,9 +47,13 @@ class UserDetailViewController : UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        title = ""
+    }
+    
     override func loadView() {
         super.loadView()
-        configureNavBar()
         view = UIView()
         view.backgroundColor = .white
         drawView.viewCompare(view: view)
@@ -62,8 +66,8 @@ class UserDetailViewController : UIViewController {
                 self?.view.setNeedsDisplay()
             }
         }
-        let locTitle = NSLocalizedString(DetailKeys.uDetail.rawValue, comment: "")
-        title = locTitle
+        
+        title = NSLocalizedString(DetailKeys.uDetail.rawValue, comment: "")
     }
     //MARK: - ActionButton
     @objc func message(sender: UIButton) {

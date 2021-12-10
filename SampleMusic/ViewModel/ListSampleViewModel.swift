@@ -41,6 +41,7 @@ class ListSampleViewModel: ListSamplesImp {
         }
     }
     var searchData = [DataCellModel]()
+    
     init (db: Firestore,st: Storage) {
         self.db = db
         self.st = st
@@ -78,7 +79,6 @@ class ListSampleViewModel: ListSamplesImp {
             "recieverUid": recieverUid as Any
         ])
         self.chatRoom = id
-        
     }
 //    MARK: - TableViewData
         func getSamplesData() {

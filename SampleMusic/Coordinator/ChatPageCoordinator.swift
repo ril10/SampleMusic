@@ -22,6 +22,7 @@ class ChatPageCoordinator : Coordinator {
     
     func start() {
         view.coordinator = self
+        self.navigationController.navigationItem.backButtonTitle = ""
         self.navigationController.pushViewController(view, animated: true)
     }
     

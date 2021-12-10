@@ -16,8 +16,8 @@ import RealmSwift
 
 
 class SellerDetailViewModel: SellerImp {
-    
-    
+   
+    var ownerUid: String?
     var reloadView : (() -> Void)?
     var reloadTableView : (() -> Void)?
     var db : Firestore?
@@ -26,15 +26,13 @@ class SellerDetailViewModel: SellerImp {
     var dismissAlert: ((Bool) -> Void)?
     var fieldData : ((String,String,String,String,String) -> Void)?
     var sampleData : String?
-    let imageView = UIImageView()
     var imageArray = [String]()
     var sampleUrl = [String]()
     var totalSeconds : Int?
     let realm = try! Realm()
-    var state : Results<State>?
     var duratation : String?
-    var ownerUid : String?
     var imageUrl : String?
+    var chatRoom : String?
     
     init(db: Firestore,st: Storage) {
         self.db = db
@@ -191,6 +189,17 @@ class SellerDetailViewModel: SellerImp {
                     }
                 }
             })
+    }
+    
+    func createChatRoom(ownerUid: String, recieverUid: String) {
+        let ref = db?.collection(Role.chatRoom.rawValue).document()
+        let id = ref?.documentID
+        ref?.setData([
+            "chatRoom": id as Any,
+            "ownerUid": ownerUid as Any,
+            "recieverUid": recieverUid as Any
+        ])
+        self.chatRoom = id
     }
     
     private func deleteFromFirestore(_ documentId: String,name: String) {

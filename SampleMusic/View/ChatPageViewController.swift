@@ -47,6 +47,11 @@ class ChatPageViewController : UIViewController, UITableViewDataSource, UITableV
     }
     //MARK: - View
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavBar()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.ifSellerSign()
@@ -69,7 +74,6 @@ class ChatPageViewController : UIViewController, UITableViewDataSource, UITableV
         super.loadView()
         view = UIView()
         view.backgroundColor = .white
-        configureNavBar()
         drawView.viewCompare(view: view)
     }
     
@@ -98,7 +102,7 @@ class ChatPageViewController : UIViewController, UITableViewDataSource, UITableV
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
-        
+        self.navigationItem.backButtonTitle = ""
         self.navigationItem.setHidesBackButton(false, animated: true)
     }
     

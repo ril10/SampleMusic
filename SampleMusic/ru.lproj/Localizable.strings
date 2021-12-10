@@ -46,7 +46,7 @@
 "DESCRIPTION" = "О себе:";
 "GENDER" = "Пол:";
 "USER_DETAIL" = "Страница пользователя";
-"SELLER_DETAIL" = "Страница\nпродавца";
+"SELLER_DETAIL" = "Страница продавца";
 "EMAIL_DETAIL" = "Почта:";
 //MARK: - Chat
 "CHAT_LIST" = "Список чатов";

@@ -78,7 +78,6 @@ class TabBarController: UITabBarController {
         ]
 
         let logoutTitle = NSLocalizedString(MainKeys.logout.rawValue, comment: "")
-
         rootViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Icons.message.rawValue), style: .plain, target: self, action: #selector(message(sender:)))
         rootViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: logoutTitle, style: .plain, target: self, action: #selector(logoutAction(sender:)))
         return navController
