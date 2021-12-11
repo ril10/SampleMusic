@@ -30,9 +30,9 @@ class SellerDetailCoordinator : Coordinator {
         self.navigationController.pushViewController(view, animated: true)
     }
     
-    func writeMessage() {
+    func writeMessage(chatRoom: String) {
         self.parentCoordinator?.childDidFinish(self)
-        self.parentCoordinator?.chatDetail(ownerUid: ownerUid!, chatRoom: chatRoom!, recieverUid: recieverUid!)
+        self.parentCoordinator?.chatDetail(ownerUid: ownerUid!, chatRoom: chatRoom, recieverUid: recieverUid!)
     }
     
     

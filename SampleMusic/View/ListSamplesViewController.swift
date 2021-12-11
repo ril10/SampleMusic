@@ -41,8 +41,9 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellVm = self.viewModel.getCellModel(at: indexPath)
+        viewModel.checkChatRoom(ownerUid: viewModel.curUser!, recieverUid: cellVm.ownerUid)
         viewModel.createChatRoom(ownerUid: viewModel.curUser!, recieverUid: cellVm.ownerUid)
-        coordinator?.goToSellerPage(ownerUid: cellVm.ownerUid,chatRoom: viewModel.chatRoom!)
+        coordinator?.goToSellerPage(ownerUid: cellVm.ownerUid,chatRoom: viewModel.chatRoom ?? "")
     }
     //MARK: - Alert
     func alertLoading() {

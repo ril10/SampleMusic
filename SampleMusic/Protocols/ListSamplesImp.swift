@@ -24,4 +24,5 @@ protocol ListSamplesImp {
     func createChatRoom(ownerUid: String, recieverUid: String)
     var chatRoom : String? { get set }
     var curUser : String? { get set }
+    func checkChatRoom(ownerUid: String, recieverUid: String)
 }

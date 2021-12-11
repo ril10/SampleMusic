@@ -23,5 +23,8 @@ protocol SellerImp {
     func currentUserUid() -> String
     func deleteSample(by name: String)
     func getSampleIndex(start index: Int, destination destIndex: Int)
+    func checkChatRoom(ownerUid: String, recieverUid: String)
+    var goToChat : ((String) -> Void)? { get set }
     func createChatRoom(ownerUid: String, recieverUid: String)
+    var isValid : ((Bool) -> Void)? { get set }
 }

@@ -33,7 +33,7 @@ class ListSampleViewModel: ListSamplesImp {
     var image : UIImageView?
     var imgArr = [String]()
     var imageUrl : String?
-
+    var isValid : ((Bool) -> Void)?
     
     var samplesData = [DataCellModel]() {
         didSet {
@@ -69,16 +69,40 @@ class ListSampleViewModel: ListSamplesImp {
             })
         }
     }
+    
+    func checkChatRoom(ownerUid: String, recieverUid: String) {
+        db?.collection(Role.chatRoom.rawValue).whereField("ownerUid", isEqualTo: ownerUid)
+            .whereField("recieverUid", isEqualTo: recieverUid)
+            .getDocuments { (documents, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    for document in documents!.documents {
+                        if document.exists {
+                            self.isValid?(true)
+                        } else {
+                            self.isValid?(false)
+                        }
+                    }
+                }
+            }
+    }
         
     func createChatRoom(ownerUid: String, recieverUid: String) {
-        let ref = db?.collection(Role.chatRoom.rawValue).document()
-        let id = ref?.documentID
-        ref?.setData([
-            "chatRoom": id as Any,
-            "ownerUid": ownerUid as Any,
-            "recieverUid": recieverUid as Any
-        ])
-        self.chatRoom = id
+        self.isValid = { valid in
+            if valid {
+                print("It's valid")
+            } else {
+                let ref = self.db?.collection(Role.chatRoom.rawValue).document()
+                let id = ref?.documentID
+                ref?.setData([
+                    "chatRoom": id as Any,
+                    "ownerUid": ownerUid as Any,
+                    "recieverUid": recieverUid as Any
+                ])
+                self.chatRoom = id
+            }
+        }
     }
 //    MARK: - TableViewData
         func getSamplesData() {

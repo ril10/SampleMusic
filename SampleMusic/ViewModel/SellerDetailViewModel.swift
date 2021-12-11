@@ -16,7 +16,7 @@ import RealmSwift
 
 
 class SellerDetailViewModel: SellerImp {
-   
+    var isValid: ((Bool) -> Void)?
     var ownerUid: String?
     var reloadView : (() -> Void)?
     var reloadTableView : (() -> Void)?
@@ -33,6 +33,7 @@ class SellerDetailViewModel: SellerImp {
     var duratation : String?
     var imageUrl : String?
     var chatRoom : String?
+    var goToChat : ((String) -> Void)?
     
     init(db: Firestore,st: Storage) {
         self.db = db
@@ -112,6 +113,34 @@ class SellerDetailViewModel: SellerImp {
         return Auth.auth().currentUser!.uid
     }
     
+    func checkChatRoom(ownerUid: String, recieverUid: String) {
+        db?.collection(Role.chatRoom.rawValue).whereField("ownerUid", isEqualTo: ownerUid)
+            .whereField("recieverUid", isEqualTo: recieverUid)
+            .getDocuments { (documents, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    for document in documents!.documents {
+                        if document.exists {
+                            self.isValid?(true)
+                            self.goToChat?(document.documentID)
+                        }
+                    }
+                }
+            }
+    }
+    
+    func createChatRoom(ownerUid: String, recieverUid: String) {
+                let ref = self.db?.collection(Role.chatRoom.rawValue).document()
+                let id = ref?.documentID
+                ref?.setData([
+                    "chatRoom": id as Any,
+                    "ownerUid": ownerUid as Any,
+                    "recieverUid": recieverUid as Any
+                ])
+                self.chatRoom = id
+            }
+    
     func getSamplesData() {
         if let user = Auth.auth().currentUser {
             let refrence = db?.collection(Role.sample.rawValue.lowercased())
@@ -189,17 +218,6 @@ class SellerDetailViewModel: SellerImp {
                     }
                 }
             })
-    }
-    
-    func createChatRoom(ownerUid: String, recieverUid: String) {
-        let ref = db?.collection(Role.chatRoom.rawValue).document()
-        let id = ref?.documentID
-        ref?.setData([
-            "chatRoom": id as Any,
-            "ownerUid": ownerUid as Any,
-            "recieverUid": recieverUid as Any
-        ])
-        self.chatRoom = id
     }
     
     private func deleteFromFirestore(_ documentId: String,name: String) {
