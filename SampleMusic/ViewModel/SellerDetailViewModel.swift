@@ -124,6 +124,8 @@ class SellerDetailViewModel: SellerImp {
                         if document.exists {
                             self.isValid?(true)
                             self.goToChat?(document.documentID)
+                        } else {
+                            self.isValid?(false)
                         }
                     }
                 }

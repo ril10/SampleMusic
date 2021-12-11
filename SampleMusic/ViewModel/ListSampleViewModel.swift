@@ -78,48 +78,40 @@ class ListSampleViewModel: ListSamplesImp {
                     print(error.localizedDescription)
                 } else {
                     for document in documents!.documents {
-                        if document.exists {
-                            self.isValid?(true)
-                        } else {
-                            self.isValid?(false)
+                        if !document.exists {
+                            self.createChatRoom(ownerUid: ownerUid, recieverUid: recieverUid)
                         }
                     }
                 }
             }
     }
-        
+    
     func createChatRoom(ownerUid: String, recieverUid: String) {
-        self.isValid = { valid in
-            if valid {
-                print("It's valid")
-            } else {
-                let ref = self.db?.collection(Role.chatRoom.rawValue).document()
-                let id = ref?.documentID
-                ref?.setData([
-                    "chatRoom": id as Any,
-                    "ownerUid": ownerUid as Any,
-                    "recieverUid": recieverUid as Any
-                ])
-                self.chatRoom = id
-            }
-        }
+        let ref = self.db?.collection(Role.chatRoom.rawValue).document()
+        let id = ref?.documentID
+        ref?.setData([
+            "chatRoom": id as Any,
+            "ownerUid": ownerUid as Any,
+            "recieverUid": recieverUid as Any
+        ])
+        self.chatRoom = id
     }
-//    MARK: - TableViewData
-        func getSamplesData() {
-         db?.collection(Role.sample.rawValue.lowercased())
-                .addSnapshotListener(includeMetadataChanges: true, listener: { querySnapshot, error in
-                    guard let snapshot = querySnapshot else {
-                        print("Error retreiving snapshot: \(error!)")
-                        return
-                    }
-                    let queryData = snapshot.documents.map { (document) -> SampleModel in
-                        let sampleData = SampleModel(data: document.data())
-                        return sampleData
-                    }
-                    self.fetchData(res: queryData)
-                })
-            self.dismissAlert?(true)
-        }
+    //    MARK: - TableViewData
+    func getSamplesData() {
+        db?.collection(Role.sample.rawValue.lowercased())
+            .addSnapshotListener(includeMetadataChanges: true, listener: { querySnapshot, error in
+                guard let snapshot = querySnapshot else {
+                    print("Error retreiving snapshot: \(error!)")
+                    return
+                }
+                let queryData = snapshot.documents.map { (document) -> SampleModel in
+                    let sampleData = SampleModel(data: document.data())
+                    return sampleData
+                }
+                self.fetchData(res: queryData)
+            })
+        self.dismissAlert?(true)
+    }
     
     
     func fetchData(res: [SampleModel]) {
@@ -140,7 +132,7 @@ class ListSampleViewModel: ListSamplesImp {
         for img in self.imgArr {
             self.imageUrl = img
         }
-
+        
         self.sampleUrl.append(cell.sampleUrl ?? "")
         for smp in self.sampleUrl {
             self.sampleData = smp
@@ -210,6 +202,6 @@ class ListSampleViewModel: ListSamplesImp {
             print("Error saving state \(error)")
         }
     }
-
+    
     
 }

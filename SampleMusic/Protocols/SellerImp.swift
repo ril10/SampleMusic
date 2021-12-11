@@ -27,4 +27,5 @@ protocol SellerImp {
     var goToChat : ((String) -> Void)? { get set }
     func createChatRoom(ownerUid: String, recieverUid: String)
     var isValid : ((Bool) -> Void)? { get set }
+    var chatRoom : String? { get set } 
 }

@@ -34,6 +34,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         viewModel.isValid = { valid in
             if valid == false {
                 self.viewModel.createChatRoom(ownerUid: self.viewModel.currentUserUid(), recieverUid: self.viewModel.ownerUid ?? "")
+                self.coordinator?.writeMessage(chatRoom: self.viewModel.chatRoom!)
             }
         }
         viewModel.goToChat = { room in
