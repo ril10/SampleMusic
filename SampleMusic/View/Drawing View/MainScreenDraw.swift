@@ -132,6 +132,13 @@ class MainScreenDraw : UIView {
         return textField
     }()
     
+   var showPassword: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: Icons.eye.rawValue), for: .normal)
+        button.tintColor = UIColor.lightGray
+        return button
+    }()
+    
     var signButton: UIButton = {
         let button = UIButton()
         button.coraleButton(title: NSLocalizedString(MainKeys.signIn.rawValue, comment: ""))
@@ -160,7 +167,7 @@ class MainScreenDraw : UIView {
         stackView.addSubview(stackViewMiddle)
         stackView.addSubview(stackViewBottom)
         bottomView.addSubview(signButton)
-        
+        stackViewMiddle.addArrangedSubview(showPassword)
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 40),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -40),
@@ -186,7 +193,7 @@ class MainScreenDraw : UIView {
             signButton.topAnchor.constraint(equalTo: bottomView.topAnchor,constant: 40),
             signButton.widthAnchor.constraint(equalTo: stackViewBottom.widthAnchor),
             signButton.heightAnchor.constraint(equalToConstant: 50),
-            stackViewBottom.topAnchor.constraint(equalTo: signButton.bottomAnchor,constant: 10)
+            stackViewBottom.topAnchor.constraint(equalTo: signButton.bottomAnchor,constant: 10),
         ])
         
     }

@@ -43,6 +43,11 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         self.textFieldShouldClear(drawView.loginTextField)
         self.textFieldShouldClear(drawView.passwordTextField)
     }
+    
+    
+    @objc func showPassword(sender: UIButton!) {
+        
+    }
     //MARK: - Alert
     func errorWithLogin(e: Error) {
         let alertTitle = NSLocalizedString(ErrorKeys.eSignIn.rawValue, comment: "")
@@ -96,6 +101,8 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         drawView.viewCompare(view: view)
         drawView.signButton.addTarget(self, action: #selector(signInAction(sender:)), for: .touchUpInside)
         drawView.signUpButton.addTarget(self, action: #selector(registrationButtonAction(sender:)), for: .touchUpInside)
+        drawView.showPassword.addTarget(self, action: #selector(showPassword(sender:)), for: .touchUpInside)
+        
     }
     
     override func viewDidLoad() {
@@ -129,6 +136,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
                 
             }
         }
+        
         self.hideKeyboardWhenTappedAround()
     }
     
