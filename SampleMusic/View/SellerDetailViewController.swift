@@ -30,17 +30,15 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     //MARK: - ButtonAction
     
     @objc func message(sender: UIButton) {
-        viewModel.checkChatRoom(ownerUid: viewModel.currentUserUid(), recieverUid: viewModel.ownerUid ?? "")
-        viewModel.isValid = { valid in
-            if valid == false {
+        viewModel.checkChatRoom(ownerUid: viewModel.currentUserUid(), recieverUid: viewModel.ownerUid ?? "") { check in
+            if check {
                 self.viewModel.createChatRoom(ownerUid: self.viewModel.currentUserUid(), recieverUid: self.viewModel.ownerUid ?? "")
-                self.coordinator?.writeMessage(chatRoom: self.viewModel.chatRoom!)
             }
+            return nil
         }
         viewModel.goToChat = { room in
             self.coordinator?.writeMessage(chatRoom: room)
         }
-        
     }
     
     @objc func sortSampleTable(sender: UIButton) {

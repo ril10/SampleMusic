@@ -16,7 +16,6 @@ import RealmSwift
 
 
 class SellerDetailViewModel: SellerImp {
-    var isValid: ((Bool) -> Void)?
     var ownerUid: String?
     var reloadView : (() -> Void)?
     var reloadTableView : (() -> Void)?
@@ -113,20 +112,21 @@ class SellerDetailViewModel: SellerImp {
         return Auth.auth().currentUser!.uid
     }
     
-    func checkChatRoom(ownerUid: String, recieverUid: String) {
+    func checkChatRoom(ownerUid: String, recieverUid: String, completion: @escaping (Bool) -> Void? ) {
         db?.collection(Role.chatRoom.rawValue).whereField("ownerUid", isEqualTo: ownerUid)
             .whereField("recieverUid", isEqualTo: recieverUid)
             .getDocuments { (documents, error) in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
-                    for document in documents!.documents {
-                        if document.exists {
-                            self.isValid?(true)
+                    if documents!.isEmpty {
+                        completion(true)
+                        self.goToChat?(self.chatRoom ?? "")
+                    } else {
+                        documents?.documents.forEach({ document in
+                            completion(false)
                             self.goToChat?(document.documentID)
-                        } else {
-                            self.isValid?(false)
-                        }
+                        })
                     }
                 }
             }

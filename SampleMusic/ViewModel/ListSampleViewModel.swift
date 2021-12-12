@@ -70,33 +70,7 @@ class ListSampleViewModel: ListSamplesImp {
         }
     }
     
-    func checkChatRoom(ownerUid: String, recieverUid: String) {
-        db?.collection(Role.chatRoom.rawValue).whereField("ownerUid", isEqualTo: ownerUid)
-            .whereField("recieverUid", isEqualTo: recieverUid)
-            .getDocuments { (documents, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    for document in documents!.documents {
-                        if !document.exists {
-                            self.createChatRoom(ownerUid: ownerUid, recieverUid: recieverUid)
-                        }
-                    }
-                }
-            }
-    }
-    
-    func createChatRoom(ownerUid: String, recieverUid: String) {
-        let ref = self.db?.collection(Role.chatRoom.rawValue).document()
-        let id = ref?.documentID
-        ref?.setData([
-            "chatRoom": id as Any,
-            "ownerUid": ownerUid as Any,
-            "recieverUid": recieverUid as Any
-        ])
-        self.chatRoom = id
-    }
-    //    MARK: - TableViewData
+    //MARK: - TableViewData
     func getSamplesData() {
         db?.collection(Role.sample.rawValue.lowercased())
             .addSnapshotListener(includeMetadataChanges: true, listener: { querySnapshot, error in
