@@ -21,7 +21,7 @@ class ChatDetailViewModel: ChatDetailimp {
     var chatRoom : String?
     var recieverUid : String?
     var imageUrl : Any?
-    
+    var firstName : String?
     
     init(db: Firestore, st: Storage) {
         self.db = db
@@ -80,8 +80,35 @@ class ChatDetailViewModel: ChatDetailimp {
         return messageData[indexPath.row]
     }
     
+    func getUserName(with uid: String) {
+        db?.collection(Role.seller.rawValue.lowercased()).whereField("uid", isEqualTo: uid)
+            .getDocuments(completion: { documentSnapshot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    let name = documentSnapshot!.documents.map { $0["firstName"]! }
+                    self.firstName = name as? String
+                }
+                for document in documentSnapshot!.documents {
+                    if document.documentID.isEmpty {
+                        self.db?.collection(Role.user.rawValue.lowercased()).whereField("uid", isEqualTo: uid)
+                            .getDocuments(completion: { (document, error) in
+                                if let error = error {
+                                    print(error.localizedDescription)
+                                } else {
+                                    let name = document!.documents.map { $0["firstName"]! }
+                                    self.firstName = name as? String
+                                }
+                            })
+                    }
+                }
+            })
+    }
+    
     func sendMessage(text: String) {
+        let sender = PushNotificationSender()
         if let user = Auth.auth().currentUser {
+            getUserName(with: user.uid)
             if text != "" {
                 self.db?.collection(Role.message.rawValue).document().setData([
                     "message":text as Any,
@@ -93,6 +120,7 @@ class ChatDetailViewModel: ChatDetailimp {
                 self.db?.collection(Role.chatRoom.rawValue).document(self.chatRoom!).updateData([
                     "lastMessage":text as Any
                 ])
+                sender.sendPushNotification(to: "caBJ7D-hIEprmQZsRQ8ub0:APA91bFRksmnnyfNyV5jmrsci9cjNoqNmoI99dfLUBgneRRxUBtn_IZ8hPxAm6tTAF5DgCSgZYViG5TleV5H50ju4GbDeobpso67egnHuJ_4GcgPB7Y_8D4KDRuS4YKRItnIvg9sLWJw", title: "Some guy", body: text)
                 self.reloadTableView?()
             }
         }

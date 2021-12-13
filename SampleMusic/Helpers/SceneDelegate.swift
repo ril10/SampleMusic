@@ -26,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return try? container.resolve(type)
         }
         
+        
         IQKeyboardManager.shared.enable = true
 
         state = realm.objects(State.self)
@@ -69,7 +70,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             coordinator.start()
         }
-
+//        coordinator.start()
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = navController
         window.makeKeyAndVisible()

@@ -19,6 +19,8 @@
 		C30150BD2733E07300C85EF3 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30150BC2733E07300C85EF3 /* TabBarCoordinator.swift */; };
 		C30FC4BF27608CBA00A46C4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C30FC4C127608CBA00A46C4C /* Localizable.strings */; };
 		C30FC4C52760A0FD00A46C4C /* LocalizeKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4C42760A0FD00A46C4C /* LocalizeKeys.swift */; };
+		C30FC4C8276779C900A46C4C /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4C7276779C800A46C4C /* PushNotificationManager.swift */; };
+		C30FC4CA27678C4C00A46C4C /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4C927678C4C00A46C4C /* PushNotificationSender.swift */; };
 		C310E2F627439D0000C47625 /* UploadMusicImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310E2F527439D0000C47625 /* UploadMusicImp.swift */; };
 		C310E2F82743DA7600C47625 /* DataCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310E2F72743DA7500C47625 /* DataCellModel.swift */; };
 		C31601192751009000D35E70 /* ChatDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31601182751009000D35E70 /* ChatDetailCoordinator.swift */; };
@@ -135,6 +137,8 @@
 		C30FC4C327608CE000A46C4C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C30FC4C42760A0FD00A46C4C /* LocalizeKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizeKeys.swift; sourceTree = "<group>"; };
 		C30FC4C627675E5A00A46C4C /* SampleMusic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleMusic.entitlements; sourceTree = "<group>"; };
+		C30FC4C7276779C800A46C4C /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
+		C30FC4C927678C4C00A46C4C /* PushNotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
 		C310E2F527439D0000C47625 /* UploadMusicImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMusicImp.swift; sourceTree = "<group>"; };
 		C310E2F72743DA7500C47625 /* DataCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCellModel.swift; sourceTree = "<group>"; };
 		C31601182751009000D35E70 /* ChatDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailCoordinator.swift; sourceTree = "<group>"; };
@@ -353,7 +357,6 @@
 		C38156442726A0BF008E83AC /* SampleMusic */ = {
 			isa = PBXGroup;
 			children = (
-				C30FC4C627675E5A00A46C4C /* SampleMusic.entitlements */,
 				C379FEC727393F91004ECCB9 /* Protocols */,
 				C381568B27281B33008E83AC /* Dependencies */,
 				C38156822726F80F008E83AC /* Extension */,
@@ -364,6 +367,7 @@
 				C38156772726A86D008E83AC /* Helpers */,
 				C38156532726A0C0008E83AC /* Info.plist */,
 				C381564E2726A0C0008E83AC /* Assets.xcassets */,
+				C30FC4C627675E5A00A46C4C /* SampleMusic.entitlements */,
 				C30FC4C127608CBA00A46C4C /* Localizable.strings */,
 			);
 			path = SampleMusic;
@@ -393,8 +397,10 @@
 				C38156452726A0BF008E83AC /* AppDelegate.swift */,
 				C38156472726A0BF008E83AC /* SceneDelegate.swift */,
 				C3810573274B94470071BC79 /* MusicPlayer.swift */,
+				C30FC4C7276779C800A46C4C /* PushNotificationManager.swift */,
 				C38156502726A0C0008E83AC /* LaunchScreen.storyboard */,
 				C38156752726A5D9008E83AC /* GoogleService-Info.plist */,
+				C30FC4C927678C4C00A46C4C /* PushNotificationSender.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -810,6 +816,7 @@
 				C38156882728147A008E83AC /* MainScreenViewModel.swift in Sources */,
 				C38105662746B07B0071BC79 /* RecordPageViewController.swift in Sources */,
 				C33CCA7B272BE47A00C7969E /* DetailModel.swift in Sources */,
+				C30FC4C8276779C900A46C4C /* PushNotificationManager.swift in Sources */,
 				C381057A274BDA970071BC79 /* RecordPageCoordinator.swift in Sources */,
 				C30150AD27328E6300C85EF3 /* SellerDetailDraw.swift in Sources */,
 				C3767E002750DA3500F4FF7D /* ChatPageCoordinator.swift in Sources */,
@@ -822,6 +829,7 @@
 				C30150A727303C2400C85EF3 /* MainScreenDraw.swift in Sources */,
 				C3255874273AC46F00248FD8 /* TabBarControllerViewModel.swift in Sources */,
 				C3810576274BB9D40071BC79 /* UserDetailCoordinator.swift in Sources */,
+				C30FC4CA27678C4C00A46C4C /* PushNotificationSender.swift in Sources */,
 				C381056A2746B0F00071BC79 /* RecordPageViewModel.swift in Sources */,
 				C38156482726A0BF008E83AC /* SceneDelegate.swift in Sources */,
 				C30150AF2732906600C85EF3 /* ListSamplesDraw.swift in Sources */,

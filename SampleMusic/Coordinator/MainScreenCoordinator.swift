@@ -44,7 +44,7 @@ class MainScreenCoordinator : Coordinator {
     }
     
     func goToUser() {
-        navigationController.viewControllers.removeLast()
+//        navigationController.viewControllers.removeLast()
         parentCoordinator?.userList()
         parentCoordinator?.childDidFinish(self)
     }

@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSAppleMusicUsageDescription</key>
-    <string>Play music</string>
+	<key>Server_Key_Firebase</key>
+	<string>AAAAZfymzmU:APA91bHysb1dj9ir6EgyWjGhI-NsKcWQBVfSTPxfHvXcmeTeU32r5B14MM42SMzncVCoCNo-qcFS2V8GyIwpSP536H-sLqGOAGDdzqmIwxK21dSI5kz4MqcgqHCOOIJQtYil15FrBMVO</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Play music</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Please allow access to access microphone</string>
 	<key>kTCCServiceMediaLibrary</key>
@@ -12,11 +14,11 @@
 	<string>Please allow access to upload photos.</string>
 	<key>FirebaseAutomaticScreenReportingEnabled</key>
 	<false/>
-    <key>NSAppTransportSecurity</key>
-        <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-        </dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
