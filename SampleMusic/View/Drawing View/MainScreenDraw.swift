@@ -30,11 +30,21 @@ class MainScreenDraw : UIView {
     }()
     
     lazy var stackViewMiddle: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [middleLabelSign,middleLabelWelcome,loginLabel,loginTextField,passwordLabel,passwordTextField])
+        let stackView = UIStackView(arrangedSubviews: [middleLabelSign,middleLabelWelcome,loginLabel,loginTextField,passwordLabel,passwordStack])
         stackView.alignment = .leading
         stackView.distribution = .fill
         stackView.spacing = 10
         stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    lazy var passwordStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [passwordTextField,showPassword])
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+        stackView.spacing = 5
+        stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -167,7 +177,7 @@ class MainScreenDraw : UIView {
         stackView.addSubview(stackViewMiddle)
         stackView.addSubview(stackViewBottom)
         bottomView.addSubview(signButton)
-        stackViewMiddle.addArrangedSubview(showPassword)
+        
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 40),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -40),
@@ -183,7 +193,7 @@ class MainScreenDraw : UIView {
         NSLayoutConstraint.activate([
             stackViewMiddle.topAnchor.constraint(equalTo: middleView.topAnchor),
             loginTextField.widthAnchor.constraint(equalTo: middleView.widthAnchor,constant: -20),
-            passwordTextField.widthAnchor.constraint(equalTo: middleView.widthAnchor,constant: -20)
+            passwordTextField.widthAnchor.constraint(equalTo: middleView.widthAnchor,constant: -20),
         ])
         
         NSLayoutConstraint.activate([

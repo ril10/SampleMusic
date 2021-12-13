@@ -75,6 +75,16 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         drawView.radioSeller.setImage(UIImage(systemName: Icons.radioOff.rawValue), for: .normal)
         
     }
+    
+    @objc func showPassword(sender: UIButton!) {
+        drawView.showPassword.isSelected.toggle()
+        if drawView.showPassword.isSelected {
+            drawView.showPassword.setImage(UIImage(systemName: Icons.crossEye.rawValue), for: .normal)
+        } else {
+            drawView.showPassword.setImage(UIImage(systemName: Icons.eye.rawValue), for: .normal)
+        }
+        drawView.passwordTextField.isSecureTextEntry.toggle()
+    }
     //MARK: - Alert
     func errorWithRegistration(e: Error) {
         let signTitle = NSLocalizedString(ErrorKeys.eSignUp.rawValue, comment: "")
@@ -118,10 +128,20 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         textField.text?.removeAll()
         return true
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        drawView.showPassword.isHidden = false
+        drawView.showPassword.center.x -= view.bounds.width
+        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
+            self.drawView.showPassword.center.x += self.view.bounds.width
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
     //MARK: - ViewLoad
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        drawView.showPassword.isHidden = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
         
@@ -135,6 +155,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
         drawView.radioSeller.addTarget(self, action: #selector(sellerSelected(sender:)), for: .touchUpInside)
         drawView.registerButton.addTarget(self, action: #selector(continueButton(sender:)), for: .touchUpInside)
         drawView.signInButton.addTarget(self, action: #selector(signInButton(sender:)), for: .touchUpInside)
+        drawView.showPassword.addTarget(self, action: #selector(showPassword(sender:)), for: .touchUpInside)
         
     }
     

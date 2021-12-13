@@ -21,11 +21,21 @@ class RegistrationViewDraw : UIView {
     }()
     
     lazy var stackViewTop: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [topLabel,loginLabel,loginTextField,passwordLabel,passwordTextField])
+        let stackView = UIStackView(arrangedSubviews: [topLabel,loginLabel,loginTextField,passwordLabel,passwordStack])
         stackView.alignment = .leading
         stackView.distribution = .fill
         stackView.spacing = 10
         stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    lazy var passwordStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [passwordTextField,showPassword])
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+        stackView.spacing = 5
+        stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -131,6 +141,13 @@ class RegistrationViewDraw : UIView {
         button.radioButton(title: Role.seller.rawValue)
         return button
     }()
+    
+    var showPassword: UIButton = {
+         let button = UIButton()
+         button.setImage(UIImage(systemName: Icons.eye.rawValue), for: .normal)
+         button.tintColor = UIColor.lightGray
+         return button
+     }()
     
     //MARK: - BottomView
     var registerButton: UIButton = {

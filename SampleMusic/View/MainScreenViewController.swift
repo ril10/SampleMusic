@@ -46,7 +46,13 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     
     
     @objc func showPassword(sender: UIButton!) {
-        
+        drawView.showPassword.isSelected.toggle()
+        if drawView.showPassword.isSelected {
+            drawView.showPassword.setImage(UIImage(systemName: Icons.crossEye.rawValue), for: .normal)
+        } else {
+            drawView.showPassword.setImage(UIImage(systemName: Icons.eye.rawValue), for: .normal)
+        }
+        drawView.passwordTextField.isSecureTextEntry.toggle()
     }
     //MARK: - Alert
     func errorWithLogin(e: Error) {
@@ -84,11 +90,23 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
     }
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         textField.text?.removeAll()
+        drawView.showPassword.isHidden = true
         return true
     }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        drawView.showPassword.isHidden = false
+        drawView.showPassword.center.x -= view.bounds.width
+        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
+            self.drawView.showPassword.center.x += self.view.bounds.width
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
     //MARK: - View
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        drawView.showPassword.isHidden = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
