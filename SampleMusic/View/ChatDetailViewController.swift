@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class ChatDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+class ChatDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UITextViewDelegate {
     
     var viewModel : ChatDetailimp
     
@@ -112,8 +112,7 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
         title = NSLocalizedString(ChatKeys.chatDetail.rawValue, comment: "")
-        
-        
+
         self.hideKeyboardWhenTappedAround()
     }
     
@@ -134,7 +133,7 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         self.navigationItem.backButtonTitle = ""
         self.navigationItem.setHidesBackButton(false, animated: true)
     }
-    
+
 }
 
 extension ChatDetailViewController : ChatDetailProtocol {}

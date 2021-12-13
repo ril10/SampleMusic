@@ -17,6 +17,8 @@ target 'SampleMusic' do
 	pod 'Firebase/Storage', '8.8.0'
 	pod 'RealmSwift'
 	pod 'SDWebImage', '~> 5.0'
+	pod 'IQKeyboardManagerSwift'
+
   target 'SampleMusicTests' do
     inherit! :search_paths
     # Pods for testing

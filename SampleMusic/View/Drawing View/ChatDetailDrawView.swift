@@ -59,6 +59,7 @@ class ChatDetailDrawView : UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+
     
     //MARK: - Constraints
     

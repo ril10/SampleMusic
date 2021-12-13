@@ -11,6 +11,7 @@ import Dip
 import RealmSwift
 import FirebaseAuth
 import FirebaseFirestore
+import IQKeyboardManagerSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -24,6 +25,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         func resolveType(type: Any.Type) -> Any? {
             return try? container.resolve(type)
         }
+        
+        IQKeyboardManager.shared.enable = true
         
         FirebaseApp.configure()
         state = realm.objects(State.self)
