@@ -134,6 +134,7 @@
 		C30FC4C227608CDE00A46C4C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C30FC4C327608CE000A46C4C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C30FC4C42760A0FD00A46C4C /* LocalizeKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizeKeys.swift; sourceTree = "<group>"; };
+		C30FC4C627675E5A00A46C4C /* SampleMusic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleMusic.entitlements; sourceTree = "<group>"; };
 		C310E2F527439D0000C47625 /* UploadMusicImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMusicImp.swift; sourceTree = "<group>"; };
 		C310E2F72743DA7500C47625 /* DataCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCellModel.swift; sourceTree = "<group>"; };
 		C31601182751009000D35E70 /* ChatDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailCoordinator.swift; sourceTree = "<group>"; };
@@ -352,6 +353,7 @@
 		C38156442726A0BF008E83AC /* SampleMusic */ = {
 			isa = PBXGroup;
 			children = (
+				C30FC4C627675E5A00A46C4C /* SampleMusic.entitlements */,
 				C379FEC727393F91004ECCB9 /* Protocols */,
 				C381568B27281B33008E83AC /* Dependencies */,
 				C38156822726F80F008E83AC /* Extension */,
@@ -1004,6 +1006,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SampleMusic/SampleMusic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XJZXQZAKD4;
 				INFOPLIST_FILE = SampleMusic/Info.plist;
@@ -1024,6 +1027,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SampleMusic/SampleMusic.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XJZXQZAKD4;
 				INFOPLIST_FILE = SampleMusic/Info.plist;

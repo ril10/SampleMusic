@@ -15,6 +15,7 @@ target 'SampleMusic' do
 	pod 'Firebase/Core', '8.8.0'
 	pod 'Firebase/Firestore', '8.8.0'
 	pod 'Firebase/Storage', '8.8.0'
+	pod 'Firebase/Messaging'
 	pod 'RealmSwift'
 	pod 'SDWebImage', '~> 5.0'
 	pod 'IQKeyboardManagerSwift'

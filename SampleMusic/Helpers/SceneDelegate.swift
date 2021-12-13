@@ -27,8 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         IQKeyboardManager.shared.enable = true
-        
-        FirebaseApp.configure()
+
         state = realm.objects(State.self)
         
         let navController = try! appContainer.resolve() as UINavigationController
