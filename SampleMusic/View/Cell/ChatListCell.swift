@@ -12,7 +12,7 @@ import FirebaseStorage
 
 class ChatListCell: UITableViewCell {
 
-    var st = try! appContainer.resolve() as Storage
+    let st = try! appContainer.resolve() as Storage
     
     var chatSell : CellChatModel? {
         didSet {

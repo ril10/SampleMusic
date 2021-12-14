@@ -12,7 +12,7 @@ import Dip
 
 class ChatDetailCell: UITableViewCell {
     
-    var st = try! appContainer.resolve() as Storage
+    let st = try! appContainer.resolve() as Storage
     
     var messageCell : Message? {
         didSet {
