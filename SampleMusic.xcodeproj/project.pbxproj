@@ -21,6 +21,8 @@
 		C30FC4C52760A0FD00A46C4C /* LocalizeKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4C42760A0FD00A46C4C /* LocalizeKeys.swift */; };
 		C30FC4C8276779C900A46C4C /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4C7276779C800A46C4C /* PushNotificationManager.swift */; };
 		C30FC4CA27678C4C00A46C4C /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4C927678C4C00A46C4C /* PushNotificationSender.swift */; };
+		C30FC4CC2768A9CD00A46C4C /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4CB2768A9CC00A46C4C /* NotificationModel.swift */; };
+		C30FC4CE2768BA1700A46C4C /* NotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4CD2768BA1700A46C4C /* NotificationDataModel.swift */; };
 		C310E2F627439D0000C47625 /* UploadMusicImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310E2F527439D0000C47625 /* UploadMusicImp.swift */; };
 		C310E2F82743DA7600C47625 /* DataCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310E2F72743DA7500C47625 /* DataCellModel.swift */; };
 		C31601192751009000D35E70 /* ChatDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31601182751009000D35E70 /* ChatDetailCoordinator.swift */; };
@@ -139,6 +141,8 @@
 		C30FC4C627675E5A00A46C4C /* SampleMusic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleMusic.entitlements; sourceTree = "<group>"; };
 		C30FC4C7276779C800A46C4C /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		C30FC4C927678C4C00A46C4C /* PushNotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
+		C30FC4CB2768A9CC00A46C4C /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		C30FC4CD2768BA1700A46C4C /* NotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataModel.swift; sourceTree = "<group>"; };
 		C310E2F527439D0000C47625 /* UploadMusicImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMusicImp.swift; sourceTree = "<group>"; };
 		C310E2F72743DA7500C47625 /* DataCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCellModel.swift; sourceTree = "<group>"; };
 		C31601182751009000D35E70 /* ChatDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailCoordinator.swift; sourceTree = "<group>"; };
@@ -413,6 +417,8 @@
 				C3767DF7274FB21300F4FF7D /* State.swift */,
 				C33CCA7A272BE47A00C7969E /* DetailModel.swift */,
 				C3A6B5DA275E354D00CF7FA2 /* SortedList.swift */,
+				C30FC4CB2768A9CC00A46C4C /* NotificationModel.swift */,
+				C30FC4CD2768BA1700A46C4C /* NotificationDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -756,6 +762,7 @@
 				C30150A927312C4600C85EF3 /* RegistrationViewDraw.swift in Sources */,
 				C325586E273A9B7C00248FD8 /* MainCoordinatorImp.swift in Sources */,
 				C3810574274B94470071BC79 /* MusicPlayer.swift in Sources */,
+				C30FC4CC2768A9CD00A46C4C /* NotificationModel.swift in Sources */,
 				C38105622746B00A0071BC79 /* UserDetailDrawView.swift in Sources */,
 				C3767DF8274FB21300F4FF7D /* State.swift in Sources */,
 				C3255880273EA1C900248FD8 /* StartViewController.swift in Sources */,
@@ -783,6 +790,7 @@
 				C381568A27281499008E83AC /* RegistrationViewModel.swift in Sources */,
 				C397694227566B53006578B5 /* ChatPageImp.swift in Sources */,
 				C33CCA82272C3BC800C7969E /* SellerDetailViewModel.swift in Sources */,
+				C30FC4CE2768BA1700A46C4C /* NotificationDataModel.swift in Sources */,
 				C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */,
 				C30150B12732A59F00C85EF3 /* ListSampleViewModel.swift in Sources */,
 				C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */,

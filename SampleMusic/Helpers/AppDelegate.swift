@@ -21,10 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
 
         FirebaseApp.configure()
 
-//        if let user = Auth.auth().currentUser {
-//            let pushManager = PushNotificationManager(userUid: user.uid)
-//            pushManager.registerForPushNotifications()
-//        }
         return true
     }
 

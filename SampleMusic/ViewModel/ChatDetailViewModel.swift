@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 import Dip
+import RealmSwift
 
 
 class ChatDetailViewModel: ChatDetailimp {
@@ -22,6 +23,8 @@ class ChatDetailViewModel: ChatDetailimp {
     var recieverUid : String?
     var imageUrl : Any?
     var firstName : String?
+    var fcmToken : String?
+    let realm = try! Realm()
     
     init(db: Firestore, st: Storage) {
         self.db = db
@@ -80,35 +83,76 @@ class ChatDetailViewModel: ChatDetailimp {
         return messageData[indexPath.row]
     }
     
-    func getUserName(with uid: String) {
-        db?.collection(Role.seller.rawValue.lowercased()).whereField("uid", isEqualTo: uid)
-            .getDocuments(completion: { documentSnapshot, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    let name = documentSnapshot!.documents.map { $0["firstName"]! }
-                    self.firstName = name as? String
-                }
-                for document in documentSnapshot!.documents {
-                    if document.documentID.isEmpty {
-                        self.db?.collection(Role.user.rawValue.lowercased()).whereField("uid", isEqualTo: uid)
-                            .getDocuments(completion: { (document, error) in
-                                if let error = error {
-                                    print(error.localizedDescription)
-                                } else {
-                                    let name = document!.documents.map { $0["firstName"]! }
-                                    self.firstName = name as? String
-                                }
-                            })
+    
+    func getFCMtoken() {
+        let state = realm.objects(State.self).first
+        if state?.role == Role.user.rawValue.lowercased() {
+            db?.collection(Role.seller.rawValue.lowercased()).document((self.recieverUid)!)
+                .getDocument { (document, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        if document?.exists == true {
+                            let token = NotificationModel(data: document!.data()!)
+                            self.fcmToken = token.fcmToken
+                        } else {
+                            print("is empty")
+                        }
                     }
                 }
-            })
+        } else {
+            db?.collection(Role.user.rawValue.lowercased()).document((self.ownerUid)!)
+                .getDocument { (document, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        if document?.exists == true {
+                            let token = NotificationModel(data: document!.data()!)
+                            self.fcmToken = token.fcmToken
+                        } else {
+                            print("is empty")
+                        }
+                    }
+                }
+        }
+    }
+    
+    func getNameInNotification() {
+        let state = realm.objects(State.self).first
+        if state?.role == Role.user.rawValue.lowercased() {
+            db?.collection(Role.user.rawValue.lowercased()).document(self.ownerUid!)
+                    .getDocument { (document, error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else {
+                            if document?.exists == true {
+                                let token = NotificationDataModel(data: document!.data()!)
+                                self.firstName = token.firstName
+                            } else {
+                                print("is empty")
+                            }
+                        }
+                    }
+        } else {
+            db?.collection(Role.seller.rawValue.lowercased()).document(self.recieverUid!)
+                    .getDocument { (document, error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        } else {
+                            if document?.exists == true {
+                                let token = NotificationDataModel(data: document!.data()!)
+                                self.firstName = token.firstName
+                            } else {
+                                print("is empty")
+                            }
+                        }
+                    }
+        }
     }
     
     func sendMessage(text: String) {
         let sender = PushNotificationSender()
         if let user = Auth.auth().currentUser {
-            getUserName(with: user.uid)
             if text != "" {
                 self.db?.collection(Role.message.rawValue).document().setData([
                     "message":text as Any,
@@ -120,7 +164,7 @@ class ChatDetailViewModel: ChatDetailimp {
                 self.db?.collection(Role.chatRoom.rawValue).document(self.chatRoom!).updateData([
                     "lastMessage":text as Any
                 ])
-                sender.sendPushNotification(to: "caBJ7D-hIEprmQZsRQ8ub0:APA91bFRksmnnyfNyV5jmrsci9cjNoqNmoI99dfLUBgneRRxUBtn_IZ8hPxAm6tTAF5DgCSgZYViG5TleV5H50ju4GbDeobpso67egnHuJ_4GcgPB7Y_8D4KDRuS4YKRItnIvg9sLWJw", title: "Some guy", body: text)
+                sender.sendPushNotification(to: fcmToken ?? "", title: firstName ?? "", body: text)
                 self.reloadTableView?()
             }
         }

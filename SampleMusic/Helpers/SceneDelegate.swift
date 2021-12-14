@@ -26,11 +26,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return try? container.resolve(type)
         }
         
-        
         IQKeyboardManager.shared.enable = true
 
         state = realm.objects(State.self)
-        
+
         let navController = try! appContainer.resolve() as UINavigationController
         let db = try! appContainer.resolve() as Firestore
         let coordinator = MainCoordinator(navigationController: navController,
@@ -49,28 +48,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         )
         navController.isNavigationBarHidden = true
         if let sign = Auth.auth().currentUser {
-            db.collection(Role.user.rawValue.lowercased()).document(sign.uid).addSnapshotListener { doc, error in
-                if let e = error {
-                    print(e.localizedDescription)
-                } else {
-                    if doc?.data() != nil {
-                        coordinator.userList()
-                    }
-                }
-            }
-            db.collection(Role.seller.rawValue.lowercased()).document(sign.uid).addSnapshotListener { doc, error in
-                if let e = error {
-                    print(e.localizedDescription)
-                } else {
-                    if doc?.data() != nil {
-                        coordinator.mainTabController()
+            let dataState = state?.where({ state in
+                state.state == "\(sign.uid)"
+            })
+            if dataState?.isEmpty == true {
+                coordinator.start()
+            } else {
+                db.collection(dataState?.first?.role ?? "").whereField("uid", isEqualTo: dataState?.first?.state ?? "")
+                    .addSnapshotListener { (documents, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        documents?.documents.forEach({ queryDocument in
+                            if dataState?.first?.role == Role.seller.rawValue.lowercased() {
+                                let pushManager = PushNotificationManager(userUid: (dataState?.first?.state)!,role: dataState?.first?.role ?? "")
+                                pushManager.registerForPushNotifications()
+                                coordinator.mainTabController()
+                            } else {
+                                let pushManager = PushNotificationManager(userUid: (dataState?.first?.state)!,role: dataState?.first?.role ?? "")
+                                pushManager.registerForPushNotifications()
+                                coordinator.userList()
+                            }
+                        })
                     }
                 }
             }
         } else {
             coordinator.start()
         }
-//        coordinator.start()
+
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = navController
         window.makeKeyAndVisible()

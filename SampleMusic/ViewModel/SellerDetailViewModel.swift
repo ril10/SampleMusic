@@ -47,9 +47,17 @@ class SellerDetailViewModel: SellerImp {
     
     func userData() {
         if let user = Auth.auth().currentUser {
-            let state = State()
-            state.state = user.uid
-            self.saveUid(state)
+            let dataState = realm.objects(State.self)
+            if !dataState.isEmpty {
+                print("Nothing to add")
+            } else {
+                let state = State()
+                state.state = user.uid
+                state.role = Role.seller.rawValue.lowercased()
+                self.saveUid(state)
+                let pushManager = PushNotificationManager(userUid: user.uid, role: Role.seller.rawValue.lowercased())
+                pushManager.registerForPushNotifications()
+            }
             self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in
                 if let data = document?.data() {
                     let sellerData = DetailModel(data: data)

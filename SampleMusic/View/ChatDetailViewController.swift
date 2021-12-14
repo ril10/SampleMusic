@@ -112,7 +112,8 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
         title = NSLocalizedString(ChatKeys.chatDetail.rawValue, comment: "")
-
+        viewModel.getFCMtoken()
+        viewModel.getNameInNotification()
         self.hideKeyboardWhenTappedAround()
     }
     

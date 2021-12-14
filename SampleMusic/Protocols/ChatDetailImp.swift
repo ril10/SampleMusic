@@ -19,4 +19,6 @@ protocol ChatDetailimp {
     var chatRoom : String? { get set }
     var recieverUid : String? { get set }
     func checkCurrentUser() -> String
+    func getFCMtoken()
+    func getNameInNotification()
 }

@@ -49,10 +49,18 @@ class ListSampleViewModel: ListSamplesImp {
     
     func signUser() {
         if let user = Auth.auth().currentUser {
-            let state = State()
-            state.state = user.uid
-            self.curUser = user.uid
-            self.saveUid(state)
+            let dataState = realm.objects(State.self)
+            if !dataState.isEmpty {
+                print("Nothing to add")
+            } else {
+                let state = State()
+                state.state = user.uid
+                state.role = Role.user.rawValue.lowercased()
+                self.curUser = user.uid
+                self.saveUid(state)
+                let pushManager = PushNotificationManager(userUid: user.uid,role: Role.user.rawValue.lowercased())
+                pushManager.registerForPushNotifications()
+            }
         }
     }
     

@@ -12,9 +12,11 @@ import Firebase
 
 class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenterDelegate {
     let userUid: String
+    let role: String
     
-    init(userUid: String) {
+    init(userUid: String, role: String) {
         self.userUid = userUid
+        self.role = role
         super.init()
     }
     
@@ -34,27 +36,20 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
             UIApplication.shared.registerUserNotificationSettings(settings)
         }
         UIApplication.shared.registerForRemoteNotifications()
-//        updateFirestorePushTokenIfNeededForSeller()
-        updateFirestorePushTokenIfNeededForUser()
+        updateFirestorePushTokenIfNeeded()
     }
-//    func updateFirestorePushTokenIfNeededForSeller() {
-//        if let token = Messaging.messaging().fcmToken {
-//            let sellerRef = Firestore.firestore().collection(Role.seller.rawValue.lowercased()).document(userUid)
-//            sellerRef.setData(["fcmToken": token], merge: true)
-//        }
-//    }
+
     
-    func updateFirestorePushTokenIfNeededForUser() {
+    func updateFirestorePushTokenIfNeeded() {
         if let token = Messaging.messaging().fcmToken {
-            let usersRef = Firestore.firestore().collection(Role.user.rawValue.lowercased()).document(userUid)
+            let usersRef = Firestore.firestore().collection(role).document(userUid)
             usersRef.setData(["fcmToken": token], merge: true)
         }
     }
     
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-//        updateFirestorePushTokenIfNeededForSeller()
-        updateFirestorePushTokenIfNeededForUser()
+        updateFirestorePushTokenIfNeeded()
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
