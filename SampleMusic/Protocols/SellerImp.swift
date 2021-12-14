@@ -9,9 +9,8 @@ import Foundation
 
 protocol SellerImp {
     var reloadView : (() -> Void)? { get set }
-    var fieldData : ((String,String,String,String,String) -> Void)? { get set }
+    var fieldData : ((String,String,String,String,String,String) -> Void)? { get set }
     func userData()
-    var image : ((Data) -> Void)? { get set }
     var reloadTableView : (() -> Void)? { get set }
     func getSamplesData()
     var samplesData : [DataCellModel] { get set }

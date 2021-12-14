@@ -21,9 +21,8 @@ class SellerDetailViewModel: SellerImp {
     var reloadTableView : (() -> Void)?
     var db : Firestore?
     var st : Storage?
-    var image: ((Data) -> Void)?
     var dismissAlert: ((Bool) -> Void)?
-    var fieldData : ((String,String,String,String,String) -> Void)?
+    var fieldData : ((String,String,String,String,String,String) -> Void)?
     var sampleData : String?
     var imageArray = [String]()
     var sampleUrl = [String]()
@@ -58,20 +57,12 @@ class SellerDetailViewModel: SellerImp {
                 let pushManager = PushNotificationManager(userUid: user.uid, role: Role.seller.rawValue.lowercased())
                 pushManager.registerForPushNotifications()
             }
-            self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in
+            self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).addSnapshotListener( { (document, error) in
                 if let data = document?.data() {
                     let sellerData = DetailModel(data: data)
-                    let imgRef = self.st?.reference(forURL: sellerData.imageUrl)
-                    imgRef?.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        } else {
-                            self.image?(data!)
-                            self.dismissAlert?(true)
-                        }
-                    })
                     DispatchQueue.main.async {
-                        self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender)
+                        self.dismissAlert?(true)
+                        self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender,sellerData.imageUrl)
                     }
                 }
             })
@@ -79,20 +70,12 @@ class SellerDetailViewModel: SellerImp {
     }
     
     func getDataFromUser(ownerUid: String) {
-        self.db?.collection(Role.seller.rawValue.lowercased()).document(ownerUid).getDocument(completion: { (document, error) in
+        self.db?.collection(Role.seller.rawValue.lowercased()).document(ownerUid).addSnapshotListener( { (document, error) in
             if let data = document?.data() {
                 let sellerData = DetailModel(data: data)
-                let imgRef = self.st?.reference(forURL: sellerData.imageUrl)
-                imgRef?.getData(maxSize: 1 * 1024 * 1024, completion: { data, error in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    } else {
-                        self.image?(data!)
-                        self.dismissAlert?(true)
-                    }
-                })
                 DispatchQueue.main.async {
-                    self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender)
+                    self.dismissAlert?(true)
+                    self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender,sellerData.imageUrl)
                 }
             }
         })

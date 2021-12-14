@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 
 class UserDetailViewController : UIViewController {
     
@@ -33,17 +33,13 @@ class UserDetailViewController : UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.userData()
-        viewModel.fieldData = { [weak self] firstName,lastName,desc,email,gender in
+        viewModel.fieldData = { [weak self] firstName,lastName,desc,email,gender,image in
             self?.drawView.firstNameData.text = firstName
             self?.drawView.secondNameData.text = lastName
             self?.drawView.descriptionData.text = desc
             self?.drawView.emailData.text = email
             self?.drawView.genderData.text = gender
-        }
-        viewModel.image = { [weak self] image in
-            DispatchQueue.main.async {
-                self?.drawView.imageView.image = UIImage(data: image)
-            }
+            self?.drawView.imageView.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
         }
     }
     

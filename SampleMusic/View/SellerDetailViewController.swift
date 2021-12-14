@@ -9,6 +9,7 @@ import UIKit
 import Dip
 import MediaPlayer
 import AVFoundation
+import SDWebImage
 
 class SellerDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MPMediaPickerControllerDelegate {
     
@@ -131,9 +132,9 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
         if viewModel.currentUserUid() == viewModel.currentUserUid() {
             if viewModel.samplesData.count == 0 {
-                self.alertLoading()
                 self.viewModel?.getSamplesData()
                 viewModel?.userData()
+//                self.alertLoading()
             }
         }
     }
@@ -163,18 +164,14 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
 
-        viewModel.fieldData = { [weak self] firstName,lastName,desc,email,gender in
+        viewModel.fieldData = { [weak self] firstName,lastName,desc,email,gender,image in
             self?.drawView.firstNameData.text = firstName
             self?.drawView.secondNameData.text = lastName
             self?.drawView.descriptionData.text = desc
             self?.drawView.emailData.text = email
             self?.drawView.genderData.text = gender
+            self?.drawView.imageView.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
         }
-        viewModel.image = { [weak self] image in
-            self?.drawView.imageView.image = UIImage(data: image)
-        }
-        
-        
 
     }
     
