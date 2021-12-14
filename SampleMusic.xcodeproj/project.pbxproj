@@ -306,6 +306,15 @@
 			path = TabBarCoordinator;
 			sourceTree = "<group>";
 		};
+		C30FC4CF2768CA0400A46C4C /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC4C7276779C800A46C4C /* PushNotificationManager.swift */,
+				C30FC4C927678C4C00A46C4C /* PushNotificationSender.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		C33CCA7E272C246B00C7969E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,13 +407,12 @@
 		C38156772726A86D008E83AC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C30FC4CF2768CA0400A46C4C /* Notification */,
 				C38156452726A0BF008E83AC /* AppDelegate.swift */,
 				C38156472726A0BF008E83AC /* SceneDelegate.swift */,
 				C3810573274B94470071BC79 /* MusicPlayer.swift */,
-				C30FC4C7276779C800A46C4C /* PushNotificationManager.swift */,
 				C38156502726A0C0008E83AC /* LaunchScreen.storyboard */,
 				C38156752726A5D9008E83AC /* GoogleService-Info.plist */,
-				C30FC4C927678C4C00A46C4C /* PushNotificationSender.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";

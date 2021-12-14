@@ -130,7 +130,10 @@ extension String {
 }
 
 extension UIApplication {
-    static var serverKey : String? {
-        return Bundle.main.object(forInfoDictionaryKey: "Server_Key_Firebase") as? String
+    static var serverKey : String! {
+        return Bundle.main.object(forInfoDictionaryKey: "Server_Key_Firebase") as! String
+    }
+    static var notificationUrl : String! {
+        return Bundle.main.object(forInfoDictionaryKey: "NotificationURL") as! String
     }
 }

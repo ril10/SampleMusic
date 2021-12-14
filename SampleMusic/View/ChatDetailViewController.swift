@@ -78,6 +78,7 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         super.viewWillAppear(animated)
         configureNavBar()
         viewModel.loadMessages()
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     override func viewDidDisappear(_ animated: Bool) {
