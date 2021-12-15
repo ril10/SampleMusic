@@ -40,6 +40,8 @@
 "SAMPLES" = "Samples";
 "B_NAME" = "By Name";
 "LENGTH" = "By Length";
+"FREE" = "Free";
+"PAID" = "Paid";
 //MARK: - Detail Inf
 "F_NAME" = "First Name:";
 "L_NAME" = "Last Name:";

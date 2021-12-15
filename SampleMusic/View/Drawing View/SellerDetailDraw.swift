@@ -25,8 +25,7 @@ class SellerDetailDraw: UIView {
     lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [topView,middleView,bottomView])
         stackView.alignment = .fill
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 0
+        stackView.distribution = .fill
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -35,6 +34,14 @@ class SellerDetailDraw: UIView {
         let stackView = UIStackView(arrangedSubviews: [firstLine,secondLine,thirdLine,fourLine,fifthLine])
         stackView.alignment = .leading
         stackView.distribution = .fillEqually
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    lazy var bottomStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [segmentControl,sampleTable])
+        stackView.alignment = .fill
+        stackView.distribution = .fill
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -246,6 +253,14 @@ class SellerDetailDraw: UIView {
         return tableView
     }()
     
+    var segmentControl : UISegmentedControl = {
+        let free = NSLocalizedString(SamplesKeys.free.rawValue, comment: "")
+        let paid = NSLocalizedString(SamplesKeys.paid.rawValue, comment: "")
+        let segmentControl = UISegmentedControl(items: [free,paid])
+        segmentControl.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
+        segmentControl.backgroundColor = UIColor(named: Style.coralColor.rawValue)
+        return segmentControl
+    }()
     
     //MARK: - Contstraints
     func viewCompare(view: UIView) {
@@ -254,7 +269,7 @@ class SellerDetailDraw: UIView {
         topView.addSubview(imageView)
         middleView.addSubview(middleStackView)
         middleView.addSubview(samplesStack)
-        bottomView.addSubview(sampleTable)
+        bottomView.addSubview(bottomStackView)
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -283,6 +298,7 @@ class SellerDetailDraw: UIView {
             topView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             topView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
             topView.bottomAnchor.constraint(equalTo: middleView.topAnchor),
+            topView.heightAnchor.constraint(equalToConstant: 210),
         ])
         
         NSLayoutConstraint.activate([
@@ -302,19 +318,29 @@ class SellerDetailDraw: UIView {
         ])
         
         NSLayoutConstraint.activate([
-            sampleTable.topAnchor.constraint(equalTo: bottomView.topAnchor),
-            sampleTable.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor),
-            sampleTable.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor),
-            sampleTable.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
-            
+            segmentControl.leadingAnchor.constraint(equalTo: bottomStackView.leadingAnchor),
+            segmentControl.trailingAnchor.constraint(equalTo: bottomStackView.trailingAnchor),
+//            segmentControl.bottomAnchor.constraint(equalTo: sampleTable.topAnchor),
+            sampleTable.topAnchor.constraint(equalTo: segmentControl.bottomAnchor),
+            sampleTable.leadingAnchor.constraint(equalTo: bottomStackView.leadingAnchor),
+            sampleTable.trailingAnchor.constraint(equalTo: bottomStackView.trailingAnchor),
+            sampleTable.bottomAnchor.constraint(equalTo: bottomStackView.bottomAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            bottomStackView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor),
+            bottomStackView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor),
+            bottomStackView.topAnchor.constraint(equalTo: bottomView.topAnchor),
+            bottomStackView.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor),
         ])
         
         NSLayoutConstraint.activate([
             bottomView.topAnchor.constraint(equalTo: middleView.bottomAnchor),
             bottomView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            bottomView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
+//            bottomView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
         ])
+
             
     }
     

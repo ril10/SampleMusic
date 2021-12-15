@@ -100,7 +100,10 @@ class SellerDetailViewModel: SellerImp {
     }
     
     func currentUserUid() -> String {
-        return Auth.auth().currentUser!.uid
+        if let user = Auth.auth().currentUser {
+            return user.uid
+        }
+        return ""
     }
     
     func checkChatRoom(ownerUid: String, recieverUid: String, completion: @escaping (Bool) -> Void? ) {
