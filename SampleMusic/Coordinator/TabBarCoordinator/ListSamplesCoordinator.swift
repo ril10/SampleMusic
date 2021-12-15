@@ -31,8 +31,8 @@ class ListSamplesCoordinator : Coordinator {
     }
     
     func finish() {
-        navigationController.popViewController(animated: true)
         navigationController.viewControllers.removeLast()
+        navigationController.popViewController(animated: true)
         parentCoordinator?.childDidFinish(self)
         parentCoordinator?.start()
     }

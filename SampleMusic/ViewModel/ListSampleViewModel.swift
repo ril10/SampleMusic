@@ -55,10 +55,10 @@ class ListSampleViewModel: ListSamplesImp {
             } else {
                 let state = State()
                 state.state = user.uid
-                state.role = Role.user.rawValue.lowercased()
+                state.role = Collection.user.getCollection()
                 self.curUser = user.uid
                 self.saveUid(state)
-                let pushManager = PushNotificationManager(userUid: user.uid,role: Role.user.rawValue.lowercased())
+                let pushManager = PushNotificationManager(userUid: user.uid,role: Collection.user.getCollection())
                 pushManager.registerForPushNotifications()
             }
         }
@@ -66,7 +66,7 @@ class ListSampleViewModel: ListSamplesImp {
     
     func hideUserDetail() {
         if let user = Auth.auth().currentUser {
-            db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).addSnapshotListener({ [weak self] doc, error in
+            db?.collection(Collection.seller.getCollection()).document(user.uid).addSnapshotListener({ [weak self] doc, error in
                 if let e = error {
                     print(e.localizedDescription)
                 } else {
@@ -80,7 +80,7 @@ class ListSampleViewModel: ListSamplesImp {
     
     //MARK: - TableViewData
     func getSamplesData() {
-        db?.collection(Role.sample.rawValue.lowercased())
+        db?.collection(Collection.sample.getCollection())
             .addSnapshotListener(includeMetadataChanges: true, listener: { querySnapshot, error in
                 guard let snapshot = querySnapshot else {
                     print("Error retreiving snapshot: \(error!)")

@@ -132,13 +132,13 @@ class RegistrationViewDraw : UIView {
     
     var radioUser: UIButton = {
         let button = UIButton()
-        button.radioButton(title: Role.user.rawValue)
+        button.radioButton(title: Collection.user.getCollection())
         return button
     }()
     
     var radioSeller: UIButton = {
         let button = UIButton()
-        button.radioButton(title: Role.seller.rawValue)
+        button.radioButton(title: Collection.seller.getCollection())
         return button
     }()
     

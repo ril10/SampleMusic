@@ -100,7 +100,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         title = ""
         configureNavBar()
         if viewModel.samplesData.count == 0 {
-            self.alertLoading()
+//            self.alertLoading()
             self.viewModel.getSamplesData()
         }
         viewModel.hideUserDetail()

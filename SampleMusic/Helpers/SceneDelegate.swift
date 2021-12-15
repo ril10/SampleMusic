@@ -10,7 +10,6 @@ import Firebase
 import Dip
 import RealmSwift
 import FirebaseAuth
-import FirebaseFirestore
 import IQKeyboardManagerSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -31,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         state = realm.objects(State.self)
 
         let navController = try! appContainer.resolve() as UINavigationController
-        let db = try! appContainer.resolve() as Firestore
+        
         let coordinator = MainCoordinator(navigationController: navController,
                                           mainView: try! signContainer.resolve(),
                                           registrationView: try! signContainer.resolve(),
@@ -54,23 +53,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if dataState?.isEmpty == true {
                 coordinator.start()
             } else {
-                db.collection(dataState?.first?.role ?? "").whereField("uid", isEqualTo: dataState?.first?.state ?? "")
-                    .addSnapshotListener { (documents, error) in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    } else {
-                        documents?.documents.forEach({ queryDocument in
-                            if dataState?.first?.role == Role.seller.rawValue.lowercased() {
-                                let pushManager = PushNotificationManager(userUid: (dataState?.first?.state)!,role: dataState?.first?.role ?? "")
-                                pushManager.registerForPushNotifications()
-                                coordinator.mainTabController()
-                            } else {
-                                let pushManager = PushNotificationManager(userUid: (dataState?.first?.state)!,role: dataState?.first?.role ?? "")
-                                pushManager.registerForPushNotifications()
-                                coordinator.userList()
-                            }
-                        })
-                    }
+                if dataState?.first?.role == Collection.seller.getCollection() {
+                    let pushManager = PushNotificationManager(userUid: (dataState?.first?.state)!,role: dataState?.first?.role ?? "")
+                    pushManager.registerForPushNotifications()
+                    coordinator.mainTabController()
+                } else {
+                    let pushManager = PushNotificationManager(userUid: (dataState?.first?.state)!,role: dataState?.first?.role ?? "")
+                    pushManager.registerForPushNotifications()
+                    coordinator.userList()
                 }
             }
         } else {

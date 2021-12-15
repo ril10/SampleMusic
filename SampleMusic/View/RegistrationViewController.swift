@@ -26,7 +26,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
 //MARK: - ButtonAction
     @objc func userSelected(sender: UIButton!) {
         viewModel.isRole = true
-        viewModel.roleChoose(Role.user.rawValue.lowercased())
+        viewModel.roleChoose(Collection.user.getCollection())
         if drawView.radioUser.currentImage == UIImage(systemName: Icons.radioOff.rawValue) {
             drawView.radioUser.setImage(UIImage(systemName: Icons.radioOn.rawValue), for: .normal)
             drawView.radioUser.tintColor = UIColor.black
@@ -37,7 +37,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate {
     
     @objc func sellerSelected(sender: UIButton!) {
         viewModel.isRole = true
-        viewModel.roleChoose(Role.seller.rawValue.lowercased())
+        viewModel.roleChoose(Collection.seller.getCollection())
         if drawView.radioSeller.currentImage == UIImage(systemName: Icons.radioOff.rawValue) {
             drawView.radioSeller.setImage(UIImage(systemName: Icons.radioOn.rawValue), for: .normal)
             drawView.radioSeller.tintColor = UIColor.black

@@ -147,6 +147,7 @@ class MainCoordinator: Coordinator, MainCoordinatorImp {
     }
     
     func finish() {
+        self.navigationController.popViewController(animated: true)
         childDidFinish(self)
     }
     

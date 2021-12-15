@@ -38,7 +38,7 @@ class ChatDetailViewModel: ChatDetailimp {
     }
     
     func loadMessages() {
-        self.db?.collection(Role.message.rawValue).whereField("chatRoom", isEqualTo: self.chatRoom!)
+        self.db?.collection(Collection.message.getCollection()).whereField("chatRoom", isEqualTo: self.chatRoom!)
             .order(by: "sendDate")
             .addSnapshotListener({ querySnapshot, error in
                 if let error = error {
@@ -86,8 +86,8 @@ class ChatDetailViewModel: ChatDetailimp {
     
     func getFCMtoken() {
         let state = realm.objects(State.self).first
-        if state?.role == Role.user.rawValue.lowercased() {
-            db?.collection(Role.seller.rawValue.lowercased()).document((self.recieverUid)!)
+        if state?.role == Collection.user.getCollection() {
+            db?.collection(Collection.seller.getCollection()).document((self.recieverUid)!)
                 .getDocument { (document, error) in
                     if let error = error {
                         print(error.localizedDescription)
@@ -101,7 +101,7 @@ class ChatDetailViewModel: ChatDetailimp {
                     }
                 }
         } else {
-            db?.collection(Role.user.rawValue.lowercased()).document((self.ownerUid)!)
+            db?.collection(Collection.user.getCollection()).document((self.ownerUid)!)
                 .getDocument { (document, error) in
                     if let error = error {
                         print(error.localizedDescription)
@@ -119,8 +119,8 @@ class ChatDetailViewModel: ChatDetailimp {
     
     func getNameInNotification() {
         let state = realm.objects(State.self).first
-        if state?.role == Role.user.rawValue.lowercased() {
-            db?.collection(Role.user.rawValue.lowercased()).document(self.ownerUid!)
+        if state?.role == Collection.user.getCollection() {
+            db?.collection(Collection.user.getCollection()).document(self.ownerUid!)
                     .getDocument { (document, error) in
                         if let error = error {
                             print(error.localizedDescription)
@@ -134,7 +134,7 @@ class ChatDetailViewModel: ChatDetailimp {
                         }
                     }
         } else {
-            db?.collection(Role.seller.rawValue.lowercased()).document(self.recieverUid!)
+            db?.collection(Collection.seller.getCollection()).document(self.recieverUid!)
                     .getDocument { (document, error) in
                         if let error = error {
                             print(error.localizedDescription)
@@ -154,14 +154,14 @@ class ChatDetailViewModel: ChatDetailimp {
         let sender = PushNotificationSender()
         if let user = Auth.auth().currentUser {
             if text != "" {
-                self.db?.collection(Role.message.rawValue).document().setData([
+                self.db?.collection(Collection.message.getCollection()).document().setData([
                     "message":text as Any,
                     "sendDate": Date().timeIntervalSince1970,
                     "ownerUid": user.uid as Any,
                     "recieverUid": recieverUid as Any,
                     "chatRoom": self.chatRoom as Any
                 ])
-                self.db?.collection(Role.chatRoom.rawValue).document(self.chatRoom!).updateData([
+                self.db?.collection(Collection.chatRoom.getCollection()).document(self.chatRoom!).updateData([
                     "lastMessage":text as Any
                 ])
                 sender.sendPushNotification(to: fcmToken ?? "", title: firstName ?? "", body: text)

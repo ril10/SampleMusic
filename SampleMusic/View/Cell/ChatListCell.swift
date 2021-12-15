@@ -8,31 +8,34 @@
 import UIKit
 import SDWebImage
 import Dip
-import FirebaseStorage
+import FirebaseFirestore
 
 class ChatListCell: UITableViewCell {
 
-    let st = try! appContainer.resolve() as Storage
+    let db = try! appContainer.resolve() as Firestore
     
     var chatSell : CellChatModel? {
         didSet {
             lastMessage.text = chatSell?.message
-            getImage(with: chatSell?.ownerUid ?? "")
+            cellImage(with: chatSell?.ownerUid ?? "")
         }
     }
     
-    private func getImage(with uid: String) {
-         st.reference(withPath: "userAvatars/\(uid).jpg")
-         .downloadURL(completion: { url, error in
-             if let error = error {
-                 print(error.localizedDescription)
-             } else {
-                 DispatchQueue.main.async {
-                     self.imageUser.sd_setImage(with: url , placeholderImage: UIImage(systemName: Icons.photo.rawValue))
-                 }
-             }
-         })
-     }
+    private func cellImage(with uid: String) {
+        db.collection(Collection.user.getCollection()).document(uid)
+            .addSnapshotListener { (querySnapshot, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    if let snapshot = querySnapshot, snapshot.exists {
+                        let imageData = DetailModel(data: snapshot.data()!)
+                            DispatchQueue.main.async {
+                                self.imageUser.sd_setImage(with: URL(string: imageData.imageUrl), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+                            }
+                    }
+                }
+            }
+    }
     
     lazy var stackView : UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [imageUser,lastMessage])

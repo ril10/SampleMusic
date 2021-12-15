@@ -7,45 +7,61 @@
 
 import UIKit
 import SDWebImage
-import FirebaseStorage
+import FirebaseFirestore
 import Dip
+import RealmSwift
 
 class ChatDetailCell: UITableViewCell {
     
-    let st = try! appContainer.resolve() as Storage
+    let db = try! appContainer.resolve() as Firestore
+    let state = try! Realm()
     
     var messageCell : Message? {
         didSet {
             message.text = messageCell?.body
-            getLeftImage(with: messageCell?.recieverUid ?? "")
-            getRightImage(with: messageCell?.senderUid ?? "")
+            cellImage(with: messageCell?.recieverUid ?? "", with: messageCell?.senderUid ?? "")
+            cellImage(with: messageCell?.senderUid ?? "", with: messageCell?.recieverUid ?? "")
         }
     }
 
-   private func getLeftImage(with uid: String) {
-        st.reference(withPath: "userAvatars/\(uid).jpg")
-        .downloadURL(completion: { url, error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
+    private func cellImage(with leftImage: String, with rightImage: String) {
+        let type = state.objects(State.self).first
+        switch type?.role {
+        case Collection.seller.getCollection():
+            getImageUrl(type: Collection.seller.getCollection(), by: rightImage) { img in
                 DispatchQueue.main.async {
-                    self.leftImage.sd_setImage(with: url , placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+                    self.rightImage.sd_setImage(with: URL(string: img), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
                 }
             }
-        })
+            getImageUrl(type: Collection.user.getCollection(), by: leftImage) { img in
+                DispatchQueue.main.async {
+                    self.leftImage.sd_setImage(with: URL(string: img), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+                }
+            }
+        case Collection.user.getCollection():
+            getImageUrl(type: Collection.user.getCollection(), by: rightImage) { img in
+                DispatchQueue.main.async {
+                    self.rightImage.sd_setImage(with: URL(string: img), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+                }
+            }
+            getImageUrl(type: Collection.seller.getCollection(), by: leftImage) { img in
+                DispatchQueue.main.async {
+                    self.leftImage.sd_setImage(with: URL(string: img), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+                }
+            }
+        default:
+            break
+        }
     }
     
-    private func getRightImage(with uid: String) {
-        st.reference(withPath: "userAvatars/\(uid).jpg")
-        .downloadURL(completion: { url, error in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                DispatchQueue.main.async {
-                    self.rightImage.sd_setImage(with: url, placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+    private func getImageUrl(type role: String, by uid: String, completion: @escaping (String) -> Void?) {
+        self.db.collection(role).document(uid)
+            .addSnapshotListener { (documentSnapshot, _) in
+                if let document = documentSnapshot, document.exists {
+                    let imageUrl = DetailModel(data: document.data()!)
+                    completion(imageUrl.imageUrl)
                 }
             }
-        })
     }
     
     var leftImage : UIImageView = {

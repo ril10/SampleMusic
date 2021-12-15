@@ -33,7 +33,7 @@ class ChatPageViewModel: ChatPageImp {
 
     
     func loadMessages() {
-        self.db.collection(Role.chatRoom.rawValue).whereField("recieverUid", isEqualTo: Auth.auth().currentUser!.uid)
+        self.db.collection(Collection.chatRoom.getCollection()).whereField("recieverUid", isEqualTo: Auth.auth().currentUser!.uid)
             .addSnapshotListener(includeMetadataChanges: true) { querySnapshot, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -49,7 +49,7 @@ class ChatPageViewModel: ChatPageImp {
     }
     
     func loadMessageIfUser() {
-        self.db.collection(Role.chatRoom.rawValue).whereField("ownerUid", isEqualTo: Auth.auth().currentUser!.uid)
+        self.db.collection(Collection.chatRoom.getCollection()).whereField("ownerUid", isEqualTo: Auth.auth().currentUser!.uid)
             .addSnapshotListener(includeMetadataChanges: true) { querySnapshot, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -66,7 +66,7 @@ class ChatPageViewModel: ChatPageImp {
     
     func ifUserSign() {
         if let user = Auth.auth().currentUser {
-            self.db.collection(Role.user.rawValue.lowercased()).document(user.uid).addSnapshotListener { [weak self] doc, error in
+            self.db.collection(Collection.user.getCollection()).document(user.uid).addSnapshotListener { [weak self] doc, error in
                 if let e = error {
                     print(e.localizedDescription)
                 } else {
@@ -80,7 +80,7 @@ class ChatPageViewModel: ChatPageImp {
     
     func ifSellerSign() {
         if let user = Auth.auth().currentUser {
-            self.db.collection(Role.seller.rawValue.lowercased()).document(user.uid).addSnapshotListener { [weak self] doc, error in
+            self.db.collection(Collection.seller.getCollection()).document(user.uid).addSnapshotListener { [weak self] doc, error in
                     if let e = error {
                         print(e.localizedDescription)
                     } else {

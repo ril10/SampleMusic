@@ -41,7 +41,7 @@ class MainScreenViewModel: MainControllerImp {
     
     func userSign() {
             if let user = Auth.auth().currentUser {
-                self.db?.collection(Role.user.rawValue.lowercased()).document(user.uid).addSnapshotListener { [weak self] doc, error in
+                self.db?.collection(Collection.user.getCollection()).document(user.uid).addSnapshotListener { [weak self] doc, error in
                     if let e = error {
                         self?.error?(e)
                     } else {
@@ -55,7 +55,7 @@ class MainScreenViewModel: MainControllerImp {
     }
     func sellerSign() {
         if let user = Auth.auth().currentUser {
-                self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).addSnapshotListener { [weak self] doc, error in
+                self.db?.collection(Collection.seller.getCollection()).document(user.uid).addSnapshotListener { [weak self] doc, error in
                     if let e = error {
                         self?.error?(e)
                     } else {

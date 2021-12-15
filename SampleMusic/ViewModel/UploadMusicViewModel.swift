@@ -30,7 +30,7 @@ class UploadMusicViewModel: UploadMusicImp {
     }
     
     func createSampleCollection() {
-        self.db?.collection(Role.sample.rawValue.lowercased()).document().setData([
+        self.db?.collection(Collection.sample.getCollection()).document().setData([
             "ownerUid":Auth.auth().currentUser?.uid as Any,
             "sampleImageUrl":self.imageSampleUrl as Any,
             "sampleName":self.sampleName as Any,
@@ -42,7 +42,7 @@ class UploadMusicViewModel: UploadMusicImp {
     
     
     func uploadSampleImage(image: Data,text: String) {
-        let refrence = db.collection(Role.sample.rawValue.lowercased())
+        let refrence = db.collection(Collection.sample.getCollection())
         let uploadTask = st?.reference().child("imageSamples/\(text).jpg").putData(image, metadata: nil) { _, error in
             guard error == nil else {
                 print("Failed to upload")
@@ -88,7 +88,7 @@ class UploadMusicViewModel: UploadMusicImp {
     }
     
     func addSampleName(text: String) {
-        let refrence = db.collection(Role.sample.rawValue.lowercased())
+        let refrence = db.collection(Collection.sample.getCollection())
         refrence.whereField("ownerUid", isEqualTo: Auth.auth().currentUser!.uid)
                 .getDocuments { query, error in
                     if let error = error {
@@ -100,7 +100,7 @@ class UploadMusicViewModel: UploadMusicImp {
     }
     
     func uploadSample(sample: URL,text: String) {
-        let refrence = db.collection(Role.sample.rawValue.lowercased())
+        let refrence = db.collection(Collection.sample.getCollection())
         let uploadTask = st?.reference().child("musicSamples/\(text).m4a").putFile(from: sample)
         
         uploadTask?.observe(.success) { snapshot in

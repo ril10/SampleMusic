@@ -23,12 +23,27 @@ enum Gender : String, CaseIterable {
     case chooseGender = "Choose youre gender*"
 }
 
-enum Role : String, CaseIterable {
-    case user = "User"
-    case seller = "Seller"
-    case sample = "Sample"
-    case message = "message"
-    case chatRoom = "chatRoom"
+enum Collection : String, CaseIterable {
+    case user
+    case seller
+    case sample
+    case message
+    case chatRoom
+    
+    func getCollection() -> String {
+        switch self {
+        case .seller:
+            return "seller"
+        case .user:
+            return "user"
+        case .message:
+            return "message"
+        case .sample:
+            return "sample"
+        case .chatRoom:
+            return "chatRoom"
+        }
+    }
 }
 
 enum Icons : String, CaseIterable {

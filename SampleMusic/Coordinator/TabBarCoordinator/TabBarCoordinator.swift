@@ -30,7 +30,7 @@ class TabBarCoordinator : Coordinator {
     
     func finish() {
         navigationController.viewControllers.removeLast()
-//        navigationController.popViewController(animated: true)
+        navigationController.popViewController(animated: true)
         parentCoordinator?.childDidFinish(self)
         parentCoordinator?.start()
     }

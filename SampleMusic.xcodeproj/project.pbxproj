@@ -97,7 +97,6 @@
 		C38BC32E2755105C0027E33C /* ChatDetailImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BC32D2755105C0027E33C /* ChatDetailImp.swift */; };
 		C38BC330275518DA0027E33C /* MessageDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BC32F275518DA0027E33C /* MessageDataModel.swift */; };
 		C397694227566B53006578B5 /* ChatPageImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397694127566B53006578B5 /* ChatPageImp.swift */; };
-		C3A6B5DB275E354D00CF7FA2 /* SortedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A6B5DA275E354D00CF7FA2 /* SortedList.swift */; };
 		C3B12B82A5DA3D1EE4F81576 /* Pods_SampleMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A42DF66B3173C4A7A37D45E /* Pods_SampleMusic.framework */; };
 /* End PBXBuildFile section */
 
@@ -223,7 +222,6 @@
 		C38BC32D2755105C0027E33C /* ChatDetailImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailImp.swift; sourceTree = "<group>"; };
 		C38BC32F275518DA0027E33C /* MessageDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDataModel.swift; sourceTree = "<group>"; };
 		C397694127566B53006578B5 /* ChatPageImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPageImp.swift; sourceTree = "<group>"; };
-		C3A6B5DA275E354D00CF7FA2 /* SortedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedList.swift; sourceTree = "<group>"; };
 		E4DC9775D6CA46AC94652080 /* Pods-SampleMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMusic.release.xcconfig"; path = "Target Support Files/Pods-SampleMusic/Pods-SampleMusic.release.xcconfig"; sourceTree = "<group>"; };
 		F308F32D44207B62349E262C /* Pods_SampleMusic_SampleMusicUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleMusic_SampleMusicUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -315,6 +313,14 @@
 			path = Notification;
 			sourceTree = "<group>";
 		};
+		C30FC4D02769E08D00A46C4C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC4CF2768CA0400A46C4C /* Notification */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		C33CCA7E272C246B00C7969E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,6 +376,7 @@
 		C38156442726A0BF008E83AC /* SampleMusic */ = {
 			isa = PBXGroup;
 			children = (
+				C30FC4D02769E08D00A46C4C /* Managers */,
 				C379FEC727393F91004ECCB9 /* Protocols */,
 				C381568B27281B33008E83AC /* Dependencies */,
 				C38156822726F80F008E83AC /* Extension */,
@@ -407,7 +414,6 @@
 		C38156772726A86D008E83AC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				C30FC4CF2768CA0400A46C4C /* Notification */,
 				C38156452726A0BF008E83AC /* AppDelegate.swift */,
 				C38156472726A0BF008E83AC /* SceneDelegate.swift */,
 				C3810573274B94470071BC79 /* MusicPlayer.swift */,
@@ -424,7 +430,6 @@
 				C397693F275613EB006578B5 /* SampleModel */,
 				C3767DF7274FB21300F4FF7D /* State.swift */,
 				C33CCA7A272BE47A00C7969E /* DetailModel.swift */,
-				C3A6B5DA275E354D00CF7FA2 /* SortedList.swift */,
 				C30FC4CB2768A9CC00A46C4C /* NotificationModel.swift */,
 				C30FC4CD2768BA1700A46C4C /* NotificationDataModel.swift */,
 			);
@@ -815,7 +820,6 @@
 				C381568F272822C6008E83AC /* ListSamplesViewController.swift in Sources */,
 				C38105702746B17E0071BC79 /* ChatPageViewModel.swift in Sources */,
 				C381568D27281B3F008E83AC /* Configure.swift in Sources */,
-				C3A6B5DB275E354D00CF7FA2 /* SortedList.swift in Sources */,
 				C366BE59272AEB5B00B3E182 /* EnumStyle.swift in Sources */,
 				C33CCA7D272C246600C7969E /* CustomTableViewCell.swift in Sources */,
 				C30FC4C52760A0FD00A46C4C /* LocalizeKeys.swift in Sources */,

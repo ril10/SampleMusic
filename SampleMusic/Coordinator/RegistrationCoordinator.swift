@@ -27,8 +27,9 @@ class RegistrationCoordinator : Coordinator {
     }
 
     func finish() {
-        navigationController.popViewController(animated: true)
+//        navigationController.popViewController(animated: true)
         parentCoordinator?.childDidFinish(self)
+        parentCoordinator?.mainScreenView()
     }
     
 }

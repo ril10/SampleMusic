@@ -52,12 +52,12 @@ class SellerDetailViewModel: SellerImp {
             } else {
                 let state = State()
                 state.state = user.uid
-                state.role = Role.seller.rawValue.lowercased()
+                state.role = Collection.seller.getCollection()
                 self.saveUid(state)
-                let pushManager = PushNotificationManager(userUid: user.uid, role: Role.seller.rawValue.lowercased())
+                let pushManager = PushNotificationManager(userUid: user.uid, role: Collection.seller.getCollection())
                 pushManager.registerForPushNotifications()
             }
-            self.db?.collection(Role.seller.rawValue.lowercased()).document(user.uid).addSnapshotListener( { (document, error) in
+            self.db?.collection(Collection.seller.getCollection()).document(user.uid).addSnapshotListener( { (document, error) in
                 if let data = document?.data() {
                     let sellerData = DetailModel(data: data)
                     DispatchQueue.main.async {
@@ -70,7 +70,7 @@ class SellerDetailViewModel: SellerImp {
     }
     
     func getDataFromUser(ownerUid: String) {
-        self.db?.collection(Role.seller.rawValue.lowercased()).document(ownerUid).addSnapshotListener( { (document, error) in
+        self.db?.collection(Collection.seller.getCollection()).document(ownerUid).addSnapshotListener( { (document, error) in
             if let data = document?.data() {
                 let sellerData = DetailModel(data: data)
                 DispatchQueue.main.async {
@@ -82,7 +82,7 @@ class SellerDetailViewModel: SellerImp {
     }
     
     func getDataSamplesFromUser(ownerUid: String) {
-        let refrence = db?.collection(Role.sample.rawValue.lowercased())
+        let refrence = db?.collection(Collection.sample.getCollection())
         refrence?.whereField("ownerUid", isEqualTo: ownerUid)
             .order(by: "index")
             .addSnapshotListener(includeMetadataChanges: true, listener: { documentSnapshot, error in
@@ -104,7 +104,7 @@ class SellerDetailViewModel: SellerImp {
     }
     
     func checkChatRoom(ownerUid: String, recieverUid: String, completion: @escaping (Bool) -> Void? ) {
-        db?.collection(Role.chatRoom.rawValue).whereField("ownerUid", isEqualTo: ownerUid)
+        db?.collection(Collection.chatRoom.getCollection()).whereField("ownerUid", isEqualTo: ownerUid)
             .whereField("recieverUid", isEqualTo: recieverUid)
             .getDocuments { (documents, error) in
                 if let error = error {
@@ -124,7 +124,7 @@ class SellerDetailViewModel: SellerImp {
     }
     
     func createChatRoom(ownerUid: String, recieverUid: String) {
-                let ref = self.db?.collection(Role.chatRoom.rawValue).document()
+                let ref = self.db?.collection(Collection.chatRoom.getCollection()).document()
                 let id = ref?.documentID
                 ref?.setData([
                     "chatRoom": id as Any,
@@ -136,7 +136,7 @@ class SellerDetailViewModel: SellerImp {
     
     func getSamplesData() {
         if let user = Auth.auth().currentUser {
-            let refrence = db?.collection(Role.sample.rawValue.lowercased())
+            let refrence = db?.collection(Collection.sample.getCollection())
             refrence?.whereField("ownerUid", isEqualTo: user.uid)
                 .order(by: "index")
                 .addSnapshotListener(includeMetadataChanges: true, listener: { documentSnapshot, error in
@@ -201,7 +201,7 @@ class SellerDetailViewModel: SellerImp {
     }
     
     func deleteSample(by name: String) {
-        self.db?.collection(Role.sample.rawValue.lowercased()).whereField("sampleName", isEqualTo: name)
+        self.db?.collection(Collection.sample.getCollection()).whereField("sampleName", isEqualTo: name)
             .getDocuments(completion: { querySnapshot, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -214,7 +214,7 @@ class SellerDetailViewModel: SellerImp {
     }
     
     private func deleteFromFirestore(_ documentId: String,name: String) {
-        self.db?.collection(Role.sample.rawValue.lowercased()).document(documentId).delete(completion: { error in
+        self.db?.collection(Collection.sample.getCollection()).document(documentId).delete(completion: { error in
             if let error = error {
                 print(error.localizedDescription)
             } else {
@@ -246,7 +246,7 @@ class SellerDetailViewModel: SellerImp {
     }
     
     func getSampleIndex(start index: Int, destination destIndex: Int) {
-        self.db?.collection(Role.sample.rawValue.lowercased())
+        self.db?.collection(Collection.sample.getCollection())
             .whereField("ownerUid", isEqualTo: Auth.auth().currentUser!.uid as Any)
             .whereField("index", isEqualTo: index)
             .getDocuments() { (querySnapshot, error) in
@@ -269,7 +269,7 @@ class SellerDetailViewModel: SellerImp {
     }
     
     private func changeSampleIndex(destinationIndex: Int,documentId: String) {
-        self.db?.collection(Role.sample.rawValue.lowercased()).document(documentId)
+        self.db?.collection(Collection.sample.getCollection()).document(documentId)
             .updateData([
                 "index": destinationIndex as Any
             ])

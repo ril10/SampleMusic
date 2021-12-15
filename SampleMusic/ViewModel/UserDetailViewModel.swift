@@ -30,7 +30,7 @@ class UserDetailViewModel: UserDetailViewModelImp  {
     
     func userData() {
         if let user = Auth.auth().currentUser {
-            self.db?.collection(Role.user.rawValue.lowercased()).document(user.uid).getDocument(completion: { (document, error) in
+            self.db?.collection(Collection.user.getCollection()).document(user.uid).getDocument(completion: { (document, error) in
                 if let data = document?.data() {
                     let sellerData = DetailModel(data: data)
                     self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender,sellerData.imageUrl)
