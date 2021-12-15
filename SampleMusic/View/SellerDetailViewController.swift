@@ -145,6 +145,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         view.backgroundColor = UIColor(named: Style.backgroundColor.rawValue)
         drawView.viewCompare(view: view)
         drawView.sortButton.addTarget(self, action: #selector(sortSampleTable(sender:)), for: .touchUpInside)
+        drawView.segmentControl.selectedSegmentIndex = 0
     }
     
     override func viewDidLoad() {
