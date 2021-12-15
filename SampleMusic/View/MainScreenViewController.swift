@@ -94,19 +94,9 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        drawView.showPassword.isHidden = false
-        drawView.showPassword.center.x -= view.bounds.width
-        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: {
-            self.drawView.showPassword.center.x += self.view.bounds.width
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
-    
     //MARK: - View
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        drawView.showPassword.isHidden = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 

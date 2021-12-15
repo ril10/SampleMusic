@@ -23,6 +23,7 @@
 		C30FC4CA27678C4C00A46C4C /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4C927678C4C00A46C4C /* PushNotificationSender.swift */; };
 		C30FC4CC2768A9CD00A46C4C /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4CB2768A9CC00A46C4C /* NotificationModel.swift */; };
 		C30FC4CE2768BA1700A46C4C /* NotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4CD2768BA1700A46C4C /* NotificationDataModel.swift */; };
+		C30FC4D32769EB7200A46C4C /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4D22769EB7200A46C4C /* FirebaseManager.swift */; };
 		C310E2F627439D0000C47625 /* UploadMusicImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310E2F527439D0000C47625 /* UploadMusicImp.swift */; };
 		C310E2F82743DA7600C47625 /* DataCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310E2F72743DA7500C47625 /* DataCellModel.swift */; };
 		C31601192751009000D35E70 /* ChatDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31601182751009000D35E70 /* ChatDetailCoordinator.swift */; };
@@ -142,6 +143,7 @@
 		C30FC4C927678C4C00A46C4C /* PushNotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
 		C30FC4CB2768A9CC00A46C4C /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		C30FC4CD2768BA1700A46C4C /* NotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataModel.swift; sourceTree = "<group>"; };
+		C30FC4D22769EB7200A46C4C /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		C310E2F527439D0000C47625 /* UploadMusicImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMusicImp.swift; sourceTree = "<group>"; };
 		C310E2F72743DA7500C47625 /* DataCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCellModel.swift; sourceTree = "<group>"; };
 		C31601182751009000D35E70 /* ChatDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailCoordinator.swift; sourceTree = "<group>"; };
@@ -316,9 +318,18 @@
 		C30FC4D02769E08D00A46C4C /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				C30FC4D12769EB5D00A46C4C /* Firebase */,
 				C30FC4CF2768CA0400A46C4C /* Notification */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		C30FC4D12769EB5D00A46C4C /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC4D22769EB7200A46C4C /* FirebaseManager.swift */,
+			);
+			path = Firebase;
 			sourceTree = "<group>";
 		};
 		C33CCA7E272C246B00C7969E /* Cell */ = {
@@ -817,6 +828,7 @@
 				C366BE5727298EBE00B3E182 /* AddingDataAboutUserViewModel.swift in Sources */,
 				C366BE532729726200B3E182 /* SellerDetailViewController.swift in Sources */,
 				C316011B2751014300D35E70 /* ChatDetailDrawView.swift in Sources */,
+				C30FC4D32769EB7200A46C4C /* FirebaseManager.swift in Sources */,
 				C381568F272822C6008E83AC /* ListSamplesViewController.swift in Sources */,
 				C38105702746B17E0071BC79 /* ChatPageViewModel.swift in Sources */,
 				C381568D27281B3F008E83AC /* Configure.swift in Sources */,
