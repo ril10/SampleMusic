@@ -60,6 +60,8 @@
 "SAMPLE_NAME" = "2.Type sample name:";
 "TYPE_NAME" = "Type sample name";
 "CHOOSE_SAMPLE" = "3.Choose sample to upload";
+"TYPE_SAMPLE" = "4.Select distribution of your sample";
+"COST_VALUE" = "Type cost sample";
 //MARK: - Record Page
 "RECORD_NAME" = "1.Type sample name:";
 "RECORD_SAMPLE" = "2.Create your sample";

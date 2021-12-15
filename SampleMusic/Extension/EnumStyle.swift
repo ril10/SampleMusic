@@ -29,6 +29,8 @@ enum Collection : String, CaseIterable {
     case sample
     case message
     case chatRoom
+    case free
+    case paid
     
     func getCollection() -> String {
         switch self {
@@ -42,6 +44,10 @@ enum Collection : String, CaseIterable {
             return "sample"
         case .chatRoom:
             return "chatRoom"
+        case .free:
+            return "free"
+        case .paid:
+            return "paid"
         }
     }
 }

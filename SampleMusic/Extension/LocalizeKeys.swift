@@ -74,6 +74,8 @@ enum UploadKeys : String, CaseIterable {
     case sampleName = "SAMPLE_NAME"
     case typeName = "TYPE_NAME"
     case chooseSample = "CHOOSE_SAMPLE"
+    case typeSample = "TYPE_SAMPLE"
+    case costValue = "COST_VALUE"
 }
 
 enum RecordKeys : String, CaseIterable {

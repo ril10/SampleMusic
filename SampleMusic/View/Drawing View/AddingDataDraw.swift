@@ -134,19 +134,19 @@ class AddingDataDraw : UIView {
     
     var radioMale: UIButton = {
         let button = UIButton()
-        button.radioButton(title: Gender.male.rawValue)
+        button.radioButton(title: NSLocalizedString(AddDataKeys.male.rawValue, comment: ""))
         return button
     }()
     
     var radioFemale: UIButton = {
         let button = UIButton()
-        button.radioButton(title: Gender.female.rawValue)
+        button.radioButton(title: NSLocalizedString(AddDataKeys.female.rawValue, comment: ""))
         return button
     }()
     
     var radioUndefined: UIButton = {
         let button = UIButton()
-        button.radioButton(title: Gender.undf.rawValue)
+        button.radioButton(title: NSLocalizedString(AddDataKeys.undef.rawValue, comment: ""))
         return button
     }()
  
@@ -191,8 +191,6 @@ class AddingDataDraw : UIView {
             imageView.topAnchor.constraint(equalTo: topView.topAnchor),
             imageView.bottomAnchor.constraint(equalTo: buttonAddImage.topAnchor),
             imageView.widthAnchor.constraint(equalToConstant: imageView.frame.size.width),
-            
-            
         ])
         
         NSLayoutConstraint.activate([

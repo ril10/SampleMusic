@@ -42,6 +42,16 @@ extension UITextField {
         self.clearButtonMode = UITextField.ViewMode.whileEditing
         self.translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    func sampleCostTextField(placeholder: String) {
+        self.placeholder = placeholder
+        self.borderStyle = UITextField.BorderStyle.none
+        self.autocorrectionType = UITextAutocorrectionType.no
+        self.keyboardType = UIKeyboardType.decimalPad
+        self.returnKeyType = UIReturnKeyType.done
+        self.clearButtonMode = UITextField.ViewMode.whileEditing
+        self.translatesAutoresizingMaskIntoConstraints = false
+    }
 }
 
 extension UIButton {

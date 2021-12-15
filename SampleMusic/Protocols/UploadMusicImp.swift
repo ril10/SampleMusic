@@ -11,7 +11,6 @@ import FirebaseStorage
 import FirebaseFirestore
 
 protocol UploadMusicImp {
-    
     var db: Firestore! { get set }
     var st: Storage! { get set }
     var reloadView : (() -> Void)? { get set }
@@ -20,4 +19,7 @@ protocol UploadMusicImp {
     var loading : ((Bool) -> Void)? { get set }
     func addSampleName(text: String)
     func createSampleCollection()
+    func addSampleCost(text: String)
+    func typeSet(_ type: String)
+    var isType : Bool? { get set }
 }

@@ -23,6 +23,9 @@ class UploadMusicViewModel: UploadMusicImp {
     var sampleName : String?
     var sampleUrl : String?
     var sampleDuration : Int?
+    var type : String?
+    var cost : Int?
+    var isType : Bool?
     
     init(db: Firestore,st: Storage) {
         self.db = db
@@ -37,6 +40,8 @@ class UploadMusicViewModel: UploadMusicImp {
             "sampleUrl":self.sampleUrl as Any,
             "duration":self.sampleDuration as Any,
             "index":0 as Any,
+            "type": self.type as Any,
+            "cost": cost ?? 0 as Any,
         ])
     }
     
@@ -97,6 +102,22 @@ class UploadMusicViewModel: UploadMusicImp {
                         self.sampleName = text
                     }
                 }
+    }
+    
+    func addSampleCost(text: String) {
+        let refrence = db.collection(Collection.sample.getCollection())
+        refrence.whereField("ownerUid", isEqualTo: Auth.auth().currentUser!.uid)
+                .getDocuments { query, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        self.cost = Int(text) ?? 0
+                    }
+                }
+    }
+    
+    func typeSet(_ type: String) {
+        self.type = type
     }
     
     func uploadSample(sample: URL,text: String) {

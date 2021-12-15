@@ -29,6 +29,15 @@ class UploadMusicDraw : UIView {
         return stackView
     }()
     
+    lazy var radioStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [radioPaid,radioFree])
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.axis = .horizontal
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     //MARK: - Views
     var topView: UIView = {
         let view = UIView()
@@ -135,6 +144,35 @@ class UploadMusicDraw : UIView {
         var picker = UIDocumentPickerViewController(documentTypes: ["com.apple.iwork.pages.pages", "com.apple.iwork.numbers.numbers", "com.apple.iwork.keynote.key","public.image", "com.apple.application", "public.item","public.data", "public.content", "public.audiovisual-content", "public.movie", "public.audiovisual-content", "public.video", "public.audio", "public.text", "public.data", "public.zip-archive", "com.pkware.zip-archive", "public.composite-content", "public.text"], in: .import)
         return picker
     }()
+    //MARK: - Sample Type
+    var typeSample: UILabel = {
+        let label = UILabel()
+        label.text = NSLocalizedString(UploadKeys.typeSample.rawValue, comment: "")
+        label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
+        label.tintColor = .gray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    var radioPaid: UIButton = {
+        let button = UIButton()
+        button.radioButton(title: NSLocalizedString(SamplesKeys.paid.rawValue, comment: ""))
+        return button
+    }()
+    
+    var radioFree: UIButton = {
+        let button = UIButton()
+        button.radioButton(title: NSLocalizedString(SamplesKeys.free.rawValue, comment: ""))
+        return button
+    }()
+    
+    var costTextField: UITextField = {
+        let textField = UITextField()
+        textField.sampleCostTextField(placeholder: NSLocalizedString(UploadKeys.costValue.rawValue, comment: ""))
+        textField.textAlignment = .left
+        textField.underLine()
+        return textField
+    }()
     
     //MARK: - BottomView
     
@@ -154,6 +192,9 @@ class UploadMusicDraw : UIView {
         bottomView.addSubview(buttonAddInformation)
         middleView.addSubview(uploadLabel)
         middleView.addSubview(buttonAddMusic)
+        middleView.addSubview(typeSample)
+        middleView.addSubview(radioStackView)
+        middleView.addSubview(costTextField)
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -187,8 +228,19 @@ class UploadMusicDraw : UIView {
             
             buttonAddMusic.topAnchor.constraint(equalTo: uploadLabel.bottomAnchor),
             buttonAddMusic.centerXAnchor.constraint(equalTo: middleView.centerXAnchor),
-            buttonAddMusic.bottomAnchor.constraint(equalTo: middleView.bottomAnchor),
 
+            typeSample.topAnchor.constraint(equalTo: buttonAddMusic.bottomAnchor),
+            typeSample.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 20),
+            
+            radioStackView.topAnchor.constraint(equalTo: typeSample.bottomAnchor,constant: 10),
+            radioStackView.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 20),
+            radioStackView.trailingAnchor.constraint(equalTo: middleView.trailingAnchor,constant: -20),
+            
+            
+            costTextField.topAnchor.constraint(equalTo: radioStackView.bottomAnchor,constant: 10),
+            costTextField.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 20),
+            costTextField.trailingAnchor.constraint(equalTo: middleView.trailingAnchor,constant: -15),
+            costTextField.bottomAnchor.constraint(equalTo: middleView.bottomAnchor),
             
             buttonAddInformation.topAnchor.constraint(equalTo: bottomView.topAnchor,constant: 50),
             buttonAddInformation.heightAnchor.constraint(equalToConstant: 50),

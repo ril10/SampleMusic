@@ -59,14 +59,37 @@ class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePi
     }
     
     @objc func addInformation(sender: UIButton!) {
-        if drawView.sampleTextField.text!.isEmpty || drawView.imageView.image == nil {
+        if drawView.sampleTextField.text!.isEmpty || drawView.imageView.image == nil || viewModel?.isType == false {
             errorWithFields()
         } else {
-//            viewModel?.createSampleCollection()
             loadAlertView()
             viewModel!.uploadSampleImage(image: (drawView.imageView.image?.jpegData(compressionQuality: 0.25)!)!, text: drawView.sampleTextField.text!)
             viewModel!.addSampleName(text: drawView.sampleTextField.text!)
-            
+            viewModel!.addSampleCost(text: drawView.costTextField.text!)
+        }
+    }
+    
+    @objc func selectFree(sender: UIButton!) {
+        viewModel?.isType = true
+        viewModel?.typeSet(Collection.free.getCollection())
+        if drawView.radioFree.currentImage == UIImage(systemName: Icons.radioOff.rawValue) {
+            drawView.radioFree.setImage(UIImage(systemName: Icons.radioOn.rawValue), for: .normal)
+            drawView.radioFree.tintColor = UIColor.black
+            drawView.costTextField.isHidden = true
+            drawView.radioPaid.setImage(UIImage(systemName: Icons.radioOff.rawValue), for: .normal)
+            drawView.radioPaid.tintColor = UIColor.white
+        }
+    }
+    
+    @objc func selectPaid(sender: UIButton!) {
+        viewModel?.isType = true
+        viewModel?.typeSet(Collection.paid.getCollection())
+        if drawView.radioPaid.currentImage == UIImage(systemName: Icons.radioOff.rawValue) {
+            drawView.radioPaid.setImage(UIImage(systemName: Icons.radioOn.rawValue), for: .normal)
+            drawView.radioPaid.tintColor = UIColor.black
+            drawView.costTextField.isHidden = false
+            drawView.radioFree.setImage(UIImage(systemName: Icons.radioOff.rawValue), for: .normal)
+            drawView.radioFree.tintColor = UIColor.white
         }
     }
     //MARK: - Alert
@@ -112,6 +135,11 @@ class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePi
         return true
     }
     //MARK: - View
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        drawView.costTextField.isHidden = true
+    }
+    
     override func loadView() {
         super.loadView()
         view = UIView()
@@ -129,6 +157,8 @@ class UploadMusicViewController : UIViewController,UITextFieldDelegate,UIImagePi
         drawView.buttonAddImage.addTarget(self, action: #selector(addImage(sender:)), for: .touchUpInside)
         drawView.buttonAddMusic.addTarget(self, action: #selector(addMusic(sender:)), for: .touchUpInside)
         drawView.buttonAddInformation.addTarget(self, action: #selector(addInformation(sender:)), for: .touchUpInside)
+        drawView.radioFree.addTarget(self, action: #selector(selectFree(sender:)), for: .touchUpInside)
+        drawView.radioPaid.addTarget(self, action: #selector(selectPaid(sender:)), for: .touchUpInside)
         self.hideKeyboardWhenTappedAround()
     }
     
