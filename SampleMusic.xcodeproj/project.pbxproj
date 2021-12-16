@@ -295,25 +295,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C30150A52730382D00C85EF3 /* Drawing View */ = {
-			isa = PBXGroup;
-			children = (
-				C30150A627303C2400C85EF3 /* MainScreenDraw.swift */,
-				C30150A827312C4600C85EF3 /* RegistrationViewDraw.swift */,
-				C30150AA27312E3B00C85EF3 /* AddingDataDraw.swift */,
-				C30150AC27328E6300C85EF3 /* SellerDetailDraw.swift */,
-				C30150AE2732906600C85EF3 /* ListSamplesDraw.swift */,
-				C3255881273EA21B00248FD8 /* StartViewDraw.swift */,
-				C325588527427EB400248FD8 /* UploadMusicDraw.swift */,
-				C38105612746B00A0071BC79 /* UserDetailDrawView.swift */,
-				C38105672746B0D00071BC79 /* RecordPageDrawView.swift */,
-				C381056D2746B1530071BC79 /* ChatPageDrawView.swift */,
-				C316011A2751014300D35E70 /* ChatDetailDrawView.swift */,
-				C30FC4D6276B56E200A46C4C /* StoreCurrencyDraw.swift */,
-			);
-			path = "Drawing View";
-			sourceTree = "<group>";
-		};
 		C30150BE2733E0C100C85EF3 /* TabBarCoordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +328,430 @@
 				C30FC4D22769EB7200A46C4C /* FirebaseManager.swift */,
 			);
 			path = Firebase;
+			sourceTree = "<group>";
+		};
+		C30FC4E4276B6D2500A46C4C /* Main Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC4E8276B6D6100A46C4C /* Drawing View */,
+				C30FC4E6276B6D3A00A46C4C /* ViewModel */,
+				C30FC4E5276B6D3300A46C4C /* View */,
+			);
+			path = "Main Screen";
+			sourceTree = "<group>";
+		};
+		C30FC4E5276B6D3300A46C4C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C38156492726A0BF008E83AC /* MainScreenViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C30FC4E6276B6D3A00A46C4C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C38156872728147A008E83AC /* MainScreenViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C30FC4E8276B6D6100A46C4C /* Drawing View */ = {
+			isa = PBXGroup;
+			children = (
+				C30150A627303C2400C85EF3 /* MainScreenDraw.swift */,
+			);
+			path = "Drawing View";
+			sourceTree = "<group>";
+		};
+		C30FC4E9276B6D8900A46C4C /* Registration Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC4EC276B6DAF00A46C4C /* View */,
+				C30FC4EB276B6DA500A46C4C /* ViewModel */,
+				C30FC4EA276B6D9D00A46C4C /* DrawingView */,
+			);
+			path = "Registration Screen";
+			sourceTree = "<group>";
+		};
+		C30FC4EA276B6D9D00A46C4C /* DrawingView */ = {
+			isa = PBXGroup;
+			children = (
+				C30150A827312C4600C85EF3 /* RegistrationViewDraw.swift */,
+			);
+			path = DrawingView;
+			sourceTree = "<group>";
+		};
+		C30FC4EB276B6DA500A46C4C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C381568927281499008E83AC /* RegistrationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C30FC4EC276B6DAF00A46C4C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C381568527270783008E83AC /* RegistrationViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C30FC4ED276B6DD000A46C4C /* Adding Data Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC4F0276B6DFB00A46C4C /* DrawingView */,
+				C30FC4EF276B6DF200A46C4C /* ViewModel */,
+				C30FC4EE276B6DEB00A46C4C /* View */,
+			);
+			path = "Adding Data Screen";
+			sourceTree = "<group>";
+		};
+		C30FC4EE276B6DEB00A46C4C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C366BE5427298E6900B3E182 /* AddingDataViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C30FC4EF276B6DF200A46C4C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C366BE5627298EBE00B3E182 /* AddingDataAboutUserViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C30FC4F0276B6DFB00A46C4C /* DrawingView */ = {
+			isa = PBXGroup;
+			children = (
+				C30150AA27312E3B00C85EF3 /* AddingDataDraw.swift */,
+			);
+			path = DrawingView;
+			sourceTree = "<group>";
+		};
+		C30FC4F1276B6E1400A46C4C /* Seller Detail Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC4F4276B6E3100A46C4C /* DrawingView */,
+				C30FC4F3276B6E2900A46C4C /* ViewModel */,
+				C30FC4F2276B6E2400A46C4C /* View */,
+			);
+			path = "Seller Detail Screen";
+			sourceTree = "<group>";
+		};
+		C30FC4F2276B6E2400A46C4C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C366BE522729726200B3E182 /* SellerDetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C30FC4F3276B6E2900A46C4C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C33CCA81272C3BC800C7969E /* SellerDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C30FC4F4276B6E3100A46C4C /* DrawingView */ = {
+			isa = PBXGroup;
+			children = (
+				C30150AC27328E6300C85EF3 /* SellerDetailDraw.swift */,
+			);
+			path = DrawingView;
+			sourceTree = "<group>";
+		};
+		C30FC4F5276B6E5200A46C4C /* List Samples Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC4F8276B6E6B00A46C4C /* DrawingView */,
+				C30FC4F7276B6E6200A46C4C /* ViewModel */,
+				C30FC4F6276B6E5D00A46C4C /* View */,
+			);
+			path = "List Samples Screen";
+			sourceTree = "<group>";
+		};
+		C30FC4F6276B6E5D00A46C4C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C381568E272822C6008E83AC /* ListSamplesViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C30FC4F7276B6E6200A46C4C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C30150B02732A59F00C85EF3 /* ListSampleViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C30FC4F8276B6E6B00A46C4C /* DrawingView */ = {
+			isa = PBXGroup;
+			children = (
+				C30150AE2732906600C85EF3 /* ListSamplesDraw.swift */,
+			);
+			path = DrawingView;
+			sourceTree = "<group>";
+		};
+		C30FC4F9276B6E8000A46C4C /* Tab Bar Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC4FB276B6E9D00A46C4C /* ViewModel */,
+				C30FC4FA276B6E9800A46C4C /* View */,
+			);
+			path = "Tab Bar Screen";
+			sourceTree = "<group>";
+		};
+		C30FC4FA276B6E9800A46C4C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3255871273AA96500248FD8 /* TabBarController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C30FC4FB276B6E9D00A46C4C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3255873273AC46F00248FD8 /* TabBarControllerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C30FC4FD276B6ECF00A46C4C /* Start View Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC4FF276B6EEE00A46C4C /* View */,
+				C30FC4FE276B6EDF00A46C4C /* Drawing View */,
+			);
+			path = "Start View Screen";
+			sourceTree = "<group>";
+		};
+		C30FC4FE276B6EDF00A46C4C /* Drawing View */ = {
+			isa = PBXGroup;
+			children = (
+				C3255881273EA21B00248FD8 /* StartViewDraw.swift */,
+			);
+			path = "Drawing View";
+			sourceTree = "<group>";
+		};
+		C30FC4FF276B6EEE00A46C4C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C325587F273EA1C900248FD8 /* StartViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C30FC500276B6EFD00A46C4C /* Upload View Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC503276B6F1D00A46C4C /* Drawing View */,
+				C30FC502276B6F1000A46C4C /* ViewModel */,
+				C30FC501276B6F0B00A46C4C /* View */,
+			);
+			path = "Upload View Screen";
+			sourceTree = "<group>";
+		};
+		C30FC501276B6F0B00A46C4C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C325588327427E7D00248FD8 /* UploadMusicViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C30FC502276B6F1000A46C4C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C325588727427ED800248FD8 /* UploadMusicViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C30FC503276B6F1D00A46C4C /* Drawing View */ = {
+			isa = PBXGroup;
+			children = (
+				C325588527427EB400248FD8 /* UploadMusicDraw.swift */,
+			);
+			path = "Drawing View";
+			sourceTree = "<group>";
+		};
+		C30FC504276B6F3000A46C4C /* User Detail Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC507276B6F4700A46C4C /* DrawingView */,
+				C30FC506276B6F4000A46C4C /* ViewModel */,
+				C30FC505276B6F3B00A46C4C /* View */,
+			);
+			path = "User Detail Screen";
+			sourceTree = "<group>";
+		};
+		C30FC505276B6F3B00A46C4C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C381055F2746AFA10071BC79 /* UserDetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C30FC506276B6F4000A46C4C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C38105632746B0310071BC79 /* UserDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C30FC507276B6F4700A46C4C /* DrawingView */ = {
+			isa = PBXGroup;
+			children = (
+				C38105612746B00A0071BC79 /* UserDetailDrawView.swift */,
+			);
+			path = DrawingView;
+			sourceTree = "<group>";
+		};
+		C30FC508276B6F5F00A46C4C /* Record Page Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC50B276B6F7900A46C4C /* DrawingView */,
+				C30FC50A276B6F6F00A46C4C /* ViewModel */,
+				C30FC509276B6F6800A46C4C /* View */,
+			);
+			path = "Record Page Screen";
+			sourceTree = "<group>";
+		};
+		C30FC509276B6F6800A46C4C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C38105652746B07B0071BC79 /* RecordPageViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C30FC50A276B6F6F00A46C4C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C38105692746B0F00071BC79 /* RecordPageViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C30FC50B276B6F7900A46C4C /* DrawingView */ = {
+			isa = PBXGroup;
+			children = (
+				C38105672746B0D00071BC79 /* RecordPageDrawView.swift */,
+			);
+			path = DrawingView;
+			sourceTree = "<group>";
+		};
+		C30FC50C276B6F8600A46C4C /* Chat Page Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC50F276B6F9E00A46C4C /* DrawingView */,
+				C30FC50E276B6F9800A46C4C /* ViewModel */,
+				C30FC50D276B6F9300A46C4C /* View */,
+			);
+			path = "Chat Page Screen";
+			sourceTree = "<group>";
+		};
+		C30FC50D276B6F9300A46C4C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C381056B2746B1230071BC79 /* ChatPageViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C30FC50E276B6F9800A46C4C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C381056F2746B17E0071BC79 /* ChatPageViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C30FC50F276B6F9E00A46C4C /* DrawingView */ = {
+			isa = PBXGroup;
+			children = (
+				C381056D2746B1530071BC79 /* ChatPageDrawView.swift */,
+			);
+			path = DrawingView;
+			sourceTree = "<group>";
+		};
+		C30FC510276B6FB400A46C4C /* Chat Detail Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC513276B6FCE00A46C4C /* DrawingView */,
+				C30FC512276B6FC600A46C4C /* ViewModel */,
+				C30FC511276B6FC000A46C4C /* View */,
+			);
+			path = "Chat Detail Screen";
+			sourceTree = "<group>";
+		};
+		C30FC511276B6FC000A46C4C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3767E072750E62400F4FF7D /* ChatDetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C30FC512276B6FC600A46C4C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C316011E2751240C00D35E70 /* ChatDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C30FC513276B6FCE00A46C4C /* DrawingView */ = {
+			isa = PBXGroup;
+			children = (
+				C316011A2751014300D35E70 /* ChatDetailDrawView.swift */,
+			);
+			path = DrawingView;
+			sourceTree = "<group>";
+		};
+		C30FC514276B6FE200A46C4C /* Store Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC517276B700100A46C4C /* DrawingView */,
+				C30FC516276B6FF500A46C4C /* View */,
+				C30FC515276B6FEC00A46C4C /* ViewModel */,
+			);
+			path = "Store Screen";
+			sourceTree = "<group>";
+		};
+		C30FC515276B6FEC00A46C4C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC4E0276B666200A46C4C /* StoreViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C30FC516276B6FF500A46C4C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC4D4276B566400A46C4C /* StoreCurrencyViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C30FC517276B700100A46C4C /* DrawingView */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC4D6276B56E200A46C4C /* StoreCurrencyDraw.swift */,
+			);
+			path = DrawingView;
 			sourceTree = "<group>";
 		};
 		C33CCA7E272C246B00C7969E /* Cell */ = {
@@ -406,13 +811,26 @@
 		C38156442726A0BF008E83AC /* SampleMusic */ = {
 			isa = PBXGroup;
 			children = (
+				C30FC514276B6FE200A46C4C /* Store Screen */,
+				C30FC510276B6FB400A46C4C /* Chat Detail Screen */,
+				C30FC50C276B6F8600A46C4C /* Chat Page Screen */,
+				C30FC508276B6F5F00A46C4C /* Record Page Screen */,
+				C30FC504276B6F3000A46C4C /* User Detail Screen */,
+				C30FC500276B6EFD00A46C4C /* Upload View Screen */,
+				C30FC4FD276B6ECF00A46C4C /* Start View Screen */,
+				C30FC4F9276B6E8000A46C4C /* Tab Bar Screen */,
+				C30FC4F5276B6E5200A46C4C /* List Samples Screen */,
+				C30FC4F1276B6E1400A46C4C /* Seller Detail Screen */,
+				C30FC4ED276B6DD000A46C4C /* Adding Data Screen */,
+				C30FC4E9276B6D8900A46C4C /* Registration Screen */,
+				C30FC4E4276B6D2500A46C4C /* Main Screen */,
 				C30FC4D02769E08D00A46C4C /* Managers */,
 				C379FEC727393F91004ECCB9 /* Protocols */,
 				C381568B27281B33008E83AC /* Dependencies */,
 				C38156822726F80F008E83AC /* Extension */,
 				C381567B2726A903008E83AC /* Coordinator */,
 				C381567A2726A894008E83AC /* ViewModel */,
-				C38156792726A88F008E83AC /* View */,
+				C33CCA7E272C246B00C7969E /* Cell */,
 				C38156782726A88B008E83AC /* Model */,
 				C38156772726A86D008E83AC /* Helpers */,
 				C38156532726A0C0008E83AC /* Info.plist */,
@@ -468,43 +886,9 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		C38156792726A88F008E83AC /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C30150A52730382D00C85EF3 /* Drawing View */,
-				C33CCA7E272C246B00C7969E /* Cell */,
-				C38156492726A0BF008E83AC /* MainScreenViewController.swift */,
-				C381568527270783008E83AC /* RegistrationViewController.swift */,
-				C381568E272822C6008E83AC /* ListSamplesViewController.swift */,
-				C366BE522729726200B3E182 /* SellerDetailViewController.swift */,
-				C366BE5427298E6900B3E182 /* AddingDataViewController.swift */,
-				C3255871273AA96500248FD8 /* TabBarController.swift */,
-				C325587F273EA1C900248FD8 /* StartViewController.swift */,
-				C325588327427E7D00248FD8 /* UploadMusicViewController.swift */,
-				C381055F2746AFA10071BC79 /* UserDetailViewController.swift */,
-				C38105652746B07B0071BC79 /* RecordPageViewController.swift */,
-				C381056B2746B1230071BC79 /* ChatPageViewController.swift */,
-				C3767E072750E62400F4FF7D /* ChatDetailViewController.swift */,
-				C30FC4D4276B566400A46C4C /* StoreCurrencyViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		C381567A2726A894008E83AC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C38156872728147A008E83AC /* MainScreenViewModel.swift */,
-				C381568927281499008E83AC /* RegistrationViewModel.swift */,
-				C366BE5627298EBE00B3E182 /* AddingDataAboutUserViewModel.swift */,
-				C33CCA81272C3BC800C7969E /* SellerDetailViewModel.swift */,
-				C30150B02732A59F00C85EF3 /* ListSampleViewModel.swift */,
-				C3255873273AC46F00248FD8 /* TabBarControllerViewModel.swift */,
-				C325588727427ED800248FD8 /* UploadMusicViewModel.swift */,
-				C38105632746B0310071BC79 /* UserDetailViewModel.swift */,
-				C38105692746B0F00071BC79 /* RecordPageViewModel.swift */,
-				C381056F2746B17E0071BC79 /* ChatPageViewModel.swift */,
-				C316011E2751240C00D35E70 /* ChatDetailViewModel.swift */,
-				C30FC4E0276B666200A46C4C /* StoreViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
