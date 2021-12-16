@@ -20,7 +20,7 @@ class UserDetailViewModel: UserDetailViewModelImp  {
     var dismissAlert: ((Bool) -> Void)?
     var db : Firestore?
     var st : Storage?
-    
+    var balanceStatus : ((String) -> Void)?
     
     init(db: Firestore,st: Storage) {
         self.db = db
@@ -30,10 +30,11 @@ class UserDetailViewModel: UserDetailViewModelImp  {
     
     func userData() {
         if let user = Auth.auth().currentUser {
-            self.db?.collection(Collection.user.getCollection()).document(user.uid).getDocument(completion: { (document, error) in
+            self.db?.collection(Collection.user.getCollection()).document(user.uid).addSnapshotListener( { (document, error) in
                 if let data = document?.data() {
                     let sellerData = DetailModel(data: data)
                     self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender,sellerData.imageUrl)
+                    self.balanceStatus?("\(sellerData.balance!)💎")
                     self.dismissAlert?(true)
                 }
             })

@@ -13,6 +13,7 @@ class UserDetailViewController : UIViewController {
     var viewModel : UserDetailViewModelImp!
     var coordinator : UserDetailCoordinator?
     var drawView = UserDetailDrawView()
+    var status : String!
     
     init(viewModel: UserDetailViewModelImp) {
         self.viewModel = viewModel
@@ -24,10 +25,10 @@ class UserDetailViewController : UIViewController {
     }
     
  //MARK: - View
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        configureNavBar()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -40,6 +41,12 @@ class UserDetailViewController : UIViewController {
             self?.drawView.emailData.text = email
             self?.drawView.genderData.text = gender
             self?.drawView.imageView.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+        }
+        viewModel.balanceStatus = { balance in
+            DispatchQueue.main.async {
+                self.status = balance
+                self.configureNavBar()
+            }
         }
     }
     
@@ -62,7 +69,6 @@ class UserDetailViewController : UIViewController {
                 self?.view.setNeedsDisplay()
             }
         }
-        
         title = NSLocalizedString(DetailKeys.uDetail.rawValue, comment: "")
     }
     //MARK: - ActionButton
@@ -73,7 +79,6 @@ class UserDetailViewController : UIViewController {
     
     func configureNavBar() {
         let nav = self.navigationController?.navigationBar
-        
         nav?.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor(named: Style.coralColor.rawValue) as Any,
             NSAttributedString.Key.font: UIFont(name: Style.fontTitleHeavy.rawValue, size: 18) as Any
@@ -85,9 +90,10 @@ class UserDetailViewController : UIViewController {
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
-
+        
+        let balance = UIBarButtonItem(title: self.status, image: nil, primaryAction: nil)
         let message = UIBarButtonItem(image: UIImage(systemName: Icons.message.rawValue), style: .plain, target: self, action: #selector(message(sender:)))
-        self.navigationItem.rightBarButtonItems = [message]
+        self.navigationItem.rightBarButtonItems = [message,balance]
     }
 }
 

@@ -177,7 +177,7 @@ class ListSampleViewModel: ListSamplesImp {
             try! realm.write({
                 realm.deleteAll()
             })
-            self.samplesData = []
+//            self.samplesData = []
         } catch let signOutError as NSError {
             print(signOutError.localizedDescription)
         }

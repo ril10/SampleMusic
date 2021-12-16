@@ -40,6 +40,11 @@ class AddingDataAboutUserViewModel: AddingDataImp {
                         "description":description,
                         "gender":self.gender as Any
                     ])
+                    if self.roleSet == Collection.user.getCollection() {
+                        self.db?.collection(self.roleSet).document(self.docId!).updateData([
+                            "balance": 0
+                        ])
+                    }
                 }
             })
         }
