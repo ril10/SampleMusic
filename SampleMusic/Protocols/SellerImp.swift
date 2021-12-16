@@ -13,7 +13,8 @@ protocol SellerImp {
     func userData()
     var reloadTableView : (() -> Void)? { get set }
     func getSamplesData()
-    var samplesData : [DataCellModel] { get set }
+    var samplesFreeData : [DataCellModel] { get set }
+    var samplesPaidData : [DataCellModel] { get set }
     func getCellModel(at indexPath: IndexPath) -> DataCellModel
     var dismissAlert : ((Bool) -> Void)? { get set }
     var ownerUid : String? { get set }
@@ -25,5 +26,8 @@ protocol SellerImp {
     func checkChatRoom(ownerUid: String, recieverUid: String, completion:@escaping (Bool) -> Void?)
     var goToChat : ((String) -> Void)? { get set }
     func createChatRoom(ownerUid: String, recieverUid: String)
-    var chatRoom : String? { get set } 
+    var chatRoom : String? { get set }
+    func getPaidCellModel(at indexPath: IndexPath) -> DataCellModel
+    func getPaidSamplesData()
+    func getPaidSamplesFromUserData(ownerUid: String)
 }

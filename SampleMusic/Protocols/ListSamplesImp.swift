@@ -23,4 +23,5 @@ protocol ListSamplesImp {
     func hideUserDetail()
     var chatRoom : String? { get set }
     var curUser : String? { get set }
+    func filterByPrice()
 }

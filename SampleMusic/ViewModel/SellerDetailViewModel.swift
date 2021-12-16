@@ -15,7 +15,7 @@ import AVFoundation
 import RealmSwift
 
 
-class SellerDetailViewModel: SellerImp {
+class SellerDetailViewModel: SellerImp {    
     var ownerUid: String?
     var reloadView : (() -> Void)?
     var reloadTableView : (() -> Void)?
@@ -31,19 +31,25 @@ class SellerDetailViewModel: SellerImp {
     var duratation : String?
     var imageUrl : String?
     var chatRoom : String?
-    var goToChat : ((String) -> Void)?
+    var goToChat : ((String) -> Void)?    
     
     init(db: Firestore,st: Storage) {
         self.db = db
         self.st = st
     }
     
-    var samplesData = [DataCellModel]() {
+    var samplesFreeData = [DataCellModel]() {
         didSet {
             reloadTableView?()
         }
     }
     
+    var samplesPaidData = [DataCellModel]() {
+        didSet {
+            reloadTableView?()
+        }
+    }
+    //MARK: - Get user data
     func userData() {
         if let user = Auth.auth().currentUser {
             let dataState = realm.objects(State.self)
@@ -68,7 +74,7 @@ class SellerDetailViewModel: SellerImp {
             })
         }
     }
-    
+    //MARK: - Get Samples Data From User Page
     func getDataFromUser(ownerUid: String) {
         self.db?.collection(Collection.seller.getCollection()).document(ownerUid).addSnapshotListener( { (document, error) in
             if let data = document?.data() {
@@ -84,6 +90,7 @@ class SellerDetailViewModel: SellerImp {
     func getDataSamplesFromUser(ownerUid: String) {
         let refrence = db?.collection(Collection.sample.getCollection())
         refrence?.whereField("ownerUid", isEqualTo: ownerUid)
+            .whereField("type", isEqualTo: "free")
             .order(by: "index")
             .addSnapshotListener(includeMetadataChanges: true, listener: { documentSnapshot, error in
                 if let error = error {
@@ -98,14 +105,134 @@ class SellerDetailViewModel: SellerImp {
                 }
             })
     }
+    func getPaidSamplesFromUserData(ownerUid: String) {
+        let refrence = db?.collection(Collection.sample.getCollection())
+        refrence?.whereField("ownerUid", isEqualTo: ownerUid)
+            .whereField("type", isEqualTo: "paid")
+            .order(by: "index")
+            .addSnapshotListener(includeMetadataChanges: true, listener: { documentSnapshot, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    var resData = [SampleModel]()
+                    for document in documentSnapshot!.documents {
+                        let sampleData = SampleModel(data: document.data())
+                        resData.append(sampleData)
+                    }
+                    self.fetchPaidData(res: resData)
+                }
+            })
+    }
+    //MARK: - Get Samples Data From Seller Page
+    func getSamplesData() {
+        if let user = Auth.auth().currentUser {
+            let refrence = db?.collection(Collection.sample.getCollection())
+            refrence?.whereField("ownerUid", isEqualTo: user.uid)
+                .whereField("type", isEqualTo: "free")
+                .order(by: "index")
+                .addSnapshotListener(includeMetadataChanges: true, listener: { documentSnapshot, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        var resData = [SampleModel]()
+                        for document in documentSnapshot!.documents {
+                            let sampleData = SampleModel(data: document.data())
+                            resData.append(sampleData)
+                        }
+                        self.fetchData(res: resData)
+                    }
+                })
+        }
+    }
     
+    func getPaidSamplesData() {
+        if let user = Auth.auth().currentUser {
+            let refrence = db?.collection(Collection.sample.getCollection())
+            refrence?.whereField("ownerUid", isEqualTo: user.uid)
+                .whereField("type", isEqualTo: "paid")
+                .order(by: "index")
+                .addSnapshotListener(includeMetadataChanges: true, listener: { documentSnapshot, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        var resData = [SampleModel]()
+                        for document in documentSnapshot!.documents {
+                            let sampleData = SampleModel(data: document.data())
+                            resData.append(sampleData)
+                        }
+                        self.fetchPaidData(res: resData)
+                    }
+                })
+        }
+    }
+    //MARK: - Create Cell & Fetch Data
+    func fetchData(res: [SampleModel]) {
+        var resData = [DataCellModel]()
+        for r in res {
+            resData.append(self.createCellModel(cell: r))
+        }
+        samplesFreeData = resData
+    }
+    
+    func fetchPaidData(res: [SampleModel]) {
+        var resData = [DataCellModel]()
+        for r in res {
+            resData.append(self.createCellModel(cell: r))
+        }
+        samplesPaidData = resData
+    }
+    
+    func createCellModel(cell: SampleModel) -> DataCellModel {
+        let ownerUid = cell.ownerUid
+        
+        self.imageArray.append(cell.sampleImageUrl ?? "")
+        for img in self.imageArray {
+            self.imageUrl = img
+        }
+        
+        self.sampleUrl.append(cell.sampleUrl ?? "")
+        for smp in self.sampleUrl {
+            self.sampleData = smp
+        }
+        
+        let name = cell.sampleName
+        let totalSeconds = cell.duration ?? 0
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        self.totalSeconds = totalSeconds
+        self.duratation = String(format:"%02i:%02i",minutes, seconds)
+        
+        let sampleIndex = cell.index
+        
+        let sampleCost = cell.cost
+        
+        
+        return DataCellModel(imageSample: self.imageUrl ?? "",
+                             sampleName: name ?? "",
+                             sampleData: self.sampleData ?? "",
+                             totalSeconds: self.totalSeconds ?? 0,
+                             sampleDuratation: self.duratation ?? "",
+                             ownerUid: ownerUid ?? "",
+                             index: sampleIndex ?? 0,
+                             cost: sampleCost ?? 0
+        )
+    }
+    
+    func getCellModel(at indexPath: IndexPath) -> DataCellModel {
+        return samplesFreeData[indexPath.row]
+    }
+    
+    func getPaidCellModel(at indexPath: IndexPath) -> DataCellModel {
+        return samplesPaidData[indexPath.row]
+    }
+    //MARK: - Current user uid
     func currentUserUid() -> String {
         if let user = Auth.auth().currentUser {
             return user.uid
         }
         return ""
     }
-    
+    //MARK: - Chat Methods
     func checkChatRoom(ownerUid: String, recieverUid: String, completion: @escaping (Bool) -> Void? ) {
         db?.collection(Collection.chatRoom.getCollection()).whereField("ownerUid", isEqualTo: ownerUid)
             .whereField("recieverUid", isEqualTo: recieverUid)
@@ -136,73 +263,7 @@ class SellerDetailViewModel: SellerImp {
                 ])
                 self.chatRoom = id
             }
-    
-    func getSamplesData() {
-        if let user = Auth.auth().currentUser {
-            let refrence = db?.collection(Collection.sample.getCollection())
-            refrence?.whereField("ownerUid", isEqualTo: user.uid)
-                .order(by: "index")
-                .addSnapshotListener(includeMetadataChanges: true, listener: { documentSnapshot, error in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    } else {
-                        var resData = [SampleModel]()
-                        for document in documentSnapshot!.documents {
-                            let sampleData = SampleModel(data: document.data())
-                            resData.append(sampleData)
-                        }
-                        self.fetchData(res: resData)
-                    }
-                })
-        }
-    }
-    
-    func fetchData(res: [SampleModel]) {
-        var resData = [DataCellModel]()
-        for r in res {
-            resData.append(self.createCellModel(cell: r))
-        }
-        samplesData = resData
-        
-    }
-    
-    func createCellModel(cell: SampleModel) -> DataCellModel {
-        let ownerUid = cell.ownerUid
-        
-        self.imageArray.append(cell.sampleImageUrl ?? "")
-        for img in self.imageArray {
-            self.imageUrl = img
-        }
-        
-        self.sampleUrl.append(cell.sampleUrl ?? "")
-        for smp in self.sampleUrl {
-            self.sampleData = smp
-        }
-        
-        let name = cell.sampleName
-        let totalSeconds = cell.duration ?? 0
-        let minutes = totalSeconds / 60
-        let seconds = totalSeconds % 60
-        self.totalSeconds = totalSeconds
-        self.duratation = String(format:"%02i:%02i",minutes, seconds)
-        
-        let sampleIndex = cell.index
-        
-        
-        return DataCellModel(imageSample: self.imageUrl ?? "",
-                             sampleName: name ?? "",
-                             sampleData: self.sampleData ?? "",
-                             totalSeconds: self.totalSeconds ?? 0,
-                             sampleDuratation: self.duratation ?? "",
-                             ownerUid: ownerUid ?? "",
-                             index: sampleIndex ?? 0
-        )
-    }
-    
-    func getCellModel(at indexPath: IndexPath) -> DataCellModel {
-        return samplesData[indexPath.row]
-    }
-    
+    //MARK: - Delete Sample
     func deleteSample(by name: String) {
         self.db?.collection(Collection.sample.getCollection()).whereField("sampleName", isEqualTo: name)
             .getDocuments(completion: { querySnapshot, error in
@@ -247,7 +308,7 @@ class SellerDetailViewModel: SellerImp {
             }
         })
     }
-    
+    //MARK: - Get Sample Index & Change Index
     func getSampleIndex(start index: Int, destination destIndex: Int) {
         self.db?.collection(Collection.sample.getCollection())
             .whereField("ownerUid", isEqualTo: Auth.auth().currentUser!.uid as Any)
@@ -278,7 +339,7 @@ class SellerDetailViewModel: SellerImp {
             ])
     }
 
-    
+    //MARK: - Save to realm
     func saveUid(_ state: State) {
         do {
             try realm.write {

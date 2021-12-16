@@ -128,13 +128,16 @@ class ListSampleViewModel: ListSamplesImp {
         
         let sampleIndex = cell.index
         
+        let sampleCost = cell.cost
+        
         return DataCellModel(imageSample: self.imageUrl ?? "",
                              sampleName: name ?? "",
                              sampleData: self.sampleData ?? "",
                              totalSeconds: self.totalSeconds ?? 0,
                              sampleDuratation: self.duratation ?? "",
                              ownerUid: ownerUid ?? "",
-                             index: sampleIndex ?? 0
+                             index: sampleIndex ?? 0,
+                             cost: sampleCost ?? 0
         )
     }
     
@@ -151,6 +154,11 @@ class ListSampleViewModel: ListSamplesImp {
     func filterByTrackLength() {
         let sortedBySampleLength = samplesData.sorted { $0.totalSeconds < $1.totalSeconds }
         samplesData = sortedBySampleLength
+    }
+    
+    func filterByPrice() {
+        let sortedByPrice = samplesData.sorted { $0.cost < $1.cost }
+        samplesData = sortedByPrice
     }
     
     //MARK: - Search

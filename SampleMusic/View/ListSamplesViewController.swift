@@ -82,6 +82,8 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
             viewModel.filterByName()
         case 1:
             viewModel.filterByTrackLength()
+        case 2:
+            viewModel.filterByPrice()
         default:
             break
         }

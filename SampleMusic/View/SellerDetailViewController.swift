@@ -51,6 +51,17 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
             drawView.sortButton.setImage(UIImage(systemName: Icons.check.rawValue), for: .normal)
         }
     }
+
+    @objc func segmentAction(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            drawView.sampleTable.reloadData()
+        case 1:
+            drawView.sampleTable.reloadData()
+        default:
+            break
+        }
+    }
     //MARK: - Alert
     func alertLoading() {
         let alertTitile = NSLocalizedString(MainKeys.loading.rawValue, comment: "")
@@ -76,14 +87,24 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.samplesData.count
+        if drawView.segmentControl.selectedSegmentIndex == 0 {
+            return viewModel.samplesFreeData.count
+        } else {
+            return viewModel.samplesPaidData.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
-        let cellVm = self.viewModel.getCellModel(at: indexPath)
-        cell.sampleCell = cellVm
-        
+        if drawView.segmentControl.selectedSegmentIndex == 0 {
+            let cellVm = self.viewModel.getCellModel(at: indexPath)
+            cell.sampleCell = cellVm
+        } else {
+            let cellPaidVm = self.viewModel.getPaidCellModel(at: indexPath)
+            cell.sampleCell = cellPaidVm
+        }
+
         return cell
     }
     
@@ -92,13 +113,23 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let cellVm = self.viewModel.getCellModel(at: indexPath)
-        let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
-            self?.viewModel.deleteSample(by: cellVm.sampleName)
-            completionHandler(true)
+        if drawView.segmentControl.selectedSegmentIndex == 0 {
+            let cellVm = self.viewModel.getCellModel(at: indexPath)
+            let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
+                self?.viewModel.deleteSample(by: cellVm.sampleName)
+                completionHandler(true)
+            }
+            delete.backgroundColor = .systemRed
+            return UISwipeActionsConfiguration(actions: [delete])
+        } else {
+            let cellVm = self.viewModel.getPaidCellModel(at: indexPath)
+            let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
+                self?.viewModel.deleteSample(by: cellVm.sampleName)
+                completionHandler(true)
+            }
+            delete.backgroundColor = .systemRed
+            return UISwipeActionsConfiguration(actions: [delete])
         }
-        delete.backgroundColor = .systemRed
-        return UISwipeActionsConfiguration(actions: [delete])
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
@@ -106,13 +137,24 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let itemToMove = viewModel.samplesData[sourceIndexPath.row]
-        viewModel.samplesData.remove(at: sourceIndexPath.row)
-        viewModel.samplesData.insert(itemToMove, at: destinationIndexPath.row)
-        
-        for (index, element) in viewModel.samplesData.enumerated() {
-            viewModel.getSampleIndex(start: index, destination: element.index)
+        if drawView.segmentControl.selectedSegmentIndex == 0 {
+            let itemToMove = viewModel.samplesFreeData[sourceIndexPath.row]
+            viewModel.samplesFreeData.remove(at: sourceIndexPath.row)
+            viewModel.samplesFreeData.insert(itemToMove, at: destinationIndexPath.row)
+            
+            for (index, element) in viewModel.samplesFreeData.enumerated() {
+                viewModel.getSampleIndex(start: index, destination: element.index)
+            }
+        } else {
+            let itemToMove = viewModel.samplesPaidData[sourceIndexPath.row]
+            viewModel.samplesPaidData.remove(at: sourceIndexPath.row)
+            viewModel.samplesPaidData.insert(itemToMove, at: destinationIndexPath.row)
+            
+            for (index, element) in viewModel.samplesPaidData.enumerated() {
+                viewModel.getSampleIndex(start: index, destination: element.index)
+            }
         }
+
 
     }
     
@@ -125,16 +167,22 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         if viewModel.ownerUid != nil {
             self.viewModel.getDataFromUser(ownerUid: viewModel.ownerUid!)
             self.viewModel.getDataSamplesFromUser(ownerUid: viewModel.ownerUid!)
+            self.viewModel.getPaidSamplesFromUserData(ownerUid: viewModel.ownerUid!)
             self.drawView.addButton.isHidden = true
             self.drawView.createSampleButton.isHidden = true
             self.drawView.sortButton.isHidden = true
             configureNavBar()
         }
         if viewModel.currentUserUid() == viewModel.currentUserUid() {
-            if viewModel.samplesData.count == 0 {
+            if viewModel.samplesFreeData.count == 0 {
                 self.viewModel?.getSamplesData()
+                self.viewModel?.getPaidSamplesData()
                 viewModel?.userData()
 //                self.alertLoading()
+            } else if viewModel.samplesPaidData.count == 0 {
+                self.viewModel?.getPaidSamplesData()
+                self.viewModel?.getSamplesData()
+                viewModel?.userData()
             }
         }
     }
@@ -146,6 +194,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         drawView.viewCompare(view: view)
         drawView.sortButton.addTarget(self, action: #selector(sortSampleTable(sender:)), for: .touchUpInside)
         drawView.segmentControl.selectedSegmentIndex = 0
+        drawView.segmentControl.addTarget(self, action: #selector(ListSamplesViewController.segmentAction(sender:)), for: .valueChanged)
     }
     
     override func viewDidLoad() {
@@ -173,6 +222,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
             self?.drawView.genderData.text = gender
             self?.drawView.imageView.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
         }
+        
 
     }
     

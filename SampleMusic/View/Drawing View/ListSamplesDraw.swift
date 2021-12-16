@@ -22,7 +22,8 @@ class ListSamplesDraw : UIView {
     var segment : UISegmentedControl = {
         let locName = NSLocalizedString(SamplesKeys.bName.rawValue, comment: "")
         let locLength = NSLocalizedString(SamplesKeys.bLength.rawValue, comment: "")
-        let segmentControl = UISegmentedControl(items: [locName,locLength])
+        let locPrice = NSLocalizedString(SamplesKeys.bPrice.rawValue, comment: "")
+        let segmentControl = UISegmentedControl(items: [locName,locLength,locPrice])
         segmentControl.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         segmentControl.backgroundColor = UIColor(named: Style.coralColor.rawValue)
         return segmentControl

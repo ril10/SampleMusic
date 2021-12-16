@@ -42,6 +42,7 @@
 "LENGTH" = "By Length";
 "FREE" = "Free";
 "PAID" = "Paid";
+"B_PRICE" = "By Price";
 //MARK: - Detail Inf
 "F_NAME" = "First Name:";
 "L_NAME" = "Last Name:";

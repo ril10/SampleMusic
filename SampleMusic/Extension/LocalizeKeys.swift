@@ -50,6 +50,7 @@ enum SamplesKeys : String, CaseIterable {
     case bLength = "LENGTH"
     case free = "FREE"
     case paid = "PAID"
+    case bPrice = "B_PRICE"
 }
 
 enum DetailKeys : String, CaseIterable {

@@ -25,6 +25,8 @@ class CustomTableViewCell: UITableViewCell {
             sampleData = sampleCell?.sampleData
             endTimeLabel.text = sampleCell?.sampleDuratation
             ownerUid = sampleCell?.ownerUid
+            costLabel.text = "\(sampleCell!.cost)💎"
+            
         }
     }
     
@@ -51,7 +53,7 @@ class CustomTableViewCell: UITableViewCell {
     }()
     
     lazy var stackViewLeft : UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [labelSample,stackViewRight])
+        let stackView = UIStackView(arrangedSubviews: [labelSample,costLabel,stackViewRight])
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.spacing = 5
@@ -102,7 +104,14 @@ class CustomTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+    var costLabel : UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20)
+        label.textColor = UIColor(named: Style.coralColor.rawValue)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     var slider : UISlider = {
         let slider = UISlider(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
         slider.value = 0.0
