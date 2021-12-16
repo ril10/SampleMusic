@@ -48,37 +48,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                           storeCurrencyView: try! appContainer.resolve()
         )
         navController.isNavigationBarHidden = true
-//        if let sign = Auth.auth().currentUser {
-//            let dataState = state?.where({ state in
-//                state.state == "\(sign.uid)"
-//            })
-//            if dataState?.isEmpty == true {
-//                coordinator.start()
-//            } else {
-//                db.collection(dataState?.first?.role ?? "").whereField("uid", isEqualTo: dataState?.first?.state ?? "")
-//                    .addSnapshotListener { (documents, error) in
-//                    if let error = error {
-//                        print(error.localizedDescription)
-//                    } else {
-//                        documents?.documents.forEach({ queryDocument in
-//                            if dataState?.first?.role == Collection.seller.getCollection() {
-//                                let pushManager = PushNotificationManager(userUid: (dataState?.first?.state)!,role: dataState?.first?.role ?? "")
-//                                pushManager.registerForPushNotifications()
-//                                coordinator.mainTabController()
-//                            } else {
-//                                let pushManager = PushNotificationManager(userUid: (dataState?.first?.state)!,role: dataState?.first?.role ?? "")
-//                                pushManager.registerForPushNotifications()
-//                                coordinator.userList()
-//                            }
-//                        })
-//                    }
-//                }
-//            }
-//        } else {
-//            coordinator.start()
-//        }
+        if let sign = Auth.auth().currentUser {
+            let dataState = state?.where({ state in
+                state.state == "\(sign.uid)"
+            })
+            if dataState?.isEmpty == true {
+                coordinator.start()
+            } else {
+                db.collection(dataState?.first?.role ?? "").whereField("uid", isEqualTo: dataState?.first?.state ?? "")
+                    .addSnapshotListener { (documents, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        documents?.documents.forEach({ queryDocument in
+                            if dataState?.first?.role == Collection.seller.getCollection() {
+                                let pushManager = PushNotificationManager(userUid: (dataState?.first?.state)!,role: dataState?.first?.role ?? "")
+                                pushManager.registerForPushNotifications()
+                                coordinator.mainTabController()
+                            } else {
+                                let pushManager = PushNotificationManager(userUid: (dataState?.first?.state)!,role: dataState?.first?.role ?? "")
+                                pushManager.registerForPushNotifications()
+                                coordinator.userList()
+                            }
+                        })
+                    }
+                }
+            }
+        } else {
+            coordinator.start()
+        }
         
-        coordinator.storeView()
         
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = navController

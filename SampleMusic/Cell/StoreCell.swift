@@ -6,17 +6,41 @@
 //
 
 import UIKit
+import SDWebImage
+import Dip
+import FirebaseFirestore
 
 class StoreCell: UITableViewCell {
     
+    let db = try! appContainer.resolve() as Firestore
+    
     var storeCell : StoreCellModel? {
         didSet {
-            
+            promotionLabel.text = storeCell?.name
+            costLabel.text = "\(storeCell!.cost)$"
+            recievedCookies.text = "\(storeCell!.cost)🍪"
+            cellImage(with: storeCell?.image ?? "")
         }
     }
     
+    private func cellImage(with link: String) {
+        db.collection(Collection.user.getCollection())
+            .addSnapshotListener { (querySnapshot, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    for query in querySnapshot!.documents {
+                            let imageData = StoreModel(data: query.data())
+                                DispatchQueue.main.async {
+                                    self.imageDeal.sd_setImage(with: URL(string: imageData.image ?? ""), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+                                }
+                    }
+                }
+            }
+    }
+    
     lazy var stackView : UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [imageDeal,promotionLabel])
+        let stackView = UIStackView(arrangedSubviews: [imageDeal,middleStackView,buyButton,recievedCookies])
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.spacing = 10
@@ -25,17 +49,26 @@ class StoreCell: UITableViewCell {
         return stackView
     }()
     
-    var dealView : UIImageView = {
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        image.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
-        image.layer.borderWidth = 1.0
-        image.layer.masksToBounds = false
-        image.layer.borderColor = UIColor(named: Style.coralColor.rawValue)?.cgColor
-        image.layer.cornerRadius = 10
-        image.contentMode = .scaleToFill
-        image.clipsToBounds = true
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
+    lazy var middleStackView : UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [promotionLabel,costLabel])
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    var dealView : UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        view.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
+        view.layer.borderWidth = 1.0
+        view.layer.masksToBounds = false
+        view.layer.borderColor = UIColor(named: Style.coralColor.rawValue)?.cgColor
+        view.layer.cornerRadius = 10
+        view.contentMode = .scaleToFill
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     var imageDeal : UIImageView = {
@@ -52,6 +85,14 @@ class StoreCell: UITableViewCell {
         return image
     }()
     
+    var buyButton : UIButton = {
+        let button = UIButton()
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold, scale: .large)
+        button.setImage(UIImage(systemName: Icons.banknote.rawValue,withConfiguration: largeConfig),for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     var promotionLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -62,6 +103,15 @@ class StoreCell: UITableViewCell {
     }()
     
     var costLabel : UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20)
+        label.textColor = UIColor(named: Style.textColor.rawValue)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    var recievedCookies: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
         label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20)
@@ -86,6 +136,7 @@ class StoreCell: UITableViewCell {
             stackView.leadingAnchor.constraint(equalTo: dealView.leadingAnchor,constant: 10),
             stackView.trailingAnchor.constraint(equalTo: dealView.trailingAnchor,constant: -10),
             stackView.bottomAnchor.constraint(equalTo: dealView.bottomAnchor,constant: -10),
+
             
             imageDeal.widthAnchor.constraint(equalToConstant: 100),
         ])

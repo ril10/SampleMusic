@@ -32,6 +32,11 @@ class UserDetailCoordinator : Coordinator {
         parentCoordinator?.chatPage(recieverUid: "")
     }
     
+    func buyCookies() {
+        parentCoordinator?.childDidFinish(self)
+        parentCoordinator?.storeView()
+    }
+    
     
     
 }

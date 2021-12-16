@@ -25,7 +25,7 @@ class CustomTableViewCell: UITableViewCell {
             sampleData = sampleCell?.sampleData
             endTimeLabel.text = sampleCell?.sampleDuratation
             ownerUid = sampleCell?.ownerUid
-            costLabel.text = "\(sampleCell!.cost)💎"
+            costLabel.text = "\(sampleCell!.cost)🍪"
             
         }
     }

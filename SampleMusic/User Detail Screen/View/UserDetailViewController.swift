@@ -75,6 +75,10 @@ class UserDetailViewController : UIViewController {
     @objc func message(sender: UIButton) {
         coordinator?.navToChatList()
     }
+    
+    @objc func buyCookies(sender: UIButton) {
+        coordinator?.buyCookies()
+    }
     //MARK: - Config NavBar
     
     func configureNavBar() {
@@ -91,7 +95,7 @@ class UserDetailViewController : UIViewController {
         nav?.shadowImage = UIImage()
         nav?.layoutIfNeeded()
         
-        let balance = UIBarButtonItem(title: self.status, image: nil, primaryAction: nil)
+        let balance = UIBarButtonItem(title: self.status, style: .plain, target: self, action: #selector(buyCookies(sender:)))
         let message = UIBarButtonItem(image: UIImage(systemName: Icons.message.rawValue), style: .plain, target: self, action: #selector(message(sender:)))
         self.navigationItem.rightBarButtonItems = [message,balance]
     }

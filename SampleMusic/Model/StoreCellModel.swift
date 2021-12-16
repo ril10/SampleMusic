@@ -11,5 +11,5 @@ import UIKit
 struct StoreCellModel {
     var name : String
     var cost : Int
-    var image : UIImage
+    var image : String
 }

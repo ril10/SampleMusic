@@ -34,7 +34,7 @@ class UserDetailViewModel: UserDetailViewModelImp  {
                 if let data = document?.data() {
                     let sellerData = DetailModel(data: data)
                     self.fieldData?(sellerData.firstName,sellerData.lastName,sellerData.description,sellerData.email,sellerData.gender,sellerData.imageUrl)
-                    self.balanceStatus?("\(sellerData.balance!)💎")
+                    self.balanceStatus?("\(sellerData.balance!)🍪")
                     self.dismissAlert?(true)
                 }
             })

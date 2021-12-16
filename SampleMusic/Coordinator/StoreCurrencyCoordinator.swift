@@ -22,7 +22,7 @@ class StoreCurrencyCoordinator : Coordinator {
     
     func start() {
         view.coordinator = self
-        self.navigationController.pushViewController(view, animated: true)
+        self.navigationController.present(view, animated: true, completion: nil)
     }
     
     

@@ -829,7 +829,6 @@
 				C381568B27281B33008E83AC /* Dependencies */,
 				C38156822726F80F008E83AC /* Extension */,
 				C381567B2726A903008E83AC /* Coordinator */,
-				C381567A2726A894008E83AC /* ViewModel */,
 				C33CCA7E272C246B00C7969E /* Cell */,
 				C38156782726A88B008E83AC /* Model */,
 				C38156772726A86D008E83AC /* Helpers */,
@@ -884,13 +883,6 @@
 				C30FC4DE276B64BE00A46C4C /* StoreCellModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		C381567A2726A894008E83AC /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C381567B2726A903008E83AC /* Coordinator */ = {

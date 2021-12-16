@@ -19,16 +19,14 @@ class StoreCurrencyViewController: UIViewController, UITableViewDelegate, UITabl
     }
     //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return viewModel.storeDeals.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.storeCell.rawValue ,for: indexPath) as! StoreCell
-        
-        cell.imageDeal.image = UIImage(systemName: Icons.photo.rawValue)
-        cell.costLabel.text = "10"
-        cell.promotionLabel.text = "Buy it now"
-        
+        let cellVm = viewModel.getCellModel(at: indexPath)
+        cell.storeCell = cellVm
+
         return cell
     }
     
@@ -38,6 +36,11 @@ class StoreCurrencyViewController: UIViewController, UITableViewDelegate, UITabl
     //MARK: - View
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.getData()
     }
     
     override func loadView() {
@@ -52,6 +55,11 @@ class StoreCurrencyViewController: UIViewController, UITableViewDelegate, UITabl
         drawView.sampleTable.register(StoreCell.self, forCellReuseIdentifier: TableCell.storeCell.rawValue)
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
+        viewModel.reloadTableView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.drawView.sampleTable.reloadData()
+            }
+        }
 
     }
     
