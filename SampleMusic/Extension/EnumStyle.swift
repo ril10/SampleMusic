@@ -31,6 +31,7 @@ enum Collection : String, CaseIterable {
     case chatRoom
     case free
     case paid
+    case store
     
     func getCollection() -> String {
         switch self {
@@ -48,6 +49,8 @@ enum Collection : String, CaseIterable {
             return "free"
         case .paid:
             return "paid"
+        case .store:
+            return "store"
         }
     }
 }
@@ -77,5 +80,6 @@ enum TableCell : String, CaseIterable {
     case cell = "CustomTableViewCell"
     case chatCell = "ChatCell"
     case chatDetailCell = "ChatDetailCell"
+    case storeCell = "StoreCell"
 }
 

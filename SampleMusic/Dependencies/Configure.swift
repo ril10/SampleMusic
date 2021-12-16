@@ -31,6 +31,10 @@ let appContainer = DependencyContainer { container in
     container.register(.singleton) { UINavigationController() as UINavigationController }
     container.register(.shared) { StartViewController() as StartViewProtocol }
     container.register(.shared) { MusicPlayer() as MusicPlayerProtocol }
+    
+    container.register(.unique) { StoreCurrencyCoordinator(navigationController: try! container.resolve(), view: try! container.resolve()) }
+    container.register(.shared) { StoreViewModel() as StoreImp }
+    container.register(.shared) { StoreCurrencyViewController(viewModel: try! container.resolve()) as StoreCurrencyProtocol }
 }
 
 let signContainer = DependencyContainer { container in

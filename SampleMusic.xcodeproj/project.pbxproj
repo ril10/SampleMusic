@@ -24,6 +24,14 @@
 		C30FC4CC2768A9CD00A46C4C /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4CB2768A9CC00A46C4C /* NotificationModel.swift */; };
 		C30FC4CE2768BA1700A46C4C /* NotificationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4CD2768BA1700A46C4C /* NotificationDataModel.swift */; };
 		C30FC4D32769EB7200A46C4C /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4D22769EB7200A46C4C /* FirebaseManager.swift */; };
+		C30FC4D5276B566500A46C4C /* StoreCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4D4276B566400A46C4C /* StoreCurrencyViewController.swift */; };
+		C30FC4D7276B56E200A46C4C /* StoreCurrencyDraw.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4D6276B56E200A46C4C /* StoreCurrencyDraw.swift */; };
+		C30FC4D9276B575900A46C4C /* StoreCurrencyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4D8276B575900A46C4C /* StoreCurrencyCoordinator.swift */; };
+		C30FC4DB276B61A500A46C4C /* StoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4DA276B61A500A46C4C /* StoreCell.swift */; };
+		C30FC4DD276B635C00A46C4C /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4DC276B635C00A46C4C /* StoreModel.swift */; };
+		C30FC4DF276B64BE00A46C4C /* StoreCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4DE276B64BE00A46C4C /* StoreCellModel.swift */; };
+		C30FC4E1276B666200A46C4C /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4E0276B666200A46C4C /* StoreViewModel.swift */; };
+		C30FC4E3276B667B00A46C4C /* StoreImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4E2276B667B00A46C4C /* StoreImp.swift */; };
 		C310E2F627439D0000C47625 /* UploadMusicImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310E2F527439D0000C47625 /* UploadMusicImp.swift */; };
 		C310E2F82743DA7600C47625 /* DataCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310E2F72743DA7500C47625 /* DataCellModel.swift */; };
 		C31601192751009000D35E70 /* ChatDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31601182751009000D35E70 /* ChatDetailCoordinator.swift */; };
@@ -144,6 +152,14 @@
 		C30FC4CB2768A9CC00A46C4C /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		C30FC4CD2768BA1700A46C4C /* NotificationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataModel.swift; sourceTree = "<group>"; };
 		C30FC4D22769EB7200A46C4C /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		C30FC4D4276B566400A46C4C /* StoreCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCurrencyViewController.swift; sourceTree = "<group>"; };
+		C30FC4D6276B56E200A46C4C /* StoreCurrencyDraw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCurrencyDraw.swift; sourceTree = "<group>"; };
+		C30FC4D8276B575900A46C4C /* StoreCurrencyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCurrencyCoordinator.swift; sourceTree = "<group>"; };
+		C30FC4DA276B61A500A46C4C /* StoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCell.swift; sourceTree = "<group>"; };
+		C30FC4DC276B635C00A46C4C /* StoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
+		C30FC4DE276B64BE00A46C4C /* StoreCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCellModel.swift; sourceTree = "<group>"; };
+		C30FC4E0276B666200A46C4C /* StoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
+		C30FC4E2276B667B00A46C4C /* StoreImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreImp.swift; sourceTree = "<group>"; };
 		C310E2F527439D0000C47625 /* UploadMusicImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMusicImp.swift; sourceTree = "<group>"; };
 		C310E2F72743DA7500C47625 /* DataCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCellModel.swift; sourceTree = "<group>"; };
 		C31601182751009000D35E70 /* ChatDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailCoordinator.swift; sourceTree = "<group>"; };
@@ -293,6 +309,7 @@
 				C38105672746B0D00071BC79 /* RecordPageDrawView.swift */,
 				C381056D2746B1530071BC79 /* ChatPageDrawView.swift */,
 				C316011A2751014300D35E70 /* ChatDetailDrawView.swift */,
+				C30FC4D6276B56E200A46C4C /* StoreCurrencyDraw.swift */,
 			);
 			path = "Drawing View";
 			sourceTree = "<group>";
@@ -338,6 +355,7 @@
 				C33CCA7C272C246600C7969E /* CustomTableViewCell.swift */,
 				C3767DFD2750D3D200F4FF7D /* ChatListCell.swift */,
 				C3767E052750E5DF00F4FF7D /* ChatDetailCell.swift */,
+				C30FC4DA276B61A500A46C4C /* StoreCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -358,6 +376,7 @@
 				C381057B274CD19E0071BC79 /* RecordViewModelImp.swift */,
 				C38BC32D2755105C0027E33C /* ChatDetailImp.swift */,
 				C397694127566B53006578B5 /* ChatPageImp.swift */,
+				C30FC4E2276B667B00A46C4C /* StoreImp.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -443,6 +462,8 @@
 				C33CCA7A272BE47A00C7969E /* DetailModel.swift */,
 				C30FC4CB2768A9CC00A46C4C /* NotificationModel.swift */,
 				C30FC4CD2768BA1700A46C4C /* NotificationDataModel.swift */,
+				C30FC4DC276B635C00A46C4C /* StoreModel.swift */,
+				C30FC4DE276B64BE00A46C4C /* StoreCellModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -464,6 +485,7 @@
 				C38105652746B07B0071BC79 /* RecordPageViewController.swift */,
 				C381056B2746B1230071BC79 /* ChatPageViewController.swift */,
 				C3767E072750E62400F4FF7D /* ChatDetailViewController.swift */,
+				C30FC4D4276B566400A46C4C /* StoreCurrencyViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -482,6 +504,7 @@
 				C38105692746B0F00071BC79 /* RecordPageViewModel.swift */,
 				C381056F2746B17E0071BC79 /* ChatPageViewModel.swift */,
 				C316011E2751240C00D35E70 /* ChatDetailViewModel.swift */,
+				C30FC4E0276B666200A46C4C /* StoreViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -501,6 +524,7 @@
 				C3810579274BDA970071BC79 /* RecordPageCoordinator.swift */,
 				C3767DFF2750DA3500F4FF7D /* ChatPageCoordinator.swift */,
 				C31601182751009000D35E70 /* ChatDetailCoordinator.swift */,
+				C30FC4D8276B575900A46C4C /* StoreCurrencyCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -791,6 +815,7 @@
 				C3767DF8274FB21300F4FF7D /* State.swift in Sources */,
 				C3255880273EA1C900248FD8 /* StartViewController.swift in Sources */,
 				C310E2F627439D0000C47625 /* UploadMusicImp.swift in Sources */,
+				C30FC4D7276B56E200A46C4C /* StoreCurrencyDraw.swift in Sources */,
 				C3767E042750DE1A00F4FF7D /* CellChatModel.swift in Sources */,
 				C381567D2726A930008E83AC /* Coordinator.swift in Sources */,
 				C30150AB27312E3B00C85EF3 /* AddingDataDraw.swift in Sources */,
@@ -805,19 +830,23 @@
 				C30150BD2733E07300C85EF3 /* TabBarCoordinator.swift in Sources */,
 				C3255878273C263200248FD8 /* ViewScreenProtocol.swift in Sources */,
 				C3255876273AC4EE00248FD8 /* TabBarImp.swift in Sources */,
+				C30FC4D9276B575900A46C4C /* StoreCurrencyCoordinator.swift in Sources */,
 				C38BC330275518DA0027E33C /* MessageDataModel.swift in Sources */,
 				C316011D2751230300D35E70 /* Message.swift in Sources */,
 				C325588A2742801500248FD8 /* UploadMusicCoordinator.swift in Sources */,
 				C379FED127394390004ECCB9 /* AddingDataImp.swift in Sources */,
+				C30FC4E1276B666200A46C4C /* StoreViewModel.swift in Sources */,
 				C3767DFE2750D3D200F4FF7D /* ChatListCell.swift in Sources */,
 				C3767E022750DC7B00F4FF7D /* ChatListModel.swift in Sources */,
 				C381568A27281499008E83AC /* RegistrationViewModel.swift in Sources */,
 				C397694227566B53006578B5 /* ChatPageImp.swift in Sources */,
+				C30FC4DB276B61A500A46C4C /* StoreCell.swift in Sources */,
 				C33CCA82272C3BC800C7969E /* SellerDetailViewModel.swift in Sources */,
 				C30FC4CE2768BA1700A46C4C /* NotificationDataModel.swift in Sources */,
 				C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */,
 				C30150B12732A59F00C85EF3 /* ListSampleViewModel.swift in Sources */,
 				C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */,
+				C30FC4DF276B64BE00A46C4C /* StoreCellModel.swift in Sources */,
 				C3810578274BCDBF0071BC79 /* UserDetailImp.swift in Sources */,
 				C325586A273A62D600248FD8 /* AddUserDataCoordinator.swift in Sources */,
 				C38105682746B0D00071BC79 /* RecordPageDrawView.swift in Sources */,
@@ -837,13 +866,16 @@
 				C30FC4C52760A0FD00A46C4C /* LocalizeKeys.swift in Sources */,
 				C325588427427E7D00248FD8 /* UploadMusicViewController.swift in Sources */,
 				C38156842726F81B008E83AC /* Extension.swift in Sources */,
+				C30FC4DD276B635C00A46C4C /* StoreModel.swift in Sources */,
 				C3255872273AA96500248FD8 /* TabBarController.swift in Sources */,
 				C366BE5527298E6900B3E182 /* AddingDataViewController.swift in Sources */,
 				C30150B72733CD7800C85EF3 /* ListSamplesCoordinator.swift in Sources */,
+				C30FC4E3276B667B00A46C4C /* StoreImp.swift in Sources */,
 				C3255882273EA21B00248FD8 /* StartViewDraw.swift in Sources */,
 				C316011F2751240C00D35E70 /* ChatDetailViewModel.swift in Sources */,
 				C3767E082750E62400F4FF7D /* ChatDetailViewController.swift in Sources */,
 				C379FEC927393FC5004ECCB9 /* MainControllerImp.swift in Sources */,
+				C30FC4D5276B566500A46C4C /* StoreCurrencyViewController.swift in Sources */,
 				C381568627270783008E83AC /* RegistrationViewController.swift in Sources */,
 				C38156882728147A008E83AC /* MainScreenViewModel.swift in Sources */,
 				C38105662746B07B0071BC79 /* RecordPageViewController.swift in Sources */,

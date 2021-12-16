@@ -24,6 +24,8 @@ protocol TabBarScreenProtocol: TabBarController { }
 
 protocol StartViewProtocol: StartViewController { }
 
+protocol StoreCurrencyProtocol: StoreCurrencyViewController { }
+
 protocol UploadMusicProtocol: UploadMusicViewController { }
 
 protocol MusicPlayerProtocol : MusicPlayer { }
