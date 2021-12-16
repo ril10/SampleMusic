@@ -10,7 +10,7 @@ import UIKit
 class StoreCurrencyDraw {
     
     lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [sampleTable])
+        let stackView = UIStackView(arrangedSubviews: [storeLabel,sampleTable])
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.axis = .vertical
@@ -29,6 +29,15 @@ class StoreCurrencyDraw {
         return tableView
     }()
     
+    var storeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Check our awesome deals!"//NSLocalizedString(UploadKeys.uplImg.rawValue, comment: "")
+        label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 25.0)
+        label.tintColor = .gray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     
     func viewCompare(view: UIView) {
         view.addSubview(stackView)
@@ -39,5 +48,6 @@ class StoreCurrencyDraw {
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+
     }
 }

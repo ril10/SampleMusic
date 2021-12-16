@@ -22,6 +22,7 @@ class StoreCurrencyCoordinator : Coordinator {
     
     func start() {
         view.coordinator = self
+        self.navigationController.modalPresentationStyle = .formSheet
         self.navigationController.present(view, animated: true, completion: nil)
     }
     

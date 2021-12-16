@@ -19,28 +19,18 @@ class StoreCell: UITableViewCell {
             promotionLabel.text = storeCell?.name
             costLabel.text = "\(storeCell!.cost)$"
             recievedCookies.text = "\(storeCell!.cost)🍪"
-            cellImage(with: storeCell?.image ?? "")
+            cellImage(with: storeCell!.image)
         }
     }
     
     private func cellImage(with link: String) {
-        db.collection(Collection.user.getCollection())
-            .addSnapshotListener { (querySnapshot, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    for query in querySnapshot!.documents {
-                            let imageData = StoreModel(data: query.data())
-                                DispatchQueue.main.async {
-                                    self.imageDeal.sd_setImage(with: URL(string: imageData.image ?? ""), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
-                                }
-                    }
-                }
-            }
+        DispatchQueue.main.async {
+            self.imageDeal.sd_setImage(with: URL(string: link), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+        }
     }
     
     lazy var stackView : UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [imageDeal,middleStackView,buyButton,recievedCookies])
+        let stackView = UIStackView(arrangedSubviews: [imageDeal,middleStackView,endStackView])
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.spacing = 10
@@ -50,7 +40,16 @@ class StoreCell: UITableViewCell {
     }()
     
     lazy var middleStackView : UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [promotionLabel,costLabel])
+        let stackView = UIStackView(arrangedSubviews: [promotionLabel,recievedCookies])
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    lazy var endStackView : UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [buyButton,costLabel])
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.axis = .vertical
@@ -113,7 +112,7 @@ class StoreCell: UITableViewCell {
     
     var recievedCookies: UILabel = {
         let label = UILabel()
-        label.textAlignment = .right
+        label.textAlignment = .left
         label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20)
         label.textColor = UIColor(named: Style.textColor.rawValue)
         label.translatesAutoresizingMaskIntoConstraints = false
