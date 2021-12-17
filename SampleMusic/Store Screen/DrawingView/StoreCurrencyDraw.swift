@@ -10,7 +10,7 @@ import UIKit
 class StoreCurrencyDraw {
     
     lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [storeLabel,sampleTable])
+        let stackView = UIStackView(arrangedSubviews: [storeViewTop,sampleTable])
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.axis = .vertical
@@ -29,6 +29,15 @@ class StoreCurrencyDraw {
         return tableView
     }()
     
+    var storeViewTop: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(named: Style.coralColor.rawValue)
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 20
+        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        return view
+    }()
+    
     var storeLabel: UILabel = {
         let label = UILabel()
         label.text = "Check our awesome deals!"//NSLocalizedString(UploadKeys.uplImg.rawValue, comment: "")
@@ -41,12 +50,19 @@ class StoreCurrencyDraw {
     
     func viewCompare(view: UIView) {
         view.addSubview(stackView)
+        storeViewTop.addSubview(storeLabel)
         
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            storeViewTop.heightAnchor.constraint(equalToConstant: 150),
+            storeLabel.centerXAnchor.constraint(equalTo: storeViewTop.centerXAnchor),
+            storeLabel.centerYAnchor.constraint(equalTo: storeViewTop.centerYAnchor),
         ])
 
     }

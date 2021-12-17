@@ -13,6 +13,9 @@ class StoreCurrencyViewController: UIViewController, UITableViewDelegate, UITabl
     var drawView = StoreCurrencyDraw()
     var coordinator : StoreCurrencyCoordinator?
     
+    var currentTableAnimation: TableAnimation = .moveUpWithFade(rowHeight: 140, duration: 0.85, delay: 0.05)
+    var storeView: CustomViewAnimation = .fadeIn(duration: 0.85, delayFactor: 0.05)
+    
     init(viewModel: StoreImp) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -33,6 +36,12 @@ class StoreCurrencyViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let animation = currentTableAnimation.getAnimation()
+        let animator = TableViewAnimation(animation: animation)
+        animator.animate(cell: cell, at: indexPath, in: tableView)
+    }
     //MARK: - View
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -41,6 +50,9 @@ class StoreCurrencyViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.getData()
+        let animation = storeView.getAnimation()
+        let animator = AnimatedView(animation: animation)
+        animator.animate(view: drawView.storeViewTop)
     }
     
     override func loadView() {

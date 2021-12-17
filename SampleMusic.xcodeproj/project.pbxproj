@@ -32,6 +32,10 @@
 		C30FC4DF276B64BE00A46C4C /* StoreCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4DE276B64BE00A46C4C /* StoreCellModel.swift */; };
 		C30FC4E1276B666200A46C4C /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4E0276B666200A46C4C /* StoreViewModel.swift */; };
 		C30FC4E3276B667B00A46C4C /* StoreImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4E2276B667B00A46C4C /* StoreImp.swift */; };
+		C30FC51A276C72B500A46C4C /* TableViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC519276C72B400A46C4C /* TableViewAnimator.swift */; };
+		C30FC51C276C78A100A46C4C /* TableAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC51B276C78A100A46C4C /* TableAnimation.swift */; };
+		C30FC51E276C7C6E00A46C4C /* AnimatedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC51D276C7C6E00A46C4C /* AnimatedView.swift */; };
+		C30FC520276C7CB300A46C4C /* CustomViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC51F276C7CB300A46C4C /* CustomViewAnimation.swift */; };
 		C310E2F627439D0000C47625 /* UploadMusicImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310E2F527439D0000C47625 /* UploadMusicImp.swift */; };
 		C310E2F82743DA7600C47625 /* DataCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310E2F72743DA7500C47625 /* DataCellModel.swift */; };
 		C31601192751009000D35E70 /* ChatDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31601182751009000D35E70 /* ChatDetailCoordinator.swift */; };
@@ -160,6 +164,10 @@
 		C30FC4DE276B64BE00A46C4C /* StoreCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCellModel.swift; sourceTree = "<group>"; };
 		C30FC4E0276B666200A46C4C /* StoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
 		C30FC4E2276B667B00A46C4C /* StoreImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreImp.swift; sourceTree = "<group>"; };
+		C30FC519276C72B400A46C4C /* TableViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAnimator.swift; sourceTree = "<group>"; };
+		C30FC51B276C78A100A46C4C /* TableAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableAnimation.swift; sourceTree = "<group>"; };
+		C30FC51D276C7C6E00A46C4C /* AnimatedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedView.swift; sourceTree = "<group>"; };
+		C30FC51F276C7CB300A46C4C /* CustomViewAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewAnimation.swift; sourceTree = "<group>"; };
 		C310E2F527439D0000C47625 /* UploadMusicImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadMusicImp.swift; sourceTree = "<group>"; };
 		C310E2F72743DA7500C47625 /* DataCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCellModel.swift; sourceTree = "<group>"; };
 		C31601182751009000D35E70 /* ChatDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailCoordinator.swift; sourceTree = "<group>"; };
@@ -754,6 +762,17 @@
 			path = DrawingView;
 			sourceTree = "<group>";
 		};
+		C30FC518276C729500A46C4C /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				C30FC519276C72B400A46C4C /* TableViewAnimator.swift */,
+				C30FC51B276C78A100A46C4C /* TableAnimation.swift */,
+				C30FC51D276C7C6E00A46C4C /* AnimatedView.swift */,
+				C30FC51F276C7CB300A46C4C /* CustomViewAnimation.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
 		C33CCA7E272C246B00C7969E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -811,6 +830,7 @@
 		C38156442726A0BF008E83AC /* SampleMusic */ = {
 			isa = PBXGroup;
 			children = (
+				C30FC518276C729500A46C4C /* Animation */,
 				C30FC514276B6FE200A46C4C /* Store Screen */,
 				C30FC510276B6FB400A46C4C /* Chat Detail Screen */,
 				C30FC50C276B6F8600A46C4C /* Chat Page Screen */,
@@ -1198,6 +1218,7 @@
 				C325588827427ED800248FD8 /* UploadMusicViewModel.swift in Sources */,
 				C31601192751009000D35E70 /* ChatDetailCoordinator.swift in Sources */,
 				C379FED3273943B4004ECCB9 /* SellerImp.swift in Sources */,
+				C30FC51A276C72B500A46C4C /* TableViewAnimator.swift in Sources */,
 				C381057C274CD19E0071BC79 /* RecordViewModelImp.swift in Sources */,
 				C38105642746B0310071BC79 /* UserDetailViewModel.swift in Sources */,
 				C3767E062750E5DF00F4FF7D /* ChatDetailCell.swift in Sources */,
@@ -1235,6 +1256,7 @@
 				C316011B2751014300D35E70 /* ChatDetailDrawView.swift in Sources */,
 				C30FC4D32769EB7200A46C4C /* FirebaseManager.swift in Sources */,
 				C381568F272822C6008E83AC /* ListSamplesViewController.swift in Sources */,
+				C30FC520276C7CB300A46C4C /* CustomViewAnimation.swift in Sources */,
 				C38105702746B17E0071BC79 /* ChatPageViewModel.swift in Sources */,
 				C381568D27281B3F008E83AC /* Configure.swift in Sources */,
 				C366BE59272AEB5B00B3E182 /* EnumStyle.swift in Sources */,
@@ -1243,6 +1265,7 @@
 				C325588427427E7D00248FD8 /* UploadMusicViewController.swift in Sources */,
 				C38156842726F81B008E83AC /* Extension.swift in Sources */,
 				C30FC4DD276B635C00A46C4C /* StoreModel.swift in Sources */,
+				C30FC51E276C7C6E00A46C4C /* AnimatedView.swift in Sources */,
 				C3255872273AA96500248FD8 /* TabBarController.swift in Sources */,
 				C366BE5527298E6900B3E182 /* AddingDataViewController.swift in Sources */,
 				C30150B72733CD7800C85EF3 /* ListSamplesCoordinator.swift in Sources */,
@@ -1268,6 +1291,7 @@
 				C381567F2726A962008E83AC /* MainCoordinator.swift in Sources */,
 				C30150A727303C2400C85EF3 /* MainScreenDraw.swift in Sources */,
 				C3255874273AC46F00248FD8 /* TabBarControllerViewModel.swift in Sources */,
+				C30FC51C276C78A100A46C4C /* TableAnimation.swift in Sources */,
 				C3810576274BB9D40071BC79 /* UserDetailCoordinator.swift in Sources */,
 				C30FC4CA27678C4C00A46C4C /* PushNotificationSender.swift in Sources */,
 				C381056A2746B0F00071BC79 /* RecordPageViewModel.swift in Sources */,
