@@ -14,4 +14,5 @@ protocol UserDetailViewModelImp {
     func userData()
     var dismissAlert : ((Bool) -> Void)? { get set }
     var balanceStatus : ((String) -> Void)? { get set }
+    var reloadTableView : (() -> Void)? { get set }
 }

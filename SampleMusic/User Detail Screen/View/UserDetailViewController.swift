@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class UserDetailViewController : UIViewController {
+class UserDetailViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var viewModel : UserDetailViewModelImp!
     var coordinator : UserDetailCoordinator?
@@ -24,12 +24,27 @@ class UserDetailViewController : UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
- //MARK: - View
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
+    
+ //MARK: - Table View
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "My Purchased List"
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
+        cell.buyLabel.isHidden = true
+        cell.labelSample.text = "12"
+        return cell
+    }
+ //MARK: - View
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -64,6 +79,14 @@ class UserDetailViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        drawView.sampleTable.register(CustomTableViewCell.self, forCellReuseIdentifier: TableCell.cell.rawValue)
+        drawView.sampleTable.dataSource = self
+        drawView.sampleTable.delegate = self
+        viewModel.reloadTableView = { [weak self] in
+            DispatchQueue.main.async {
+                self?.drawView.sampleTable.reloadData()
+            }
+        }
         viewModel?.reloadView = { [weak self] in
             DispatchQueue.main.async {
                 self?.view.setNeedsDisplay()

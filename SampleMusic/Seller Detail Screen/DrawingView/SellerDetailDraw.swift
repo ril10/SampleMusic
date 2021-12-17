@@ -87,7 +87,7 @@ class SellerDetailDraw: UIView {
         return stackView
     }()
     lazy var samplesStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [samplesLabel,sortButton,addButton,createSampleButton])
+        let stackView = UIStackView(arrangedSubviews: [sortButton,addButton,createSampleButton])
         stackView.alignment = .leading
         stackView.distribution = .fillProportionally
         stackView.axis = .horizontal
@@ -320,7 +320,6 @@ class SellerDetailDraw: UIView {
         NSLayoutConstraint.activate([
             segmentControl.leadingAnchor.constraint(equalTo: bottomStackView.leadingAnchor),
             segmentControl.trailingAnchor.constraint(equalTo: bottomStackView.trailingAnchor),
-//            segmentControl.bottomAnchor.constraint(equalTo: sampleTable.topAnchor),
             sampleTable.topAnchor.constraint(equalTo: segmentControl.bottomAnchor),
             sampleTable.leadingAnchor.constraint(equalTo: bottomStackView.leadingAnchor),
             sampleTable.trailingAnchor.constraint(equalTo: bottomStackView.trailingAnchor),
@@ -338,7 +337,6 @@ class SellerDetailDraw: UIView {
             bottomView.topAnchor.constraint(equalTo: middleView.bottomAnchor),
             bottomView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-//            bottomView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
         ])
 
             

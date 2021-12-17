@@ -12,7 +12,7 @@ class UserDetailDrawView : UIView {
     
     //MARK: - StackView
     lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [topView,middleView])
+        let stackView = UIStackView(arrangedSubviews: [topView,middleView,samplesStack])
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.spacing = 0
@@ -69,10 +69,10 @@ class UserDetailDrawView : UIView {
         return stackView
     }()
     lazy var samplesStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [])
+        let stackView = UIStackView(arrangedSubviews: [sampleTable])
         stackView.alignment = .leading
         stackView.distribution = .fillProportionally
-        stackView.axis = .horizontal
+        stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -84,6 +84,12 @@ class UserDetailDrawView : UIView {
     }()
     
     var middleView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    var bottomView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -185,19 +191,49 @@ class UserDetailDrawView : UIView {
         return label
     }()
     
+    var scrollView: UIScrollView = {
+        let screenSize: CGRect = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        let scroll = UIScrollView(frame: CGRect(x: 0, y: 0, width: screenWidth , height: screenHeight))
+        scroll.contentSize = CGSize(width: screenWidth, height: screenHeight)
+        scroll.isScrollEnabled = true
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        return scroll
+    }()
+    
+    var sampleTable: UITableView = {
+        let tableView = UITableView()
+        let screenSize: CGRect = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        tableView.separatorStyle = .none
+        tableView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 400)
+        return tableView
+    }()
+    
     //MARK: - Contstraints
     func viewCompare(view: UIView) {
-        view.addSubview(stackView)
+        view.addSubview(scrollView)
+        scrollView.addSubview(stackView)
+    
         topView.addSubview(imageView)
         middleView.addSubview(middleStackView)
         middleView.addSubview(samplesStack)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stackView.heightAnchor.constraint(equalToConstant: scrollView.frame.size.height),
+            
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
         ])
         
         NSLayoutConstraint.activate([
@@ -220,7 +256,7 @@ class UserDetailDrawView : UIView {
             middleStackView.topAnchor.constraint(equalTo: middleView.topAnchor),
             middleStackView.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 15),
             middleStackView.bottomAnchor.constraint(equalTo: samplesStack.topAnchor),
-            samplesStack.leadingAnchor.constraint(equalTo: middleView.leadingAnchor,constant: 15),
+            samplesStack.leadingAnchor.constraint(equalTo: middleView.leadingAnchor),
             samplesStack.trailingAnchor.constraint(equalTo: middleView.trailingAnchor),
             samplesStack.bottomAnchor.constraint(equalTo: middleView.bottomAnchor),
         ])
@@ -229,6 +265,13 @@ class UserDetailDrawView : UIView {
             middleView.topAnchor.constraint(equalTo: topView.bottomAnchor),
             middleView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             middleView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            sampleTable.leadingAnchor.constraint(equalTo: samplesStack.leadingAnchor),
+            sampleTable.trailingAnchor.constraint(equalTo: samplesStack.trailingAnchor),
+            sampleTable.topAnchor.constraint(equalTo: samplesStack.topAnchor),
+            sampleTable.bottomAnchor.constraint(equalTo: samplesStack.bottomAnchor),
         ])
         
     }

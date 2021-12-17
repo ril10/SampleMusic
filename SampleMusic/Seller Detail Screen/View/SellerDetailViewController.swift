@@ -92,7 +92,9 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         let alert = UIAlertController(title: "Buy sample", message: "You really want to buy this sample? It'll cost \(cookie)🍪", preferredStyle: .alert)
         alert.view.tintColor = UIColor.black
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: { action in
+            print("sucess")
+        }))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -111,6 +113,10 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
             return viewModel.samplesPaidData.count
         }
         return 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "My Samples List"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

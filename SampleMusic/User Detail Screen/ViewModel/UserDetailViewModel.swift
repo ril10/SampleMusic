@@ -27,6 +27,7 @@ class UserDetailViewModel: UserDetailViewModelImp  {
         self.st = st
     }
     
+    var reloadTableView : (() -> Void)?
     
     func userData() {
         if let user = Auth.auth().currentUser {

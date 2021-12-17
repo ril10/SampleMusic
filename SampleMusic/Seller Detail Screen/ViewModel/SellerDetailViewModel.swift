@@ -138,6 +138,17 @@ class SellerDetailViewModel: SellerImp {
                 }
         }
     }
+    
+    func updateUserCookies(get cookie: Int,completion: @escaping (Bool) -> Void?) {
+        if let user = Auth.auth().currentUser {
+            let totalCookie = self.currentCookie! - cookie
+            self.db?.collection(Collection.user.getCollection()).document(user.uid)
+                .updateData([
+                    "balance": totalCookie as Any
+                ])
+            completion(true)
+        }
+    }
     //MARK: - Get Samples Data From Seller Page
     func getSamplesData() {
         if let user = Auth.auth().currentUser {
