@@ -99,6 +99,11 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
+        if viewModel.ownerUid != nil {
+            cell.buyLabel.isHidden = false
+        } else {
+            cell.buyLabel.isHidden = true
+        }
         if drawView.segmentControl.selectedSegmentIndex == 0 {
             let cellVm = self.viewModel.getCellModel(at: indexPath)
             cell.sampleCell = cellVm
@@ -169,8 +174,12 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
                 viewModel.getSampleIndex(start: index, destination: element.index)
             }
         }
-
-
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if viewModel.ownerUid != nil {
+            print("You can buy it")
+        }
     }
     
 
@@ -193,7 +202,6 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
                 self.viewModel?.getSamplesData()
                 self.viewModel?.getPaidSamplesData()
                 viewModel?.userData()
-//                self.alertLoading()
             } else if viewModel.samplesPaidData.count == 0 {
                 self.viewModel?.getPaidSamplesData()
                 self.viewModel?.getSamplesData()

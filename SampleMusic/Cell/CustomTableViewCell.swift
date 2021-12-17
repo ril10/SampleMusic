@@ -53,11 +53,20 @@ class CustomTableViewCell: UITableViewCell {
     }()
     
     lazy var stackViewLeft : UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [labelSample,costLabel,stackViewRight])
+        let stackView = UIStackView(arrangedSubviews: [labelSample,priceStackView,stackViewRight])
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.spacing = 5
         stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    lazy var priceStackView : UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [costLabel,buyLabel])
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -86,10 +95,14 @@ class CustomTableViewCell: UITableViewCell {
         return image
     }()
     
-    var buyButton : UIButton = {
-        let button = UIButton()
-        
-        return button
+    var buyLabel : UILabel = {
+        let label = UILabel()
+        label.text = NSLocalizedString(StoreKey.tapBuy.rawValue, comment: "")
+        label.textColor = UIColor(named: Style.coralColor.rawValue)
+        label.textAlignment = .left
+        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     var buttonPlay : UIButton = {

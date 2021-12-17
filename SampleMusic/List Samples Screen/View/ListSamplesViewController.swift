@@ -34,6 +34,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
         let cellVm = self.viewModel.getCellModel(at: indexPath)
         cell.sampleCell = cellVm
+        cell.buyLabel.isHidden = true
         return cell
     }
     
@@ -128,7 +129,7 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
         view.backgroundColor = UIColor(named: Style.backgroundColor.rawValue)
         drawView.viewCompare(view: view)
         drawView.segment.addTarget(self, action: #selector(ListSamplesViewController.segmentAction(sender:)), for: .valueChanged)
-
+        
     }
     
     override func viewDidLoad() {

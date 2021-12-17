@@ -26,6 +26,7 @@ enum MainKeys : String, CaseIterable {
 
 enum StoreKey : String, CaseIterable {
     case storeTitle = "STORE_TITLE"
+    case tapBuy = "TAP_BUY"
 }
 
 enum SignUpKeys : String, CaseIterable {
