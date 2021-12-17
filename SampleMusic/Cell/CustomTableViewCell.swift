@@ -26,7 +26,15 @@ class CustomTableViewCell: UITableViewCell {
             endTimeLabel.text = sampleCell?.sampleDuratation
             ownerUid = sampleCell?.ownerUid
             costLabel.text = "\(sampleCell!.cost)🍪"
-            
+        }
+    }
+    
+    var purchasedCell : PurchasedModel? {
+        didSet {
+            imageUser.sd_setImage(with: URL(string: purchasedCell!.imageUrl ?? ""), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
+            labelSample.text = purchasedCell?.sampleName
+            sampleData = purchasedCell?.sampleUrl
+            endTimeLabel.text = purchasedCell?.duration
         }
     }
     
@@ -155,7 +163,7 @@ class CustomTableViewCell: UITableViewCell {
     @objc func didSlider(slider: UISlider!) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
         slider.minimumValue = 0
-        slider.maximumValue = Float(sampleCell!.totalSeconds)
+        slider.maximumValue = Float((sampleCell?.totalSeconds ?? purchasedCell?.totalSeconds)!)
         let value = Int(slider.value)
 
         if value >= 60 {
@@ -174,7 +182,7 @@ class CustomTableViewCell: UITableViewCell {
     @objc func updateSlider() {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
         slider.minimumValue = 0
-        slider.maximumValue = Float(sampleCell!.totalSeconds)
+        slider.maximumValue = Float((sampleCell?.totalSeconds ?? purchasedCell?.totalSeconds)!)
         slider.value = Float(player.player!.currentTime)
         let value = Int(slider.value)
         if value >= 60 {

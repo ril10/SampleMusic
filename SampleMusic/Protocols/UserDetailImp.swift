@@ -15,4 +15,7 @@ protocol UserDetailViewModelImp {
     var dismissAlert : ((Bool) -> Void)? { get set }
     var balanceStatus : ((String) -> Void)? { get set }
     var reloadTableView : (() -> Void)? { get set }
+    var purchasedSamples : [PurchasedModel] { get set }
+    func getCellModel(at indexPath: IndexPath) -> PurchasedModel
+    func getPurchasedSamplesData()
 }

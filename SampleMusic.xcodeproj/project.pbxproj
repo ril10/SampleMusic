@@ -77,6 +77,8 @@
 		C379FED127394390004ECCB9 /* AddingDataImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379FED027394390004ECCB9 /* AddingDataImp.swift */; };
 		C379FED3273943B4004ECCB9 /* SellerImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379FED2273943B4004ECCB9 /* SellerImp.swift */; };
 		C379FED5273943CB004ECCB9 /* ListSamplesImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379FED4273943CB004ECCB9 /* ListSamplesImp.swift */; };
+		C37A9141276CC7E800A8F19A /* Purchased.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37A9140276CC7E800A8F19A /* Purchased.swift */; };
+		C37A9143276CC8E200A8F19A /* PurchasedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37A9142276CC8E200A8F19A /* PurchasedModel.swift */; };
 		C38105602746AFA10071BC79 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381055F2746AFA10071BC79 /* UserDetailViewController.swift */; };
 		C38105622746B00A0071BC79 /* UserDetailDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38105612746B00A0071BC79 /* UserDetailDrawView.swift */; };
 		C38105642746B0310071BC79 /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38105632746B0310071BC79 /* UserDetailViewModel.swift */; };
@@ -209,6 +211,8 @@
 		C379FED027394390004ECCB9 /* AddingDataImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingDataImp.swift; sourceTree = "<group>"; };
 		C379FED2273943B4004ECCB9 /* SellerImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerImp.swift; sourceTree = "<group>"; };
 		C379FED4273943CB004ECCB9 /* ListSamplesImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSamplesImp.swift; sourceTree = "<group>"; };
+		C37A9140276CC7E800A8F19A /* Purchased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purchased.swift; sourceTree = "<group>"; };
+		C37A9142276CC8E200A8F19A /* PurchasedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedModel.swift; sourceTree = "<group>"; };
 		C381055F2746AFA10071BC79 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		C38105612746B00A0071BC79 /* UserDetailDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailDrawView.swift; sourceTree = "<group>"; };
 		C38105632746B0310071BC79 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
@@ -909,6 +913,8 @@
 				C30FC4CD2768BA1700A46C4C /* NotificationDataModel.swift */,
 				C30FC4DC276B635C00A46C4C /* StoreModel.swift */,
 				C30FC4DE276B64BE00A46C4C /* StoreCellModel.swift */,
+				C37A9140276CC7E800A8F19A /* Purchased.swift */,
+				C37A9142276CC8E200A8F19A /* PurchasedModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1259,6 +1265,7 @@
 				C379FED5273943CB004ECCB9 /* ListSamplesImp.swift in Sources */,
 				C3160121275130A800D35E70 /* SellerDetailCoordinator.swift in Sources */,
 				C38BC32E2755105C0027E33C /* ChatDetailImp.swift in Sources */,
+				C37A9143276CC8E200A8F19A /* PurchasedModel.swift in Sources */,
 				C366BE5727298EBE00B3E182 /* AddingDataAboutUserViewModel.swift in Sources */,
 				C366BE532729726200B3E182 /* SellerDetailViewController.swift in Sources */,
 				C316011B2751014300D35E70 /* ChatDetailDrawView.swift in Sources */,
@@ -1284,6 +1291,7 @@
 				C379FEC927393FC5004ECCB9 /* MainControllerImp.swift in Sources */,
 				C30FC4D5276B566500A46C4C /* StoreCurrencyViewController.swift in Sources */,
 				C381568627270783008E83AC /* RegistrationViewController.swift in Sources */,
+				C37A9141276CC7E800A8F19A /* Purchased.swift in Sources */,
 				C38156882728147A008E83AC /* MainScreenViewModel.swift in Sources */,
 				C38105662746B07B0071BC79 /* RecordPageViewController.swift in Sources */,
 				C33CCA7B272BE47A00C7969E /* DetailModel.swift in Sources */,

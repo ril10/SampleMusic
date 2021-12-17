@@ -87,13 +87,14 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         self.present(alert, animated: true)
     }
     
-    func alertBuy(cookie: Int) {
+    func alertBuy(cookie: Int, duration: Int, imageUrl: String, sampleName: String, sampleUrl: String) {
         let okTitle = NSLocalizedString(MainKeys.ok.rawValue, comment: "")
         let alert = UIAlertController(title: "Buy sample", message: "You really want to buy this sample? It'll cost \(cookie)🍪", preferredStyle: .alert)
         alert.view.tintColor = UIColor.black
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: { action in
-            print("sucess")
+            self.viewModel.buySample(duration: duration, imageUrl: imageUrl, sampleName: sampleName, sampleUrl: sampleUrl)
+            self.viewModel.updateUserCookies(get: cookie)
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -105,6 +106,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
     //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if drawView.segmentControl.selectedSegmentIndex == 0 {
@@ -202,13 +204,21 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         if viewModel.ownerUid != nil {
             if drawView.segmentControl.selectedSegmentIndex == 0 {
                 let cellVmFree = viewModel.getCellModel(at: indexPath)
-                self.alertBuy(cookie: cellVmFree.cost)
+                self.alertBuy(cookie: cellVmFree.cost,
+                              duration: cellVmFree.totalSeconds,
+                              imageUrl: cellVmFree.imageSample,
+                              sampleName: cellVmFree.sampleName,
+                              sampleUrl: cellVmFree.sampleData)
             } else {
                 let cellVmPaid = viewModel.getPaidCellModel(at: indexPath)
                 if cellVmPaid.cost > viewModel.currentCookie! {
                     self.errorBuy(cookie: viewModel.currentCookie!)
                 } else {
-                    self.alertBuy(cookie: cellVmPaid.cost)
+                    self.alertBuy(cookie: cellVmPaid.cost,
+                                  duration: cellVmPaid.totalSeconds,
+                                  imageUrl: cellVmPaid.imageSample,
+                                  sampleName: cellVmPaid.sampleName,
+                                  sampleUrl: cellVmPaid.sampleData)
                 }
             }
         }

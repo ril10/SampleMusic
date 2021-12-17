@@ -32,6 +32,7 @@ enum Collection : String, CaseIterable {
     case free
     case paid
     case store
+    case purchased
     
     func getCollection() -> String {
         switch self {
@@ -51,6 +52,8 @@ enum Collection : String, CaseIterable {
             return "paid"
         case .store:
             return "store"
+        case .purchased:
+            return "purchased"
         }
     }
 }

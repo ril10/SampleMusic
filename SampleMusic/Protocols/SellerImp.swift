@@ -32,4 +32,6 @@ protocol SellerImp {
     func getPaidSamplesFromUserData(ownerUid: String)
     var currentCookie : Int? { get set }
     func getCurrentUserCookie()
+    func buySample(duration: Int, imageUrl: String, sampleName: String, sampleUrl: String)
+    func updateUserCookies(get cookie: Int)
 }

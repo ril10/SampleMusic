@@ -15,6 +15,8 @@ class UserDetailViewController : UIViewController, UITableViewDataSource, UITabl
     var drawView = UserDetailDrawView()
     var status : String!
     
+    var currentTableAnimation: TableAnimation = .moveUpWithFade(rowHeight: 140, duration: 0.85, delay: 0.05)
+    
     init(viewModel: UserDetailViewModelImp) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -27,7 +29,7 @@ class UserDetailViewController : UIViewController, UITableViewDataSource, UITabl
     
  //MARK: - Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return viewModel.purchasedSamples.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -38,10 +40,18 @@ class UserDetailViewController : UIViewController, UITableViewDataSource, UITabl
         return "My Purchased List"
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let animation = currentTableAnimation.getAnimation()
+        let animator = TableViewAnimation(animation: animation)
+        animator.animate(cell: cell, at: indexPath, in: tableView)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCell.cell.rawValue,for: indexPath) as! CustomTableViewCell
         cell.buyLabel.isHidden = true
-        cell.labelSample.text = "12"
+        let cellVm = viewModel.getCellModel(at: indexPath)
+        cell.purchasedCell = cellVm
+        
         return cell
     }
  //MARK: - View
@@ -49,6 +59,7 @@ class UserDetailViewController : UIViewController, UITableViewDataSource, UITabl
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.userData()
+        viewModel.getPurchasedSamplesData()
         viewModel.fieldData = { [weak self] firstName,lastName,desc,email,gender,image in
             self?.drawView.firstNameData.text = firstName
             self?.drawView.secondNameData.text = lastName
