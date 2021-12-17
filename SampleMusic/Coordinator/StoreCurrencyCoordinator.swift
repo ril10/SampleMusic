@@ -26,5 +26,10 @@ class StoreCurrencyCoordinator : Coordinator {
         self.navigationController.present(view, animated: true, completion: nil)
     }
     
+    func finish() {
+        self.navigationController.dismiss(animated: true)
+        parentCoordinator?.childDidFinish(self)
+    }
+    
     
 }

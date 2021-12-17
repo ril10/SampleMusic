@@ -14,6 +14,8 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     var drawView = ListSamplesDraw()
     var viewModel : ListSamplesImp!
     
+    var currentTableAnimation: TableAnimation = .moveUpWithFade(rowHeight: 140, duration: 0.85, delay: 0.05)
+    
     init(viewModel: ListSamplesImp) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -42,6 +44,12 @@ class ListSamplesViewController: UIViewController,UITableViewDelegate,UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cellVm = self.viewModel.getCellModel(at: indexPath)
         coordinator?.goToSellerPage(ownerUid: cellVm.ownerUid,chatRoom: viewModel.chatRoom ?? "")
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let animation = currentTableAnimation.getAnimation()
+        let animator = TableViewAnimation(animation: animation)
+        animator.animate(cell: cell, at: indexPath, in: tableView)
     }
     //MARK: - Alert
     func alertLoading() {

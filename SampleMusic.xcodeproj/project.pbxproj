@@ -773,6 +773,14 @@
 			path = Animation;
 			sourceTree = "<group>";
 		};
+		C30FC521276C8DD500A46C4C /* Music Player */ = {
+			isa = PBXGroup;
+			children = (
+				C3810573274B94470071BC79 /* MusicPlayer.swift */,
+			);
+			path = "Music Player";
+			sourceTree = "<group>";
+		};
 		C33CCA7E272C246B00C7969E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -830,6 +838,7 @@
 		C38156442726A0BF008E83AC /* SampleMusic */ = {
 			isa = PBXGroup;
 			children = (
+				C30FC521276C8DD500A46C4C /* Music Player */,
 				C30FC518276C729500A46C4C /* Animation */,
 				C30FC514276B6FE200A46C4C /* Store Screen */,
 				C30FC510276B6FB400A46C4C /* Chat Detail Screen */,
@@ -883,7 +892,6 @@
 			children = (
 				C38156452726A0BF008E83AC /* AppDelegate.swift */,
 				C38156472726A0BF008E83AC /* SceneDelegate.swift */,
-				C3810573274B94470071BC79 /* MusicPlayer.swift */,
 				C38156502726A0C0008E83AC /* LaunchScreen.storyboard */,
 				C38156752726A5D9008E83AC /* GoogleService-Info.plist */,
 			);

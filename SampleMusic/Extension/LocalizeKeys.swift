@@ -24,6 +24,10 @@ enum MainKeys : String, CaseIterable {
     case ok = "OK"
 }
 
+enum StoreKey : String, CaseIterable {
+    case storeTitle = "STORE_TITLE"
+}
+
 enum SignUpKeys : String, CaseIterable {
     case choseRole = "CHOSEROLE"
     case user = "USER"

@@ -40,7 +40,7 @@ class StoreCurrencyDraw {
     
     var storeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Check our awesome deals!"//NSLocalizedString(UploadKeys.uplImg.rawValue, comment: "")
+        label.text = NSLocalizedString(StoreKey.storeTitle.rawValue, comment: "")
         label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 25.0)
         label.tintColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false

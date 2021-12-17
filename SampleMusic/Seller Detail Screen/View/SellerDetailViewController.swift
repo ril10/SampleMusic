@@ -19,6 +19,8 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     var mediaPicker : MPMediaPickerController?
     var mediaItems = [MPMediaItem]()
     
+    var currentTableAnimation: TableAnimation = .moveUpWithFade(rowHeight: 140, duration: 0.85, delay: 0.05)
+    
     init(viewModel: SellerImp) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -106,6 +108,12 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let animation = currentTableAnimation.getAnimation()
+        let animator = TableViewAnimation(animation: animation)
+        animator.animate(cell: cell, at: indexPath, in: tableView)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -15,4 +15,6 @@ protocol StoreImp {
     func getData()
     var storeDeals : [StoreCellModel] { get set }
     func getCellModel(at indexPath: IndexPath) -> StoreCellModel
+    func updateUserCookies(get cookie: Int,completion: @escaping (Bool) -> Void?)
+    func getCurrentUserCookie()
 }

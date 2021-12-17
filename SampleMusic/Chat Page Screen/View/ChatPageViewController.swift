@@ -14,6 +14,8 @@ class ChatPageViewController : UIViewController, UITableViewDataSource, UITableV
     var coordinator : ChatPageCoordinator?
     var viewModel : ChatPageImp
     
+    var currentTableAnimation: TableAnimation = .moveUpWithFade(rowHeight: 140, duration: 0.85, delay: 0.05)
+    
     init(viewModel: ChatPageImp) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -39,6 +41,12 @@ class ChatPageViewController : UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let animation = currentTableAnimation.getAnimation()
+        let animator = TableViewAnimation(animation: animation)
+        animator.animate(cell: cell, at: indexPath, in: tableView)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

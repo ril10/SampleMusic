@@ -73,3 +73,5 @@
 "E_ROLE" = "Select your role";
 "E_ADD_DATA" = "Error Adding Data";
 "E_FIELDS" = "Fill all fields";
+//MARK: - Store
+"STORE_TITLE" = "Grab your cookie🍪";

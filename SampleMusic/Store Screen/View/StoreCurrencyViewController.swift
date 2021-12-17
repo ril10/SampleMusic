@@ -42,6 +42,16 @@ class StoreCurrencyViewController: UIViewController, UITableViewDelegate, UITabl
         let animator = TableViewAnimation(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cellVm = viewModel.getCellModel(at: indexPath)
+        viewModel.updateUserCookies(get: cellVm.cost) { add in
+            if add {
+                self.coordinator?.finish()
+            }
+            return nil
+        }
+    }
     //MARK: - View
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -50,6 +60,7 @@ class StoreCurrencyViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.getData()
+        viewModel.getCurrentUserCookie()
         let animation = storeView.getAnimation()
         let animator = AnimatedView(animation: animation)
         animator.animate(view: drawView.storeViewTop)

@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseAuth
 
 class StoreViewModel: StoreImp {
     
@@ -16,13 +17,38 @@ class StoreViewModel: StoreImp {
     }
     
     var reloadTableView: (() -> Void)?
-    
+    var currentCookie : Int?
     var storeDeals = [StoreCellModel]() {
         didSet {
             self.reloadTableView?()
         }
     }
     
+    //MARK: - GetCookies
+    func getCurrentUserCookie() {
+        if let user = Auth.auth().currentUser {
+            db.collection(Collection.user.getCollection()).document(user.uid)
+                .addSnapshotListener { (documentSnapshot, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        let currentCookie = DetailModel(data: documentSnapshot!.data()!)
+                        self.currentCookie = currentCookie.balance
+                    }
+                }
+        }
+    }
+    
+    func updateUserCookies(get cookie: Int,completion: @escaping (Bool) -> Void?) {
+        if let user = Auth.auth().currentUser {
+            let totalCookie = self.currentCookie! + cookie
+            db.collection(Collection.user.getCollection()).document(user.uid)
+                .updateData([
+                    "balance": totalCookie as Any
+                ])
+            completion(true)
+        }
+    }
     //MARK: - Get Data
     func getData() {
         self.db.collection(Collection.store.getCollection())

@@ -17,7 +17,6 @@ class StoreCell: UITableViewCell {
     var storeCell : StoreCellModel? {
         didSet {
             promotionLabel.text = storeCell?.name
-            costLabel.text = "\(storeCell!.cost)$"
             recievedCookies.text = "\(storeCell!.cost)🍪"
             cellImage(with: storeCell!.image)
         }
@@ -30,7 +29,7 @@ class StoreCell: UITableViewCell {
     }
     
     lazy var stackView : UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [imageDeal,middleStackView,endStackView])
+        let stackView = UIStackView(arrangedSubviews: [imageDeal,middleStackView])
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.spacing = 10
@@ -41,15 +40,6 @@ class StoreCell: UITableViewCell {
     
     lazy var middleStackView : UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [promotionLabel,recievedCookies])
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    lazy var endStackView : UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [buyButton,costLabel])
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.axis = .vertical
@@ -84,24 +74,7 @@ class StoreCell: UITableViewCell {
         return image
     }()
     
-    var buyButton : UIButton = {
-        let button = UIButton()
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold, scale: .large)
-        button.setImage(UIImage(systemName: Icons.banknote.rawValue,withConfiguration: largeConfig),for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     var promotionLabel : UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20)
-        label.textColor = UIColor(named: Style.textColor.rawValue)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    var costLabel : UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20)
