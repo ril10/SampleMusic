@@ -86,6 +86,12 @@ class CustomTableViewCell: UITableViewCell {
         return image
     }()
     
+    var buyButton : UIButton = {
+        let button = UIButton()
+        
+        return button
+    }()
+    
     var buttonPlay : UIButton = {
         let button = UIButton()
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
