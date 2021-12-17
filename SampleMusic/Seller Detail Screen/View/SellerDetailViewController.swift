@@ -53,7 +53,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
             drawView.sortButton.setImage(UIImage(systemName: Icons.check.rawValue), for: .normal)
         }
     }
-
+    
     @objc func segmentAction(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -84,8 +84,24 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         NSLayoutConstraint.activate([
             loadingIndicator.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor),
         ])
-        
         self.present(alert, animated: true)
+    }
+    
+    func alertBuy(cookie: Int) {
+        let okTitle = NSLocalizedString(MainKeys.ok.rawValue, comment: "")
+        let alert = UIAlertController(title: "Buy sample", message: "You really want to buy this sample? It'll cost \(cookie)🍪", preferredStyle: .alert)
+        alert.view.tintColor = UIColor.black
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func errorBuy(cookie: Int) {
+        let okTitle = NSLocalizedString(MainKeys.ok.rawValue, comment: "")
+        let alert = UIAlertController(title: "You can't buy it!", message: "You don't have enough cookies to buy it! You only have \(cookie)🍪", preferredStyle: .alert)
+        alert.view.tintColor = UIColor.black
+        alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     //MARK: - TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -111,7 +127,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
             let cellPaidVm = self.viewModel.getPaidCellModel(at: indexPath)
             cell.sampleCell = cellPaidVm
         }
-
+        
         return cell
     }
     
@@ -178,11 +194,21 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if viewModel.ownerUid != nil {
-            print("You can buy it")
+            if drawView.segmentControl.selectedSegmentIndex == 0 {
+                let cellVmFree = viewModel.getCellModel(at: indexPath)
+                self.alertBuy(cookie: cellVmFree.cost)
+            } else {
+                let cellVmPaid = viewModel.getPaidCellModel(at: indexPath)
+                if cellVmPaid.cost > viewModel.currentCookie! {
+                    self.errorBuy(cookie: viewModel.currentCookie!)
+                } else {
+                    self.alertBuy(cookie: cellVmPaid.cost)
+                }
+            }
         }
     }
     
-
+    
     
     //MARK: - View
     
@@ -192,6 +218,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
             self.viewModel.getDataFromUser(ownerUid: viewModel.ownerUid!)
             self.viewModel.getDataSamplesFromUser(ownerUid: viewModel.ownerUid!)
             self.viewModel.getPaidSamplesFromUserData(ownerUid: viewModel.ownerUid!)
+            self.viewModel.getCurrentUserCookie()
             self.drawView.addButton.isHidden = true
             self.drawView.createSampleButton.isHidden = true
             self.drawView.sortButton.isHidden = true
@@ -236,7 +263,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
                 self?.view.setNeedsDisplay()
             }
         }
-
+        
         viewModel.fieldData = { [weak self] firstName,lastName,desc,email,gender,image in
             self?.drawView.firstNameData.text = firstName
             self?.drawView.secondNameData.text = lastName
@@ -246,7 +273,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
             self?.drawView.imageView.sd_setImage(with: URL(string: image), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
         }
         
-
+        
     }
     
     func configureNavBar() {

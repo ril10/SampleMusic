@@ -32,6 +32,7 @@ class SellerDetailViewModel: SellerImp {
     var imageUrl : String?
     var chatRoom : String?
     var goToChat : ((String) -> Void)?    
+    var currentCookie : Int?
     
     init(db: Firestore,st: Storage) {
         self.db = db
@@ -122,6 +123,20 @@ class SellerDetailViewModel: SellerImp {
                     self.fetchPaidData(res: resData)
                 }
             })
+    }
+    
+    func getCurrentUserCookie() {
+        if let user = Auth.auth().currentUser {
+            self.db?.collection(Collection.user.getCollection()).document(user.uid)
+                .addSnapshotListener { (documentSnapshot, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        let currentCookie = DetailModel(data: documentSnapshot!.data()!)
+                        self.currentCookie = currentCookie.balance
+                    }
+                }
+        }
     }
     //MARK: - Get Samples Data From Seller Page
     func getSamplesData() {

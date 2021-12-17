@@ -30,4 +30,6 @@ protocol SellerImp {
     func getPaidCellModel(at indexPath: IndexPath) -> DataCellModel
     func getPaidSamplesData()
     func getPaidSamplesFromUserData(ownerUid: String)
+    var currentCookie : Int? { get set }
+    func getCurrentUserCookie()
 }
