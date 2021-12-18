@@ -34,4 +34,5 @@ protocol SellerImp {
     func getCurrentUserCookie()
     func buySample(duration: Int, imageUrl: String, sampleName: String, sampleUrl: String)
     func updateUserCookies(get cookie: Int)
+    func checkSameSample(sampleName: String, completion: @escaping (Bool) -> Void?)
 }

@@ -93,8 +93,15 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
         alert.view.tintColor = UIColor.black
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: { action in
-            self.viewModel.buySample(duration: duration, imageUrl: imageUrl, sampleName: sampleName, sampleUrl: sampleUrl)
-            self.viewModel.updateUserCookies(get: cookie)
+            self.viewModel.checkSameSample(sampleName: sampleName) { same in
+                if same {
+                    self.viewModel.buySample(duration: duration, imageUrl: imageUrl, sampleName: sampleName, sampleUrl: sampleUrl)
+                    self.viewModel.updateUserCookies(get: cookie)
+                } else {
+                    self.errorSame()
+                }
+                return nil
+            }
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -102,6 +109,14 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     func errorBuy(cookie: Int) {
         let okTitle = NSLocalizedString(MainKeys.ok.rawValue, comment: "")
         let alert = UIAlertController(title: "You can't buy it!", message: "You don't have enough cookies to buy it! You only have \(cookie)🍪", preferredStyle: .alert)
+        alert.view.tintColor = UIColor.black
+        alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func errorSame() {
+        let okTitle = NSLocalizedString(MainKeys.ok.rawValue, comment: "")
+        let alert = UIAlertController(title: "Hmmm...", message: "Seems that you alredy have it ;)", preferredStyle: .alert)
         alert.view.tintColor = UIColor.black
         alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)

@@ -141,14 +141,11 @@ class SellerDetailViewModel: SellerImp {
     
     func updateUserCookies(get cookie: Int) {
         if let user = Auth.auth().currentUser {
-            var totalCookie = self.currentCookie! - cookie
-            if totalCookie < 0 {
-                totalCookie = 0
+            let totalCookie = self.currentCookie! - cookie
                 self.db?.collection(Collection.user.getCollection()).document(user.uid)
                     .updateData([
                         "balance": totalCookie as Any
                     ])
-            }
         }
     }
     
@@ -161,6 +158,24 @@ class SellerDetailViewModel: SellerImp {
                 "sampleName": sampleName as Any,
                 "sampleUrl": sampleUrl as Any
             ])
+        }
+    }
+    
+    func checkSameSample(sampleName: String, completion: @escaping (Bool) -> Void?) {
+        if let user = Auth.auth().currentUser {
+            self.db?.collection(Collection.purchased.getCollection()).whereField("sampleName", isEqualTo: sampleName)
+                .whereField("purchasedUid", isEqualTo: user.uid)
+                .getDocuments(completion: { querySnapshot, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        if querySnapshot!.isEmpty {
+                            completion(true)
+                        } else {
+                            completion(false)
+                        }
+                    }
+                })
         }
     }
     //MARK: - Get Samples Data From Seller Page
