@@ -116,7 +116,7 @@ class SellerDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     func errorSame() {
         let okTitle = NSLocalizedString(MainKeys.ok.rawValue, comment: "")
-        let alert = UIAlertController(title: "Hmmm...", message: "Seems that you alredy have it ;)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Hmmm...", message: "Seems that you already have it ;)", preferredStyle: .alert)
         alert.view.tintColor = UIColor.black
         alert.addAction(UIAlertAction(title: okTitle, style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
