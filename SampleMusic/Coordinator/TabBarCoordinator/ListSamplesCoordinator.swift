@@ -31,15 +31,12 @@ class ListSamplesCoordinator : Coordinator {
     }
     
     func finish() {
-//        navigationController.viewControllers.removeLast()
         parentCoordinator?.childDidFinish(self)
-        navigationController.popViewController(animated: true)
         navigationController.isNavigationBarHidden = true
-        parentCoordinator?.start()
+        navigationController.popViewController(animated: true)
     }
     
     func goToDetailPage() {
-//        navigationController.popViewController(animated: true)
         parentCoordinator?.childDidFinish(self)
         parentCoordinator?.userDetail()
     }

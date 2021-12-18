@@ -64,10 +64,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                             if dataState?.first?.role == Collection.seller.getCollection() {
                                 let pushManager = PushNotificationManager(userUid: (dataState?.first?.state)!,role: dataState?.first?.role ?? "")
                                 pushManager.registerForPushNotifications()
+                                coordinator.start()
                                 coordinator.mainTabController()
                             } else {
                                 let pushManager = PushNotificationManager(userUid: (dataState?.first?.state)!,role: dataState?.first?.role ?? "")
                                 pushManager.registerForPushNotifications()
+                                coordinator.start()
                                 coordinator.userList()
                             }
                         })

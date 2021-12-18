@@ -32,7 +32,6 @@ class TabBarCoordinator : Coordinator {
         navigationController.viewControllers.removeLast()
         navigationController.popViewController(animated: true)
         parentCoordinator?.childDidFinish(self)
-        parentCoordinator?.start()
     }
     
     func upload() {

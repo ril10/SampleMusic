@@ -32,20 +32,21 @@ class MainScreenCoordinator : Coordinator {
     }
     
     func goToRegistrationPage() {
-        navigationController.viewControllers.removeLast()
-        self.parentCoordinator!.registrationViewController()
+//        navigationController.viewControllers.removeLast()
         self.parentCoordinator?.childDidFinish(self)
+        self.parentCoordinator!.registrationViewController()
     }
     
     func goToSeller() {
 //        navigationController.viewControllers.removeLast()
-        parentCoordinator?.mainTabController()
         parentCoordinator?.childDidFinish(self)
+        parentCoordinator?.mainTabController()
+        
     }
     
     func goToUser() {
 //        navigationController.viewControllers.removeLast()
-        parentCoordinator?.userList()
         parentCoordinator?.childDidFinish(self)
+        parentCoordinator?.userList()
     }
 }

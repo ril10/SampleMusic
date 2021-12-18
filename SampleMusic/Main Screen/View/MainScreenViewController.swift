@@ -126,7 +126,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         viewModel.loadCompleteUser = { [weak self] load in
             if load {
                 self?.dismiss(animated: true, completion: {
-                    self?.coordinator?.finish()
+//                    self?.coordinator?.finish()
                     self?.coordinator?.goToUser()
                     self?.textFieldShouldClear(self!.drawView.loginTextField)
                     self?.textFieldShouldClear(self!.drawView.passwordTextField)
@@ -136,7 +136,7 @@ class MainScreenViewController: UIViewController, UITextFieldDelegate {
         viewModel.loadCompleteSeller = { [weak self] load in
             if load {
                 self?.dismiss(animated: true, completion: {
-                    self?.coordinator?.finish()
+//                    self?.coordinator?.finish()
                     self?.coordinator?.goToSeller()
                     self?.textFieldShouldClear(self!.drawView.loginTextField)
                     self?.textFieldShouldClear(self!.drawView.passwordTextField)
