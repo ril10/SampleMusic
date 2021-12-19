@@ -14,4 +14,5 @@ protocol TabBarImp {
     var ownerUid : String? { get set }
     func getCurrentUser()
     var recUid : String? { get set }
+    func checkToStart(completion:@escaping (Bool) -> Void?)
 }

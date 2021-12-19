@@ -33,7 +33,13 @@ class ListSamplesCoordinator : Coordinator {
     func finish() {
         parentCoordinator?.childDidFinish(self)
         navigationController.isNavigationBarHidden = true
-        navigationController.popViewController(animated: true)
+        self.navigationController.viewControllers.removeAll()
+    }
+    
+    func goToStart() {
+        parentCoordinator?.childDidFinish(self)
+        self.navigationController.viewControllers.removeAll()
+        parentCoordinator?.start()
     }
     
     func goToDetailPage() {

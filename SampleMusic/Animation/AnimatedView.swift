@@ -33,4 +33,21 @@ enum ViewAnimationFactory {
                 }
         }
     }
+    
+    static func makeBiggerLowerAnimation(duration: TimeInterval, delayFactor: TimeInterval, springWithDamb: TimeInterval, springVelocity: TimeInterval) -> ViewAnimation {
+        return { view in
+            view.bounds.size.width += 80
+            view.bounds.size.height += 80
+            UIView.animate(
+                withDuration: duration,
+                delay: delayFactor,
+                usingSpringWithDamping: springWithDamb,
+                initialSpringVelocity: springVelocity,
+                animations: {
+                    view.bounds.size.width -= 80
+                    view.bounds.size.height -= 80
+                },
+                completion: nil)
+        }
+    }
 }

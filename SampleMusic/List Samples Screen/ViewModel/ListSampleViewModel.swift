@@ -183,6 +183,13 @@ class ListSampleViewModel: ListSamplesImp {
         }
     }
     
+    func checkToStart(completion:@escaping (Bool) -> Void?) {
+        let dataState = realm.objects(State.self)
+        if dataState.isEmpty {
+            completion(true)
+        }
+    }
+    
     func saveUid(_ state: State) {
         do {
             try realm.write {

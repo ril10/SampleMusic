@@ -24,4 +24,5 @@ protocol ListSamplesImp {
     var chatRoom : String? { get set }
     var curUser : String? { get set }
     func filterByPrice()
+    func checkToStart(completion:@escaping (Bool) -> Void?)
 }

@@ -34,7 +34,16 @@ class TabBarControllerViewModel: TabBarImp {
     }
     
     func getCurrentUser() {
-        self.ownerUid = Auth.auth().currentUser!.uid
+        if let user = Auth.auth().currentUser {
+            self.ownerUid = user.uid
+        }
+    }
+    
+    func checkToStart(completion:@escaping (Bool) -> Void?) {
+        let dataState = realm.objects(State.self)
+        if dataState.isEmpty {
+            completion(true)
+        }
     }
     
 }

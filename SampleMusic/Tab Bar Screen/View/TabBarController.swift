@@ -85,7 +85,14 @@ class TabBarController: UITabBarController {
 
     @objc func logoutAction(sender: UIButton) {
         viewModel.logout()
-        coordinator?.finish()        
+        viewModel.checkToStart { state in
+            if state {
+                self.coordinator?.goToStart()
+            } else {
+                self.coordinator?.finish()
+            }
+            return nil
+        }
     }
     
     @objc func message(sender: UIButton) {
