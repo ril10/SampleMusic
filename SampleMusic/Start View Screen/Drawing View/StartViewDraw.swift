@@ -14,9 +14,7 @@ class StartViewDraw : UIView {
     
     var logo: UIImageView = {
         let image = UIImageView()
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 70, weight: .bold, scale: .large)
-        image.image = UIImage(systemName: Icons.logoApp.rawValue,withConfiguration: largeConfig)
-        image.tintColor = .lightGray
+        image.image = UIImage(named: Icons.logoApp.rawValue)
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -47,6 +45,8 @@ class StartViewDraw : UIView {
         NSLayoutConstraint.activate([
             logo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logo.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            logo.widthAnchor.constraint(equalToConstant: 250),
+            logo.heightAnchor.constraint(equalToConstant: 250),
         ])
         
         NSLayoutConstraint.activate([

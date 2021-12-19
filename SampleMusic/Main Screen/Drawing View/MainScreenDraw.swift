@@ -21,7 +21,7 @@ class MainScreenDraw : UIView {
     }()
     
     lazy var stackViewTop: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [topImage,topLabel])
+        let stackView = UIStackView(arrangedSubviews: [topImage])
         stackView.alignment = .center
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
@@ -80,20 +80,10 @@ class MainScreenDraw : UIView {
     
     //MARK: - Components in View
     //MARK: - TopView
-    var topLabel: UILabel = {
-        let label = UILabel()
-        label.text = Style.appName.rawValue
-        label.font = UIFont(name: Style.fontTitleHeavy.rawValue, size: 20.0)
-        label.tintColor = .gray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
     
     var topImage: UIImageView = {
         let image = UIImageView()
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold, scale: .large)
-        image.image = UIImage(systemName: Icons.logoApp.rawValue,withConfiguration: largeConfig)
-        image.tintColor = .lightGray
+        image.image = UIImage(named: Icons.logoApp.rawValue)
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -183,6 +173,11 @@ class MainScreenDraw : UIView {
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -40),
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 40),
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -40),
+        ])
+        
+        NSLayoutConstraint.activate([
+            topImage.widthAnchor.constraint(equalToConstant: 250),
+            topImage.heightAnchor.constraint(equalToConstant: 250),
         ])
         
         NSLayoutConstraint.activate([
