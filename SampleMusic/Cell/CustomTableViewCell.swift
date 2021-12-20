@@ -48,12 +48,11 @@ class CustomTableViewCell: UITableViewCell {
         let ref = st.reference(forURL: url)
         let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let localURL = documentsUrl.appendingPathComponent("\(fileName).m4a")
-        let downloadTask = ref.write(toFile: localURL) { URL, error in
+        let _ = ref.write(toFile: localURL) { URL, error in
             if let error = error {
                 print(error.localizedDescription)
             } else {
                 completion(localURL)
-                print("Local file URL for \(localURL) is returned")
             }
         }
     }
