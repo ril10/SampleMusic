@@ -261,6 +261,8 @@ class SellerDetailViewModel: SellerImp {
         
         let sampleCost = cell.cost
         
+        let id = cell.id
+        
         
         return DataCellModel(imageSample: self.imageUrl ?? "",
                              sampleName: name ?? "",
@@ -269,7 +271,8 @@ class SellerDetailViewModel: SellerImp {
                              sampleDuratation: self.duratation ?? "",
                              ownerUid: ownerUid ?? "",
                              index: sampleIndex ?? 0,
-                             cost: sampleCost ?? 0
+                             cost: sampleCost ?? 0,
+                             id: id ?? ""
         )
     }
     

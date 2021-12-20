@@ -22,7 +22,9 @@ class MusicPlayer: NSObject,AVAudioPlayerDelegate {
             try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
             let urlString = sampleData
             let url = URL(string: urlString)
+
             let data = try! Data(contentsOf: url!)
+
             player = try AVAudioPlayer(data: data)
             player?.delegate = self
             player?.prepareToPlay()

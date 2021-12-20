@@ -16,6 +16,7 @@ struct SampleModel: Codable {
     var duration : Int?
     var index : Int?
     var cost : Int?
+    var id : String?
     
     init(data: [String:Any]) {
         self.sampleName = data["sampleName"] as? String
@@ -25,6 +26,7 @@ struct SampleModel: Codable {
         self.duration = data["duration"] as? Int
         self.index = data["index"] as? Int
         self.cost = data["cost"] as? Int
+        self.id = data["id"] as? String
     }
     
     enum CodingKeys: String, CodingKey {
@@ -34,5 +36,6 @@ struct SampleModel: Codable {
         case ownerUid
         case duration
         case index
+        case id
     }
 }

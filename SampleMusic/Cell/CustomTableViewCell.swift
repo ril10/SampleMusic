@@ -9,6 +9,7 @@ import UIKit
 import AVFoundation
 import Dip
 import SDWebImage
+import FirebaseStorage
 
 class CustomTableViewCell: UITableViewCell {
     
@@ -16,13 +17,16 @@ class CustomTableViewCell: UITableViewCell {
     var ownerUid : String!
     
     var player = try! appContainer.resolve() as MusicPlayerProtocol
+    var st = try! appContainer.resolve() as Storage
 
     
     var sampleCell : DataCellModel? {
         didSet {
             imageUser.sd_setImage(with: URL(string: sampleCell!.imageSample), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
             labelSample.text = sampleCell?.sampleName
-            sampleData = sampleCell?.sampleData
+            getDataSample(url: sampleCell?.sampleData ?? "", fileName: sampleCell?.sampleName ?? "") { data in
+                self.sampleData = data.absoluteString
+            }
             endTimeLabel.text = sampleCell?.sampleDuratation
             ownerUid = sampleCell?.ownerUid
             costLabel.text = "\(sampleCell!.cost)🍪"
@@ -33,8 +37,24 @@ class CustomTableViewCell: UITableViewCell {
         didSet {
             imageUser.sd_setImage(with: URL(string: purchasedCell!.imageUrl ?? ""), placeholderImage: UIImage(systemName: Icons.photo.rawValue))
             labelSample.text = purchasedCell?.sampleName
-            sampleData = purchasedCell?.sampleUrl
+            getDataSample(url: purchasedCell?.sampleUrl ?? "", fileName: sampleCell?.sampleName ?? "") { data in
+                self.sampleData = data.absoluteString
+            }
             endTimeLabel.text = purchasedCell?.duration
+        }
+    }
+    
+    func getDataSample(url: String,fileName: String,completion: @escaping (URL) -> Void?) {
+        let ref = st.reference(forURL: url)
+        let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let localURL = documentsUrl.appendingPathComponent("\(fileName).m4a")
+        let downloadTask = ref.write(toFile: localURL) { URL, error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                completion(localURL)
+                print("Local file URL for \(localURL) is returned")
+            }
         }
     }
     

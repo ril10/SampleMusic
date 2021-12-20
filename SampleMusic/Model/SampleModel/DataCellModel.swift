@@ -17,4 +17,5 @@ struct DataCellModel {
     var ownerUid : String
     var index : Int
     var cost : Int
+    var id : String
 }

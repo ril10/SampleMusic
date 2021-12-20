@@ -33,7 +33,9 @@ class UploadMusicViewModel: UploadMusicImp {
     }
     
     func createSampleCollection() {
-        self.db?.collection(Collection.sample.getCollection()).document().setData([
+        let ref = self.db?.collection(Collection.sample.getCollection()).document()
+        let id = ref?.documentID
+        ref?.setData([
             "ownerUid":Auth.auth().currentUser?.uid as Any,
             "sampleImageUrl":self.imageSampleUrl as Any,
             "sampleName":self.sampleName as Any,
@@ -42,6 +44,7 @@ class UploadMusicViewModel: UploadMusicImp {
             "index":0 as Any,
             "type": self.type as Any,
             "cost": cost ?? 0 as Any,
+            "id": id as Any,
         ])
     }
     
