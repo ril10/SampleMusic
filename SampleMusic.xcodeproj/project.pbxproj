@@ -79,6 +79,7 @@
 		C379FED5273943CB004ECCB9 /* ListSamplesImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C379FED4273943CB004ECCB9 /* ListSamplesImp.swift */; };
 		C37A9141276CC7E800A8F19A /* Purchased.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37A9140276CC7E800A8F19A /* Purchased.swift */; };
 		C37A9143276CC8E200A8F19A /* PurchasedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37A9142276CC8E200A8F19A /* PurchasedModel.swift */; };
+		C37A914C2771DB4000A8F19A /* RecieveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37A914B2771DB4000A8F19A /* RecieveData.swift */; };
 		C38105602746AFA10071BC79 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C381055F2746AFA10071BC79 /* UserDetailViewController.swift */; };
 		C38105622746B00A0071BC79 /* UserDetailDrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38105612746B00A0071BC79 /* UserDetailDrawView.swift */; };
 		C38105642746B0310071BC79 /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38105632746B0310071BC79 /* UserDetailViewModel.swift */; };
@@ -213,6 +214,7 @@
 		C379FED4273943CB004ECCB9 /* ListSamplesImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSamplesImp.swift; sourceTree = "<group>"; };
 		C37A9140276CC7E800A8F19A /* Purchased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Purchased.swift; sourceTree = "<group>"; };
 		C37A9142276CC8E200A8F19A /* PurchasedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedModel.swift; sourceTree = "<group>"; };
+		C37A914B2771DB4000A8F19A /* RecieveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecieveData.swift; sourceTree = "<group>"; };
 		C381055F2746AFA10071BC79 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		C38105612746B00A0071BC79 /* UserDetailDrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailDrawView.swift; sourceTree = "<group>"; };
 		C38105632746B0310071BC79 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
@@ -915,6 +917,7 @@
 				C30FC4DE276B64BE00A46C4C /* StoreCellModel.swift */,
 				C37A9140276CC7E800A8F19A /* Purchased.swift */,
 				C37A9142276CC8E200A8F19A /* PurchasedModel.swift */,
+				C37A914B2771DB4000A8F19A /* RecieveData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1297,6 +1300,7 @@
 				C33CCA7B272BE47A00C7969E /* DetailModel.swift in Sources */,
 				C30FC4C8276779C900A46C4C /* PushNotificationManager.swift in Sources */,
 				C381057A274BDA970071BC79 /* RecordPageCoordinator.swift in Sources */,
+				C37A914C2771DB4000A8F19A /* RecieveData.swift in Sources */,
 				C30150AD27328E6300C85EF3 /* SellerDetailDraw.swift in Sources */,
 				C3767E002750DA3500F4FF7D /* ChatPageCoordinator.swift in Sources */,
 				C325588627427EB400248FD8 /* UploadMusicDraw.swift in Sources */,

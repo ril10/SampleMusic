@@ -51,8 +51,4 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
         updateFirestorePushTokenIfNeeded()
     }
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print(response)
-    }
-    
 }

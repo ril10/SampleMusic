@@ -164,7 +164,7 @@ class ChatDetailViewModel: ChatDetailimp {
                 self.db?.collection(Collection.chatRoom.getCollection()).document(self.chatRoom!).updateData([
                     "lastMessage":text as Any
                 ])
-                sender.sendPushNotification(to: fcmToken ?? "", title: firstName ?? "", body: text)
+                sender.sendPushNotification(to: fcmToken ?? "", title: firstName ?? "", body: text, recieverUid: recieverUid!, ownerUid: user.uid, roomUid: self.chatRoom!)
                 self.reloadTableView?()
             }
         }
