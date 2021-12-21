@@ -92,21 +92,43 @@ class ChatDetailCell: UITableViewCell {
         return image
     }()
     
-    var message : UITextView = {
-        let textView = UITextView()
-        textView.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20)
-        textView.textColor = UIColor(named: Style.textColor.rawValue)
-        textView.isScrollEnabled = false
-        textView.isEditable = false
-        textView.sizeToFit()
-        textView.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
-        textView.layer.borderWidth = 1.0
-        textView.layer.masksToBounds = false
-        textView.layer.borderColor = UIColor(named: Style.coralColor.rawValue)?.cgColor
-        textView.layer.cornerRadius = textView.frame.size.height / 2
-        textView.clipsToBounds = true
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        return textView
+//    var message : UITextView = {
+//        let textView = UITextView()
+//        textView.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20)
+//        textView.textColor = UIColor(named: Style.textColor.rawValue)
+//        textView.isScrollEnabled = false
+//        textView.isEditable = false
+//        textView.sizeToFit()
+//        textView.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
+//        textView.layer.borderWidth = 1.0
+//        textView.layer.masksToBounds = false
+//        textView.layer.borderColor = UIColor(named: Style.coralColor.rawValue)?.cgColor
+//        textView.layer.cornerRadius = textView.frame.size.height / 2
+//        textView.clipsToBounds = true
+//        textView.translatesAutoresizingMaskIntoConstraints = false
+//        return textView
+//    }()
+    
+    var message : UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: Style.fontTitleLight.rawValue, size: 20)
+        label.textColor = UIColor(named: Style.textColor.rawValue)
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    var chatBubbleView: UIView = {
+        let view = UIView()
+        view.tintColor = UIColor(cgColor: UIColor.lightGray.cgColor)
+        view.layer.borderWidth = 1.0
+        view.layer.masksToBounds = false
+        view.layer.borderColor = UIColor(named: Style.coralColor.rawValue)?.cgColor
+        view.layer.cornerRadius = 10
+        view.backgroundColor = .clear
+        view.clipsToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     
@@ -116,25 +138,34 @@ class ChatDetailCell: UITableViewCell {
         contentView.addSubview(leftImage)
         contentView.addSubview(rightImage)
         contentView.addSubview(message)
+        contentView.addSubview(chatBubbleView)
 
         
         NSLayoutConstraint.activate([
-            message.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -60),
-            message.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 50),
-            message.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            message.topAnchor.constraint(equalTo: contentView.topAnchor),
+//            message.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -60),
+//            message.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 50),
+            message.widthAnchor.constraint(lessThanOrEqualToConstant: 250),
+            message.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 60),
+            message.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -60),
+            message.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
 
             leftImage.widthAnchor.constraint(equalToConstant: 50),
             leftImage.heightAnchor.constraint(equalToConstant: 50),
             rightImage.widthAnchor.constraint(equalToConstant: 50),
             rightImage.heightAnchor.constraint(equalToConstant: 50),
-            
-
+        ])
+        NSLayoutConstraint.activate([
+            chatBubbleView.topAnchor.constraint(equalTo: message.topAnchor,constant: -16),
+            chatBubbleView.leadingAnchor.constraint(equalTo: message.leadingAnchor,constant: -16),
+            chatBubbleView.trailingAnchor.constraint(equalTo: message.trailingAnchor,constant: 16),
+            chatBubbleView.bottomAnchor.constraint(equalTo: message.bottomAnchor,constant: 16),
         ])
         
         if leftImage.isHidden == true {
             NSLayoutConstraint.activate([
-                message.leadingAnchor.constraint(equalTo: rightImage.leadingAnchor)
+                message.trailingAnchor.constraint(equalTo: rightImage.leadingAnchor),
+                message.leadingAnchor.constraint(equalTo: rightImage.leadingAnchor),
+                
             ])
             
         } else {
@@ -146,10 +177,10 @@ class ChatDetailCell: UITableViewCell {
 
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

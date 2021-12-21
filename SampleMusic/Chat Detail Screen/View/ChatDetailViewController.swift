@@ -49,15 +49,15 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         print(cellVm.recieverUid)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cellVm = self.viewModel.getCellModel(at: indexPath)
-        let rowHeight : CGFloat = 70
-        if cellVm.body.count > 25 {
-            return UITableView.automaticDimension
-        } else {
-            return rowHeight
-        }
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let cellVm = self.viewModel.getCellModel(at: indexPath)
+//        let rowHeight : CGFloat = 70
+//        if cellVm.body.count > 25 {
+//            return UITableView.automaticDimension
+//        } else {
+//            return rowHeight
+//        }
+//    }
     
     
     //MARK: - UITextFieldDelegate
@@ -101,7 +101,7 @@ class ChatDetailViewController: UIViewController, UITableViewDataSource, UITable
         drawView.sampleTable.register(ChatDetailCell.self, forCellReuseIdentifier: TableCell.chatDetailCell.rawValue)
         drawView.sampleTable.dataSource = self
         drawView.sampleTable.delegate = self
-        drawView.sampleTable.estimatedRowHeight = 70
+//        drawView.sampleTable.estimatedRowHeight = 70
         viewModel.reloadTableView = { [weak self] in
             DispatchQueue.main.async {
                 self?.drawView.sampleTable.reloadData()
