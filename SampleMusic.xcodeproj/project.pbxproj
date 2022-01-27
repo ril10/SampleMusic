@@ -114,6 +114,7 @@
 		C38BC330275518DA0027E33C /* MessageDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BC32F275518DA0027E33C /* MessageDataModel.swift */; };
 		C397694227566B53006578B5 /* ChatPageImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397694127566B53006578B5 /* ChatPageImp.swift */; };
 		C3B12B82A5DA3D1EE4F81576 /* Pods_SampleMusic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A42DF66B3173C4A7A37D45E /* Pods_SampleMusic.framework */; };
+		C3FE5E0E27A2F2FF00DE1BC3 /* SwiftUI in Resources */ = {isa = PBXBuildFile; fileRef = C3FE5E0D27A2F2FF00DE1BC3 /* SwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -254,6 +255,7 @@
 		C38BC32D2755105C0027E33C /* ChatDetailImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailImp.swift; sourceTree = "<group>"; };
 		C38BC32F275518DA0027E33C /* MessageDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDataModel.swift; sourceTree = "<group>"; };
 		C397694127566B53006578B5 /* ChatPageImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPageImp.swift; sourceTree = "<group>"; };
+		C3FE5E0D27A2F2FF00DE1BC3 /* SwiftUI */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SwiftUI; sourceTree = "<group>"; };
 		E4DC9775D6CA46AC94652080 /* Pods-SampleMusic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleMusic.release.xcconfig"; path = "Target Support Files/Pods-SampleMusic/Pods-SampleMusic.release.xcconfig"; sourceTree = "<group>"; };
 		F308F32D44207B62349E262C /* Pods_SampleMusic_SampleMusicUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleMusic_SampleMusicUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -844,6 +846,7 @@
 		C38156442726A0BF008E83AC /* SampleMusic */ = {
 			isa = PBXGroup;
 			children = (
+				C3FE5E0D27A2F2FF00DE1BC3 /* SwiftUI */,
 				C30FC521276C8DD500A46C4C /* Music Player */,
 				C30FC518276C729500A46C4C /* Animation */,
 				C30FC514276B6FE200A46C4C /* Store Screen */,
@@ -1091,6 +1094,7 @@
 			files = (
 				C38156522726A0C0008E83AC /* LaunchScreen.storyboard in Resources */,
 				C30FC4BF27608CBA00A46C4C /* Localizable.strings in Resources */,
+				C3FE5E0E27A2F2FF00DE1BC3 /* SwiftUI in Resources */,
 				C381564F2726A0C0008E83AC /* Assets.xcassets in Resources */,
 				C38156762726A5D9008E83AC /* GoogleService-Info.plist in Resources */,
 			);
