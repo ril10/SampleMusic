@@ -20,8 +20,10 @@
 		C30150BD2733E07300C85EF3 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30150BC2733E07300C85EF3 /* TabBarCoordinator.swift */; };
 		C301C7E827A3D7A1006E4311 /* CustomTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301C7E727A3D7A1006E4311 /* CustomTextFieldStyle.swift */; };
 		C301C7EA27A3D7C2006E4311 /* CoralButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301C7E927A3D7C2006E4311 /* CoralButton.swift */; };
-		C301C7EC27A3D8F5006E4311 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301C7EB27A3D8F5006E4311 /* SignUp.swift */; };
+		C301C7EC27A3D8F5006E4311 /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301C7EB27A3D8F5006E4311 /* SignUpScreen.swift */; };
 		C301C7F227A3E78B006E4311 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301C7F127A3E78B006E4311 /* RadioButton.swift */; };
+		C301C7F427A40ABF006E4311 /* SellerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301C7F327A40ABF006E4311 /* SellerDetail.swift */; };
+		C301C7F727A41F4E006E4311 /* CustomListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301C7F627A41F4E006E4311 /* CustomListCell.swift */; };
 		C30FC4BF27608CBA00A46C4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C30FC4C127608CBA00A46C4C /* Localizable.strings */; };
 		C30FC4C52760A0FD00A46C4C /* LocalizeKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4C42760A0FD00A46C4C /* LocalizeKeys.swift */; };
 		C30FC4C8276779C900A46C4C /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4C7276779C800A46C4C /* PushNotificationManager.swift */; };
@@ -158,8 +160,10 @@
 		C30150BC2733E07300C85EF3 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		C301C7E727A3D7A1006E4311 /* CustomTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldStyle.swift; sourceTree = "<group>"; };
 		C301C7E927A3D7C2006E4311 /* CoralButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoralButton.swift; sourceTree = "<group>"; };
-		C301C7EB27A3D8F5006E4311 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
+		C301C7EB27A3D8F5006E4311 /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
 		C301C7F127A3E78B006E4311 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		C301C7F327A40ABF006E4311 /* SellerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerDetail.swift; sourceTree = "<group>"; };
+		C301C7F627A41F4E006E4311 /* CustomListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListCell.swift; sourceTree = "<group>"; };
 		C30FC4C027608CBA00A46C4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C30FC4C227608CDE00A46C4C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C30FC4C327608CE000A46C4C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -334,6 +338,14 @@
 				C301C7F127A3E78B006E4311 /* RadioButton.swift */,
 			);
 			path = CustomRadioButton;
+			sourceTree = "<group>";
+		};
+		C301C7F527A41F3E006E4311 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				C301C7F627A41F4E006E4311 /* CustomListCell.swift */,
+			);
+			path = CustomCell;
 			sourceTree = "<group>";
 		};
 		C30FC4CF2768CA0400A46C4C /* Notification */ = {
@@ -819,6 +831,7 @@
 		C34C35EB27A3D54100289AD2 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				C301C7F527A41F3E006E4311 /* CustomCell */,
 				C301C7F027A3E77B006E4311 /* CustomRadioButton */,
 				C34C35EE27A3D56700289AD2 /* Views */,
 				C34C35ED27A3D55D00289AD2 /* CustomTextField */,
@@ -847,7 +860,8 @@
 			isa = PBXGroup;
 			children = (
 				C34C35EF27A3D57A00289AD2 /* MainScreen.swift */,
-				C301C7EB27A3D8F5006E4311 /* SignUp.swift */,
+				C301C7EB27A3D8F5006E4311 /* SignUpScreen.swift */,
+				C301C7F327A40ABF006E4311 /* SellerDetail.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1316,6 +1330,7 @@
 				C30150B12732A59F00C85EF3 /* ListSampleViewModel.swift in Sources */,
 				C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */,
 				C30FC4DF276B64BE00A46C4C /* StoreCellModel.swift in Sources */,
+				C301C7F727A41F4E006E4311 /* CustomListCell.swift in Sources */,
 				C3810578274BCDBF0071BC79 /* UserDetailImp.swift in Sources */,
 				C325586A273A62D600248FD8 /* AddUserDataCoordinator.swift in Sources */,
 				C38105682746B0D00071BC79 /* RecordPageDrawView.swift in Sources */,
@@ -1338,12 +1353,13 @@
 				C30FC4C52760A0FD00A46C4C /* LocalizeKeys.swift in Sources */,
 				C325588427427E7D00248FD8 /* UploadMusicViewController.swift in Sources */,
 				C38156842726F81B008E83AC /* Extension.swift in Sources */,
+				C301C7F427A40ABF006E4311 /* SellerDetail.swift in Sources */,
 				C30FC4DD276B635C00A46C4C /* StoreModel.swift in Sources */,
 				C301C7F227A3E78B006E4311 /* RadioButton.swift in Sources */,
 				C30FC51E276C7C6E00A46C4C /* AnimatedView.swift in Sources */,
 				C3255872273AA96500248FD8 /* TabBarController.swift in Sources */,
 				C366BE5527298E6900B3E182 /* AddingDataViewController.swift in Sources */,
-				C301C7EC27A3D8F5006E4311 /* SignUp.swift in Sources */,
+				C301C7EC27A3D8F5006E4311 /* SignUpScreen.swift in Sources */,
 				C30150B72733CD7800C85EF3 /* ListSamplesCoordinator.swift in Sources */,
 				C30FC4E3276B667B00A46C4C /* StoreImp.swift in Sources */,
 				C3255882273EA21B00248FD8 /* StartViewDraw.swift in Sources */,
