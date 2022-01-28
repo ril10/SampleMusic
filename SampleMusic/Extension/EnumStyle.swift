@@ -63,6 +63,7 @@ enum Icons : String, CaseIterable {
     case logoApp = "logo"
     case radioOn = "smallcircle.fill.circle"
     case radioOff = "circle.fill"
+    case circle = "circle"
     case plusSquare = "plus.square"
     case play = "play"
     case pause = "pause"
