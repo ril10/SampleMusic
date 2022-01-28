@@ -79,7 +79,6 @@ enum Icons : String, CaseIterable {
     case crossEye = "eye.slash"
     case banknote = "banknote"
 }
-
 enum TableCell : String, CaseIterable {
     case cell = "CustomTableViewCell"
     case chatCell = "ChatCell"
