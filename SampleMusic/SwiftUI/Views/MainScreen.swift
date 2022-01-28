@@ -2,7 +2,7 @@
 //  MainScreen.swift
 //  SampleMusic
 //
-//  Created by Siarhei Luk on 1/27/22.
+//  Created by Siarhei Luk on 1/28/22.
 //
 
 import SwiftUI
@@ -48,7 +48,6 @@ struct MainScreen: View {
                                     .foregroundColor(Color.gray)
                             }
                         }
-
                     }.padding()
                     VStack(alignment: .center, spacing: 60.0) {
                         HStack() {
@@ -73,11 +72,8 @@ struct MainScreen: View {
     }
 }
 
-
-
-struct Previews_MainScreen_Previews: PreviewProvider {
+struct MainScreen_Previews: PreviewProvider {
     static var previews: some View {
         MainScreen()
-            .previewDevice("iPhone 12")
     }
 }

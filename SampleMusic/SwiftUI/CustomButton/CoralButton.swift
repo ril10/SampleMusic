@@ -2,7 +2,7 @@
 //  CoralButton.swift
 //  SampleMusic
 //
-//  Created by Siarhei Luk on 1/27/22.
+//  Created by Siarhei Luk on 1/28/22.
 //
 
 import SwiftUI
@@ -19,3 +19,4 @@ struct CoralButton: ButtonStyle {
             .shadow(radius: 10.0)
     }
 }
+
