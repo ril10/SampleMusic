@@ -66,23 +66,7 @@ struct SellerDetail: View {
                     VStack(alignment: .leading) {
                         Text("My Samples List")
                             .padding(.leading)
-                        List {
-                            HStack(spacing: 150) {
-                                VStack(alignment: .leading) {
-                                    Text("Some")
-                                    Text("0🍪")
-                                }
-                                VStack(alignment: .trailing) {
-                                    Image(systemName: Icons.photo.rawValue)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 100, height: 100, alignment: .center)
-                                        .clipShape(Circle())
-                                        .overlay(Circle().stroke(Color(Style.coralColor.rawValue), lineWidth: 5))
-                                        .shadow(radius: 10)
-                                }
-                            }
-                        }.frame(width: .infinity, height: 400, alignment: .center)
+                        ListOfSamples()
                     }
                 }
             }

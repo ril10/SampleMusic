@@ -68,6 +68,7 @@
 		C33CCA7D272C246600C7969E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA7C272C246600C7969E /* CustomTableViewCell.swift */; };
 		C33CCA80272C253200C7969E /* SampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA7F272C253200C7969E /* SampleModel.swift */; };
 		C33CCA82272C3BC800C7969E /* SellerDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33CCA81272C3BC800C7969E /* SellerDetailViewModel.swift */; };
+		C346D52D27C65F8400C94679 /* ListOfSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = C346D52C27C65F8400C94679 /* ListOfSamples.swift */; };
 		C34C35F027A3D57A00289AD2 /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34C35EF27A3D57A00289AD2 /* MainScreen.swift */; };
 		C366BE532729726200B3E182 /* SellerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE522729726200B3E182 /* SellerDetailViewController.swift */; };
 		C366BE5527298E6900B3E182 /* AddingDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C366BE5427298E6900B3E182 /* AddingDataViewController.swift */; };
@@ -211,6 +212,7 @@
 		C33CCA7C272C246600C7969E /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		C33CCA7F272C253200C7969E /* SampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleModel.swift; sourceTree = "<group>"; };
 		C33CCA81272C3BC800C7969E /* SellerDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerDetailViewModel.swift; sourceTree = "<group>"; };
+		C346D52C27C65F8400C94679 /* ListOfSamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfSamples.swift; sourceTree = "<group>"; };
 		C34C35EF27A3D57A00289AD2 /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		C366BE522729726200B3E182 /* SellerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerDetailViewController.swift; sourceTree = "<group>"; };
 		C366BE5427298E6900B3E182 /* AddingDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingDataViewController.swift; sourceTree = "<group>"; };
@@ -862,6 +864,7 @@
 				C34C35EF27A3D57A00289AD2 /* MainScreen.swift */,
 				C301C7EB27A3D8F5006E4311 /* SignUpScreen.swift */,
 				C301C7F327A40ABF006E4311 /* SellerDetail.swift */,
+				C346D52C27C65F8400C94679 /* ListOfSamples.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1327,6 +1330,7 @@
 				C33CCA82272C3BC800C7969E /* SellerDetailViewModel.swift in Sources */,
 				C30FC4CE2768BA1700A46C4C /* NotificationDataModel.swift in Sources */,
 				C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */,
+				C346D52D27C65F8400C94679 /* ListOfSamples.swift in Sources */,
 				C30150B12732A59F00C85EF3 /* ListSampleViewModel.swift in Sources */,
 				C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */,
 				C30FC4DF276B64BE00A46C4C /* StoreCellModel.swift in Sources */,
