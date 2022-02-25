@@ -64,9 +64,10 @@ struct SellerDetail: View {
                             .background(Color(Style.coralColor.rawValue))
                     }
                     VStack(alignment: .leading) {
-                        Text("My Samples List")
-                            .padding(.leading)
-                        ListOfSamples()
+                        List {
+                            Text("My Samples List")
+                            ListOfSamples()
+                        }.frame(width: .infinity, height: 400)
                     }
                 }
             }

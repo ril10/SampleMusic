@@ -11,7 +11,6 @@ struct ListOfSamples: View {
     @SwiftUI.State private var duration = 0.0
     @SwiftUI.State private var isEditing = false
     var body: some View {
-        List {
             HStack {
                 VStack(alignment: .leading) {
                     Text("Some")
@@ -49,7 +48,6 @@ struct ListOfSamples: View {
                         .overlay(Circle().stroke(Color(Style.coralColor.rawValue), lineWidth: 5))
                 }
             }
-        }//.frame(width: .infinity, alignment: .center)
     }
 }
 

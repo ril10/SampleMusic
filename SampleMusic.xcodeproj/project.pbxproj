@@ -122,6 +122,7 @@
 		C38BC32E2755105C0027E33C /* ChatDetailImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BC32D2755105C0027E33C /* ChatDetailImp.swift */; };
 		C38BC330275518DA0027E33C /* MessageDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BC32F275518DA0027E33C /* MessageDataModel.swift */; };
 		C397694227566B53006578B5 /* ChatPageImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C397694127566B53006578B5 /* ChatPageImp.swift */; };
+		C3D17F8827C8F4150026C0D7 /* AllSamplesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D17F8727C8F4150026C0D7 /* AllSamplesList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -272,6 +273,7 @@
 		C38BC32D2755105C0027E33C /* ChatDetailImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailImp.swift; sourceTree = "<group>"; };
 		C38BC32F275518DA0027E33C /* MessageDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDataModel.swift; sourceTree = "<group>"; };
 		C397694127566B53006578B5 /* ChatPageImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPageImp.swift; sourceTree = "<group>"; };
+		C3D17F8727C8F4150026C0D7 /* AllSamplesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSamplesList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -865,6 +867,7 @@
 				C301C7EB27A3D8F5006E4311 /* SignUpScreen.swift */,
 				C301C7F327A40ABF006E4311 /* SellerDetail.swift */,
 				C346D52C27C65F8400C94679 /* ListOfSamples.swift */,
+				C3D17F8727C8F4150026C0D7 /* AllSamplesList.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1316,6 +1319,7 @@
 				C30150BD2733E07300C85EF3 /* TabBarCoordinator.swift in Sources */,
 				C3255878273C263200248FD8 /* ViewScreenProtocol.swift in Sources */,
 				C3255876273AC4EE00248FD8 /* TabBarImp.swift in Sources */,
+				C3D17F8827C8F4150026C0D7 /* AllSamplesList.swift in Sources */,
 				C30FC4D9276B575900A46C4C /* StoreCurrencyCoordinator.swift in Sources */,
 				C38BC330275518DA0027E33C /* MessageDataModel.swift in Sources */,
 				C316011D2751230300D35E70 /* Message.swift in Sources */,
