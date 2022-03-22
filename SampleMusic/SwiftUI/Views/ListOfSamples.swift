@@ -40,12 +40,7 @@ struct ListOfSamples: View {
                     }
                 }
                 VStack(alignment: .trailing) {
-                    Image(systemName: Icons.photo.rawValue)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 80, height: 80, alignment: .center)
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color(Style.coralColor.rawValue), lineWidth: 5))
+                    CustomImageView(imageWidth: 80.0, imageHeight: 80.0)
                 }
             }
     }

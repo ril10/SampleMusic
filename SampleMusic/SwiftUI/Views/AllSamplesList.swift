@@ -9,16 +9,9 @@ import SwiftUI
 
 struct AllSamplesList: View {
     @SwiftUI.State private var sampleType: Int = 0
-    @SwiftUI.State private var searchText: String = ""
     var body: some View {
         VStack {
-            TextField(
-                "Search by name",
-                text: $searchText
-            )
-                .disableAutocorrection(true)
-                .padding()
-                .textFieldStyle(.roundedBorder)
+            SearchBar()
             HStack {
                 Picker("Select paid or free", selection: $sampleType) {
                     Text("By Name").tag(0)

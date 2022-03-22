@@ -23,7 +23,11 @@
 		C301C7EC27A3D8F5006E4311 /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301C7EB27A3D8F5006E4311 /* SignUpScreen.swift */; };
 		C301C7F227A3E78B006E4311 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301C7F127A3E78B006E4311 /* RadioButton.swift */; };
 		C301C7F427A40ABF006E4311 /* SellerDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301C7F327A40ABF006E4311 /* SellerDetail.swift */; };
-		C301C7F727A41F4E006E4311 /* CustomListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C301C7F627A41F4E006E4311 /* CustomListCell.swift */; };
+		C30A27A827E9BD8500998AAB /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A27A727E9BD8500998AAB /* SearchBar.swift */; };
+		C30A27AA27E9C37400998AAB /* UploadScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A27A927E9C37400998AAB /* UploadScreen.swift */; };
+		C30A27AD27E9C40300998AAB /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A27AC27E9C40300998AAB /* CustomImageView.swift */; };
+		C30A27AF27E9D58100998AAB /* GrayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A27AE27E9D58100998AAB /* GrayButton.swift */; };
+		C30A27B227E9D7C800998AAB /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A27B127E9D7C800998AAB /* TextStyle.swift */; };
 		C30FC4BF27608CBA00A46C4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C30FC4C127608CBA00A46C4C /* Localizable.strings */; };
 		C30FC4C52760A0FD00A46C4C /* LocalizeKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4C42760A0FD00A46C4C /* LocalizeKeys.swift */; };
 		C30FC4C8276779C900A46C4C /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30FC4C7276779C800A46C4C /* PushNotificationManager.swift */; };
@@ -165,7 +169,11 @@
 		C301C7EB27A3D8F5006E4311 /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
 		C301C7F127A3E78B006E4311 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		C301C7F327A40ABF006E4311 /* SellerDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellerDetail.swift; sourceTree = "<group>"; };
-		C301C7F627A41F4E006E4311 /* CustomListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomListCell.swift; sourceTree = "<group>"; };
+		C30A27A727E9BD8500998AAB /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		C30A27A927E9C37400998AAB /* UploadScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadScreen.swift; sourceTree = "<group>"; };
+		C30A27AC27E9C40300998AAB /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		C30A27AE27E9D58100998AAB /* GrayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayButton.swift; sourceTree = "<group>"; };
+		C30A27B127E9D7C800998AAB /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
 		C30FC4C027608CBA00A46C4C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C30FC4C227608CDE00A46C4C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		C30FC4C327608CE000A46C4C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -347,9 +355,24 @@
 		C301C7F527A41F3E006E4311 /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
-				C301C7F627A41F4E006E4311 /* CustomListCell.swift */,
 			);
 			path = CustomCell;
+			sourceTree = "<group>";
+		};
+		C30A27AB27E9C3ED00998AAB /* ImageRound */ = {
+			isa = PBXGroup;
+			children = (
+				C30A27AC27E9C40300998AAB /* CustomImageView.swift */,
+			);
+			path = ImageRound;
+			sourceTree = "<group>";
+		};
+		C30A27B027E9D7B900998AAB /* TextStyle */ = {
+			isa = PBXGroup;
+			children = (
+				C30A27B127E9D7C800998AAB /* TextStyle.swift */,
+			);
+			path = TextStyle;
 			sourceTree = "<group>";
 		};
 		C30FC4CF2768CA0400A46C4C /* Notification */ = {
@@ -835,6 +858,8 @@
 		C34C35EB27A3D54100289AD2 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				C30A27B027E9D7B900998AAB /* TextStyle */,
+				C30A27AB27E9C3ED00998AAB /* ImageRound */,
 				C301C7F527A41F3E006E4311 /* CustomCell */,
 				C301C7F027A3E77B006E4311 /* CustomRadioButton */,
 				C34C35EE27A3D56700289AD2 /* Views */,
@@ -848,6 +873,7 @@
 			isa = PBXGroup;
 			children = (
 				C301C7E927A3D7C2006E4311 /* CoralButton.swift */,
+				C30A27AE27E9D58100998AAB /* GrayButton.swift */,
 			);
 			path = CustomButton;
 			sourceTree = "<group>";
@@ -856,6 +882,7 @@
 			isa = PBXGroup;
 			children = (
 				C301C7E727A3D7A1006E4311 /* CustomTextFieldStyle.swift */,
+				C30A27A727E9BD8500998AAB /* SearchBar.swift */,
 			);
 			path = CustomTextField;
 			sourceTree = "<group>";
@@ -868,6 +895,7 @@
 				C301C7F327A40ABF006E4311 /* SellerDetail.swift */,
 				C346D52C27C65F8400C94679 /* ListOfSamples.swift */,
 				C3D17F8727C8F4150026C0D7 /* AllSamplesList.swift */,
+				C30A27A927E9C37400998AAB /* UploadScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1331,20 +1359,22 @@
 				C381568A27281499008E83AC /* RegistrationViewModel.swift in Sources */,
 				C397694227566B53006578B5 /* ChatPageImp.swift in Sources */,
 				C30FC4DB276B61A500A46C4C /* StoreCell.swift in Sources */,
+				C30A27B227E9D7C800998AAB /* TextStyle.swift in Sources */,
 				C33CCA82272C3BC800C7969E /* SellerDetailViewModel.swift in Sources */,
 				C30FC4CE2768BA1700A46C4C /* NotificationDataModel.swift in Sources */,
 				C381564A2726A0BF008E83AC /* MainScreenViewController.swift in Sources */,
 				C346D52D27C65F8400C94679 /* ListOfSamples.swift in Sources */,
 				C30150B12732A59F00C85EF3 /* ListSampleViewModel.swift in Sources */,
+				C30A27A827E9BD8500998AAB /* SearchBar.swift in Sources */,
 				C38156462726A0BF008E83AC /* AppDelegate.swift in Sources */,
 				C30FC4DF276B64BE00A46C4C /* StoreCellModel.swift in Sources */,
-				C301C7F727A41F4E006E4311 /* CustomListCell.swift in Sources */,
 				C3810578274BCDBF0071BC79 /* UserDetailImp.swift in Sources */,
 				C325586A273A62D600248FD8 /* AddUserDataCoordinator.swift in Sources */,
 				C38105682746B0D00071BC79 /* RecordPageDrawView.swift in Sources */,
 				C325587E273D0C5800248FD8 /* MainScreenCoordinator.swift in Sources */,
 				C379FED5273943CB004ECCB9 /* ListSamplesImp.swift in Sources */,
 				C3160121275130A800D35E70 /* SellerDetailCoordinator.swift in Sources */,
+				C30A27AA27E9C37400998AAB /* UploadScreen.swift in Sources */,
 				C38BC32E2755105C0027E33C /* ChatDetailImp.swift in Sources */,
 				C37A9143276CC8E200A8F19A /* PurchasedModel.swift in Sources */,
 				C366BE5727298EBE00B3E182 /* AddingDataAboutUserViewModel.swift in Sources */,
@@ -1382,6 +1412,7 @@
 				C38105662746B07B0071BC79 /* RecordPageViewController.swift in Sources */,
 				C33CCA7B272BE47A00C7969E /* DetailModel.swift in Sources */,
 				C30FC4C8276779C900A46C4C /* PushNotificationManager.swift in Sources */,
+				C30A27AF27E9D58100998AAB /* GrayButton.swift in Sources */,
 				C381057A274BDA970071BC79 /* RecordPageCoordinator.swift in Sources */,
 				C301C7EA27A3D7C2006E4311 /* CoralButton.swift in Sources */,
 				C37A914C2771DB4000A8F19A /* RecieveData.swift in Sources */,
@@ -1389,6 +1420,7 @@
 				C3767E002750DA3500F4FF7D /* ChatPageCoordinator.swift in Sources */,
 				C325588627427EB400248FD8 /* UploadMusicDraw.swift in Sources */,
 				C3255868273A62BC00248FD8 /* RegistrationCoordinator.swift in Sources */,
+				C30A27AD27E9C40300998AAB /* CustomImageView.swift in Sources */,
 				C381056C2746B1230071BC79 /* ChatPageViewController.swift in Sources */,
 				C381056E2746B1530071BC79 /* ChatPageDrawView.swift in Sources */,
 				C38105602746AFA10071BC79 /* UserDetailViewController.swift in Sources */,
