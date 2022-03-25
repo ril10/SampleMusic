@@ -51,3 +51,4 @@ struct ListOfSamples_Previews: PreviewProvider {
         ListOfSamples()
     }
 }
+

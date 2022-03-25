@@ -9,28 +9,44 @@ import SwiftUI
 
 struct UploadScreen: View {
     @SwiftUI.State var sampleType = ""
+    @SwiftUI.State var sampleName = ""
     var body: some View {
         ZStack(alignment: .top) {
             VStack {
-                CustomTextStyle(text: "1.Upload image for sample")
+                VStack(alignment: .leading) {
+                    CustomTextStyle(text: "1.Upload image for sample")
+                }
                 CustomImageView(imageWidth: 180.0, imageHeight: 180.0)
                 Button(
                     action: {},
                     label: {
                         Image(systemName: Icons.plusSquare.rawValue)
+                            .resizable()
+                            .frame(width: 35, height: 35)
                     })
                     .buttonStyle(GrayButton())
-                    .padding()
-                CustomTextStyle(text: "2.Type sample music")
-                CustomTextStyle(text: "3.Choose sample to upload")
+                VStack(alignment: .leading) {
+                    CustomTextStyle(text: "2.Type sample music")
+                    TextField("Type sample name", text: $sampleName)
+                        .overlay(VStack{
+                            Divider()
+                                .offset(x: 0, y: 15)
+                        })
+                }.padding()
+                VStack(alignment: .leading) {
+                    CustomTextStyle(text: "3.Choose sample to upload")
+                }
                 Button(
                     action: {},
                     label: {
                         Image(systemName: Icons.plusSquare.rawValue)
+                            .resizable()
+                            .frame(width: 35, height: 35)
                     })
                     .buttonStyle(GrayButton())
-                    .padding()
-                CustomTextStyle(text: "4.Select distribution of your sample")
+                VStack(alignment: .leading) {
+                    CustomTextStyle(text: "4.Select distribution of your sample")
+                }
                 HStack(alignment: .center, spacing: 100) {
                     RadioButton(
                         isActive: $sampleType.wrappedValue == "Paid" ? true : false,
